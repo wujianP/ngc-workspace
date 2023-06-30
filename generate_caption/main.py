@@ -16,9 +16,7 @@ def main(args):
         args.max_gpu_memory,
         args.load_8bit,
         args.cpu_offloading,
-        revision=args.revision,
-        debug=args.debug,
-    )
+        revision=args.revision,)
 
     # load data
     caption_dataset = CaptionDataset(caption_path=args.data_path)
