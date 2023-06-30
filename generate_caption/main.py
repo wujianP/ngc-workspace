@@ -27,10 +27,9 @@ def main(args):
                                     shuffle=True)
     total_iters = len(caption_dataloader)
 
-    from IPython import embed
-    embed()
-
     for cur_iter, (filenames, captions, actions) in enumerate(caption_dataloader):
+        from IPython import embed
+        embed()
         print(f"Iteration: {cur_iter + 1}/{total_iters}")
 
     prompt = 'pass'
