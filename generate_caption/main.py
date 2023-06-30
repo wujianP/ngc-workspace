@@ -30,10 +30,10 @@ def main(args):
 
     # do inference
     total_iters = len(caption_dataloader)
-    for cur_iter, (filenames, prompts, captions) in enumerate(caption_dataloader):
+    for cur_iter, (filenames, prompts, captions, actions) in enumerate(caption_dataloader):
         start_time = time.time()
         # tokenize
-        input_ids = tokenizer(prompts, padding=True, truncation=True).input_ids
+        input_ids = tokenizer(prompts, padding=True, truncation=True, padding_side='left').input_ids
         # forward
         output_ids = model.generate(
             torch.as_tensor(input_ids).cuda(),
@@ -53,6 +53,7 @@ def main(args):
         end_time = time.time()
         batch_time = end_time - start_time
         print('Input:' + captions[0])
+        print('Action:' + actions[0])
         print('Output:' + outputs[0])
         print(f"Iteration: {cur_iter + 1}/{total_iters}, Batch time:{batch_time:.3f}")
 
