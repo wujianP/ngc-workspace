@@ -3,8 +3,9 @@ from torch.utils.data import Dataset
 
 
 class CaptionDataset(Dataset):
-    def __init__(self, caption_path):
+    def __init__(self, caption_path, prompt_template):
         self.caption_path = caption_path
+        self.prompt_template = prompt_template
         self.cap_dict = torch.load(caption_path)
         self.filenames = list(self.cap_dict.keys())
 
@@ -13,7 +14,7 @@ class CaptionDataset(Dataset):
 
     def __getitem__(self, index):
         filename = self.filenames[index]
-        caption = self.cap_dict[filename]
-        caption = str(caption).replace('\'', '')
+        caption = str(self.cap_dict[filename]).replace('\'', '')
         action = filename.split('/')[-2].replace('_', ' ')
-        return filename, caption, action
+        prompt = self.prompt_template + caption + f', {action}, Output:'
+        return filename, prompt
