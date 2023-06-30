@@ -15,4 +15,4 @@ class CaptionDataset(Dataset):
         filename = self.filenames[index]
         caption = self.cap_dict[filename]
         action = filename.split('/')[-2].replace('_', ' ')
-        return filename, [caption], action
+        return filename, str(caption), action
