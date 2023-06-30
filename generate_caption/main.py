@@ -1,5 +1,6 @@
 import argparse
 import torch
+import time
 
 from fastchat.model import load_model
 from dataset import CaptionDataset
@@ -29,7 +30,8 @@ def main(args):
 
     # do inference
     total_iters = len(caption_dataloader)
-    for cur_iter, (filenames, prompts) in enumerate(caption_dataloader):
+    for cur_iter, (filenames, prompts, captions) in enumerate(caption_dataloader):
+        start_time = time.time()
         # tokenize
         input_ids = tokenizer(prompts, padding=True, truncation=True).input_ids
         # forward
@@ -48,9 +50,11 @@ def main(args):
         outputs = tokenizer.decode(
             output_ids, skip_special_tokens=True, spaces_between_special_tokens=False
         )
-        print(prompts[0])
-        print(outputs[0])
-        print(f"Iteration: {cur_iter + 1}/{total_iters}")
+        end_time = time.time()
+        batch_time = end_time - start_time
+        print('Input:' + captions[0])
+        print('Output:' + outputs[0])
+        print(f"Iteration: {cur_iter + 1}/{total_iters}, Batch time:{batch_time:.3f}")
 
 
 if __name__ == '__main__':

@@ -17,4 +17,4 @@ class CaptionDataset(Dataset):
         caption = str(self.cap_dict[filename]).replace('\'', '')
         action = filename.split('/')[-2].replace('_', ' ')
         prompt = self.prompt_template + caption + f', {action}, Output:'
-        return filename, prompt
+        return filename, prompt, caption
