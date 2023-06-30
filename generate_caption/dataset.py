@@ -14,5 +14,5 @@ class CaptionDataset(Dataset):
     def __getitem__(self, index):
         filename = self.filenames[index]
         caption = self.cap_dict[filename]
-        action = filename.split('/')[-2].replace('_', '')
-        return filename, caption, action
+        action = filename.split('/')[-2].replace('_', ' ')
+        return filename, [caption], action
