@@ -2,11 +2,11 @@ import argparse
 import torch
 
 from fastchat.model import load_model
-from accelerate import PartialState
 from dataset import CaptionDataset
 from torch.utils.data import DataLoader
 
 
+@torch.inference_mode()
 def main(args):
     # load model
     model, tokenizer = load_model(
@@ -26,18 +26,17 @@ def main(args):
                                     num_workers=8,
                                     pin_memory=True,
                                     shuffle=True)
-    total_iters = len(caption_dataloader)
 
+    # do inference
+    total_iters = len(caption_dataloader)
     for cur_iter, (filenames, prompts) in enumerate(caption_dataloader):
         from IPython import embed
         embed()
         print(f"Iteration: {cur_iter + 1}/{total_iters}")
 
-    prompt = 'pass'
-
-    input_ids = tokenizer([prompt]).input_ids
+    input_ids = tokenizer(prompts).input_ids
     output_ids = model.generate(
-        torch.as_tensor(input_ids).cuda(),
+        torch.as_tensor(input_ids[0]).cuda(),
         do_sample=True,
         temperature=args.temperature,
         repetition_penalty=args.repetition_penalty,
