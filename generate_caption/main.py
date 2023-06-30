@@ -61,7 +61,7 @@ def main(args):
         # embed()
         print('Input:' + captions[0])
         print('Action:' + actions[0])
-        print('Output:' + outputs)
+        print('Output:' + outputs[0])
         print(f"Iteration: {cur_iter + 1}/{total_iters}, Batch time:{batch_time:.3f}")
 
 
