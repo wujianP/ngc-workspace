@@ -30,26 +30,27 @@ def main(args):
     # do inference
     total_iters = len(caption_dataloader)
     for cur_iter, (filenames, prompts) in enumerate(caption_dataloader):
-        from IPython import embed
-        embed()
+        # tokenize
+        input_ids = tokenizer(prompts).input_ids
+        # forward
+        output_ids = model.generate(
+            [torch.as_tensor(per_input_ids).cuda() for per_input_ids in input_ids],
+            do_sample=True,
+            temperature=args.temperature,
+            repetition_penalty=args.repetition_penalty,
+            max_new_tokens=args.max_new_tokens,
+        )
+        # decode
+        if model.config.is_encoder_decoder:
+            output_ids = output_ids[0]
+        else:
+            output_ids = output_ids[0][len(input_ids[0]):]
+        outputs = tokenizer.decode(
+            output_ids, skip_special_tokens=True, spaces_between_special_tokens=False
+        )
+        print(prompts[0])
+        print(outputs[0])
         print(f"Iteration: {cur_iter + 1}/{total_iters}")
-
-    input_ids = tokenizer(prompts).input_ids
-    output_ids = model.generate(
-        torch.as_tensor(input_ids[0]).cuda(),
-        do_sample=True,
-        temperature=args.temperature,
-        repetition_penalty=args.repetition_penalty,
-        max_new_tokens=args.max_new_tokens,
-    )
-
-    if model.config.is_encoder_decoder:
-        output_ids = output_ids[0]
-    else:
-        output_ids = output_ids[0][len(input_ids[0]):]
-    outputs = tokenizer.decode(
-        output_ids, skip_special_tokens=True, spaces_between_special_tokens=False
-    )
 
 
 if __name__ == '__main__':
