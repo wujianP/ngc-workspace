@@ -36,7 +36,7 @@ def main(args):
         input_ids = tokenizer(prompts, padding=True, truncation=True).input_ids
         # forward
         output_ids = model.generate(
-            torch.tensor([torch.as_tensor(per_input_ids).cuda() for per_input_ids in input_ids]),
+            torch.as_tensor(input_ids).cuda(),
             do_sample=True,
             temperature=args.temperature,
             repetition_penalty=args.repetition_penalty,
