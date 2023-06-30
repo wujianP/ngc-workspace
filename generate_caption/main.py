@@ -33,27 +33,32 @@ def main(args):
     for cur_iter, (filenames, prompts, captions, actions) in enumerate(caption_dataloader):
         start_time = time.time()
         # tokenize
-        input_ids = tokenizer(prompts, padding=True, truncation=True).input_ids
+        inputs = tokenizer(prompts, padding=True, truncation=True, return_tensors="pt")
+        inputs['input_ids'] = inputs['input_ids'].cuda()
+        inputs['attention_mask'] = inputs['attention_mask'].cuda()
+
         # forward
-        output_ids = model.generate(
-            torch.as_tensor(input_ids).cuda(),
+        output_sequences = model.generate(
+            input_ids=inputs['input_ids'],
             do_sample=True,
             temperature=args.temperature,
             repetition_penalty=args.repetition_penalty,
             max_new_tokens=args.max_new_tokens,
         )
+
         # decode
+        outputs = tokenizer.batch_decode(output_sequences, skip_special_tokens=True, spaces_between_special_tokens=False)
+
+        # post-process
         if model.config.is_encoder_decoder:
-            output_ids = output_ids[0]
+            pass
         else:
-            output_ids = output_ids[0][len(input_ids[0]):]
-        outputs = tokenizer.decode(
-            output_ids, skip_special_tokens=True, spaces_between_special_tokens=False
-        )
+            outputs = [output.split('\nOutput: ')[-1] for output in outputs]
+
         end_time = time.time()
         batch_time = end_time - start_time
-        from IPython import embed
-        embed()
+        # from IPython import embed
+        # embed()
         print('Input:' + captions[0])
         print('Action:' + actions[0])
         print('Output:' + outputs)
