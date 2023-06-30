@@ -30,8 +30,10 @@ def main(args):
     # do inference
     total_iters = len(caption_dataloader)
     for cur_iter, (filenames, prompts) in enumerate(caption_dataloader):
+        from IPython import embed
+        embed()
         # tokenize
-        input_ids = tokenizer(prompts).input_ids
+        input_ids = tokenizer(prompts, padding=True, truncation=True).input_ids
         # forward
         output_ids = model.generate(
             torch.tensor([torch.as_tensor(per_input_ids).cuda() for per_input_ids in input_ids]),
