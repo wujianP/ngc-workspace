@@ -52,6 +52,8 @@ def main(args):
         )
         end_time = time.time()
         batch_time = end_time - start_time
+        from IPython import embed
+        embed()
         print('Input:' + captions[0])
         print('Action:' + actions[0])
         print('Output:' + outputs)
