@@ -63,12 +63,10 @@ def main(args):
         # save file
         with open(args.save_path, "a", newline="") as f:
             writer = csv.writer(f)
-            from IPython import embed
-            embed()
             for i in range(args.batch_size):
                 filename = filenames[i]
                 action = actions[i]
-                output = outputs[i]
+                output = outputs[i].rstrip("\n")
                 writer.writerow((filename, action, output))
 
         print('Input:' + captions[0])
