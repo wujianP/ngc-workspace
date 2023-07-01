@@ -1,6 +1,7 @@
 import argparse
 import torch
 import time
+import csv
 
 from fastchat.model import load_model
 from dataset import CaptionDataset
@@ -58,6 +59,15 @@ def main(args):
         end_time = time.time()
         batch_time = end_time - start_time
 
+        # save file
+        with open(args.save_path) as f:
+            writer = csv.writer(f)
+            for i in range(len(args.batch_size)):
+                filename = filenames[i]
+                action = actions[i]
+                output = outputs[i]
+                writer.writerow((filename, action, output))
+
         print('Input:' + captions[0])
         print('Action:' + actions[0])
         print('Output:' + outputs[0])
@@ -69,6 +79,7 @@ if __name__ == '__main__':
     # Data and Model
     parser.add_argument("--model-path", type=str, default="lmsys/vicuna-7b-v1.3")
     parser.add_argument("--data-path", type=str, default="/DDN_ROOT/ytcheng/code/Open-VCLIP-V2/video_description_gen/back/caption_record.pth")
+    parser.add_argument("--save-path", type=str, required=True)
     # Hyper-parameters
     parser.add_argument('--batch-size', type=int, default=32)
     parser.add_argument('--prompt-template', type=str, required=True)
