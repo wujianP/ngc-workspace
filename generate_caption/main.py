@@ -61,9 +61,10 @@ def main(args):
         batch_time = end_time - start_time
 
         # save file
-        # os.makedirs(os.path.dirname(args.save_path), exist_ok=True)
         with open(args.save_path, "a", newline="") as f:
             writer = csv.writer(f)
+            from IPython import embed
+            embed()
             for i in range(args.batch_size):
                 filename = filenames[i]
                 action = actions[i]
