@@ -61,8 +61,8 @@ def main(args):
         batch_time = end_time - start_time
 
         # save file
-        os.makedirs(os.path.dirname(args.save_path), exist_ok=True)
-        with open(args.save_path) as f:
+        # os.makedirs(os.path.dirname(args.save_path), exist_ok=True)
+        with open(args.save_path, "a", newline="") as f:
             writer = csv.writer(f)
             for i in range(len(args.batch_size)):
                 filename = filenames[i]
@@ -73,7 +73,7 @@ def main(args):
         print('Input:' + captions[0])
         print('Action:' + actions[0])
         print('Output:' + outputs[0])
-        print(f"Iteration: {cur_iter + 1}/{total_iters}, Batch time:{batch_time:.3f}")
+        print(f"Iteration:[ {cur_iter + 1}/{total_iters} ], Batch time:{batch_time:.3f}")
 
 
 if __name__ == '__main__':
