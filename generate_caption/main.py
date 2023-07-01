@@ -2,6 +2,7 @@ import argparse
 import torch
 import time
 import csv
+import os
 
 from fastchat.model import load_model
 from dataset import CaptionDataset
@@ -60,6 +61,7 @@ def main(args):
         batch_time = end_time - start_time
 
         # save file
+        os.makedirs(os.path.dirname(args.save_path), exist_ok=True)
         with open(args.save_path) as f:
             writer = csv.writer(f)
             for i in range(len(args.batch_size)):
