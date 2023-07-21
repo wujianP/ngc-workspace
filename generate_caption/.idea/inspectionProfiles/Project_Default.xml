@@ -1,0 +1,128 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="DuplicatedCode" enabled="true" level="WEAK WARNING" enabled_by_default="true">
+      <Languages>
+        <language minSize="3568" name="Python" />
+      </Languages>
+    </inspection_tool>
+    <inspection_tool class="PyPackageRequirementsInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredPackages">
+        <value>
+          <list size="59">
+            <item index="0" class="java.lang.String" itemvalue="ftfy" />
+            <item index="1" class="java.lang.String" itemvalue="torchmetrics" />
+            <item index="2" class="java.lang.String" itemvalue="regex" />
+            <item index="3" class="java.lang.String" itemvalue="hydra-core" />
+            <item index="4" class="java.lang.String" itemvalue="pytorchvideo" />
+            <item index="5" class="java.lang.String" itemvalue="tensorboard" />
+            <item index="6" class="java.lang.String" itemvalue="fvcore" />
+            <item index="7" class="java.lang.String" itemvalue="torch" />
+            <item index="8" class="java.lang.String" itemvalue="torchvision" />
+            <item index="9" class="java.lang.String" itemvalue="submitit" />
+            <item index="10" class="java.lang.String" itemvalue="hydra" />
+            <item index="11" class="java.lang.String" itemvalue="omegaconf" />
+            <item index="12" class="java.lang.String" itemvalue="timm" />
+            <item index="13" class="java.lang.String" itemvalue="opencv-python" />
+            <item index="14" class="java.lang.String" itemvalue="einops" />
+            <item index="15" class="java.lang.String" itemvalue="torchaudio" />
+            <item index="16" class="java.lang.String" itemvalue="pandas" />
+            <item index="17" class="java.lang.String" itemvalue="detectron2" />
+            <item index="18" class="java.lang.String" itemvalue="PIL" />
+            <item index="19" class="java.lang.String" itemvalue="fairscale" />
+            <item index="20" class="java.lang.String" itemvalue="matplotlib" />
+            <item index="21" class="java.lang.String" itemvalue="simplejson" />
+            <item index="22" class="java.lang.String" itemvalue="scikit-image" />
+            <item index="23" class="java.lang.String" itemvalue="absl-py" />
+            <item index="24" class="java.lang.String" itemvalue="protobuf" />
+            <item index="25" class="java.lang.String" itemvalue="rsa" />
+            <item index="26" class="java.lang.String" itemvalue="networkx" />
+            <item index="27" class="java.lang.String" itemvalue="huggingface-hub" />
+            <item index="28" class="java.lang.String" itemvalue="scikit-learn" />
+            <item index="29" class="java.lang.String" itemvalue="python-dateutil" />
+            <item index="30" class="java.lang.String" itemvalue="cycler" />
+            <item index="31" class="java.lang.String" itemvalue="importlib-metadata" />
+            <item index="32" class="java.lang.String" itemvalue="mkl-fft" />
+            <item index="33" class="java.lang.String" itemvalue="pyasn1-modules" />
+            <item index="34" class="java.lang.String" itemvalue="filelock" />
+            <item index="35" class="java.lang.String" itemvalue="PyWavelets" />
+            <item index="36" class="java.lang.String" itemvalue="ruamel.yaml.clib" />
+            <item index="37" class="java.lang.String" itemvalue="zipp" />
+            <item index="38" class="java.lang.String" itemvalue="certifi" />
+            <item index="39" class="java.lang.String" itemvalue="urllib3" />
+            <item index="40" class="java.lang.String" itemvalue="Markdown" />
+            <item index="41" class="java.lang.String" itemvalue="pynacl" />
+            <item index="42" class="java.lang.String" itemvalue="tokenizers" />
+            <item index="43" class="java.lang.String" itemvalue="scipy" />
+            <item index="44" class="java.lang.String" itemvalue="transformers" />
+            <item index="45" class="java.lang.String" itemvalue="tifffile" />
+            <item index="46" class="java.lang.String" itemvalue="Werkzeug" />
+            <item index="47" class="java.lang.String" itemvalue="ruamel.yaml" />
+            <item index="48" class="java.lang.String" itemvalue="tensorboard-data-server" />
+            <item index="49" class="java.lang.String" itemvalue="kiwisolver" />
+            <item index="50" class="java.lang.String" itemvalue="tqdm" />
+            <item index="51" class="java.lang.String" itemvalue="fonttools" />
+            <item index="52" class="java.lang.String" itemvalue="imageio" />
+            <item index="53" class="java.lang.String" itemvalue="charset-normalizer" />
+            <item index="54" class="java.lang.String" itemvalue="progress" />
+            <item index="55" class="java.lang.String" itemvalue="grpcio" />
+            <item index="56" class="java.lang.String" itemvalue="olefile" />
+            <item index="57" class="java.lang.String" itemvalue="google-auth" />
+            <item index="58" class="java.lang.String" itemvalue="Pillow" />
+          </list>
+        </value>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="PyPep8Inspection" enabled="true" level="WEAK WARNING" enabled_by_default="true">
+      <option name="ignoredErrors">
+        <list>
+          <option value="E722" />
+          <option value="E501" />
+          <option value="E402" />
+          <option value="E116" />
+          <option value="E115" />
+          <option value="E265" />
+        </list>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="PyPep8NamingInspection" enabled="true" level="WEAK WARNING" enabled_by_default="true">
+      <option name="ignoredErrors">
+        <list>
+          <option value="N802" />
+          <option value="N801" />
+          <option value="N813" />
+          <option value="N812" />
+          <option value="N803" />
+          <option value="N806" />
+        </list>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="PyUnresolvedReferencesInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredIdentifiers">
+        <list>
+          <option value="ABCcode0920.engine.mine.labeled_train_iter" />
+          <option value="ABCcode0920.engine.mine.unlabeled_train_iter" />
+          <option value="ABCcode0920.utils.Bar" />
+          <option value="utils.AverageMeter" />
+          <option value="utils.accuracy" />
+          <option value="utils.SemiLoss" />
+          <option value="utils.Bar" />
+          <option value="ABCcode0920.dataset.utils.RandAugment" />
+          <option value="ABCcode0920.ABCfix.loguru" />
+          <option value="ABCcode0920.ABCfix.time" />
+          <option value="ABCcode0920.ABCfix.logger" />
+          <option value="ABCcode0920.utils.logger.loguru" />
+          <option value="utils.analysis_pseudo_labels" />
+          <option value="utils.init_average_meters" />
+          <option value="utils.MultiAverageMeters" />
+          <option value="utils.update_average_meters" />
+          <option value="utils.log_stats" />
+          <option value="utils.adjust_lr" />
+          <option value="typing.Iterator.next" />
+          <option value="dataset.utils.RandAugment" />
+          <option value="CoSSL.utils.Bar" />
+        </list>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>

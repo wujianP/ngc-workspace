@@ -1,3 +1,7 @@
+"""
+This is a script that merge several frame-level captions into a video-level captions
+"""
+
 import argparse
 import torch
 import time
