@@ -14,7 +14,7 @@ def parse_args():
     )
 
     parser.add_argument(
-        '--data_path', type=str, default='/discobox/wjpeng/dataset/k400/'
+        '--data_path', type=str, default='/dev/shm/k400/'
     )
 
     parser.add_argument(
