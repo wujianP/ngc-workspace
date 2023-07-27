@@ -268,8 +268,7 @@ if __name__ == '__main__':
 
     lock = Lock()
     pool = Pool(args.num_worker, initializer=init, initargs=(lock, ))
-    from IPython import embed
-    embed()
+
     pool.map(
         extract_frame,
         zip(fullpath_list, vid_list, range(len(vid_list)),
