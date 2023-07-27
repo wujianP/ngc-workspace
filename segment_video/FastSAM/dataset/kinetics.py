@@ -23,7 +23,7 @@ class KineticsDataset(Dataset):
         if VideoReader is None:
             raise ImportError("Unable to import `decord` which is required to read videos.")
 
-        cleaned = pd.read_csv(self.anno_path, header=None, delimiter=' ')
+        cleaned = pd.read_csv(self.anno_path, header=None, delimiter=',')
         self.dataset_samples = list(cleaned.values[:, 0])   # video path list
         self.label_array = list(cleaned.values[:, 1])       # video label list
 
