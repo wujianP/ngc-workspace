@@ -4,6 +4,7 @@ import ast
 import torch
 from PIL import Image
 from utils.tools import convert_box_xywh_to_xyxy
+from dataset.kinetics import KineticsDataset
 
 
 def parse_args():
@@ -74,9 +75,14 @@ def parse_args():
 def main(args):
     # load model
     model = FastSAM(args.model_path)
+    # prompts
     args.point_prompt = ast.literal_eval(args.point_prompt)
     args.box_prompt = convert_box_xywh_to_xyxy(ast.literal_eval(args.box_prompt))
     args.point_label = ast.literal_eval(args.point_label)
+    # data
+    k400 = KineticsDataset(anno_path=args.ann_path, data_path=args.data_path, clip_len=8, frame_sample_rate=8, num_segment=1)
+    from IPython import embed
+    embed()
     input = Image.open(args.img_path)
     input = input.convert("RGB")
     everything_results = model(
