@@ -14,14 +14,12 @@ class KineticsDataset(Dataset):
                  data_path,
                  clip_len=8,
                  frame_sample_rate=8,
-                 num_segment=1,
-                 args=None):
+                 num_segment=1):
         self.anno_path = anno_path  # path to .csv
         self.data_path = data_path  # path to video root
         self.clip_len = clip_len    # num_frames per clip
         self.frame_sample_rate = frame_sample_rate  # stride between frames
         self.num_segment = num_segment
-        self.args = args
         if VideoReader is None:
             raise ImportError("Unable to import `decord` which is required to read videos.")
 
@@ -31,6 +29,7 @@ class KineticsDataset(Dataset):
 
     def __getitem__(self, index):
         sample = self.dataset_samples[index]    # video path
+        sample = os.path.join(self.data_path, sample)
         buffer = self.loadvideo_decord(sample)
         if len(buffer) == 0:
             while len(buffer) == 0:

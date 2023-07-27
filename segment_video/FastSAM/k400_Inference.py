@@ -10,6 +10,14 @@ from dataset.kinetics import KineticsDataset
 def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument(
+        '--ann_path', type=str, default="/discobox/wjpeng/dataset/k400/ann/train.csv"
+    )
+
+    parser.add_argument(
+        '--data_path', type=str, default='/discobox/wjpeng/dataset/k400/'
+    )
+
+    parser.add_argument(
         "--model_path", type=str, default="./weights/FastSAM.pt", help="model"
     )
     parser.add_argument(
