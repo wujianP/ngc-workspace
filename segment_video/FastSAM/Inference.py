@@ -104,6 +104,10 @@ def main(args):
         point_label = args.point_label
     else:
         ann = prompt_process.everything_prompt()
+
+    from IPython import embed
+    embed()
+
     prompt_process.plot(
         annotations=ann,
         output_path=args.output+args.img_path.split("/")[-1],
