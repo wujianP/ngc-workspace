@@ -22,6 +22,8 @@ def extract_frame(vid_item):
         bool: Whether generate optical flow successfully.
     """
     full_path, vid_path, vid_id, method, task, report_file = vid_item
+    from IPython import embed
+    embed()
     if '/' in vid_path:
         act_name = osp.basename(osp.dirname(vid_path))
         out_full_path = osp.join(args.out_dir, act_name)
