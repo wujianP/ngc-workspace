@@ -1,10 +1,11 @@
-from transformers import AutoImageProcessor, SegformerForSemanticSegmentation
+from transformers import SegformerFeatureExtractor, AutoImageProcessor, SegformerForSemanticSegmentation
 from torch.utils.data import DataLoader
 from argparse import ArgumentParser
 from dataset import RawFrameDataset
 
 
 def main(args):
+    feature_extractor = SegformerFeatureExtractor.from_pretrained(args.model_path)
     image_processor = AutoImageProcessor.from_pretrained(args.model_path)
     model = SegformerForSemanticSegmentation.from_pretrained(args.model_path)
 
