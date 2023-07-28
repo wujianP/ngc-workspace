@@ -15,11 +15,9 @@ class RawFrameDataset(Dataset):
         with open(path, 'rb') as f:
             image = Image.open(f).convert('RGB')
         f.close()
-        height, width = image.size[::-1]   # (height, width)
-        image_raw = np.array(image)
-        image_tensor = self.feature_extractor(image, return_tensors="pt").pixel_values[0]
+        image = np.array(image)
 
-        return image_tensor, image_raw, height, width, path
+        return image, path
 
     def __len__(self):
         return len(self.path_list)

@@ -30,26 +30,29 @@ def main(args):
 
     # segment forward pass
     total_iters = len(dataloader)
-    for cur_iter, (images, images_raw, heights, widths, paths) in enumerate(dataloader):
+    for cur_iter, (images, paths) in enumerate(dataloader):
         start_time = time.time()
 
         # forward pass
-        images = images.cuda()
-        outputs = model(images)
+        images_pt = feature_extractor(images, return_tensors="pt").pixel_values[0].cuda()
+        outputs = model(images_pt)
         logits = outputs.logits
 
-        from IPython import embed
-        embed()
-
         for i in range(args.batch_size):
+            # image
+            img = images[i]
+            height, width, _ = img.shape
             # rescale logits to original image size
             logit = torch.unsqueeze(logits[i], 0)
-            logit = nn.functional.interpolate(logit, size=(heights[i], widths[i]), mode='bilinear', align_corners=False)
+            logit = nn.functional.interpolate(logit, size=(height, width), mode='bilinear', align_corners=False)
             # get segment mask labels
             seg_mask = logit.argmax(dim=1)[0].cpu()
             # plot to wandb
             if i == 0:
-                visualize_result(seg_mask=seg_mask, image_raw=images_raw[i], stepIdx=cur_iter+1)
+                visualize_result(seg_mask=seg_mask, image_raw=images[i], stepIdx=cur_iter+1)
+
+        from IPython import embed
+        embed()
 
         batch_time = time.time() - start_time
 
