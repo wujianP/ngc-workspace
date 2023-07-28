@@ -15,9 +15,11 @@ class RawFrameDataset(Dataset):
         with open(path, 'rb') as f:
             image = Image.open(f).convert('RGB')
         f.close()
-        image = np.array(image)
 
-        return image, path
+        image_np = np.array(image)
+        image_pt = self.feature_extractor(image, return_tensors="pt").pixel_values[0].cuda()
+
+        return image_pt, image_np, path
 
     def __len__(self):
         return len(self.path_list)
