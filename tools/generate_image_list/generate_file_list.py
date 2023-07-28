@@ -13,14 +13,12 @@ def collect_image_paths(folder_path):
 
 
 def process_path_file(path_file, output_file):
-    from IPython import embed
-    embed()
     with open(path_file, 'r') as f:
         folder_paths = f.readlines()
 
     with open(output_file, 'w') as output:
         for folder_path in folder_paths:
-            folder_path = folder_path[14:-4]  # discard post-fix '.jpg' and pre-fix '/dev/shm/k400/'
+            folder_path = folder_path[14:-5]  # discard post-fix '.jpg' and pre-fix '/dev/shm/k400/'
             path_root = '/discobox/wjpeng/dataset/k400/rawframes/'
             folder_path = os.path.join(path_root, folder_path)
             if os.path.isdir(folder_path):
