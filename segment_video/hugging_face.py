@@ -1,7 +1,7 @@
 from transformers import AutoImageProcessor, SegformerForSemanticSegmentation
 from torch.utils.data import DataLoader
 from argparse import ArgumentParser
-from .dataset import RawFrameDataset
+from dataset import RawFrameDataset
 
 
 def main(args):
