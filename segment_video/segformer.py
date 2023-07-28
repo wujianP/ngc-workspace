@@ -37,6 +37,7 @@ def main(args):
         embed()
 
         # forward pass
+        images_pt = images_pt.cuda()
         outputs = model(images_pt)
         logits = outputs.logits
 
