@@ -1,3 +1,4 @@
+import torch
 from transformers import SegformerFeatureExtractor, AutoImageProcessor, SegformerForSemanticSegmentation
 from torch.utils.data import DataLoader
 from argparse import ArgumentParser
@@ -5,6 +6,7 @@ from dataset import RawFrameDataset
 from torch import nn
 
 
+@torch.no_grad()
 def main(args):
     feature_extractor = SegformerFeatureExtractor.from_pretrained(args.model_path)
     model = SegformerForSemanticSegmentation.from_pretrained(args.model_path).cuda()
@@ -24,14 +26,13 @@ def main(args):
         outputs = model(images)
         logits = outputs.logits
 
+        # rescale logits to original image size
+        for i in range(args.batch_size):
+            height, weight = heights[i], widths[i]
+            logits[i] = nn.functional.interpolate(logits[i], size=(height, weight), mode='bilinear', align_corners=False)
+
         from IPython import embed
         embed()
-
-        # rescale logits to original image size
-        logits = nn.functional.interpolate(logits.detach().cpu(),
-                                           size=image.size[::-1],  # (height, width)
-                                           mode='bilinear',
-                                           align_corners=False)
 
 
 if __name__ == '__main__':
