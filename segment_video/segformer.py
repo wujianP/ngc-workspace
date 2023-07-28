@@ -38,6 +38,9 @@ def main(args):
         outputs = model(images)
         logits = outputs.logits
 
+        from IPython import embed
+        embed()
+
         for i in range(args.batch_size):
             # rescale logits to original image size
             logit = torch.unsqueeze(logits[i], 0)
