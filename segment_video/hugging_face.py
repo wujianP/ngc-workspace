@@ -1,4 +1,6 @@
 import torch
+import time
+
 from transformers import SegformerFeatureExtractor, AutoImageProcessor, SegformerForSemanticSegmentation
 from torch.utils.data import DataLoader
 from argparse import ArgumentParser
@@ -20,7 +22,10 @@ def main(args):
                             pin_memory=True,
                             drop_last=False)
 
-    for batch_idx, (images, heights, widths, paths) in enumerate(dataloader):
+    total_iters = len(dataloader)
+    for cur_iter, (images, heights, widths, paths) in enumerate(dataloader):
+        start_time = time.time()
+
         # forward pass
         images = images.cuda()
         outputs = model(images)
@@ -31,6 +36,9 @@ def main(args):
             logit = torch.unsqueeze(logits[i], 0)
             logit = nn.functional.interpolate(logit, size=(heights[i], widths[i]), mode='bilinear', align_corners=False)
 
+        batch_time = time.time() - start_time
+
+        print(f'[ITER: {cur_iter+1} / [{total_iters}], BATCH TIME: {batch_time:3.f}')
 
 
 if __name__ == '__main__':
