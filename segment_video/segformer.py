@@ -10,6 +10,7 @@ from argparse import ArgumentParser
 from torch import nn
 from dataset import RawFrameDataset
 from utils import ade_palette
+from PIL import Image
 from torchvision.transforms import ToPILImage
 
 
@@ -30,11 +31,8 @@ def main(args):
 
     # segment forward pass
     total_iters = len(dataloader)
-    for cur_iter, (images_pt, images_np, paths) in enumerate(dataloader):
+    for cur_iter, (images_pt, paths) in enumerate(dataloader):
         start_time = time.time()
-
-        from IPython import embed
-        embed()
 
         # forward pass
         images_pt = images_pt.cuda()
@@ -42,8 +40,11 @@ def main(args):
         logits = outputs.logits
 
         for i in range(args.batch_size):
-            # image
-            img = images_np[i]
+            # load numpy image
+            with open(paths[i], 'rb') as f:
+                img = Image.open(f).convert('RGB')
+            f.close()
+            img = np.array(img)
             height, width, _ = img.shape
             # rescale logits to original image size
             logit = torch.unsqueeze(logits[i], 0)
