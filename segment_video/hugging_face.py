@@ -12,6 +12,9 @@ def main(args):
     dataloader = DataLoader(dataset=dataset, batch_size=args.batch_size, shuffle=False,
                             num_workers=args.num_workers, pin_memory=True, drop_last=False)
 
+    from IPython import embed
+    embed()
+
     inputs = image_processor(images=dataset[0], return_tensors="pt")
     outputs = model(**inputs)
     logits = outputs.logits  # shape (batch_size, num_labels, height/4, width/4)
