@@ -12,13 +12,13 @@ class RawFrameDataset(Dataset):
     def __getitem__(self, idx):
         path = self.path_list[idx].strip()
         with open(path, 'rb') as f:
-            sample = Image.open(f).convert('RGB')
+            image = Image.open(f).convert('RGB')
         f.close()
 
         if self.transform is not None:
-            sample = self.transform(sample)
+            image = self.transform(image)
 
-        return sample
+        return image, path
 
     def __len__(self):
         return len(self.path_list)
