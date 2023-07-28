@@ -10,7 +10,7 @@ from argparse import ArgumentParser
 from torch import nn
 from dataset import RawFrameDataset
 from utils import ade_palette
-from matplotlib import pyplt as plt
+from matplotlib import pyplot as plt
 
 
 @torch.no_grad()
