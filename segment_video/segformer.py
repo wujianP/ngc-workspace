@@ -54,11 +54,12 @@ def main(args):
             image_raw = images_raw[i]
             # get mixed map
             mix = image_raw * 0.5 + seg_color_map * 0.5
-            # wandb
-            wandb.log({"ttt1": [wandb.Image(image_raw), wandb.Image(seg_color_map), wandb.Image(mix)]}, step=0)
 
             from IPython import embed
             embed()
+            # wandb
+            wandb.log({"ttt1": [wandb.Image(image_raw), wandb.Image(seg_color_map), wandb.Image(mix)]}, step=0)
+
 
         batch_time = time.time() - start_time
 
