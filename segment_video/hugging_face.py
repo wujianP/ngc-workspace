@@ -38,7 +38,7 @@ def main(args):
 
         batch_time = time.time() - start_time
 
-        print(f'[ITER: {cur_iter+1} / [{total_iters}], BATCH TIME: {batch_time:3.f}')
+        print(f'[ITER: {cur_iter+1} / [{total_iters}], BATCH TIME: {batch_time:.3f}')
 
 
 if __name__ == '__main__':
