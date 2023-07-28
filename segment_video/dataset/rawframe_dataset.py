@@ -17,7 +17,7 @@ class RawFrameDataset(Dataset):
             self.transform = transform
 
     def __getitem__(self, idx):
-        path = self.path_list[idx]
+        path = self.path_list[idx].strip()
         with open(path, 'rb') as f:
             sample = Image.open(f).convert('RGB')
         f.close()
