@@ -40,30 +40,33 @@ def main(args):
 
         for i in range(args.batch_size):
             # rescale logits to original image size
+            i = 1
             logit = torch.unsqueeze(logits[i], 0)
             logit = nn.functional.interpolate(logit, size=(heights[i], widths[i]), mode='bilinear', align_corners=False)
             # get segment mask labels
             seg_mask = logit.argmax(dim=1)[0].cpu()
-            # get segment color map
-            seg_color_map = np.zeros((seg_mask.shape[0], seg_mask.shape[1], 3), dtype=np.uint8)
-            palette = np.array(ade_palette())
-            for label, color in enumerate(palette):
-                seg_color_map[seg_mask == label, :] = color
-            seg_color_map = seg_color_map[..., ::-1]    # Convert to BGR
-            # get image
-            image_raw = images_raw[i]
-            # get mixed map
-            mix = image_raw * 0.5 + seg_color_map * 0.5
-
-            from IPython import embed
-            embed()
-            # wandb
-            wandb.log({"ttt1": [wandb.Image(image_raw), wandb.Image(seg_color_map), wandb.Image(mix)]}, step=0)
-
+            # plot to wandb
+            if i == 0:
+                visualize_result(seg_mask=seg_mask, image_raw=images_raw[i], stepIdx=cur_iter+1)
 
         batch_time = time.time() - start_time
 
         print(f'[ITER: {cur_iter+1} / [{total_iters}], BATCH TIME: {batch_time:.3f}')
+
+
+def visualize_result(seg_mask, image_raw, stepIdx):
+    # get segment color map
+    seg_color_map = np.zeros((seg_mask.shape[0], seg_mask.shape[1], 3), dtype=np.uint8)
+    palette = np.array(ade_palette())
+    for label, color in enumerate(palette):
+        seg_color_map[seg_mask == label, :] = color
+    seg_color_map = seg_color_map[..., ::-1]  # Convert to BGR
+    # get image
+    image_raw = image_raw.numpy()
+    # get mixed map
+    mix = image_raw * 0.4 + seg_color_map * 0.6
+    # wandb
+    wandb.log({"segment-visualize": [wandb.Image(image_raw), wandb.Image(seg_color_map), wandb.Image(mix)]}, step=stepIdx)
 
 
 if __name__ == '__main__':
