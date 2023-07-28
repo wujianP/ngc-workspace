@@ -17,7 +17,7 @@ class RawFrameDataset(Dataset):
         f.close()
 
         image_np = np.array(image)
-        image_pt = self.feature_extractor(image, return_tensors="pt").pixel_values[0].cuda()
+        image_pt = self.feature_extractor(image, return_tensors="pt").pixel_values[0]
 
         return image_pt, image_np, path
 
