@@ -1,20 +1,24 @@
 import torch
 import time
 
-from transformers import SegformerFeatureExtractor, AutoImageProcessor, SegformerForSemanticSegmentation
+import numpy as np
+
+from transformers import SegformerFeatureExtractor, SegformerForSemanticSegmentation
 from torch.utils.data import DataLoader
 from argparse import ArgumentParser
-from dataset import RawFrameDataset
 from torch import nn
+from dataset import RawFrameDataset
+from utils import ade_palette
 
 
 @torch.no_grad()
 def main(args):
+    # init model
     feature_extractor = SegformerFeatureExtractor.from_pretrained(args.model_path)
     model = SegformerForSemanticSegmentation.from_pretrained(args.model_path).cuda()
 
-    dataset = RawFrameDataset(path_file=args.data_path_file,
-                              feature_extractor=feature_extractor)
+    # init data
+    dataset = RawFrameDataset(path_file=args.data_path_file, feature_extractor=feature_extractor)
     dataloader = DataLoader(dataset=dataset,
                             batch_size=args.batch_size,
                             shuffle=False,
@@ -22,6 +26,7 @@ def main(args):
                             pin_memory=True,
                             drop_last=False)
 
+    # segment forward pass
     total_iters = len(dataloader)
     for cur_iter, (images, heights, widths, paths) in enumerate(dataloader):
         start_time = time.time()
@@ -35,6 +40,25 @@ def main(args):
             # rescale logits to original image size
             logit = torch.unsqueeze(logits[i], 0)
             logit = nn.functional.interpolate(logit, size=(heights[i], widths[i]), mode='bilinear', align_corners=False)
+
+            from IPython import embed
+            embed()
+
+            seg = logits.argmax(dim=1)[0]
+            color_seg = np.zeros((seg.shape[0], seg.shape[1], 3), dtype=np.uint8)  # height, width, 3
+            palette = np.array(ade_palette())
+            for label, color in enumerate(palette):
+                color_seg[seg == label, :] = color
+            # Convert to BGR
+            color_seg = color_seg[..., ::-1]
+
+            # Show image + mask
+            img = np.array(image) * 0.5 + color_seg * 0.5
+            img = img.astype(np.uint8)
+
+            plt.figure(figsize=(15, 10))
+            plt.imshow(img)
+            plt.show()
 
         batch_time = time.time() - start_time
 
