@@ -13,6 +13,8 @@ def collect_image_paths(folder_path):
 
 
 def process_path_file(path_file, output_file):
+    from IPython import embed
+    embed()
     with open(path_file, 'r') as f:
         folder_paths = f.readlines()
 
