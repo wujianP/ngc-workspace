@@ -33,6 +33,9 @@ def main(args):
     for cur_iter, (images, paths) in enumerate(dataloader):
         start_time = time.time()
 
+        from IPython import embed
+        embed()
+
         # forward pass
         images_pt = feature_extractor(images, return_tensors="pt").pixel_values[0].cuda()
         outputs = model(images_pt)
@@ -50,9 +53,6 @@ def main(args):
             # plot to wandb
             if i == 0:
                 visualize_result(seg_mask=seg_mask, image_raw=images[i], stepIdx=cur_iter+1)
-
-        from IPython import embed
-        embed()
 
         batch_time = time.time() - start_time
 
