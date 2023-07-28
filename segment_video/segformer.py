@@ -10,7 +10,7 @@ from argparse import ArgumentParser
 from torch import nn
 from dataset import RawFrameDataset
 from utils import ade_palette
-from matplotlib import pyplot as plt
+from torchvision.transforms import ToPILImage
 
 
 @torch.no_grad()
@@ -30,7 +30,7 @@ def main(args):
 
     # segment forward pass
     total_iters = len(dataloader)
-    for cur_iter, (images, heights, widths, paths) in enumerate(dataloader):
+    for cur_iter, (images, images_raw, heights, widths, paths) in enumerate(dataloader):
         start_time = time.time()
 
         # forward pass
@@ -43,25 +43,22 @@ def main(args):
             logit = torch.unsqueeze(logits[i], 0)
             logit = nn.functional.interpolate(logit, size=(heights[i], widths[i]), mode='bilinear', align_corners=False)
             # get segment mask labels
-            seg_mask = logit.argmax(dim=1)[0]
+            seg_mask = logit.argmax(dim=1)[0].cpu()
+            # get segment color map
+            seg_color_map = np.zeros((seg_mask.shape[0], seg_mask.shape[1], 3), dtype=np.uint8)
+            palette = np.array(ade_palette())
+            for label, color in enumerate(palette):
+                seg_color_map[seg_mask == label, :] = color
+            seg_color_map = seg_color_map[..., ::-1]    # Convert to BGR
+            # get image
+            image_raw = images_raw[i]
+            # get mixed map
+            mix = image_raw * 0.5 + seg_color_map * 0.5
+            # wandb
+            wandb.log({"ttt1": [wandb.Image(image_raw), wandb.Image(seg_color_map), wandb.Image(mix)]}, step=0)
 
             from IPython import embed
             embed()
-
-            # color_seg = np.zeros((seg.shape[0], seg.shape[1], 3), dtype=np.uint8)  # height, width, 3
-            # palette = np.array(ade_palette())
-            # for label, color in enumerate(palette):
-            #     color_seg[seg == label, :] = color
-            # # Convert to BGR
-            # color_seg = color_seg[..., ::-1]
-            #
-            # # Show image + mask
-            # img = np.array(image) * 0.5 + color_seg * 0.5
-            # img = img.astype(np.uint8)
-            #
-            # plt.figure(figsize=(15, 10))
-            # plt.imshow(img)
-            # plt.show()
 
         batch_time = time.time() - start_time
 

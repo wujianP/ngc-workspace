@@ -1,4 +1,5 @@
-from torchvision import transforms
+import numpy as np
+
 from torch.utils.data import Dataset
 from PIL import Image
 
@@ -15,9 +16,10 @@ class RawFrameDataset(Dataset):
             image = Image.open(f).convert('RGB')
         f.close()
         height, width = image.size[::-1]   # (height, width)
-        image = self.feature_extractor(image, return_tensors="pt").pixel_values[0]
+        image_raw = np.array(image)
+        image_tensor = self.feature_extractor(image, return_tensors="pt").pixel_values[0]
 
-        return image, height, width, path
+        return image_tensor, image_raw, height, width, path
 
     def __len__(self):
         return len(self.path_list)
