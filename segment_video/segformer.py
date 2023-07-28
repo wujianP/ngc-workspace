@@ -40,7 +40,6 @@ def main(args):
 
         for i in range(args.batch_size):
             # rescale logits to original image size
-            i = 1
             logit = torch.unsqueeze(logits[i], 0)
             logit = nn.functional.interpolate(logit, size=(heights[i], widths[i]), mode='bilinear', align_corners=False)
             # get segment mask labels
