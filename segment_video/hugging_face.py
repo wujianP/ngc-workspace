@@ -26,13 +26,13 @@ def main(args):
         outputs = model(images)
         logits = outputs.logits
 
+        from IPython import embed
+        embed()
+
         # rescale logits to original image size
         for i in range(args.batch_size):
             height, weight = heights[i], widths[i]
             logits[i] = nn.functional.interpolate(logits[i], size=(height, weight), mode='bilinear', align_corners=False)
-
-        from IPython import embed
-        embed()
 
 
 if __name__ == '__main__':
