@@ -53,14 +53,14 @@ def main(args):
             seg_mask = logit.argmax(dim=1)[0].cpu()
             # plot to wandb
             if i == 0:
-                visualize_result(seg_mask=seg_mask, image_raw=img, stepIdx=cur_iter+1)
+                visualize_result(seg_mask=seg_mask, image=img, stepIdx=cur_iter+1)
 
         batch_time = time.time() - start_time
 
         print(f'[ITER: {cur_iter+1} / [{total_iters}], BATCH TIME: {batch_time:.3f}')
 
 
-def visualize_result(seg_mask, image_raw, stepIdx):
+def visualize_result(seg_mask, image, stepIdx):
     # get segment color map
     seg_color_map = np.zeros((seg_mask.shape[0], seg_mask.shape[1], 3), dtype=np.uint8)
     palette = np.array(ade_palette())
@@ -68,11 +68,11 @@ def visualize_result(seg_mask, image_raw, stepIdx):
         seg_color_map[seg_mask == label, :] = color
     seg_color_map = seg_color_map[..., ::-1]  # Convert to BGR
     # get image
-    image_raw = image_raw.numpy()
+    image = image
     # get mixed map
-    mix = image_raw * 0.4 + seg_color_map * 0.6
+    mix = image * 0.4 + seg_color_map * 0.6
     # wandb
-    wandb.log({"segment-visualize": [wandb.Image(image_raw), wandb.Image(seg_color_map), wandb.Image(mix)]}, step=stepIdx)
+    wandb.log({"segment-visualize": [wandb.Image(image), wandb.Image(seg_color_map), wandb.Image(mix)]}, step=stepIdx)
 
 
 if __name__ == '__main__':
