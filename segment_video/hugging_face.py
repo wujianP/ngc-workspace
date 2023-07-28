@@ -9,8 +9,12 @@ def main(args):
     model = SegformerForSemanticSegmentation.from_pretrained(args.model_path)
 
     dataset = RawFrameDataset(path_file=args.data_path_file)
-    dataloader = DataLoader(dataset=dataset, batch_size=args.batch_size, shuffle=False,
-                            num_workers=args.num_workers, pin_memory=True, drop_last=False)
+    dataloader = DataLoader(dataset=dataset,
+                            batch_size=args.batch_size,
+                            shuffle=False,
+                            num_workers=args.num_workers,
+                            pin_memory=True,
+                            drop_last=False)
 
     from IPython import embed
     embed()

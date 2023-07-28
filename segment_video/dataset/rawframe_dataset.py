@@ -7,6 +7,7 @@ class RawFrameDataset(Dataset):
     def __init__(self, path_file, transform=None):
         with open(path_file, 'r') as file:
             self.path_list = file.readlines()
+        self.transform = transform
 
     def __getitem__(self, idx):
         path = self.path_list[idx].strip()
