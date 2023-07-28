@@ -1,5 +1,6 @@
 import torch
 import time
+import wandb
 
 import numpy as np
 
@@ -9,6 +10,7 @@ from argparse import ArgumentParser
 from torch import nn
 from dataset import RawFrameDataset
 from utils import ade_palette
+from matplotlib import pyplt as plt
 
 
 @torch.no_grad()
@@ -40,25 +42,26 @@ def main(args):
             # rescale logits to original image size
             logit = torch.unsqueeze(logits[i], 0)
             logit = nn.functional.interpolate(logit, size=(heights[i], widths[i]), mode='bilinear', align_corners=False)
+            # get segment mask labels
+            seg_mask = logit.argmax(dim=1)[0]
 
             from IPython import embed
             embed()
 
-            seg = logits.argmax(dim=1)[0]
-            color_seg = np.zeros((seg.shape[0], seg.shape[1], 3), dtype=np.uint8)  # height, width, 3
-            palette = np.array(ade_palette())
-            for label, color in enumerate(palette):
-                color_seg[seg == label, :] = color
-            # Convert to BGR
-            color_seg = color_seg[..., ::-1]
-
-            # Show image + mask
-            img = np.array(image) * 0.5 + color_seg * 0.5
-            img = img.astype(np.uint8)
-
-            plt.figure(figsize=(15, 10))
-            plt.imshow(img)
-            plt.show()
+            # color_seg = np.zeros((seg.shape[0], seg.shape[1], 3), dtype=np.uint8)  # height, width, 3
+            # palette = np.array(ade_palette())
+            # for label, color in enumerate(palette):
+            #     color_seg[seg == label, :] = color
+            # # Convert to BGR
+            # color_seg = color_seg[..., ::-1]
+            #
+            # # Show image + mask
+            # img = np.array(image) * 0.5 + color_seg * 0.5
+            # img = img.astype(np.uint8)
+            #
+            # plt.figure(figsize=(15, 10))
+            # plt.imshow(img)
+            # plt.show()
 
         batch_time = time.time() - start_time
 
@@ -73,4 +76,6 @@ if __name__ == '__main__':
     parser.add_argument('--num_workers', type=int, default=8)
     args = parser.parse_args()
 
+    wandb_logger = wandb.init('Segformer on Kinetics400')
     main(args)
+    wandb.finish()
