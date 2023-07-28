@@ -4,21 +4,20 @@ from PIL import Image
 
 
 class RawFrameDataset(Dataset):
-    def __init__(self, path_file, transform=None):
+    def __init__(self, path_file, feature_extractor=None):
         with open(path_file, 'r') as file:
             self.path_list = file.readlines()
-        self.transform = transform
+            self.feature_extractor = feature_extractor
 
     def __getitem__(self, idx):
         path = self.path_list[idx].strip()
         with open(path, 'rb') as f:
             image = Image.open(f).convert('RGB')
         f.close()
+        height, width = image.size[::-1]   # (height, width)
+        image = self.feature_extractor(image, return_tensors="pt").pixel_values[0]
 
-        if self.transform is not None:
-            image = self.transform(image)
-
-        return image, path
+        return image, height, width, path
 
     def __len__(self):
         return len(self.path_list)

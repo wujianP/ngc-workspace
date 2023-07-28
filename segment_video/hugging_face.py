@@ -2,14 +2,15 @@ from transformers import SegformerFeatureExtractor, AutoImageProcessor, Segforme
 from torch.utils.data import DataLoader
 from argparse import ArgumentParser
 from dataset import RawFrameDataset
+from torch import nn
 
 
 def main(args):
     feature_extractor = SegformerFeatureExtractor.from_pretrained(args.model_path)
-    image_processor = AutoImageProcessor.from_pretrained(args.model_path)
-    model = SegformerForSemanticSegmentation.from_pretrained(args.model_path)
+    model = SegformerForSemanticSegmentation.from_pretrained(args.model_path).cuda()
 
-    dataset = RawFrameDataset(path_file=args.data_path_file)
+    dataset = RawFrameDataset(path_file=args.data_path_file,
+                              feature_extractor=feature_extractor)
     dataloader = DataLoader(dataset=dataset,
                             batch_size=args.batch_size,
                             shuffle=False,
@@ -17,13 +18,20 @@ def main(args):
                             pin_memory=True,
                             drop_last=False)
 
-    from IPython import embed
-    embed()
+    for batch_idx, (images, heights, widths, paths) in enumerate(dataloader):
+        # forward pass
+        images = images.cuda()
+        outputs = model(images)
+        logits = outputs.logits
 
-    inputs = image_processor(images=dataset[0], return_tensors="pt")
-    outputs = model(**inputs)
-    logits = outputs.logits  # shape (batch_size, num_labels, height/4, width/4)
-    list(logits.shape)
+        from IPython import embed
+        embed()
+
+        # rescale logits to original image size
+        logits = nn.functional.interpolate(logits.detach().cpu(),
+                                           size=image.size[::-1],  # (height, width)
+                                           mode='bilinear',
+                                           align_corners=False)
 
 
 if __name__ == '__main__':
