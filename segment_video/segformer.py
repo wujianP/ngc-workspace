@@ -1,6 +1,7 @@
 import torch
 import time
 import wandb
+wandb.login()
 
 import numpy as np
 
@@ -11,7 +12,6 @@ from torch import nn
 from dataset import RawFrameDataset
 from utils import ade_palette
 from PIL import Image
-from torchvision.transforms import ToPILImage
 
 
 @torch.no_grad()
@@ -38,6 +38,7 @@ def main(args):
         images_pt = images_pt.cuda()
         outputs = model(images_pt)
         logits = outputs.logits
+        forward_time = time.time() - start_time
 
         for i in range(args.batch_size):
             # load numpy image
