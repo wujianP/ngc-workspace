@@ -136,7 +136,7 @@ def main(agrs):
     os.makedirs(args.output_dir, exist_ok=True)
 
     # load dataset
-    dataset = RawFrameDatasetGroundingSAM(path_file=agrs.data_path_file)
+    dataset = RawFrameDatasetGroundingSAM(path_file=agrs.data_path)
     dataloader = DataLoader(dataset=dataset,
                             batch_size=agrs.batch_size,
                             num_workers=agrs.num_workers,
@@ -200,7 +200,7 @@ def main(agrs):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser("Grounded-Segment-Anything", add_help=True)
-    parser.add_argument('--data_path_file', type=str, required=True, help='path to the data annotation file')
+    parser.add_argument('--data_path', type=str, required=True, help='path to the data annotation file')
     parser.add_argument('--batch_size', type=int, default=32)
     parser.add_argument('--num_workers', type=int, default=8)
     parser.add_argument("--config", type=str, required=True, help="path to config file")
@@ -208,7 +208,6 @@ if __name__ == "__main__":
     parser.add_argument("--sam_checkpoint", type=str, required=False, help="path to sam checkpoint file")
     parser.add_argument("--sam_hq_checkpoint", type=str, default=None, help="path to sam-hq checkpoint file")
     parser.add_argument("--use_sam_hq", action="store_true", help="using sam-hq for prediction")
-    parser.add_argument("--image_path", type=str, required=True, help="path to image file")
     parser.add_argument("--text_prompt", type=str, required=True, help="text prompt")
     parser.add_argument("--output_dir", "-o", type=str, default="outputs", required=True, help="output directory")
     parser.add_argument("--box_threshold", type=float, default=0.3, help="box threshold")
