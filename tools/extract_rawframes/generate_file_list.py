@@ -18,7 +18,7 @@ def process_path_file(path_file, output_file):
 
     with open(output_file, 'w') as output:
         for folder_path in folder_paths:
-            folder_path = folder_path[14:-5]  # discard post-fix '.jpg' and pre-fix '/dev/shm/k400/'
+            folder_path = folder_path.s[36:-5]  # discard post-fix '.jpg' and pre-fix '/dev/shm/k400/'
             path_root = '/discobox/wjpeng/dataset/k400/raw_frames/'
             folder_path = os.path.join(path_root, folder_path)
             if os.path.isdir(folder_path):
