@@ -126,9 +126,6 @@ def save_mask_data(output_dir, mask_list, box_list, label_list):
 @torch.no_grad()
 def main(agrs):
 
-    from IPython import embed
-    embed()
-
     # cfg
     config_file = args.config
 
@@ -148,13 +145,16 @@ def main(agrs):
 
     # initialize segment anything model
     if args.use_sam_hq:
-        predictor = SamPredictor(build_sam_hq_vit_b(checkpoint=agrs.sam_hq_checkpoint).to('cuda'))
+        predictor = SamPredictor(build_sam_hq_vit_b(checkpoint=agrs.sam_hq_checkpoint)).cuda()
     else:
-        predictor = SamPredictor(build_sam(checkpoint=agrs.sam_checkpoint).to('cuda'))
+        predictor = SamPredictor(build_sam(checkpoint=agrs.sam_checkpoint).cuda())
 
     # iterate forward pass
     start_time = time.time()
     for iter_idx, (images, Ws, Hs, paths) in enumerate(dataloader):
+        from IPython import embed
+        embed()
+
         # run grounding dino model
         boxes_filt, pred_phrases = get_grounding_output(
             model=grounding_dino_model,
