@@ -100,6 +100,7 @@ class Sam(nn.Module):
 
         outputs = []
         for image_record, curr_embedding, curr_interm in zip(batched_input, image_embeddings, interm_embeddings):
+            interm_embeddings = interm_embeddings[0]    # early layer
             if "point_coords" in image_record:
                 points = (image_record["point_coords"], image_record["point_labels"])
             else:
