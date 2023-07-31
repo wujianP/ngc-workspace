@@ -23,7 +23,6 @@ from segment_anything import (
 # dataset
 from dataset import RawFrameDatasetGroundingSAM
 
-import cv2
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -45,36 +44,35 @@ def load_model(model_config_path, model_checkpoint_path):
 
 
 def get_grounding_output(model, image, caption, box_threshold, text_threshold, with_logits=True):
+    # preprocess caption (text prompt)
     caption = caption.lower()
     caption = caption.strip()
     if not caption.endswith("."):
         caption = caption + "."
-    image = image.to('cuda')
+    # forward
     with torch.no_grad():
-        outputs = model(image, captions=[caption])
-    logits = outputs["pred_logits"].cpu().sigmoid()[0]  # (nq, 256)
-    boxes = outputs["pred_boxes"].cpu()[0]  # (nq, 4)
-
-    # filter output
-    logits_filt = logits.clone()
-    boxes_filt = boxes.clone()
-    filt_mask = logits_filt.max(dim=1)[0] > box_threshold
-    logits_filt = logits_filt[filt_mask]  # num_filt, 256
-    boxes_filt = boxes_filt[filt_mask]  # num_filt, 4
-
-    # get phrase
+        outputs = model(image, captions=[caption] * args.batch_size)
+    logits = outputs["pred_logits"].cpu().sigmoid()  # (bs, nq, 256)
+    boxes = outputs["pred_boxes"].cpu()  # (bs, nq, 4)
+    # post process
+    boxes_list, phrases_list = [], []
     tokenlizer = model.tokenizer
     tokenized = tokenlizer(caption)
-    # build pred
-    pred_phrases = []
-    for logit, box in zip(logits_filt, boxes_filt):
-        pred_phrase = get_phrases_from_posmap(logit > text_threshold, tokenized, tokenlizer)
-        if with_logits:
-            pred_phrases.append(pred_phrase + f"({str(logit.max().item())[:4]})")
-        else:
-            pred_phrases.append(pred_phrase)
+    for ub_logits, ub_boxex in zip(logits, boxes):
+        mask = ub_logits.max(dim=1)[0] > box_threshold
+        logits_filtered = ub_logits[mask]    # (n, 256)
+        boxes_filtered = ub_boxex[mask]      # (n, 4)
+        phrases_filtered = []
+        for logit, box in zip(logits_filtered, boxes_filtered):
+            pred_phrase = get_phrases_from_posmap(logit > text_threshold, tokenized, tokenlizer)
+            if with_logits:
+                phrases_filtered.append(pred_phrase + f"({str(logit.max().item())[:4]})")
+            else:
+                phrases_filtered.append(pred_phrase)
+        boxes_list.append(boxes_filtered)
+        phrases_list.append(phrases_filtered)
 
-    return boxes_filt, pred_phrases
+    return boxes_list, phrases_list
 
 
 def show_mask(mask, ax, random_color=False):
@@ -154,6 +152,7 @@ def main(agrs):
     for iter_idx, (images, Ws, Hs, paths) in enumerate(dataloader):
         from IPython import embed
         embed()
+        images = images.cuda()
 
         # run grounding dino model
         boxes_filt, pred_phrases = get_grounding_output(
