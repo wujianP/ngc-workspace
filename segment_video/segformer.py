@@ -9,7 +9,7 @@ from transformers import SegformerFeatureExtractor, SegformerForSemanticSegmenta
 from torch.utils.data import DataLoader
 from argparse import ArgumentParser
 from torch import nn
-from dataset import RawFrameDataset
+from dataset import RawFrameDatasetSegFormer
 from utils import ade_palette
 from PIL import Image
 
@@ -21,7 +21,7 @@ def main(args):
     model = SegformerForSemanticSegmentation.from_pretrained(args.model_path).cuda()
 
     # init data
-    dataset = RawFrameDataset(path_file=args.data_path_file, feature_extractor=feature_extractor)
+    dataset = RawFrameDatasetSegFormer(path_file=args.data_path_file, feature_extractor=feature_extractor)
     dataloader = DataLoader(dataset=dataset,
                             batch_size=args.batch_size,
                             shuffle=False,

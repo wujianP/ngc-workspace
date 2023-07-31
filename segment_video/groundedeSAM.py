@@ -5,13 +5,13 @@ import argparse
 import os
 import json
 import torch
-from PIL import Image
+import time
 
 # Grounding DINO
-import groundingdino.datasets.transforms as T
 from groundingdino.models import build_model
 from groundingdino.util.slconfig import SLConfig
 from groundingdino.util.utils import clean_state_dict, get_phrases_from_posmap
+from torch.utils.data import DataLoader
 
 # segment anything
 from segment_anything import (
@@ -21,7 +21,7 @@ from segment_anything import (
 )
 
 # dataset
-from dataset import RawFrameDataset
+from dataset import RawFrameDatasetGroundingSAM
 
 import cv2
 import numpy as np
@@ -30,25 +30,6 @@ import matplotlib.pyplot as plt
 # wandb
 import wandb
 wandb.login()
-
-
-def load_image(image_path):
-    # load image
-    image_pil = Image.open(image_path).convert("RGB")  # load image
-
-    transform = T.Compose(
-        [
-            T.RandomResize([800], max_size=1333),
-            T.ToTensor(),
-            T.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225]),
-        ]
-    )
-    image, _ = transform(image_pil, None)  # 3, h, w
-    return image_pil, image
-
-
-def get_dataloader(args):
-    pass
 
 
 def load_model(model_config_path, model_checkpoint_path):
@@ -68,10 +49,9 @@ def get_grounding_output(model, image, caption, box_threshold, text_threshold, w
     caption = caption.strip()
     if not caption.endswith("."):
         caption = caption + "."
-    model = model.to('cuda')
     image = image.to('cuda')
     with torch.no_grad():
-        outputs = model(image[None], captions=[caption])
+        outputs = model(image, captions=[caption])
     logits = outputs["pred_logits"].cpu().sigmoid()[0]  # (nq, 256)
     boxes = outputs["pred_boxes"].cpu()[0]  # (nq, 4)
 
@@ -155,73 +135,74 @@ def main(agrs):
     # make dir
     os.makedirs(args.output_dir, exist_ok=True)
 
-    # load image
-    image_pil, image = load_image(args.image_path)
+    # load dataset
+    dataset = RawFrameDatasetGroundingSAM(path_file=agrs.data_path_file)
+    dataloader = DataLoader(dataset=dataset,
+                            batch_size=agrs.batch_size,
+                            num_workers=agrs.num_workers,
+                            shuffle=False,
+                            pin_memory=True)
 
     # initialize grounding-dino model
-    grounding_dino_model = load_model(config_file,
-                                      agrs.grounded_checkpoint)
+    grounding_dino_model = load_model(config_file, agrs.grounded_checkpoint).cuda()
 
     # initialize segment anything model
     if args.use_sam_hq:
-        predictor = SamPredictor(build_sam_hq(checkpoint=agrs.sam_hq_checkpoint).to('cuda'))
+        predictor = SamPredictor(build_sam_hq_vit_b(checkpoint=agrs.sam_hq_checkpoint).to('cuda'))
     else:
         predictor = SamPredictor(build_sam(checkpoint=agrs.sam_checkpoint).to('cuda'))
 
-    # initialize dataloader
-    # dataloader = get_dataloader(pass)
+    # iterate forward pass
+    start_time = time.time()
+    for iter_idx, (images, Ws, Hs, paths) in enumerate(dataloader):
+        # run grounding dino model
+        boxes_filt, pred_phrases = get_grounding_output(
+            model=grounding_dino_model,
+            image=images,
+            caption=agrs.text_prompt,
+            box_threshold=agrs.box_threshold,
+            text_threshold=agrs.text_threshold
+        )
 
-    # run grounding dino model
-    boxes_filt, pred_phrases = get_grounding_output(
-        model=grounding_dino_model,
-        image=image,
-        caption=agrs.text_prompt,
-        box_threshold=agrs.box_threshold,
-        text_threshold=agrs.text_threshold
-    )
+        # image should be ndarray
+        predictor.set_image(images)
 
-    image = cv2.imread(args.image_path)
-    image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+        size = image_pil.size
+        H, W = size[1], size[0]
+        for i in range(boxes_filt.size(0)):
+            boxes_filt[i] = boxes_filt[i] * torch.Tensor([W, H, W, H])
+            boxes_filt[i][:2] -= boxes_filt[i][2:] / 2
+            boxes_filt[i][2:] += boxes_filt[i][:2]
 
-    # image should be ndarray
-    predictor.set_image(image)
+        boxes_filt = boxes_filt.cpu()
+        transformed_boxes = predictor.transform.apply_boxes_torch(boxes_filt, image.shape[:2]).to('cuda')
 
-    size = image_pil.size
-    H, W = size[1], size[0]
-    for i in range(boxes_filt.size(0)):
-        boxes_filt[i] = boxes_filt[i] * torch.Tensor([W, H, W, H])
-        boxes_filt[i][:2] -= boxes_filt[i][2:] / 2
-        boxes_filt[i][2:] += boxes_filt[i][:2]
+        masks, _, _ = predictor.predict_torch(
+            point_coords=None,
+            point_labels=None,
+            boxes=transformed_boxes.to('cuda'),
+            multimask_output=False,
+        )
 
-    boxes_filt = boxes_filt.cpu()
-    transformed_boxes = predictor.transform.apply_boxes_torch(boxes_filt, image.shape[:2]).to('cuda')
+        for mask in masks:
+            show_mask(mask.cpu().numpy(), plt.gca(), random_color=True)
+        for box, label in zip(boxes_filt, pred_phrases):
+            show_box(box.numpy(), plt.gca(), label)
 
-    masks, _, _ = predictor.predict_torch(
-        point_coords=None,
-        point_labels=None,
-        boxes=transformed_boxes.to('cuda'),
-        multimask_output=False,
-    )
+        plt.axis('off')
+        plt.savefig(
+            os.path.join(args.output_dir, "grounded_sam_output.jpg"),
+            bbox_inches="tight", dpi=300, pad_inches=0.0
+        )
 
-    # draw output image
-    plt.figure(figsize=(10, 10))
-    plt.imshow(image)
-    for mask in masks:
-        show_mask(mask.cpu().numpy(), plt.gca(), random_color=True)
-    for box, label in zip(boxes_filt, pred_phrases):
-        show_box(box.numpy(), plt.gca(), label)
-
-    plt.axis('off')
-    plt.savefig(
-        os.path.join(args.output_dir, "grounded_sam_output.jpg"),
-        bbox_inches="tight", dpi=300, pad_inches=0.0
-    )
-
-    save_mask_data(agrs.output_dir, masks, boxes_filt, pred_phrases)
+        save_mask_data(agrs.output_dir, masks, boxes_filt, pred_phrases)
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser("Grounded-Segment-Anything", add_help=True)
+    parser.add_argument('--data_path_file', type=str, required=True, help='path to the data annotation file')
+    parser.add_argument('--batch_size', type=int, default=32)
+    parser.add_argument('--num_workers', type=int, default=8)
     parser.add_argument("--config", type=str, required=True, help="path to config file")
     parser.add_argument("--grounded_checkpoint", type=str, required=True, help="path to checkpoint file")
     parser.add_argument("--sam_checkpoint", type=str, required=False, help="path to sam checkpoint file")

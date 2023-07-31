@@ -10,10 +10,7 @@ python build_rawframes.py \
 --level 2  \
 --ext mp4 \
 --task rgb  \
---new-short 256 \
---num-worker 16 \
---resume \
---report-file build_report.txt
+--new-short 256
 echo "Raw frames (RGB only) generated for train set"
 
 echo "Begin raw frames (RGB only) generation for val set"
