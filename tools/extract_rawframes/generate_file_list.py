@@ -21,8 +21,8 @@ def process_path_file(path_file, output_file):
             from IPython import embed
             embed()
             folder_path = folder_path[36:-5]  # discard post-fix '.jpg' and pre-fix '/dev/shm/k400/'
-            path_root = '/discobox/wjpeng/dataset/k400/raw_frames/'
-            folder_path = os.path.join(path_root, folder_path)
+            path_root = '/discobox/wjpeng/dataset/k400/raw_frames'
+            folder_path = path_root + folder_path
             if os.path.isdir(folder_path):
                 image_paths = collect_image_paths(folder_path)
                 for image_path in image_paths:
