@@ -143,13 +143,14 @@ def main(agrs):
 
     # initialize segment anything model
     if args.use_sam_hq:
-        predictor = SamPredictor(build_sam_hq_vit_b(checkpoint=agrs.sam_hq_checkpoint).cuda())
+        sam = build_sam_hq_vit_b(checkpoint=agrs.sam_hq_checkpoint).cuda()
     else:
-        predictor = SamPredictor(build_sam(checkpoint=agrs.sam_checkpoint).cuda())
+        sam = build_sam(checkpoint=agrs.sam_checkpoint).cuda()
 
     # iterate forward pass
-    start_time = time.time()
+
     for iter_idx, (images, Ws, Hs, paths) in enumerate(dataloader):
+        start_time = time.time()
         from IPython import embed
         embed()
         images = images.cuda()
@@ -162,18 +163,29 @@ def main(agrs):
             box_threshold=agrs.box_threshold,
             text_threshold=agrs.text_threshold
         )
+        ground_dino_time = time.time() - start_time
 
-        # image should be ndarray
-        predictor.set_image(images)
+        # post process bounding box
+        for i in range(len(boxes_filt)):
+            H, W = Hs[i], Ws[i]
+            boxes = boxes_filt[i]
+            for k in range(boxes.size(0)):
+                boxes[k] = boxes[k] * torch.Tensor([W, H, W, H])
+                boxes[k][:2] -= boxes[k][2:] / 2
+                boxes[k][2:] += boxes[k][:2]
+            boxes_filt[i] = boxes.cuda()
 
-        size = image_pil.size
-        H, W = size[1], size[0]
-        for i in range(boxes_filt.size(0)):
-            boxes_filt[i] = boxes_filt[i] * torch.Tensor([W, H, W, H])
-            boxes_filt[i][:2] -= boxes_filt[i][2:] / 2
-            boxes_filt[i][2:] += boxes_filt[i][:2]
+        # preparse data for sam input
+        batched_input = []
+        for i in range(2):
+            data = {
+                'image': images[i],
+                'boxes': boxes_filt[i],
+                'original_size': (Hs[i].item(), Ws[i].item())
+            }
+            batched_input.append(data)
 
-        boxes_filt = boxes_filt.cpu()
+        # run sam model
         transformed_boxes = predictor.transform.apply_boxes_torch(boxes_filt, image.shape[:2]).to('cuda')
 
         masks, _, _ = predictor.predict_torch(
