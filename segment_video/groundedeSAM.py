@@ -145,7 +145,7 @@ def main(agrs):
 
     # initialize segment anything model
     if args.use_sam_hq:
-        predictor = SamPredictor(build_sam_hq_vit_b(checkpoint=agrs.sam_hq_checkpoint)).cuda()
+        predictor = SamPredictor(build_sam_hq_vit_b(checkpoint=agrs.sam_hq_checkpoint).cuda())
     else:
         predictor = SamPredictor(build_sam(checkpoint=agrs.sam_checkpoint).cuda())
 
