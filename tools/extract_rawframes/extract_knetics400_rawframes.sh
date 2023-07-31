@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 SRC_PATH='/discobox/wjpeng/dataset/k400/videos'
-OUT_PATH='/discobox/wjpeng/dataset/k400/rawframes'
+OUT_PATH='/discobox/wjpeng/dataset/k400/raw_frames'
 
 echo "Begin raw frames (RGB only) generation for train set"
 python build_rawframes.py \
