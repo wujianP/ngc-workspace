@@ -136,7 +136,7 @@ def prepare_grounding_dino_data(images):
             T.Normalize((0.485, 0.456, 0.406), (0.229, 0.224, 0.225)),
         ]
     )
-    dino_images = [trans(image, None)[0].cuda() for image in images]
+    dino_images = [trans(image).cuda() for image in images]
     dino_images = torch.stack(dino_images, dim=0)
     return dino_images
 
