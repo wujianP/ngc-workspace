@@ -154,9 +154,10 @@ def prepare_sam_data(images, boxes, Hs, Ws, resize_size):
     for i in range(len(images)):
         data = {
             'image': prepare_image(images[i], resize_transform),
-            'boxes': resize_transform.apply_boxes_torch(boxes[i], (Hs[i], Ws[i])),
             'original_size': (Hs[i], Ws[i])
         }
+        if boxes[i].shape[0] > 0:
+            data['boxes'] = resize_transform.apply_boxes_torch(boxes[i], (Hs[i], Ws[i]))
         batched_input.append(data)
     return batched_input
 
