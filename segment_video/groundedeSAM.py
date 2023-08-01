@@ -229,13 +229,12 @@ def main(agrs):
         masks_list = [output['masks'].cpu().numpy() for output in batched_output]
 
         sam_time = time.time() - start_time - ground_dino_time
-        batch_time = time.time() - start_time
 
         # wandb visualize (only show the first image of this batch)
         # what to do when none boxs
         img, boxes, masks, labels = images[0], boxes_filt[0], masks_list[0], pred_phrases[0]
         if len(boxes) > 0:
-            fig, ax = plt.subplots(1, 3, figsize=(10, 10))
+            fig, ax = plt.subplots(1, 3)
             # show image only
             ax[0].imshow(img)
             ax[0].axis('off')
@@ -253,8 +252,12 @@ def main(agrs):
             # send to wandb
             plt.tight_layout()
             run.log({'Visualization': wandb.Image(plt.gcf())})
+            plt.close()
 
-        print(f'BATCH: [{iter_idx + 1} / {total_iter}], TIME: [batch-{batch_time:.3f} dino-{ground_dino_time:.3f} sam-{sam_time:.3f}]')
+        plot_time = time.time() - start_time - ground_dino_time - sam_time
+        batch_time = time.time() - start_time
+
+        print(f'BATCH: [{iter_idx + 1} / {total_iter}], TIME: [batch-{batch_time:.3f} dino-{ground_dino_time:.3f} sam-{sam_time:.3f}] plot-{plot_time: .3f}')
 
 
 if __name__ == "__main__":
