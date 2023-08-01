@@ -221,7 +221,7 @@ def main(agrs):
         ground_dino_time = time.time() - start_time
 
         # prepare data for sam input
-        resize_size = agrs.sam_img_size if agrs.sam_img_size else sam.image_encoder.image_size
+        resize_size = agrs.sam_img_size if agrs.sam_img_size else sam.image_encoder.img_size
         batched_input = prepare_sam_data(images=images, boxes=boxes_filt,
                                          Hs=Hs, Ws=Ws,
                                          resize_size=resize_size)
