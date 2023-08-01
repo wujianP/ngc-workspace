@@ -4,9 +4,9 @@ def my_collate_fn(batch):
     images, Ws, Hs, paths = [], [], [], []
     for item in batch:
         images.append(item[0])
-        Ws.append(item(1))
-        Hs.append(item(2))
-        paths.append(item(3))
+        Ws.append(item[1])
+        Hs.append(item[2])
+        paths.append(item[3])
     return [images, Ws, Hs, paths]
 
 
