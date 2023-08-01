@@ -52,8 +52,7 @@ def load_model(model_config_path, model_checkpoint_path, device):
 
 
 def get_grounding_output(model, image, caption, box_threshold, text_threshold, with_logits=True, device="cpu"):
-    caption = caption.lower()
-    caption = caption.strip()
+    caption = caption.lower().strip()
     if not caption.endswith("."):
         caption = caption + "."
     model = model.to(device)

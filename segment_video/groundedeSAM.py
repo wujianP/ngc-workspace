@@ -27,6 +27,7 @@ from dataset import RawFrameDatasetGroundingSAM
 
 import numpy as np
 import matplotlib.pyplot as plt
+import torchvision.transforms as T
 
 # wandb
 import wandb
@@ -130,7 +131,7 @@ def prepare_grounding_dino_data(images):
     """images is a list, each element is a PIL image object"""
     trans = T.Compose(
         [
-            T.RandomResize([800], max_size=1333),
+            T.Resize((512, 512)),
             T.ToTensor(),
             T.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225]),
         ]
