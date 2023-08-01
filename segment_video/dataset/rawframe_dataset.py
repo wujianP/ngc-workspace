@@ -26,9 +26,10 @@ class RawFrameDatasetSegFormer(Dataset):
 
 
 class RawFrameDatasetGroundingSAM(Dataset):
-    def __init__(self, path_file):
+    def __init__(self, path_file, sample_stride):
         with open(path_file, 'r') as file:
-            self.path_list = file.readlines()
+            path_list = file.readlines()
+        self.path_list = path_list[::sample_stride]
 
     def __getitem__(self, idx):
         path = self.path_list[idx].strip()

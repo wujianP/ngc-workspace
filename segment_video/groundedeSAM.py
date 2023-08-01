@@ -162,6 +162,32 @@ def prepare_sam_data(images, boxes, Hs, Ws, resize_size):
     return batched_input
 
 
+def wandb_visualize(images, boxes_filt, masks_list, pred_phrases):
+    for i in range(args.batch_size):
+        img, boxes, masks, labels = images[i], boxes_filt[i], masks_list[i], pred_phrases[i]
+        if len(boxes) > 0:
+            fig, ax = plt.subplots(1, 3, figsize=(10, 10))
+            # show image only
+            ax[0].imshow(img)
+            ax[0].axis('off')
+            # show boxes, masks, image
+            ax[1].imshow(img)
+            for (box, label) in zip(boxes, labels):
+                show_box(box.cpu().numpy(), ax[1], label)
+            for mask in masks:
+                show_mask(mask, ax[1], random_color=True)
+            ax[1].axis('off')
+            # show masks only
+            for mask in masks:
+                show_mask(mask, ax[2], random_color=True)
+            ax[2].axis('off')
+            # send to wandb
+            plt.tight_layout()
+            run.log({'Visualization': wandb.Image(plt.gcf())})
+            plt.close()
+            return
+
+
 @torch.no_grad()
 def main(agrs):
     # cfg
@@ -171,7 +197,7 @@ def main(agrs):
     os.makedirs(args.output_dir, exist_ok=True)
 
     # load dataset
-    dataset = RawFrameDatasetGroundingSAM(path_file=agrs.data_path)
+    dataset = RawFrameDatasetGroundingSAM(path_file=agrs.data_path, sample_stride=sample_stride)
     dataloader = DataLoader(dataset=dataset,
                             batch_size=agrs.batch_size,
                             num_workers=agrs.num_workers,
@@ -231,28 +257,8 @@ def main(agrs):
         sam_time = time.time() - start_time - ground_dino_time
 
         # wandb visualize (only show the first image of this batch)
-        # what to do when none boxs
-        img, boxes, masks, labels = images[0], boxes_filt[0], masks_list[0], pred_phrases[0]
-        if len(boxes) > 0:
-            fig, ax = plt.subplots(1, 3, figsize=(10, 10))
-            # show image only
-            ax[0].imshow(img)
-            ax[0].axis('off')
-            # show boxes, masks, image
-            ax[1].imshow(img)
-            for (box, label) in zip(boxes, labels):
-                show_box(box.cpu().numpy(), ax[1], label)
-            for mask in masks:
-                show_mask(mask, ax[1], random_color=True)
-            ax[1].axis('off')
-            # show masks only
-            for mask in masks:
-                show_mask(mask, ax[2], random_color=True)
-            ax[2].axis('off')
-            # send to wandb
-            plt.tight_layout()
-            run.log({'Visualization': wandb.Image(plt.gcf())})
-            plt.close()
+        if iter_idx % agrs.visualize_freq == 0:
+            wandb_visualize(images, boxes_filt, masks_list, pred_phrases)
 
         plot_time = time.time() - start_time - ground_dino_time - sam_time
         batch_time = time.time() - start_time
@@ -263,10 +269,12 @@ def main(agrs):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser("Grounded-Segment-Anything", add_help=True)
     parser.add_argument('--data_path', type=str, required=True, help='path to the data annotation file')
+    parser.add_argument('--sample_stride', type=int, default=1)
     parser.add_argument('--batch_size', type=int, default=32)
     parser.add_argument('--num_workers', type=int, default=8)
-    parser.add_argument('--grounding_dino_img_size', type=int, default=512)
+    parser.add_argument('--grounding_dino_img_size', type=int, default=800)
     parser.add_argument('--sam_img_size', type=int, default=None)
+    parser.add_argument('--visualize_freq', type=int, default=10)
 
     parser.add_argument("--config", type=str, required=True, help="path to config file")
     parser.add_argument("--grounded_checkpoint", type=str, required=True, help="path to checkpoint file")

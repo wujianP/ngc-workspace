@@ -4,8 +4,8 @@ OUT_PATH=/discobox/wjpeng/code/202306/ngc-workspace/segment_video/outputs
 cd /discobox/wjpeng/code/202306/ngc-workspace/segment_video
 
 python groundedeSAM.py \
+  --sample_stride 8 \
   --batch_size 8 \
-  --num_worker 8 \
   --sam_img_size 1024 \
   --grounding_dino_img_size 512 \
   --config Grounded-Segment-Anything/GroundingDINO/groundingdino/config/GroundingDINO_SwinT_OGC.py \
@@ -16,4 +16,5 @@ python groundedeSAM.py \
   --output_dir $OUT_PATH \
   --box_threshold 0.3 \
   --text_threshold 0.25 \
+  --visualize_freq 10 \
   --text_prompt 'people.music instrument.animal.ball.tool.'
