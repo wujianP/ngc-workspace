@@ -188,6 +188,11 @@ def wandb_visualize(images, boxes_filt, masks_list, pred_phrases):
             return
 
 
+def save_result(boxes_filt, masks_list, pred_phrases, paths, result):
+    from IPython import embed
+    embed()
+
+
 @torch.no_grad()
 def main(agrs):
     # cfg
@@ -217,9 +222,10 @@ def main(agrs):
 
     # iterate forward pass
     total_iter = len(dataloader)
+    result = []
     for iter_idx, (images, Ws, Hs, paths) in enumerate(dataloader):
-        start_time = time.time()
 
+        start_time = time.time()
         # transform image for dino
         dino_images = prepare_grounding_dino_data(images)
 
@@ -261,9 +267,15 @@ def main(agrs):
             wandb_visualize(images, boxes_filt, masks_list, pred_phrases)
 
         plot_time = time.time() - start_time - ground_dino_time - sam_time
+
+        # save result
+        save_result(boxes_filt, masks_list, pred_phrases, paths, result)
+
+        save_time = time.time() - start_time - ground_dino_time - sam_time - plot_time
         batch_time = time.time() - start_time
 
-        print(f'BATCH: [{iter_idx + 1} / {total_iter}], TIME: [batch-{batch_time:.3f} dino-{ground_dino_time:.3f} sam-{sam_time:.3f} plot-{plot_time: .3f}]')
+        print(f'BATCH: [{iter_idx + 1} / {total_iter}], TIME: [batch-{batch_time:.3f} dino-{ground_dino_time:.3f}'
+              f' sam-{sam_time:.3f} plot-{plot_time:.3f} save-{save_time:.3f}]')
 
 
 if __name__ == "__main__":
