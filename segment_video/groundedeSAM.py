@@ -215,7 +215,7 @@ def main(agrs):
                 boxes[k][2:] += boxes[k][:2]
             boxes_filt[i] = boxes.cuda()
 
-        torch.cuda.empty_cache()
+        # torch.cuda.empty_cache()
         del dino_images
 
         ground_dino_time = time.time() - start_time
