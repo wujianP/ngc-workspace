@@ -1,6 +1,4 @@
 def my_collate_fn(batch):
-    from IPython import embed
-    embed()
     images, Ws, Hs, paths = [], [], [], []
     for item in batch:
         images.append(item[0])
