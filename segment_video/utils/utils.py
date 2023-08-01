@@ -1,3 +1,13 @@
+def my_collate_fn(batch):
+    images, Ws, Hs, paths = [], [], [], []
+    for item in batch:
+        images.append(item[0])
+        Ws.append(item(1))
+        Hs.append(item(2))
+        paths.append(item(3))
+    return [images, Ws, Hs, paths]
+
+
 def ade_palette():
     """ADE20K palette that maps each class to RGB values."""
     return [[120, 120, 120], [180, 120, 120], [6, 230, 230], [80, 50, 50],

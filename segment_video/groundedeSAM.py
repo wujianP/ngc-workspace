@@ -30,8 +30,10 @@ import matplotlib.pyplot as plt
 import wandb
 wandb.login()
 
+from utils import my_collate_fn
 
-def load_model(model_config_path, model_checkpoint_path):
+
+def load_grounding_dino_model(model_config_path, model_checkpoint_path):
     """load groundingdino model"""
     args = SLConfig.fromfile(model_config_path)
     args.device = 'cuda'
@@ -40,7 +42,7 @@ def load_model(model_config_path, model_checkpoint_path):
     load_res = model.load_state_dict(clean_state_dict(checkpoint["model"]), strict=False)
     print(load_res)
     _ = model.eval()
-    return model
+    return model.cuda()
 
 
 def get_grounding_output(model, image, caption, box_threshold, text_threshold, with_logits=True):
@@ -136,10 +138,12 @@ def main(agrs):
                             batch_size=agrs.batch_size,
                             num_workers=agrs.num_workers,
                             shuffle=False,
+                            collate_fn=my_collate_fn,
                             pin_memory=True)
 
     # initialize grounding-dino model
-    grounding_dino_model = load_model(config_file, agrs.grounded_checkpoint).cuda()
+    grounding_dino_model = load_grounding_dino_model(config_file,
+                                                     agrs.grounded_checkpoint)
 
     # initialize segment anything model
     if args.use_sam_hq:
@@ -175,7 +179,9 @@ def main(agrs):
                 boxes[k][2:] += boxes[k][:2]
             boxes_filt[i] = boxes.cuda()
 
-        # preparse data for sam input
+        # prepare data for sam input
+        # 1. max_side_length = sam.image_encoder.img_size
+        # 2. nomalize std / mean is different for DINO and SAM
         batched_input = []
         for i in range(2):
             data = {

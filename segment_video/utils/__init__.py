@@ -1,4 +1,5 @@
-from .utils import ade_palette
+from .utils import ade_palette, my_collate_fn
 
 
-__all__ = ['ade_palette']
+__all__ = ['ade_palette', 'my_collate_fn']
+
