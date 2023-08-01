@@ -20,6 +20,7 @@ from segment_anything import (
     build_sam_hq_vit_b,
     SamPredictor
 )
+from segment_anything.utils.transforms import ResizeLongestSide
 
 # dataset
 from dataset import RawFrameDatasetGroundingSAM
@@ -29,6 +30,7 @@ import matplotlib.pyplot as plt
 
 # wandb
 import wandb
+
 wandb.login()
 
 from utils import my_collate_fn
@@ -63,8 +65,8 @@ def get_grounding_output(model, image, caption, box_threshold, text_threshold, w
     tokenized = tokenlizer(caption)
     for ub_logits, ub_boxex in zip(logits, boxes):
         mask = ub_logits.max(dim=1)[0] > box_threshold
-        logits_filtered = ub_logits[mask]    # (n, 256)
-        boxes_filtered = ub_boxex[mask]      # (n, 4)
+        logits_filtered = ub_logits[mask]  # (n, 256)
+        boxes_filtered = ub_boxex[mask]  # (n, 4)
         phrases_filtered = []
         for logit, box in zip(logits_filtered, boxes_filtered):
             pred_phrase = get_phrases_from_posmap(logit > text_threshold, tokenized, tokenlizer)
@@ -124,7 +126,7 @@ def save_mask_data(output_dir, mask_list, box_list, label_list):
         json.dump(json_data, f)
 
 
-def transform_grounding_dino(images):
+def prepare_grounding_dino_data(images):
     """images is a list, each element is a PIL image object"""
     trans = T.Compose(
         [
@@ -138,9 +140,28 @@ def transform_grounding_dino(images):
     return dino_images
 
 
+def prepare_sam_data(images, boxes, Hs, Ws, resize_size):
+    resize_transform = ResizeLongestSide(resize_size)
+
+    def prepare_image(image, transform):
+        image = np.array(image)
+        image = transform.apply_image(image)
+        image = torch.as_tensor(image).cuda()
+        return image.permute(2, 0, 1).contiguous()
+
+    batched_input = []
+    for i in range(len(images)):
+        data = {
+            'image': prepare_image(images[i], resize_transform),
+            'boxes': resize_transform.apply_boxes_torch(boxes[i], (Hs[i], Ws[i])),
+            'original_size': (Hs[i], Ws[i])
+        }
+        batched_input.append(data)
+    return batched_input
+
+
 @torch.no_grad()
 def main(agrs):
-
     # cfg
     config_file = args.config
 
@@ -167,14 +188,12 @@ def main(agrs):
         sam = build_sam(checkpoint=agrs.sam_checkpoint).cuda()
 
     # iterate forward pass
-
+    total_iter = len(dataloader)
     for iter_idx, (images, Ws, Hs, paths) in enumerate(dataloader):
         start_time = time.time()
-        from IPython import embed
-        embed()
 
         # transform image for dino
-        dino_images = transform_grounding_dino(images)
+        dino_images = prepare_grounding_dino_data(images)
 
         # run grounding dino model
         boxes_filt, pred_phrases = get_grounding_output(
@@ -184,7 +203,6 @@ def main(agrs):
             box_threshold=agrs.box_threshold,
             text_threshold=agrs.text_threshold
         )
-        ground_dino_time = time.time() - start_time
 
         # post process bounding box
         for i in range(len(boxes_filt)):
@@ -196,40 +214,21 @@ def main(agrs):
                 boxes[k][2:] += boxes[k][:2]
             boxes_filt[i] = boxes.cuda()
 
+        ground_dino_time = time.time() - start_time
+
         # prepare data for sam input
-        # 1. max_side_length = sam.image_encoder.img_size
-        # 2. nomalize std / mean is different for DINO and SAM
-        batched_input = []
-        for i in range(2):
-            data = {
-                'image': images[i],
-                'boxes': boxes_filt[i],
-                'original_size': (Hs[i].item(), Ws[i].item())
-            }
-            batched_input.append(data)
+        batched_input = prepare_sam_data(images=images, boxes=boxes_filt,
+                                         Hs=Hs, Ws=Ws,
+                                         resize_size=sam.image_encoder.img_size)
 
         # run sam model
-        transformed_boxes = predictor.transform.apply_boxes_torch(boxes_filt, image.shape[:2]).to('cuda')
+        batched_output = sam(batched_input, multimask_output=False)
+        masks_list = [output['masks'].cpu().numpy() for output in batched_output]
 
-        masks, _, _ = predictor.predict_torch(
-            point_coords=None,
-            point_labels=None,
-            boxes=transformed_boxes.to('cuda'),
-            multimask_output=False,
-        )
+        sam_time = time.time() - start_time - ground_dino_time
+        batch_time = time.time() - sam_time
 
-        for mask in masks:
-            show_mask(mask.cpu().numpy(), plt.gca(), random_color=True)
-        for box, label in zip(boxes_filt, pred_phrases):
-            show_box(box.numpy(), plt.gca(), label)
-
-        plt.axis('off')
-        plt.savefig(
-            os.path.join(args.output_dir, "grounded_sam_output.jpg"),
-            bbox_inches="tight", dpi=300, pad_inches=0.0
-        )
-
-        save_mask_data(agrs.output_dir, masks, boxes_filt, pred_phrases)
+        print(f'BATCH: [{iter_idx + 1} / {total_iter}], TIME: [batch-{batch_time:.3f} dino-{ground_dino_time:.3f} sam-{sam_time:.3f}]')
 
 
 if __name__ == "__main__":
@@ -250,4 +249,3 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     main(args)
-
