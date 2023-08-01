@@ -234,7 +234,7 @@ def main(agrs):
         # what to do when none boxs
         img, boxes, masks, labels = images[0], boxes_filt[0], masks_list[0], pred_phrases[0]
         if len(boxes) > 0:
-            fig, ax = plt.subplots(1, 3)
+            fig, ax = plt.subplots(1, 3, figsize=(10, 10))
             # show image only
             ax[0].imshow(img)
             ax[0].axis('off')
@@ -257,7 +257,7 @@ def main(agrs):
         plot_time = time.time() - start_time - ground_dino_time - sam_time
         batch_time = time.time() - start_time
 
-        print(f'BATCH: [{iter_idx + 1} / {total_iter}], TIME: [batch-{batch_time:.3f} dino-{ground_dino_time:.3f} sam-{sam_time:.3f}] plot-{plot_time: .3f}')
+        print(f'BATCH: [{iter_idx + 1} / {total_iter}], TIME: [batch-{batch_time:.3f} dino-{ground_dino_time:.3f} sam-{sam_time:.3f} plot-{plot_time: .3f}]')
 
 
 if __name__ == "__main__":
