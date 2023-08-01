@@ -191,6 +191,9 @@ def main(agrs):
     # iterate forward pass
     total_iter = len(dataloader)
     for iter_idx, (images, Ws, Hs, paths) in enumerate(dataloader):
+        if iter_idx == 52:
+            from IPython import embed
+            embed()
         start_time = time.time()
 
         # transform image for dino
