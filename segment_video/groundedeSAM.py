@@ -234,6 +234,29 @@ def main(agrs):
         sam_time = time.time() - start_time - ground_dino_time
         batch_time = time.time() - start_time
 
+        # wandb visualize (only show the first image of this batch)
+        # what to do when none boxs
+        img, boxes, masks, labels = images[0], boxes_filt[0], masks_list[0], pred_phrases[0]
+        if len(boxes) > 0:
+            fig, ax = plt.subplots(1, 3, figsize=(10, 10))
+            # show image only
+            ax[0].imshow(img)
+            ax[0].axis('off')
+            # show boxes, masks, image
+            ax[1].imshow(img)
+            for (box, label) in zip(boxes, labels):
+                show_box(box.cpu().numpy(), ax[1], label)
+            for mask in masks:
+                show_mask(mask, ax[1], random_color=True)
+            ax[1].axis('off')
+            # show masks only
+            for mask in masks:
+                show_mask(mask, ax[2], random_color=True)
+            ax[2].axis('off')
+            # send to wandb
+            plt.tight_layout()
+            run.log({'Visualization': wandb.Image(plt.gcf())})
+
         print(f'BATCH: [{iter_idx + 1} / {total_iter}], TIME: [batch-{batch_time:.3f} dino-{ground_dino_time:.3f} sam-{sam_time:.3f}]')
 
 
@@ -256,5 +279,6 @@ if __name__ == "__main__":
     parser.add_argument("--text_threshold", type=float, default=0.25, help="text threshold")
     parser.add_argument("--device", type=str, default="cuda", help="running on cuda")
     args = parser.parse_args()
-
+    run = wandb.init('Grounded-SAM')
     main(args)
+    wandb.finish()
