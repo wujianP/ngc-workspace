@@ -18,4 +18,4 @@ python groundedeSAM.py \
   --text_threshold 0.25 \
   --visualize_freq 10 \
   --save_freq 10 \
-  --text_prompt 'people.music instrument.animal.ball.tool.'
+  --text_prompt 'person.music instrument.animal.tool.ball.'

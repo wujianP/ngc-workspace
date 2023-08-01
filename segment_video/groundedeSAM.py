@@ -174,12 +174,11 @@ def wandb_visualize(images, boxes_filt, masks_list, pred_phrases):
             ax[1].imshow(img)
             for (box, label) in zip(boxes, labels):
                 show_box(box.cpu().numpy(), ax[1], label)
-            for mask in masks:
-                show_mask(mask, ax[1], random_color=True)
+            mask_all = np.logical_or.reduce(masks, axis=0)
+            show_mask(mask_all, ax[1])
             ax[1].axis('off')
             # show masks only
-            for mask in masks:
-                show_mask(mask, ax[2], random_color=True)
+            show_mask(mask_all, ax[2], random_color=True)
             ax[2].axis('off')
             # send to wandb
             plt.tight_layout()
@@ -271,8 +270,7 @@ def main(agrs):
             value = {
                 'frame_idx': int(path.split('_')[-1].split('.')[0]),
                 'boxes': boxes.cpu().int().numpy(),
-                'masks': masks,
-                'labels': labels
+                'masks': np.logical_or.reduce(masks, axis=0)[0],
             }
             result_dict[key] = value
         if iter_idx != 0 and iter_idx % agrs.save_freq == 0:
