@@ -4,7 +4,7 @@ OUT_PATH=/discobox/wjpeng/code/202306/ngc-workspace/segment_video/outputs
 cd /discobox/wjpeng/code/202306/ngc-workspace/segment_video
 
 python groundedeSAM.py \
-  --batch_size 16 \
+  --batch_size 8 \
   --num_worker 8 \
   --config Grounded-Segment-Anything/GroundingDINO/groundingdino/config/GroundingDINO_SwinT_OGC.py \
   --grounded_checkpoint $WEIGHT_PATH/groundingDINO/groundingdino_swint_ogc.pth \

@@ -226,7 +226,7 @@ def main(agrs):
         masks_list = [output['masks'].cpu().numpy() for output in batched_output]
 
         sam_time = time.time() - start_time - ground_dino_time
-        batch_time = time.time() - sam_time
+        batch_time = time.time() - start_time
 
         print(f'BATCH: [{iter_idx + 1} / {total_iter}], TIME: [batch-{batch_time:.3f} dino-{ground_dino_time:.3f} sam-{sam_time:.3f}]')
 
