@@ -188,18 +188,15 @@ def wandb_visualize(images, boxes_filt, masks_list, pred_phrases):
             return
 
 
-def save_result(boxes_filt, masks_list, pred_phrases, paths, result):
-    from IPython import embed
-    embed()
-
-
 @torch.no_grad()
 def main(agrs):
+    # output dir
+    os.makedirs(os.path.dirname(args.output), exist_ok=True)
+
     # cfg
     config_file = args.config
 
     # make dir
-    os.makedirs(args.output_dir, exist_ok=True)
 
     # load dataset
     dataset = RawFrameDatasetGroundingSAM(path_file=agrs.data_path, sample_stride=agrs.sample_stride)
@@ -222,7 +219,7 @@ def main(agrs):
 
     # iterate forward pass
     total_iter = len(dataloader)
-    result = []
+    result_dict = {'configure': vars(args)}
     for iter_idx, (images, Ws, Hs, paths) in enumerate(dataloader):
 
         start_time = time.time()
@@ -269,7 +266,17 @@ def main(agrs):
         plot_time = time.time() - start_time - ground_dino_time - sam_time
 
         # save result
-        save_result(boxes_filt, masks_list, pred_phrases, paths, result)
+        for (path, boxes, masks, labels) in zip(paths, boxes_filt, masks_list, pred_phrases):
+            key = path[path.find('train'):]
+            value = {
+                'frame_idx': int(path.split('_')[-1].split('.')[0]),
+                'boxes': boxes.cpu().int().numpy(),
+                'masks': masks,
+                'labels': labels
+            }
+            result_dict[key] = value
+        if iter_idx != 0 and iter_idx % agrs.save_freq == 0:
+            np.save(args.output, result_dict)
 
         save_time = time.time() - start_time - ground_dino_time - sam_time - plot_time
         batch_time = time.time() - start_time
@@ -287,6 +294,7 @@ if __name__ == "__main__":
     parser.add_argument('--grounding_dino_img_size', type=int, default=800)
     parser.add_argument('--sam_img_size', type=int, default=None)
     parser.add_argument('--visualize_freq', type=int, default=10)
+    parser.add_argument('--save_freq', type=int, default=100)
 
     parser.add_argument("--config", type=str, required=True, help="path to config file")
     parser.add_argument("--grounded_checkpoint", type=str, required=True, help="path to checkpoint file")
@@ -294,7 +302,7 @@ if __name__ == "__main__":
     parser.add_argument("--sam_hq_checkpoint", type=str, default=None, help="path to sam-hq checkpoint file")
     parser.add_argument("--use_sam_hq", action="store_true", help="using sam-hq for prediction")
     parser.add_argument("--text_prompt", type=str, required=True, help="text prompt")
-    parser.add_argument("--output_dir", "-o", type=str, default="outputs", required=True, help="output directory")
+    parser.add_argument("--output", "-o", type=str, default="outputs.npy", required=True, help="output directory")
     parser.add_argument("--box_threshold", type=float, default=0.3, help="box threshold")
     parser.add_argument("--text_threshold", type=float, default=0.25, help="text threshold")
     parser.add_argument("--device", type=str, default="cuda", help="running on cuda")

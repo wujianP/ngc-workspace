@@ -1,6 +1,6 @@
 WEIGHT_PATH=/discobox/wjpeng/weights
 DATA_PATH=/discobox/wjpeng/dataset/k400/ann/rawframe_list.txt
-OUT_PATH=/discobox/wjpeng/code/202306/ngc-workspace/segment_video/outputs
+OUT_PATH=/discobox/wjpeng/dataset/k400/ann/groundedSAM/DINO-SwinT-imgSize800_SAMHQ-ViTB-imgSize1024_stride8.npy
 cd /discobox/wjpeng/code/202306/ngc-workspace/segment_video
 
 python groundedeSAM.py \
@@ -13,8 +13,9 @@ python groundedeSAM.py \
   --sam_hq_checkpoint $WEIGHT_PATH/hq-sam/sam_hq_vit_b.pth \
   --use_sam_hq \
   --data_path $DATA_PATH \
-  --output_dir $OUT_PATH \
+  --output $OUT_PATH \
   --box_threshold 0.3 \
   --text_threshold 0.25 \
   --visualize_freq 10 \
+  --save_freq 10 \
   --text_prompt 'people.music instrument.animal.ball.tool.'
