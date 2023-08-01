@@ -131,7 +131,7 @@ def prepare_grounding_dino_data(images):
     """images is a list, each element is a PIL image object"""
     trans = T.Compose(
         [
-            T.Resize((512, 512)),
+            T.Resize((args.grounding_dino_img_size, args.grounding_dino_img_size)),
             T.ToTensor(),
             T.Normalize((0.485, 0.456, 0.406), (0.229, 0.224, 0.225)),
         ]
@@ -218,9 +218,10 @@ def main(agrs):
         ground_dino_time = time.time() - start_time
 
         # prepare data for sam input
+        resize_size = agrs.sam_img_size if agrs.sam_img_size else sam.image_encoder.image_size
         batched_input = prepare_sam_data(images=images, boxes=boxes_filt,
                                          Hs=Hs, Ws=Ws,
-                                         resize_size=sam.image_encoder.img_size)
+                                         resize_size=resize_size)
 
         # run sam model
         batched_output = sam(batched_input, multimask_output=False)
@@ -237,6 +238,9 @@ if __name__ == "__main__":
     parser.add_argument('--data_path', type=str, required=True, help='path to the data annotation file')
     parser.add_argument('--batch_size', type=int, default=32)
     parser.add_argument('--num_workers', type=int, default=8)
+    parser.add_argument('--grounding_dino_img_size', type=int, default=512)
+    parser.add_argument('--sam_img_size', type=int, default=None)
+
     parser.add_argument("--config", type=str, required=True, help="path to config file")
     parser.add_argument("--grounded_checkpoint", type=str, required=True, help="path to checkpoint file")
     parser.add_argument("--sam_checkpoint", type=str, required=False, help="path to sam checkpoint file")

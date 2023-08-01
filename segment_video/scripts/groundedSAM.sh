@@ -6,6 +6,8 @@ cd /discobox/wjpeng/code/202306/ngc-workspace/segment_video
 python groundedeSAM.py \
   --batch_size 8 \
   --num_worker 8 \
+  --sam_img_size 1024 \
+  --grounding_dino_img_size 512 \
   --config Grounded-Segment-Anything/GroundingDINO/groundingdino/config/GroundingDINO_SwinT_OGC.py \
   --grounded_checkpoint $WEIGHT_PATH/groundingDINO/groundingdino_swint_ogc.pth \
   --sam_hq_checkpoint $WEIGHT_PATH/hq-sam/sam_hq_vit_b.pth \
