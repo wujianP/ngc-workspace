@@ -8,6 +8,7 @@ import torch
 import time
 
 # Grounding DINO
+import groundingdino.datasets.transforms as T
 from groundingdino.models import build_model
 from groundingdino.util.slconfig import SLConfig
 from groundingdino.util.utils import clean_state_dict, get_phrases_from_posmap
@@ -123,6 +124,20 @@ def save_mask_data(output_dir, mask_list, box_list, label_list):
         json.dump(json_data, f)
 
 
+def transform_grounding_dino(images):
+    """images is a list, each element is a PIL image object"""
+    trans = T.Compose(
+        [
+            T.RandomResize([800], max_size=1333),
+            T.ToTensor(),
+            T.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225]),
+        ]
+    )
+    dino_images = [trans(image, None)[0].cuda() for image in images]
+    dino_images = torch.stack(dino_images, dim=0)
+    return dino_images
+
+
 @torch.no_grad()
 def main(agrs):
 
@@ -157,12 +172,14 @@ def main(agrs):
         start_time = time.time()
         from IPython import embed
         embed()
-        images = images.cuda()
+
+        # transform image for dino
+        dino_images = transform_grounding_dino(images)
 
         # run grounding dino model
         boxes_filt, pred_phrases = get_grounding_output(
             model=grounding_dino_model,
-            image=images,
+            image=dino_images,
             caption=agrs.text_prompt,
             box_threshold=agrs.box_threshold,
             text_threshold=agrs.text_threshold
