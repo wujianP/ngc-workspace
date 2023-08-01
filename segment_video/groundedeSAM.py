@@ -197,7 +197,7 @@ def main(agrs):
     os.makedirs(args.output_dir, exist_ok=True)
 
     # load dataset
-    dataset = RawFrameDatasetGroundingSAM(path_file=agrs.data_path, sample_stride=sample_stride)
+    dataset = RawFrameDatasetGroundingSAM(path_file=agrs.data_path, sample_stride=agrs.sample_stride)
     dataloader = DataLoader(dataset=dataset,
                             batch_size=agrs.batch_size,
                             num_workers=agrs.num_workers,
