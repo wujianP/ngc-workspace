@@ -1,6 +1,6 @@
 WEIGHT_PATH=/discobox/wjpeng/weights
 DATA_PATH=/discobox/wjpeng/dataset/k400/ann/rawframe_list.txt
-OUT_PATH=/discobox/wjpeng/dataset/k400/ann/groundedSAM/DINO-SwinT-imgSize800_SAMHQ-ViTB-imgSize1024_stride8.npy
+OUT_PATH=/discobox/wjpeng/dataset/k400/ann/groundedSAM/DINO-SwinT-imgSize800_SAMHQ-ViTB-imgSize1024_stride8.pkl
 cd /discobox/wjpeng/code/202306/ngc-workspace/segment_video
 
 python groundedeSAM.py \

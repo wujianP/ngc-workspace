@@ -6,6 +6,7 @@ import os
 import json
 import torch
 import time
+import pickle
 
 # Grounding DINO
 import groundingdino.datasets.transforms as T
@@ -274,7 +275,8 @@ def main(agrs):
             }
             result_dict[key] = value
         if iter_idx != 0 and iter_idx % agrs.save_freq == 0:
-            np.save(args.output, result_dict)
+            with open(agrs.output, 'ab') as file:
+                pickle.dump(result_dict, file)
 
         save_time = time.time() - start_time - ground_dino_time - sam_time - plot_time
         batch_time = time.time() - start_time
