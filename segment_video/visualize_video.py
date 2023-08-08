@@ -43,4 +43,5 @@ if __name__ == '__main__':
             mask_frames.append(ret)
         # TCHW
         video = np.array(mask_frames).transpose((0, 3, 1, 2))
+        video = np.array(frames).transpose((0, 3, 1, 2))
         run.log({'video': wandb.Video(video, fps=4)})
