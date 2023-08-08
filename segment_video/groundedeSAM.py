@@ -99,35 +99,6 @@ def show_box(box, ax, label):
     ax.text(x0, y0, label)
 
 
-def save_mask_data(output_dir, mask_list, box_list, label_list):
-    value = 0  # 0 for background
-
-    mask_img = torch.zeros(mask_list.shape[-2:])
-    for idx, mask in enumerate(mask_list):
-        mask_img[mask.cpu().numpy()[0] == True] = value + idx + 1
-    plt.figure(figsize=(10, 10))
-    plt.imshow(mask_img.numpy())
-    plt.axis('off')
-    plt.savefig(os.path.join(output_dir, 'mask.jpg'), bbox_inches="tight", dpi=300, pad_inches=0.0)
-
-    json_data = [{
-        'value': value,
-        'label': 'background'
-    }]
-    for label, box in zip(label_list, box_list):
-        value += 1
-        name, logit = label.split('(')
-        logit = logit[:-1]  # the last is ')'
-        json_data.append({
-            'value': value,
-            'label': name,
-            'logit': float(logit),
-            'box': box.numpy().tolist(),
-        })
-    with open(os.path.join(output_dir, 'mask.json'), 'w') as f:
-        json.dump(json_data, f)
-
-
 def prepare_grounding_dino_data(images):
     """images is a list, each element is a PIL image object"""
     trans = T.Compose(
