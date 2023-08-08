@@ -31,7 +31,8 @@ if __name__ == '__main__':
                   'train/brushing_teeth/fmecM7Fx1tQ_000045_000055',
                   'train/petting_cat/rF6WHdvfhzU_000044_000054',
                   'train/parkour/FESQKVYD92Q_000003_000013',
-                  'train/train/yoga/UX3k9_185Ns_000069_000079']
+                  'train/train/yoga/UX3k9_185Ns_000069_000079',
+                  'train/washing_hands/Hwx_8FhcqY4_000074_000084']
     for i in range(len(video_name)):
         video_name = video_name[i]
         masks, frames = load_masks_frames(seg_ret, video_name)
@@ -42,6 +43,4 @@ if __name__ == '__main__':
             mask_frames.append(ret)
         # TCHW
         video = np.array(mask_frames).transpose((0, 3, 1, 2))
-        from IPython import embed
-        embed()
         run.log({'video': wandb.Video(video, fps=4)})
