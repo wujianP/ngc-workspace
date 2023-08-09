@@ -1,28 +1,22 @@
-# Copyright (c) Meta Platforms, Inc. and affiliates.
-# This software may be used and distributed according to the terms of the Llama 2 Community License Agreement.
-
 from typing import Optional
 
-import fire
+import argparse
 
+from dataset import CocoDataset
 from llama import Llama
 
 
-def main(
-    ckpt_dir: str,
-    tokenizer_path: str,
-    temperature: float = 0.6,
-    top_p: float = 0.9,
-    max_seq_len: int = 512,
-    max_batch_size: int = 8,
-    max_gen_len: Optional[int] = None,
-):
+def main(args):
     generator = Llama.build(
-        ckpt_dir=ckpt_dir,
-        tokenizer_path=tokenizer_path,
-        max_seq_len=max_seq_len,
-        max_batch_size=max_batch_size,
+        ckpt_dir=args.ckpt_dir,
+        tokenizer_path=args.tokenizer_path,
+        max_seq_len=args.max_seq_len,
+        max_batch_size=args.max_batch_size,
     )
+
+    dataset = CocoDataset(image_root=args.images_path,
+                          json=args.annotations_path,
+                          transforms=None)
 
     dialogs = [
         [{"role": "user", "content": "what is the recipe of mayonnaise?"}],
@@ -71,9 +65,9 @@ If a question does not make any sense, or is not factually coherent, explain why
     ]
     results = generator.chat_completion(
         dialogs,  # type: ignore
-        max_gen_len=max_gen_len,
-        temperature=temperature,
-        top_p=top_p,
+        max_gen_len=args.max_gen_len,
+        temperature=args.temperature,
+        top_p=args.top_p,
     )
 
     for dialog, result in zip(dialogs, results):
@@ -86,4 +80,22 @@ If a question does not make any sense, or is not factually coherent, explain why
 
 
 if __name__ == "__main__":
-    fire.Fire(main)
+    parser = argparse.ArgumentParser('LaMma2')
+    parser.add_argument('--images_path', type=str, default='/discobox/wjpeng/dataset/coco2014/images/train2014')
+    parser.add_argument('--annotations_path', type=str, default='/discobox/wjpeng/dataset/coco2014/annotations/captions_train2014.json')
+    parser.add_argument('--batch_size', type=int, default=32)
+    parser.add_argument('--num_workers', type=int, default=8)
+    parser.add_argument('--output_dir', type=str, required=True)
+
+    parser.add_argument('--ckpt_dir', type=str, default='/discobox/wjpeng/weights/llama2/llama-2-7b-chat/')
+    parser.add_argument('--tokenizer_path', type=str, default='/discobox/wjpeng/weights/llama2/tokenizer.model')
+    parser.add_argument('--max_seq_len', type=int, default=512)
+    parser.add_argument('--max_batch_size', type=int, default=64)
+    parser.add_argument('--max_gen_len', type=int, default=None)
+    parser.add_argument('--temperature', type=float, default=0.6)
+    parser.add_argument('--top_p', type=float, default=0.9)
+
+    args = parser.parse_args()
+
+    main(args)
+
