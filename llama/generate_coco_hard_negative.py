@@ -1,7 +1,6 @@
 import argparse
 import time
 import wandb
-wandb.login()
 
 from dataset import CocoDataset
 from llama import Llama
@@ -131,7 +130,7 @@ if __name__ == "__main__":
     parser.add_argument('--top_p', type=float, default=0.9)
 
     args = parser.parse_args()
-
+    wandb.login()
     run = wandb.init('Llama')
     main(args)
     wandb.finish()
