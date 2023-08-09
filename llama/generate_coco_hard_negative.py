@@ -1,5 +1,7 @@
 import argparse
 import time
+import wandb
+wandb.login()
 
 from dataset import CocoDataset
 from llama import Llama
@@ -49,8 +51,6 @@ def main(args):
         # prepare input for Llama
         dialogs = process_captions(captions, args.prompt)
 
-    from IPython import embed
-    embed()
 
     dialogs = [
         [{"role": "user", "content": "what is the recipe of mayonnaise?"}],
@@ -132,5 +132,7 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
+    run = wandb.init('Llama')
     main(args)
+    wandb.finish()
 
