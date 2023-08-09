@@ -15,7 +15,8 @@ def main(args):
 
     dataset = CocoDataset(image_root=args.images_path,
                           json=args.annotations_path,
-                          transforms=None)
+                          transforms=None,
+                          caption_only=True)
 
     dataloader = DataLoader(dataset=dataset,
                             batch_size=args.batch_size,
@@ -87,6 +88,7 @@ If a question does not make any sense, or is not factually coherent, explain why
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser('LaMma2')
+    parser.add_argument('--prompt', type=str, required=True)
     parser.add_argument('--images_path', type=str, default='/discobox/wjpeng/dataset/coco2014/images/train2014')
     parser.add_argument('--annotations_path', type=str, default='/discobox/wjpeng/dataset/coco2014/annotations/captions_train2014.json')
     parser.add_argument('--batch_size', type=int, default=32)
