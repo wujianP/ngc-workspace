@@ -37,6 +37,9 @@ def main(args):
                           transforms=None,
                           caption_only=False)
 
+    from IPython import embed
+    embed()
+
     dataloader = DataLoader(dataset=dataset,
                             batch_size=args.batch_size,
                             num_workers=args.num_workers)
