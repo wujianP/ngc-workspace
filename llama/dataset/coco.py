@@ -8,7 +8,7 @@ from torch.utils.data import Dataset
 class CocoDataset(Dataset):
     """COCO Custom Dataset compatible with torch.utils.data.DataLoader."""
 
-    def __init__(self, image_root, json, transforms, tokenizer=None, caption_only=True):
+    def __init__(self, image_root, json, transforms, tokenizer=None, caption_only=False):
         """Set the path for images, captions and vocabulary wrapper.
 
         Args:
