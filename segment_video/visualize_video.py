@@ -30,7 +30,7 @@ if __name__ == '__main__':
                    'train/trimming_trees/ExQg288lBrI_000000_000010',
                    'train/brushing_teeth/fmecM7Fx1tQ_000045_000055',
                    'train/petting_cat/rF6WHdvfhzU_000044_000054',
-                   'train/parkour/FESQKVYD92Q_000003_000013',
+                   'train/:q/FESQKVYD92Q_000003_000013',
                    'train/train/yoga/UX3k9_185Ns_000069_000079',
                    'train/washing_hands/Hwx_8FhcqY4_000074_000084']
     for i in range(len(video_names)):
