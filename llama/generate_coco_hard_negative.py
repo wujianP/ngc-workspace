@@ -18,6 +18,9 @@ def main(args):
                           json=args.annotations_path,
                           transforms=None)
 
+    from IPython import embed
+    embed()
+
     dialogs = [
         [{"role": "user", "content": "what is the recipe of mayonnaise?"}],
         [
