@@ -1,9 +1,8 @@
-from typing import Optional
-
 import argparse
 
 from dataset import CocoDataset
 from llama import Llama
+from torch.utils.data import DataLoader
 
 
 def main(args):
@@ -17,6 +16,10 @@ def main(args):
     dataset = CocoDataset(image_root=args.images_path,
                           json=args.annotations_path,
                           transforms=None)
+
+    dataloader = DataLoader(dataset=dataset,
+                            batch_size=args.batch_size,
+                            num_workers=args.num_workers)
 
     from IPython import embed
     embed()

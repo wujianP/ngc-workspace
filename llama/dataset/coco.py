@@ -33,7 +33,6 @@ class CocoDataset(Dataset):
         image = Image.open(os.path.join(self.root, path)).convert('RGB')
         if self.transforms is not None:
             image = self.transforms(image)
-        caption = self.tokenize(caption)
         return image, caption
 
     def __len__(self):
