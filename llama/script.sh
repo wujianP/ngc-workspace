@@ -1,4 +1,6 @@
-torchrun --nproc_per_node 1 example_chat_completion.py \
-    --ckpt_dir /discobox/wjpeng/weights/llama2/llama-2-7b-chat/ \
-    --tokenizer_path /discobox/wjpeng/weights/llama2/tokenizer.model \
-    --max_seq_len 512 --max_batch_size 16
+OUTPUT_DIR='.'
+PROMPT='We will input a sentence, and what you need to do is make minor changes to the sentence to alter its meaning. Each time, please output 4 modified sentences in the form of a list. Avoid providing unrelated content.'
+
+torchrun --nproc_per_node 1 generate_coco_hard_negative.py \
+--output_dir $OUTPUT_DIR \
+--prompt $PROMPT

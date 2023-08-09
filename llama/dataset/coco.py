@@ -27,7 +27,7 @@ class CocoDataset(Dataset):
         """Returns one data pair (image and caption)."""
         dataset = self.dataset
         ann_id = self.ids[index]
-        caption = dataset.anns[ann_id]['caption']
+        caption = dataset.anns[ann_id]['caption'].strip()
         img_id = dataset.anns[ann_id]['image_id']
         path = dataset.loadImgs(img_id)[0]['file_name']
 

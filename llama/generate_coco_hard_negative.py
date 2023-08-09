@@ -1,8 +1,27 @@
 import argparse
+import time
 
 from dataset import CocoDataset
 from llama import Llama
 from torch.utils.data import DataLoader
+
+
+def process_captions(captions, prompt):
+    dialogs = []
+    for caption in captions:
+        dialog = [
+            {"role": "system", "content": prompt},
+            {"role": "user", "content": 'the black dog is behind the green tree'},
+            {"role": "assistant", "content": """
+            1. the black cat is behind the green tree
+            2. the black dog is behind the green box
+            3. the black tree is behind the green dog
+            4. the green dog is behind the black tree
+            """},
+            {"role": "user", "content": caption}
+        ]
+        dialogs.append(dialog)
+    return dialogs
 
 
 def main(args):
@@ -16,11 +35,16 @@ def main(args):
     dataset = CocoDataset(image_root=args.images_path,
                           json=args.annotations_path,
                           transforms=None,
-                          caption_only=True)
+                          caption_only=False)
 
     dataloader = DataLoader(dataset=dataset,
                             batch_size=args.batch_size,
                             num_workers=args.num_workers)
+
+    for cur_idx, captions in enumerate(dataloader):
+        start_time = time.time()
+        # prepare input for Llama
+        dialogs = process_captions(captions, args.prompt)
 
     from IPython import embed
     embed()
