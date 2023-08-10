@@ -40,6 +40,9 @@ def main(args):
         max_batch_size=args.max_batch_size,
     )
 
+    from IPython import embed
+    embed()
+
     dataset = CocoDataset(image_root=args.images_path,
                           json=args.annotations_path)
 
