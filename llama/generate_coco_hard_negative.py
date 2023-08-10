@@ -64,6 +64,7 @@ def main(args):
         start_time = time.time()
 
         # prepare input for Llama
+        from IPython import embed
         dialogs = process_captions(captions, args.prompt)
 
         # llama forward
