@@ -1,7 +1,3 @@
-import os
-import numpy as np
-
-from PIL import Image
 from pycocotools.coco import COCO
 from torch.utils.data import Dataset
 
@@ -30,7 +26,8 @@ class CocoDataset(Dataset):
         # path = dataset.loadImgs(img_id)[0]['file_name']
         # image = Image.open(os.path.join(self.root, path)).convert('RGB')
 
-        return ann_id, caption
+        # return ann_id, caption
+        return caption
 
     def __len__(self):
         return len(self.ids)

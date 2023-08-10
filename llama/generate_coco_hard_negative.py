@@ -48,7 +48,7 @@ def main(args):
 
     dataloader = DataLoader(dataset=dataset,
                             batch_size=args.batch_size,
-                            num_workers=args.num_workers)
+                            num_workers=8)
 
     result_to_save = {'configure': vars(args)}
     total_iters = len(dataloader)
