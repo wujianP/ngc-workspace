@@ -13,11 +13,7 @@ def process_captions(captions, prompt):
         dialog = [
             {"role": "system", "content": prompt},
             {"role": "user", "content": 'A black car is near someone riding a bike.'},
-            {"role": "assistant", "content": """
-            1. A black bike is near someone riding a car.
-            2. A white car is near someone riding a bike.
-            3. A black car is far away from someone riding a bike.
-            4. A black motorbike is near someone riding a bike."""},
+            {"role": "assistant", "content": "A black car is near someone riding a bike."},
             {"role": "user", "content": caption}
         ]
         dialogs.append(dialog)

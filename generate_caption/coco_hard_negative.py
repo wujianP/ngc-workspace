@@ -52,7 +52,7 @@ def main(args):
         from IPython import embed
         embed()
 
-        prompts = prepare_prompts(captions)
+        prompts = prepare_prompts(prompt, captions)
         # tokenize
         inputs = tokenizer(prompts, padding=True, truncation=True, return_tensors="pt")
         inputs['input_ids'] = inputs['input_ids'].cuda()
@@ -86,8 +86,10 @@ def main(args):
             for i in range(args.batch_size):
                 output = outputs[i].rstrip("\n")
 
-        print('Input:' + captions[0])
-        print('Output:' + outputs[0])
+        for ipt, opt in zip(captions, outputs):
+            print(f'Input: {ipt}')
+            print(f'Output: {opt}')
+
         print(f"Iteration:[ {cur_iter + 1}/{total_iters} ], Batch time:{batch_time:.3f}")
 
 
