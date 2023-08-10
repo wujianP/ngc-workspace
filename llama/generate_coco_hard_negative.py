@@ -12,13 +12,10 @@ def process_captions(captions, prompt):
     for caption in captions:
         dialog = [
             {"role": "system", "content": prompt},
-            {"role": "user", "content": 'the black dog is behind the green tree'},
-            {"role": "assistant", "content": """
-            1. the black cat is behind the green tree
-            2. the black dog is behind the green box
-            3. the black tree is behind the green dog
-            4. the green dog is behind the black tree
-            """},
+            # {"role": "user", "content": 'An angled view of a beautifully decorated bathroom.'},
+            # {"role": "assistant", "content": "An angled view of a beautifully decorated bedroom."},
+            # {"role": "user", "content": 'A cat stuck in a car with a slightly opened window.'},
+            # {"role": "assistant", "content": "A dog stuck in a car with a slightly opened door."},
             {"role": "user", "content": caption}
         ]
         dialogs.append(dialog)
@@ -49,6 +46,7 @@ def main(args):
         embed()
 
         # prepare input for Llama
+        dialogs = process_captions(captions, prompt)
         dialogs = process_captions(captions, args.prompt)
 
         results = generator.chat_completion(
@@ -58,11 +56,12 @@ def main(args):
             top_p=args.top_p,
         )
 
-        for dialog, result in zip(dialogs, results):
-            for msg in dialog:
-                print(f"{msg['role'].capitalize()}: {msg['content']}\n")
+        for caption, dialog, result in zip(captions, dialogs, results):
+            # for msg in dialog:
+            #     print(f"{msg['role'].capitalize()}: {msg['content']}\n")
+            print(f'Input: {caption}')
             print(
-                f"> {result['generation']['role'].capitalize()}: {result['generation']['content']}"
+                f"Output: {result['generation']['content']}"
             )
             print("\n==================================\n")
 

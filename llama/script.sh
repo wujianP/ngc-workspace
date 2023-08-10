@@ -8,3 +8,5 @@ torchrun --nproc_per_node 1 generate_coco_hard_negative.py \
 torchrun --nproc_per_node 1 generate_coco_hard_negative.py \
 --output_dir . \
 --prompt test
+
+
