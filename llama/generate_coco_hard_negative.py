@@ -16,12 +16,7 @@ def process_captions(captions, prompt):
         dialog = [
             {"role": "system", "content": prompt},
             {"role": "user", "content": 'A black car is near someone riding a bike.'},
-            {"role": "assistant", "content": """
-            1. Two black car is near someone riding a bike.
-            2. A black car is far away from someone riding a bike.
-            3. A white car is near someone riding a bike.
-            4. Many black cars are near someone riding a bike.
-            5. A black bike is near someone driving a car."""},
+            {"role": "assistant", "content": "A black boat is near someone riding a bike."},
             {"role": "user", "content": caption}
         ]
         dialogs.append(dialog)
@@ -65,6 +60,8 @@ def main(args):
 
         # prepare input for Llama
         from IPython import embed
+        embed()
+
         dialogs = process_captions(captions, args.prompt)
 
         # llama forward
