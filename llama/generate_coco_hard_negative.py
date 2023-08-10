@@ -17,7 +17,7 @@ def process_captions(captions, prompt):
             {"role": "system", "content": prompt},
             {"role": "user", "content": 'A black car is near someone riding a bike.'},
             {"role": "assistant", "content": """
-            1. A black dog is near someone riding a bike.
+            1. Two black car is near someone riding a bike.
             2. A black car is far away from someone riding a bike.
             3. A white car is near someone riding a bike.
             4. Many black cars are near someone riding a bike.
