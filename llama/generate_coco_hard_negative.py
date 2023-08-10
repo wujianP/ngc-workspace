@@ -28,6 +28,14 @@ def process_captions(captions, prompt):
     return dialogs
 
 
+def my_collate_fn(batch):
+    captions, ann_ids = [], []
+    for item in batch:
+        captions.append(item[0])
+        ann_ids.append(item[1])
+    return captions, ann_ids
+
+
 def main(args):
     for key, value in vars(args).items():
         print(f'{key}: {value}')
@@ -40,15 +48,13 @@ def main(args):
         max_batch_size=args.max_batch_size,
     )
 
-    from IPython import embed
-    embed()
-
     dataset = CocoDataset(image_root=args.images_path,
                           json=args.annotations_path)
 
     dataloader = DataLoader(dataset=dataset,
                             batch_size=args.batch_size,
-                            num_workers=8)
+                            collate_fn=my_collate_fn,
+                            num_workers=args.num_workers)
 
     result_to_save = {'configure': vars(args)}
     total_iters = len(dataloader)
