@@ -99,7 +99,7 @@ if __name__ == "__main__":
     parser.add_argument('--ckpt_dir', type=str, default='/discobox/wjpeng/weights/llama2/llama-2-7b-chat/')
     parser.add_argument('--tokenizer_path', type=str, default='/discobox/wjpeng/weights/llama2/tokenizer.model')
     parser.add_argument('--max_seq_len', type=int, default=512)
-    parser.add_argument('--max_batch_size', type=int, default=128)
+    parser.add_argument('--max_batch_size', type=int, default=32)
     parser.add_argument('--max_gen_len', type=int, default=None)
     parser.add_argument('--temperature', type=float, default=0.6)
     parser.add_argument('--top_p', type=float, default=0.9)
