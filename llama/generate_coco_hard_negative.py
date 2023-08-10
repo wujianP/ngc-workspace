@@ -1,6 +1,5 @@
 import argparse
 import time
-import wandb
 import torch
 import os
 
@@ -106,8 +105,5 @@ if __name__ == "__main__":
     parser.add_argument('--top_p', type=float, default=0.9)
 
     args = parser.parse_args()
-    wandb.login(key='8cff0498531e0409db5f3c43b52a26b0d068f2dc')
-    run = wandb.init('Llama')
     main(args)
-    wandb.finish()
 
