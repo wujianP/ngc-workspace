@@ -37,6 +37,7 @@ def my_collate_fn(batch):
 
 
 def main(args):
+    os.environ["CUDA_VISIBLE_DEVICES"] = str(args.gpu)
     for key, value in vars(args).items():
         print(f'{key}: {value}')
     os.makedirs(os.path.dirname(args.output_dir), exist_ok=True)
@@ -49,7 +50,8 @@ def main(args):
     )
 
     dataset = CocoDataset(image_root=args.images_path,
-                          json=args.annotations_path)
+                          json=args.annotations_path,
+                          gpu_id=args.gpu)
 
     dataloader = DataLoader(dataset=dataset,
                             batch_size=args.batch_size,
@@ -97,6 +99,7 @@ def main(args):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser('LaMma2')
+    parser.add_argument('--gpu', type=int, required=True)
     parser.add_argument('--prompt', type=str, required=True)
     parser.add_argument('--images_path', type=str, default='/discobox/wjpeng/dataset/coco2014/images/train2014')
     parser.add_argument('--annotations_path', type=str, default='/discobox/wjpeng/dataset/coco2014/annotations/captions_train2014.json')
