@@ -31,7 +31,7 @@ def process_captions(captions, prompt):
 
 def main(args):
     for key, value in vars(args).items():
-        print(f'key: {value}')
+        print(f'{key}: {value}')
     os.makedirs(os.path.dirname(args.output_dir), exist_ok=True)
 
     generator = Llama.build(
