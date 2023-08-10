@@ -12,10 +12,12 @@ def process_captions(captions, prompt):
     for caption in captions:
         dialog = [
             {"role": "system", "content": prompt},
-            # {"role": "user", "content": 'An angled view of a beautifully decorated bathroom.'},
-            # {"role": "assistant", "content": "An angled view of a beautifully decorated bedroom."},
-            # {"role": "user", "content": 'A cat stuck in a car with a slightly opened window.'},
-            # {"role": "assistant", "content": "A dog stuck in a car with a slightly opened door."},
+            {"role": "user", "content": 'A black car is near someone riding a bike.'},
+            {"role": "assistant", "content": """
+            1. A black bike is near someone riding a car.
+            2. A white car is near someone riding a bike.
+            3. A black car is far away from someone riding a bike.
+            4. A black motorbike is near someone riding a bike."""},
             {"role": "user", "content": caption}
         ]
         dialogs.append(dialog)
@@ -46,6 +48,7 @@ def main(args):
         embed()
 
         # prepare input for Llama
+        prompt = """We will input a sentence, you need to change the one of the noun or noun phrase in the sentence to modify the objects it describes. If there are multiple nouns in the sentence, you can swap their positions. It's important to modify as few words as possible while keeping the overall sentence structure unchanged."""
         dialogs = process_captions(captions, prompt)
         dialogs = process_captions(captions, args.prompt)
 

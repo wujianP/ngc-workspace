@@ -12,6 +12,13 @@ from dataset import CocoDataset
 from torch.utils.data import DataLoader
 
 
+def prepare_prompts(prefix, captions):
+    prompts = []
+    for cap in captions:
+        prompt = prefix + cap
+        prompts.append(prompt)
+    return prompts
+
 @torch.inference_mode()
 def main(args):
     # load model
@@ -38,8 +45,14 @@ def main(args):
 
     # do inference
     total_iters = len(coco_dataloader)
-    for cur_iter, (filenames, prompts, captions, actions) in enumerate(coco_dataloader):
+    for cur_iter, (captions) in enumerate(coco_dataloader):
         start_time = time.time()
+        # prepare prompts
+
+        from IPython import embed
+        embed()
+
+        prompts = prepare_prompts(captions)
         # tokenize
         inputs = tokenizer(prompts, padding=True, truncation=True, return_tensors="pt")
         inputs['input_ids'] = inputs['input_ids'].cuda()
@@ -71,10 +84,7 @@ def main(args):
         with open(args.save_path, "a", newline="") as f:
             writer = csv.writer(f)
             for i in range(args.batch_size):
-                filename = filenames[i]
-                action = actions[i]
                 output = outputs[i].rstrip("\n")
-                writer.writerow((filename, action, output))
 
         print('Input:' + captions[0])
         print('Output:' + outputs[0])
