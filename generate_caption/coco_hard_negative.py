@@ -95,12 +95,11 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     # Data and Model
     parser.add_argument("--model-path", type=str, default="lmsys/vicuna-7b-v1.3")
-    parser.add_argument("--data-path", type=str,
-                        default="/DDN_ROOT/ytcheng/code/Open-VCLIP-V2/video_description_gen/back/caption_record.pth")
-    parser.add_argument("--save-path", type=str, required=True)
+    parser.add_argument('--images_path', type=str, default='/discobox/wjpeng/dataset/coco2014/images/train2014')
+    parser.add_argument('--annotations_path', type=str, default='/discobox/wjpeng/dataset/coco2014/annotations/captions_train2014.json')
     # Hyper-parameters
     parser.add_argument('--batch-size', type=int, default=32)
-    parser.add_argument('--prompt-template', type=str, required=True)
+    # parser.add_argument('--prompt-template', type=str, required=True)
     # Devices
     parser.add_argument("--device", type=str, choices=["cpu", "cuda", "mps", "xpu"], default="cuda",
                         help="The device type")
