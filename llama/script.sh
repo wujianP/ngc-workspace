@@ -1,3 +1,4 @@
+cd /discobox/wjpeng/code/202306/ngc-workspace/llama
 torchrun --nproc_per_node 1 generate_coco_hard_negative.py \
 --batch_size 16 \
 --output_dir /discobox/wjpeng/dataset/coco2014/hardNegatives/train \

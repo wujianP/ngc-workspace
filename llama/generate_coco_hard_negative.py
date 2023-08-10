@@ -89,7 +89,8 @@ def main(args):
         # output print
         i = np.random.randint(0, args.batch_size)
         print(f'Input: {captions[i]}')
-        print(f"Output: {results[i]['generation']['content']}")
+        for i in range(len(caption_list)):
+            print(f'{i}. {caption_list[i]}')
         print(f'ITERS: [{cur_idx+1} / {total_iters}] BATCH TIME: {(time.time() - start_time):.3f}')
         print("\n==================================\n")
 
