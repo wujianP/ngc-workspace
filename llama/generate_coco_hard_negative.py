@@ -58,7 +58,7 @@ def main(args):
 
     result_to_save = {'configure': vars(args)}
     total_iters = len(dataloader)
-    for cur_idx, (ann_ids, captions) in enumerate(dataloader):
+    for cur_idx, (captions, ann_ids) in enumerate(dataloader):
         start_time = time.time()
 
         # prepare input for Llama
