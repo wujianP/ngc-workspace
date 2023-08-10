@@ -36,7 +36,7 @@ def main(args):
     dataset = CocoDataset(image_root=args.images_path,
                           json=args.annotations_path,
                           transforms=None,
-                          caption_only=False)
+                          caption_only=True)
 
     from IPython import embed
     embed()
