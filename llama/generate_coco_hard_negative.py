@@ -15,8 +15,26 @@ def process_captions(captions, prompt):
     for caption in captions:
         dialog = [
             {"role": "system", "content": prompt},
-            {"role": "user", "content": 'A black car is near someone riding a bike.'},
-            {"role": "assistant", "content": "A black boat is near someone riding a bike."},
+            {"role": "user", "content": 'A brown horse is grazing grass near a red house.'},
+            {"role": "assistant", "content": """
+            1. A red horse is grazing grass near a brown house.
+            2. A brown grass is grazing horse near a red house.
+            3. A brown horse is grazing grass far away from a red house."""},
+            {"role": "user", "content": 'A wooden toilet seat sits open in an empty bathroom.'},
+            {"role": "assistant", "content": """
+            1. A wooden bathroom seat sits open in an empty toilet.
+            2. A golden toilet seat sits close in an empty bathroom.
+            3. Many wooden toilet seat sits open in an crowded bathroom."""},
+            {"role": "user", "content": 'Three cats sleeping on a bed with a person.'},
+            {"role": "assistant", "content": """
+            1. Three person sleeping on a bed with a cat.
+            2. Three cats running on a bed with a person.
+            3. Three cats sleeping on a bed without a person."""},
+            {"role": "user", "content": 'An old man in the middle of his kitchen.'},
+            {"role": "assistant", "content": """
+            1. An young woman in the middle of her kitchen.
+            2. An old man on the side of his kitchen.
+            3. Two old man in the middle of their bedroom."""},
             {"role": "user", "content": caption}
         ]
         dialogs.append(dialog)
@@ -63,6 +81,7 @@ def main(args):
         embed()
 
         dialogs = process_captions(captions, args.prompt)
+        dialogs = process_captions(captions, prompt)
 
         # llama forward
         results = generator.chat_completion(
@@ -85,6 +104,12 @@ def main(args):
         if cur_idx % args.save_freq == 0:
             filename = os.path.join(args.output_dir, args.filename)
             torch.save(result_to_save, filename)
+
+        for cap, result in zip(captions, results):
+            print(f'Input: {cap}')
+            output = result['generation']['content']
+            print(f'Output: {output}')
+            print()
 
         # output print
         i = np.random.randint(0, args.batch_size)
