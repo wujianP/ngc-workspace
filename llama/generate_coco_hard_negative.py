@@ -77,11 +77,7 @@ def main(args):
         start_time = time.time()
 
         # prepare input for Llama
-        from IPython import embed
-        embed()
-
         dialogs = process_captions(captions, args.prompt)
-        dialogs = process_captions(captions, prompt)
 
         # llama forward
         results = generator.chat_completion(

@@ -6,5 +6,5 @@ torchrun --nproc_per_node 1 --master_port 29500 generate_coco_hard_negative.py \
 --max_batch_size 32 \
 --output_dir /discobox/wjpeng/dataset/coco2014/hardNegatives/train \
 --save_freq 500 \
---prompt "In this task, you are required to modify the given sentence and return five variations of the sentence with different modifications. You should ensure that the objects (nouns) in the sentence remain as unchanged as possible, only altering the attributes of the objects (adjectives, adverbs) or the relationships between the objects (prepositions, word order). It's important to maintain a level of consistency between the modified sentences and the original one, avoiding significant differences." \
+--prompt "In this task, you need to modify the given sentence to change its meaning. You can alter a word or phrase (noun, adjective, verb, preposition, etc.), or swap the positions of two words. Ensure that the sentence's meaning is altered, and guarantee that the modified sentences are not significantly different from the original one. You should provide three different modified versions for each input." \
 --filename coco2014train_hardNegative_llama-2-7b-chat.pth
