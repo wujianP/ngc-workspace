@@ -102,7 +102,7 @@ def main(args):
             # save
             result_to_save[ann_id] = caption_list
         if cur_idx % args.save_freq == 0:
-            filename = os.path.join(args.output_dir, args.filename)
+            filename = os.path.join(args.output_dir, args.filename + f'_{args.gpu}')
             torch.save(result_to_save, filename)
 
         for cap, result in zip(captions, results):
