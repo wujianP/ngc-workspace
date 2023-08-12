@@ -1,0 +1,261 @@
+/discobox/wjpeng/env/openVCLIP/lib/python3.8/site-packages/torch/functional.py:504: UserWarning: torch.meshgrid: in an upcoming release, it will be required to pass the indexing argument. (Triggered internally at ../aten/src/ATen/native/TensorShape.cpp:3190.)
+  return _VF.meshgrid(tensors, **kwargs)  # type: ignore[attr-defined]
+final text_encoder_type: bert-base-uncased
+Some weights of the model checkpoint at bert-base-uncased were not used when initializing BertModel: ['cls.predictions.transform.dense.weight', 'cls.predictions.bias', 'cls.seq_relationship.weight', 'cls.seq_relationship.bias', 'cls.predictions.transform.LayerNorm.weight', 'cls.predictions.transform.LayerNorm.bias', 'cls.predictions.transform.dense.bias']
+- This IS expected if you are initializing BertModel from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).
+- This IS NOT expected if you are initializing BertModel from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
+_IncompatibleKeys(missing_keys=[], unexpected_keys=['label_enc.weight'])
+<All keys matched successfully>
+/discobox/wjpeng/env/openVCLIP/lib/python3.8/site-packages/transformers/modeling_utils.py:862: FutureWarning: The `device` argument is deprecated and will be removed in v5 of Transformers.
+  warnings.warn(
+/discobox/wjpeng/env/openVCLIP/lib/python3.8/site-packages/torch/utils/checkpoint.py:31: UserWarning: None of the inputs have requires_grad=True. Gradients will be None
+  warnings.warn("None of the inputs have requires_grad=True. Gradients will be None")
+BATCH: [1 / 14465], TIME: [batch-5.466 dino-2.646 sam-1.806 plot- 1.015]
+BATCH: [2 / 14465], TIME: [batch-2.864 dino-0.481 sam-1.629 plot- 0.754]
+BATCH: [3 / 14465], TIME: [batch-3.004 dino-0.460 sam-1.602 plot- 0.942]
+BATCH: [4 / 14465], TIME: [batch-2.875 dino-0.458 sam-1.607 plot- 0.809]
+BATCH: [5 / 14465], TIME: [batch-2.768 dino-0.460 sam-1.606 plot- 0.701]
+BATCH: [6 / 14465], TIME: [batch-2.820 dino-0.464 sam-1.625 plot- 0.731]
+BATCH: [7 / 14465], TIME: [batch-2.814 dino-0.457 sam-1.612 plot- 0.745]
+BATCH: [8 / 14465], TIME: [batch-2.850 dino-0.485 sam-1.593 plot- 0.773]
+BATCH: [9 / 14465], TIME: [batch-2.807 dino-0.458 sam-1.615 plot- 0.734]
+BATCH: [10 / 14465], TIME: [batch-2.872 dino-0.464 sam-1.612 plot- 0.795]
+BATCH: [11 / 14465], TIME: [batch-2.800 dino-0.464 sam-1.629 plot- 0.706]
+BATCH: [12 / 14465], TIME: [batch-2.760 dino-0.462 sam-1.584 plot- 0.714]
+BATCH: [13 / 14465], TIME: [batch-2.824 dino-0.472 sam-1.633 plot- 0.718]
+BATCH: [14 / 14465], TIME: [batch-3.225 dino-0.464 sam-1.633 plot- 1.128]
+BATCH: [15 / 14465], TIME: [batch-3.259 dino-0.468 sam-1.719 plot- 1.072]
+BATCH: [16 / 14465], TIME: [batch-3.043 dino-0.461 sam-1.670 plot- 0.912]
+BATCH: [17 / 14465], TIME: [batch-3.109 dino-0.464 sam-1.673 plot- 0.972]
+BATCH: [18 / 14465], TIME: [batch-3.039 dino-0.458 sam-1.653 plot- 0.929]
+BATCH: [19 / 14465], TIME: [batch-3.079 dino-0.462 sam-1.631 plot- 0.987]
+BATCH: [20 / 14465], TIME: [batch-2.982 dino-0.470 sam-1.648 plot- 0.864]
+BATCH: [21 / 14465], TIME: [batch-2.917 dino-0.456 sam-1.632 plot- 0.829]
+BATCH: [22 / 14465], TIME: [batch-2.947 dino-0.466 sam-1.650 plot- 0.831]
+BATCH: [23 / 14465], TIME: [batch-2.949 dino-0.454 sam-1.616 plot- 0.879]
+BATCH: [24 / 14465], TIME: [batch-2.990 dino-0.491 sam-1.630 plot- 0.869]
+BATCH: [25 / 14465], TIME: [batch-3.140 dino-0.466 sam-1.628 plot- 1.046]
+BATCH: [26 / 14465], TIME: [batch-2.952 dino-0.450 sam-1.631 plot- 0.871]
+BATCH: [27 / 14465], TIME: [batch-2.957 dino-0.485 sam-1.644 plot- 0.827]
+BATCH: [28 / 14465], TIME: [batch-3.021 dino-0.460 sam-1.644 plot- 0.917]
+BATCH: [29 / 14465], TIME: [batch-3.023 dino-0.455 sam-1.648 plot- 0.920]
+BATCH: [30 / 14465], TIME: [batch-3.003 dino-0.456 sam-1.657 plot- 0.891]
+BATCH: [31 / 14465], TIME: [batch-2.970 dino-0.458 sam-1.638 plot- 0.873]
+BATCH: [32 / 14465], TIME: [batch-2.925 dino-0.454 sam-1.644 plot- 0.827]
+BATCH: [33 / 14465], TIME: [batch-3.043 dino-0.470 sam-1.645 plot- 0.929]
+BATCH: [34 / 14465], TIME: [batch-3.066 dino-0.458 sam-1.679 plot- 0.929]
+BATCH: [35 / 14465], TIME: [batch-3.187 dino-0.478 sam-1.665 plot- 1.044]
+BATCH: [36 / 14465], TIME: [batch-3.018 dino-0.491 sam-1.657 plot- 0.870]
+BATCH: [37 / 14465], TIME: [batch-2.950 dino-0.498 sam-1.644 plot- 0.808]
+BATCH: [38 / 14465], TIME: [batch-2.927 dino-0.465 sam-1.628 plot- 0.834]
+BATCH: [39 / 14465], TIME: [batch-2.923 dino-0.486 sam-1.612 plot- 0.825]
+BATCH: [40 / 14465], TIME: [batch-3.076 dino-0.479 sam-1.660 plot- 0.938]
+BATCH: [41 / 14465], TIME: [batch-2.962 dino-0.463 sam-1.632 plot- 0.867]
+BATCH: [42 / 14465], TIME: [batch-2.828 dino-0.471 sam-1.608 plot- 0.749]
+BATCH: [43 / 14465], TIME: [batch-2.940 dino-0.503 sam-1.621 plot- 0.816]
+BATCH: [44 / 14465], TIME: [batch-2.842 dino-0.455 sam-1.623 plot- 0.763]
+BATCH: [45 / 14465], TIME: [batch-2.937 dino-0.459 sam-1.606 plot- 0.872]
+BATCH: [46 / 14465], TIME: [batch-3.045 dino-0.484 sam-1.625 plot- 0.936]
+BATCH: [47 / 14465], TIME: [batch-2.942 dino-0.484 sam-1.637 plot- 0.821]
+BATCH: [48 / 14465], TIME: [batch-2.892 dino-0.467 sam-1.610 plot- 0.815]
+BATCH: [49 / 14465], TIME: [batch-2.980 dino-0.470 sam-1.645 plot- 0.865]
+BATCH: [50 / 14465], TIME: [batch-2.912 dino-0.471 sam-1.609 plot- 0.832]
+BATCH: [51 / 14465], TIME: [batch-2.796 dino-0.453 sam-1.617 plot- 0.726]
+BATCH: [52 / 14465], TIME: [batch-2.825 dino-0.461 sam-1.554 plot- 0.810]
+BATCH: [53 / 14465], TIME: [batch-2.756 dino-0.458 sam-1.576 plot- 0.722]
+BATCH: [54 / 14465], TIME: [batch-2.646 dino-0.459 sam-1.524 plot- 0.662]
+BATCH: [55 / 14465], TIME: [batch-2.774 dino-0.453 sam-1.605 plot- 0.717]
+BATCH: [56 / 14465], TIME: [batch-2.804 dino-0.447 sam-1.570 plot- 0.787]
+BATCH: [57 / 14465], TIME: [batch-2.749 dino-0.501 sam-1.527 plot- 0.721]
+BATCH: [58 / 14465], TIME: [batch-2.697 dino-0.468 sam-1.539 plot- 0.690]
+BATCH: [59 / 14465], TIME: [batch-2.869 dino-0.458 sam-1.507 plot- 0.904]
+BATCH: [60 / 14465], TIME: [batch-2.820 dino-0.486 sam-1.563 plot- 0.771]
+BATCH: [61 / 14465], TIME: [batch-2.886 dino-0.471 sam-1.593 plot- 0.822]
+BATCH: [62 / 14465], TIME: [batch-2.749 dino-0.454 sam-1.503 plot- 0.792]
+BATCH: [63 / 14465], TIME: [batch-2.808 dino-0.470 sam-1.565 plot- 0.773]
+BATCH: [64 / 14465], TIME: [batch-2.812 dino-0.468 sam-1.615 plot- 0.730]
+BATCH: [65 / 14465], TIME: [batch-3.051 dino-0.464 sam-1.593 plot- 0.994]
+BATCH: [66 / 14465], TIME: [batch-3.514 dino-0.461 sam-1.597 plot- 1.455]
+BATCH: [67 / 14465], TIME: [batch-3.143 dino-0.462 sam-1.581 plot- 1.099]
+BATCH: [68 / 14465], TIME: [batch-3.146 dino-0.500 sam-1.573 plot- 1.073]
+BATCH: [69 / 14465], TIME: [batch-3.123 dino-0.454 sam-1.595 plot- 1.074]
+BATCH: [70 / 14465], TIME: [batch-3.281 dino-0.455 sam-1.579 plot- 1.247]
+BATCH: [71 / 14465], TIME: [batch-3.120 dino-0.450 sam-1.590 plot- 1.080]
+BATCH: [72 / 14465], TIME: [batch-2.978 dino-0.451 sam-1.506 plot- 1.021]
+BATCH: [73 / 14465], TIME: [batch-3.072 dino-0.454 sam-1.589 plot- 1.030]
+BATCH: [74 / 14465], TIME: [batch-2.820 dino-0.461 sam-1.540 plot- 0.818]
+BATCH: [75 / 14465], TIME: [batch-2.908 dino-0.459 sam-1.451 plot- 0.998]
+BATCH: [76 / 14465], TIME: [batch-2.901 dino-0.476 sam-1.416 plot- 1.009]
+BATCH: [77 / 14465], TIME: [batch-2.710 dino-0.474 sam-1.429 plot- 0.806]
+BATCH: [78 / 14465], TIME: [batch-2.997 dino-0.480 sam-1.523 plot- 0.994]
+BATCH: [79 / 14465], TIME: [batch-2.951 dino-0.459 sam-1.428 plot- 1.064]
+BATCH: [80 / 14465], TIME: [batch-2.903 dino-0.470 sam-1.442 plot- 0.991]
+BATCH: [81 / 14465], TIME: [batch-2.934 dino-0.477 sam-1.477 plot- 0.981]
+BATCH: [82 / 14465], TIME: [batch-3.139 dino-0.470 sam-1.476 plot- 1.193]
+BATCH: [83 / 14465], TIME: [batch-2.992 dino-0.452 sam-1.539 plot- 1.001]
+BATCH: [84 / 14465], TIME: [batch-2.883 dino-0.479 sam-1.457 plot- 0.947]
+BATCH: [85 / 14465], TIME: [batch-1.914 dino-0.495 sam-1.419 plot- 0.000]
+BATCH: [86 / 14465], TIME: [batch-1.914 dino-0.475 sam-1.439 plot- 0.000]
+BATCH: [87 / 14465], TIME: [batch-1.941 dino-0.492 sam-1.449 plot- 0.000]
+BATCH: [88 / 14465], TIME: [batch-2.858 dino-0.469 sam-1.445 plot- 0.944]
+BATCH: [89 / 14465], TIME: [batch-1.944 dino-0.538 sam-1.406 plot- 0.000]
+BATCH: [90 / 14465], TIME: [batch-1.879 dino-0.469 sam-1.410 plot- 0.000]
+BATCH: [91 / 14465], TIME: [batch-2.860 dino-0.470 sam-1.450 plot- 0.940]
+BATCH: [92 / 14465], TIME: [batch-2.804 dino-0.477 sam-1.410 plot- 0.917]
+BATCH: [93 / 14465], TIME: [batch-2.829 dino-0.479 sam-1.429 plot- 0.921]
+BATCH: [94 / 14465], TIME: [batch-2.820 dino-0.476 sam-1.426 plot- 0.919]
+BATCH: [95 / 14465], TIME: [batch-2.774 dino-0.460 sam-1.398 plot- 0.915]
+BATCH: [96 / 14465], TIME: [batch-2.800 dino-0.461 sam-1.412 plot- 0.927]
+BATCH: [97 / 14465], TIME: [batch-2.812 dino-0.467 sam-1.412 plot- 0.933]
+BATCH: [98 / 14465], TIME: [batch-2.853 dino-0.470 sam-1.444 plot- 0.939]
+BATCH: [99 / 14465], TIME: [batch-2.859 dino-0.485 sam-1.428 plot- 0.947]
+BATCH: [100 / 14465], TIME: [batch-3.001 dino-0.633 sam-1.425 plot- 0.943]
+BATCH: [101 / 14465], TIME: [batch-2.857 dino-0.479 sam-1.424 plot- 0.953]
+BATCH: [102 / 14465], TIME: [batch-2.646 dino-0.483 sam-1.515 plot- 0.648]
+BATCH: [103 / 14465], TIME: [batch-2.809 dino-0.465 sam-1.633 plot- 0.711]
+BATCH: [104 / 14465], TIME: [batch-2.891 dino-0.465 sam-1.617 plot- 0.809]
+BATCH: [105 / 14465], TIME: [batch-2.846 dino-0.462 sam-1.612 plot- 0.772]
+BATCH: [106 / 14465], TIME: [batch-2.787 dino-0.460 sam-1.628 plot- 0.699]
+BATCH: [107 / 14465], TIME: [batch-2.884 dino-0.471 sam-1.625 plot- 0.789]
+BATCH: [108 / 14465], TIME: [batch-2.893 dino-0.478 sam-1.562 plot- 0.854]
+BATCH: [109 / 14465], TIME: [batch-2.623 dino-0.474 sam-1.459 plot- 0.690]
+BATCH: [110 / 14465], TIME: [batch-2.546 dino-0.482 sam-1.475 plot- 0.589]
+BATCH: [111 / 14465], TIME: [batch-2.740 dino-0.482 sam-1.466 plot- 0.792]
+BATCH: [112 / 14465], TIME: [batch-2.659 dino-0.467 sam-1.534 plot- 0.658]
+BATCH: [113 / 14465], TIME: [batch-2.676 dino-0.491 sam-1.525 plot- 0.660]
+BATCH: [114 / 14465], TIME: [batch-2.575 dino-0.460 sam-1.459 plot- 0.656]
+BATCH: [115 / 14465], TIME: [batch-2.513 dino-0.468 sam-1.486 plot- 0.559]
+BATCH: [116 / 14465], TIME: [batch-1.921 dino-0.463 sam-1.458 plot- 0.000]
+BATCH: [117 / 14465], TIME: [batch-2.849 dino-0.464 sam-1.591 plot- 0.794]
+BATCH: [118 / 14465], TIME: [batch-2.792 dino-0.454 sam-1.610 plot- 0.728]
+BATCH: [119 / 14465], TIME: [batch-2.715 dino-0.457 sam-1.554 plot- 0.704]
+BATCH: [120 / 14465], TIME: [batch-2.833 dino-0.466 sam-1.639 plot- 0.728]
+BATCH: [121 / 14465], TIME: [batch-2.880 dino-0.477 sam-1.632 plot- 0.772]
+BATCH: [122 / 14465], TIME: [batch-2.826 dino-0.483 sam-1.614 plot- 0.729]
+BATCH: [123 / 14465], TIME: [batch-2.756 dino-0.460 sam-1.565 plot- 0.731]
+BATCH: [124 / 14465], TIME: [batch-2.831 dino-0.456 sam-1.639 plot- 0.735]
+BATCH: [125 / 14465], TIME: [batch-3.050 dino-0.468 sam-1.600 plot- 0.982]
+BATCH: [126 / 14465], TIME: [batch-2.867 dino-0.467 sam-1.635 plot- 0.765]
+BATCH: [127 / 14465], TIME: [batch-2.853 dino-0.463 sam-1.603 plot- 0.787]
+BATCH: [128 / 14465], TIME: [batch-2.796 dino-0.457 sam-1.625 plot- 0.714]
+BATCH: [129 / 14465], TIME: [batch-2.691 dino-0.459 sam-1.543 plot- 0.689]
+BATCH: [130 / 14465], TIME: [batch-2.817 dino-0.454 sam-1.610 plot- 0.753]
+BATCH: [131 / 14465], TIME: [batch-2.727 dino-0.456 sam-1.570 plot- 0.700]
+BATCH: [132 / 14465], TIME: [batch-2.693 dino-0.471 sam-1.535 plot- 0.687]
+BATCH: [133 / 14465], TIME: [batch-2.824 dino-0.471 sam-1.618 plot- 0.735]
+BATCH: [134 / 14465], TIME: [batch-2.765 dino-0.467 sam-1.619 plot- 0.680]
+BATCH: [135 / 14465], TIME: [batch-2.856 dino-0.469 sam-1.627 plot- 0.760]
+BATCH: [136 / 14465], TIME: [batch-3.120 dino-0.643 sam-1.640 plot- 0.836]
+BATCH: [137 / 14465], TIME: [batch-2.890 dino-0.492 sam-1.597 plot- 0.801]
+BATCH: [138 / 14465], TIME: [batch-3.031 dino-0.458 sam-1.609 plot- 0.965]
+BATCH: [139 / 14465], TIME: [batch-2.979 dino-0.458 sam-1.629 plot- 0.892]
+Traceback (most recent call last):
+  File "groundedeSAM.py", line 283, in <module>
+    main(args)
+  File "/discobox/wjpeng/env/openVCLIP/lib/python3.8/site-packages/torch/autograd/grad_mode.py", line 27, in decorate_context
+    return func(*args, **kwargs)
+  File "groundedeSAM.py", line 228, in main
+    batched_output = sam(batched_input, multimask_output=False)
+  File "/discobox/wjpeng/env/openVCLIP/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1190, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/discobox/wjpeng/env/openVCLIP/lib/python3.8/site-packages/torch/autograd/grad_mode.py", line 27, in decorate_context
+    return func(*args, **kwargs)
+  File "/discobox/wjpeng/code/202306/ngc-workspace/segment_video/Grounded-Segment-Anything/segment_anything/segment_anything/modeling/sam.py", line 99, in forward
+    image_embeddings, interm_embeddings = self.image_encoder(input_images)
+  File "/discobox/wjpeng/env/openVCLIP/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1190, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/discobox/wjpeng/code/202306/ngc-workspace/segment_video/Grounded-Segment-Anything/segment_anything/segment_anything/modeling/image_encoder.py", line 113, in forward
+    x = blk(x)
+  File "/discobox/wjpeng/env/openVCLIP/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1190, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/discobox/wjpeng/code/202306/ngc-workspace/segment_video/Grounded-Segment-Anything/segment_anything/segment_anything/modeling/image_encoder.py", line 177, in forward
+    x = self.attn(x)
+  File "/discobox/wjpeng/env/openVCLIP/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1190, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/discobox/wjpeng/code/202306/ngc-workspace/segment_video/Grounded-Segment-Anything/segment_anything/segment_anything/modeling/image_encoder.py", line 237, in forward
+    attn = add_decomposed_rel_pos(attn, q, self.rel_pos_h, self.rel_pos_w, (H, W), (H, W))
+  File "/discobox/wjpeng/code/202306/ngc-workspace/segment_video/Grounded-Segment-Anything/segment_anything/segment_anything/modeling/image_encoder.py", line 352, in add_decomposed_rel_pos
+    Rh = get_rel_pos(q_h, k_h, rel_pos_h)
+  File "/discobox/wjpeng/code/202306/ngc-workspace/segment_video/Grounded-Segment-Anything/segment_anything/segment_anything/modeling/image_encoder.py", line 325, in get_rel_pos
+    return rel_pos_resized[relative_coords.long()]
+KeyboardInterrupt
+Error in sys.excepthook:
+Traceback (most recent call last):
+  File "/discobox/wjpeng/env/openVCLIP/lib/python3.8/site-packages/rich/console.py", line 1699, in print
+    extend(render(renderable, render_options))
+  File "/discobox/wjpeng/env/openVCLIP/lib/python3.8/site-packages/rich/console.py", line 1335, in render
+    yield from self.render(render_output, _options)
+  File "/discobox/wjpeng/env/openVCLIP/lib/python3.8/site-packages/rich/console.py", line 1331, in render
+    for render_output in iter_render:
+  File "/discobox/wjpeng/env/openVCLIP/lib/python3.8/site-packages/rich/constrain.py", line 29, in __rich_console__
+    yield from console.render(self.renderable, child_options)
+  File "/discobox/wjpeng/env/openVCLIP/lib/python3.8/site-packages/rich/console.py", line 1331, in render
+    for render_output in iter_render:
+  File "/discobox/wjpeng/env/openVCLIP/lib/python3.8/site-packages/rich/panel.py", line 220, in __rich_console__
+    lines = console.render_lines(renderable, child_options, style=style)
+  File "/discobox/wjpeng/env/openVCLIP/lib/python3.8/site-packages/rich/console.py", line 1371, in render_lines
+    lines = list(
+  File "/discobox/wjpeng/env/openVCLIP/lib/python3.8/site-packages/rich/segment.py", line 292, in split_and_crop_lines
+    for segment in segments:
+  File "/discobox/wjpeng/env/openVCLIP/lib/python3.8/site-packages/rich/console.py", line 1331, in render
+    for render_output in iter_render:
+  File "/discobox/wjpeng/env/openVCLIP/lib/python3.8/site-packages/rich/padding.py", line 97, in __rich_console__
+    lines = console.render_lines(
+  File "/discobox/wjpeng/env/openVCLIP/lib/python3.8/site-packages/rich/console.py", line 1371, in render_lines
+    lines = list(
+  File "/discobox/wjpeng/env/openVCLIP/lib/python3.8/site-packages/rich/segment.py", line 292, in split_and_crop_lines
+    for segment in segments:
+  File "/discobox/wjpeng/env/openVCLIP/lib/python3.8/site-packages/rich/console.py", line 1335, in render
+    yield from self.render(render_output, _options)
+  File "/discobox/wjpeng/env/openVCLIP/lib/python3.8/site-packages/rich/console.py", line 1331, in render
+    for render_output in iter_render:
+  File "/discobox/wjpeng/env/openVCLIP/lib/python3.8/site-packages/rich/syntax.py", line 611, in __rich_console__
+    segments = Segments(self._get_syntax(console, options))
+  File "/discobox/wjpeng/env/openVCLIP/lib/python3.8/site-packages/rich/segment.py", line 668, in __init__
+    self.segments = list(segments)
+  File "/discobox/wjpeng/env/openVCLIP/lib/python3.8/site-packages/rich/syntax.py", line 674, in _get_syntax
+    lines: Union[List[Text], Lines] = text.split("\n", allow_blank=ends_on_nl)
+  File "/discobox/wjpeng/env/openVCLIP/lib/python3.8/site-packages/rich/text.py", line 1043, in split
+    line for line in self.divide(flatten_spans()) if line.plain != separator
+  File "/discobox/wjpeng/env/openVCLIP/lib/python3.8/site-packages/rich/text.py", line 1074, in divide
+    new_lines = Lines(
+  File "/discobox/wjpeng/env/openVCLIP/lib/python3.8/site-packages/rich/containers.py", line 70, in __init__
+    self._lines: List["Text"] = list(lines)
+  File "/discobox/wjpeng/env/openVCLIP/lib/python3.8/site-packages/rich/text.py", line 1075, in <genexpr>
+    _Text(
+  File "/discobox/wjpeng/env/openVCLIP/lib/python3.8/site-packages/rich/text.py", line 139, in __init__
+    sanitized_text = strip_control_codes(text)
+  File "/discobox/wjpeng/env/openVCLIP/lib/python3.8/site-packages/rich/control.py", line 198, in strip_control_codes
+    return text.translate(_translate_table)
+KeyboardInterrupt
+Original exception was:
+Traceback (most recent call last):
+  File "groundedeSAM.py", line 283, in <module>
+    main(args)
+  File "/discobox/wjpeng/env/openVCLIP/lib/python3.8/site-packages/torch/autograd/grad_mode.py", line 27, in decorate_context
+    return func(*args, **kwargs)
+  File "groundedeSAM.py", line 228, in main
+    batched_output = sam(batched_input, multimask_output=False)
+  File "/discobox/wjpeng/env/openVCLIP/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1190, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/discobox/wjpeng/env/openVCLIP/lib/python3.8/site-packages/torch/autograd/grad_mode.py", line 27, in decorate_context
+    return func(*args, **kwargs)
+  File "/discobox/wjpeng/code/202306/ngc-workspace/segment_video/Grounded-Segment-Anything/segment_anything/segment_anything/modeling/sam.py", line 99, in forward
+    image_embeddings, interm_embeddings = self.image_encoder(input_images)
+  File "/discobox/wjpeng/env/openVCLIP/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1190, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/discobox/wjpeng/code/202306/ngc-workspace/segment_video/Grounded-Segment-Anything/segment_anything/segment_anything/modeling/image_encoder.py", line 113, in forward
+    x = blk(x)
+  File "/discobox/wjpeng/env/openVCLIP/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1190, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/discobox/wjpeng/code/202306/ngc-workspace/segment_video/Grounded-Segment-Anything/segment_anything/segment_anything/modeling/image_encoder.py", line 177, in forward
+    x = self.attn(x)
+  File "/discobox/wjpeng/env/openVCLIP/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1190, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/discobox/wjpeng/code/202306/ngc-workspace/segment_video/Grounded-Segment-Anything/segment_anything/segment_anything/modeling/image_encoder.py", line 237, in forward
+    attn = add_decomposed_rel_pos(attn, q, self.rel_pos_h, self.rel_pos_w, (H, W), (H, W))
+  File "/discobox/wjpeng/code/202306/ngc-workspace/segment_video/Grounded-Segment-Anything/segment_anything/segment_anything/modeling/image_encoder.py", line 352, in add_decomposed_rel_pos
+    Rh = get_rel_pos(q_h, k_h, rel_pos_h)
+  File "/discobox/wjpeng/code/202306/ngc-workspace/segment_video/Grounded-Segment-Anything/segment_anything/segment_anything/modeling/image_encoder.py", line 325, in get_rel_pos
+    return rel_pos_resized[relative_coords.long()]
+KeyboardInterrupt

@@ -1,0 +1,342 @@
+/discobox/wjpeng/env/openVCLIP/lib/python3.8/site-packages/torch/functional.py:504: UserWarning: torch.meshgrid: in an upcoming release, it will be required to pass the indexing argument. (Triggered internally at ../aten/src/ATen/native/TensorShape.cpp:3190.)
+  return _VF.meshgrid(tensors, **kwargs)  # type: ignore[attr-defined]
+final text_encoder_type: bert-base-uncased
+Some weights of the model checkpoint at bert-base-uncased were not used when initializing BertModel: ['cls.seq_relationship.weight', 'cls.predictions.transform.LayerNorm.weight', 'cls.predictions.transform.dense.weight', 'cls.predictions.transform.dense.bias', 'cls.predictions.transform.LayerNorm.bias', 'cls.predictions.bias', 'cls.seq_relationship.bias']
+- This IS expected if you are initializing BertModel from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).
+- This IS NOT expected if you are initializing BertModel from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
+_IncompatibleKeys(missing_keys=[], unexpected_keys=['label_enc.weight'])
+<All keys matched successfully>
+/discobox/wjpeng/env/openVCLIP/lib/python3.8/site-packages/transformers/modeling_utils.py:862: FutureWarning: The `device` argument is deprecated and will be removed in v5 of Transformers.
+  warnings.warn(
+/discobox/wjpeng/env/openVCLIP/lib/python3.8/site-packages/torch/utils/checkpoint.py:31: UserWarning: None of the inputs have requires_grad=True. Gradients will be None
+  warnings.warn("None of the inputs have requires_grad=True. Gradients will be None")
+BATCH: [1 / 1809], TIME: [batch-9.017 dino-6.385 sam-1.689 plot-0.943 save-0.001]
+BATCH: [2 / 1809], TIME: [batch-2.549 dino-0.887 sam-1.661 plot-0.000 save-0.000]
+BATCH: [3 / 1809], TIME: [batch-2.541 dino-0.884 sam-1.656 plot-0.000 save-0.000]
+BATCH: [4 / 1809], TIME: [batch-2.551 dino-0.869 sam-1.681 plot-0.000 save-0.000]
+BATCH: [5 / 1809], TIME: [batch-2.543 dino-0.892 sam-1.650 plot-0.000 save-0.000]
+BATCH: [6 / 1809], TIME: [batch-2.540 dino-0.890 sam-1.650 plot-0.000 save-0.000]
+BATCH: [7 / 1809], TIME: [batch-2.485 dino-0.878 sam-1.607 plot-0.000 save-0.000]
+BATCH: [8 / 1809], TIME: [batch-2.505 dino-0.933 sam-1.572 plot-0.000 save-0.000]
+BATCH: [9 / 1809], TIME: [batch-2.489 dino-0.879 sam-1.609 plot-0.000 save-0.000]
+BATCH: [10 / 1809], TIME: [batch-2.376 dino-0.888 sam-1.488 plot-0.000 save-0.000]
+BATCH: [11 / 1809], TIME: [batch-3.394 dino-0.871 sam-1.464 plot-1.002 save-0.057]
+BATCH: [12 / 1809], TIME: [batch-2.367 dino-0.891 sam-1.476 plot-0.000 save-0.000]
+BATCH: [13 / 1809], TIME: [batch-2.467 dino-0.888 sam-1.578 plot-0.000 save-0.000]
+BATCH: [14 / 1809], TIME: [batch-2.494 dino-0.875 sam-1.619 plot-0.000 save-0.000]
+BATCH: [15 / 1809], TIME: [batch-2.473 dino-0.882 sam-1.590 plot-0.000 save-0.000]
+BATCH: [16 / 1809], TIME: [batch-2.547 dino-0.876 sam-1.670 plot-0.000 save-0.000]
+BATCH: [17 / 1809], TIME: [batch-2.543 dino-0.878 sam-1.664 plot-0.000 save-0.000]
+BATCH: [18 / 1809], TIME: [batch-2.547 dino-0.881 sam-1.665 plot-0.000 save-0.000]
+BATCH: [19 / 1809], TIME: [batch-2.805 dino-1.130 sam-1.675 plot-0.000 save-0.000]
+BATCH: [20 / 1809], TIME: [batch-2.544 dino-0.865 sam-1.679 plot-0.000 save-0.000]
+BATCH: [21 / 1809], TIME: [batch-3.527 dino-0.870 sam-1.684 plot-0.860 save-0.113]
+BATCH: [22 / 1809], TIME: [batch-2.563 dino-0.869 sam-1.694 plot-0.000 save-0.000]
+BATCH: [23 / 1809], TIME: [batch-2.634 dino-0.887 sam-1.748 plot-0.000 save-0.000]
+BATCH: [24 / 1809], TIME: [batch-2.628 dino-0.890 sam-1.737 plot-0.000 save-0.000]
+BATCH: [25 / 1809], TIME: [batch-2.601 dino-0.877 sam-1.724 plot-0.000 save-0.000]
+BATCH: [26 / 1809], TIME: [batch-2.631 dino-0.871 sam-1.760 plot-0.000 save-0.000]
+BATCH: [27 / 1809], TIME: [batch-2.578 dino-0.904 sam-1.673 plot-0.000 save-0.000]
+BATCH: [28 / 1809], TIME: [batch-2.482 dino-0.880 sam-1.602 plot-0.000 save-0.000]
+BATCH: [29 / 1809], TIME: [batch-2.509 dino-0.872 sam-1.636 plot-0.000 save-0.000]
+BATCH: [30 / 1809], TIME: [batch-2.476 dino-0.875 sam-1.600 plot-0.000 save-0.000]
+BATCH: [31 / 1809], TIME: [batch-3.318 dino-0.865 sam-1.622 plot-0.637 save-0.194]
+BATCH: [32 / 1809], TIME: [batch-2.405 dino-0.875 sam-1.530 plot-0.000 save-0.000]
+BATCH: [33 / 1809], TIME: [batch-2.447 dino-0.875 sam-1.572 plot-0.000 save-0.000]
+BATCH: [34 / 1809], TIME: [batch-2.511 dino-0.879 sam-1.632 plot-0.000 save-0.000]
+BATCH: [35 / 1809], TIME: [batch-2.474 dino-0.887 sam-1.587 plot-0.000 save-0.000]
+BATCH: [36 / 1809], TIME: [batch-2.551 dino-0.906 sam-1.644 plot-0.000 save-0.000]
+BATCH: [37 / 1809], TIME: [batch-2.449 dino-0.862 sam-1.587 plot-0.000 save-0.000]
+BATCH: [38 / 1809], TIME: [batch-2.433 dino-0.869 sam-1.563 plot-0.000 save-0.000]
+BATCH: [39 / 1809], TIME: [batch-2.498 dino-0.906 sam-1.591 plot-0.000 save-0.000]
+BATCH: [40 / 1809], TIME: [batch-2.470 dino-0.871 sam-1.598 plot-0.000 save-0.000]
+BATCH: [41 / 1809], TIME: [batch-3.535 dino-0.878 sam-1.657 plot-0.765 save-0.235]
+BATCH: [42 / 1809], TIME: [batch-2.551 dino-0.876 sam-1.675 plot-0.000 save-0.000]
+BATCH: [43 / 1809], TIME: [batch-2.485 dino-0.882 sam-1.603 plot-0.000 save-0.000]
+BATCH: [44 / 1809], TIME: [batch-2.449 dino-0.871 sam-1.577 plot-0.000 save-0.000]
+BATCH: [45 / 1809], TIME: [batch-2.342 dino-0.882 sam-1.459 plot-0.000 save-0.000]
+BATCH: [46 / 1809], TIME: [batch-2.335 dino-0.879 sam-1.455 plot-0.000 save-0.000]
+BATCH: [47 / 1809], TIME: [batch-2.444 dino-0.886 sam-1.557 plot-0.000 save-0.000]
+BATCH: [48 / 1809], TIME: [batch-2.371 dino-0.891 sam-1.479 plot-0.000 save-0.000]
+BATCH: [49 / 1809], TIME: [batch-2.440 dino-0.875 sam-1.565 plot-0.000 save-0.000]
+BATCH: [50 / 1809], TIME: [batch-2.564 dino-0.873 sam-1.690 plot-0.000 save-0.000]
+BATCH: [51 / 1809], TIME: [batch-3.782 dino-0.870 sam-1.708 plot-0.919 save-0.286]
+BATCH: [52 / 1809], TIME: [batch-2.567 dino-0.870 sam-1.697 plot-0.000 save-0.000]
+BATCH: [53 / 1809], TIME: [batch-2.558 dino-0.874 sam-1.684 plot-0.000 save-0.000]
+BATCH: [54 / 1809], TIME: [batch-2.563 dino-0.880 sam-1.683 plot-0.000 save-0.000]
+BATCH: [55 / 1809], TIME: [batch-2.600 dino-0.893 sam-1.707 plot-0.000 save-0.000]
+BATCH: [56 / 1809], TIME: [batch-2.565 dino-0.864 sam-1.700 plot-0.000 save-0.000]
+BATCH: [57 / 1809], TIME: [batch-2.350 dino-0.866 sam-1.484 plot-0.000 save-0.000]
+BATCH: [58 / 1809], TIME: [batch-2.403 dino-0.883 sam-1.520 plot-0.000 save-0.000]
+BATCH: [59 / 1809], TIME: [batch-2.346 dino-0.873 sam-1.473 plot-0.000 save-0.000]
+BATCH: [60 / 1809], TIME: [batch-2.395 dino-0.885 sam-1.509 plot-0.000 save-0.000]
+BATCH: [61 / 1809], TIME: [batch-3.447 dino-0.877 sam-1.559 plot-0.663 save-0.347]
+BATCH: [62 / 1809], TIME: [batch-2.534 dino-0.878 sam-1.655 plot-0.000 save-0.000]
+BATCH: [63 / 1809], TIME: [batch-2.561 dino-0.888 sam-1.673 plot-0.000 save-0.000]
+BATCH: [64 / 1809], TIME: [batch-2.540 dino-0.877 sam-1.663 plot-0.000 save-0.000]
+BATCH: [65 / 1809], TIME: [batch-2.449 dino-0.869 sam-1.580 plot-0.000 save-0.000]
+BATCH: [66 / 1809], TIME: [batch-2.483 dino-0.872 sam-1.611 plot-0.000 save-0.000]
+BATCH: [67 / 1809], TIME: [batch-2.484 dino-0.876 sam-1.609 plot-0.000 save-0.000]
+BATCH: [68 / 1809], TIME: [batch-2.510 dino-0.887 sam-1.622 plot-0.000 save-0.000]
+BATCH: [69 / 1809], TIME: [batch-2.503 dino-0.876 sam-1.626 plot-0.000 save-0.000]
+BATCH: [70 / 1809], TIME: [batch-2.532 dino-0.877 sam-1.655 plot-0.000 save-0.000]
+BATCH: [71 / 1809], TIME: [batch-3.510 dino-0.879 sam-1.638 plot-0.580 save-0.413]
+BATCH: [72 / 1809], TIME: [batch-2.479 dino-0.870 sam-1.608 plot-0.000 save-0.000]
+BATCH: [73 / 1809], TIME: [batch-2.504 dino-0.864 sam-1.640 plot-0.000 save-0.000]
+BATCH: [74 / 1809], TIME: [batch-2.554 dino-0.901 sam-1.653 plot-0.000 save-0.000]
+BATCH: [75 / 1809], TIME: [batch-2.404 dino-0.871 sam-1.533 plot-0.000 save-0.000]
+BATCH: [76 / 1809], TIME: [batch-2.339 dino-0.890 sam-1.448 plot-0.000 save-0.000]
+BATCH: [77 / 1809], TIME: [batch-2.347 dino-0.891 sam-1.456 plot-0.000 save-0.000]
+BATCH: [78 / 1809], TIME: [batch-2.395 dino-0.876 sam-1.519 plot-0.000 save-0.000]
+BATCH: [79 / 1809], TIME: [batch-2.405 dino-0.888 sam-1.517 plot-0.000 save-0.000]
+BATCH: [80 / 1809], TIME: [batch-2.519 dino-0.889 sam-1.629 plot-0.000 save-0.000]
+BATCH: [81 / 1809], TIME: [batch-3.477 dino-0.886 sam-1.505 plot-0.622 save-0.465]
+BATCH: [82 / 1809], TIME: [batch-2.373 dino-0.875 sam-1.498 plot-0.000 save-0.000]
+BATCH: [83 / 1809], TIME: [batch-2.498 dino-0.880 sam-1.617 plot-0.000 save-0.000]
+BATCH: [84 / 1809], TIME: [batch-2.651 dino-0.896 sam-1.754 plot-0.000 save-0.000]
+BATCH: [85 / 1809], TIME: [batch-2.638 dino-0.879 sam-1.759 plot-0.000 save-0.000]
+BATCH: [86 / 1809], TIME: [batch-2.616 dino-0.887 sam-1.729 plot-0.000 save-0.000]
+BATCH: [87 / 1809], TIME: [batch-2.558 dino-0.885 sam-1.672 plot-0.000 save-0.000]
+BATCH: [88 / 1809], TIME: [batch-2.541 dino-0.877 sam-1.664 plot-0.000 save-0.000]
+BATCH: [89 / 1809], TIME: [batch-2.556 dino-0.868 sam-1.687 plot-0.000 save-0.000]
+BATCH: [90 / 1809], TIME: [batch-2.486 dino-0.866 sam-1.619 plot-0.000 save-0.000]
+BATCH: [91 / 1809], TIME: [batch-3.702 dino-0.881 sam-1.633 plot-0.723 save-0.466]
+BATCH: [92 / 1809], TIME: [batch-2.510 dino-0.878 sam-1.631 plot-0.000 save-0.000]
+BATCH: [93 / 1809], TIME: [batch-2.497 dino-0.882 sam-1.614 plot-0.000 save-0.000]
+BATCH: [94 / 1809], TIME: [batch-2.517 dino-0.885 sam-1.631 plot-0.000 save-0.000]
+BATCH: [95 / 1809], TIME: [batch-2.449 dino-0.882 sam-1.567 plot-0.000 save-0.000]
+BATCH: [96 / 1809], TIME: [batch-2.613 dino-0.880 sam-1.733 plot-0.000 save-0.000]
+BATCH: [97 / 1809], TIME: [batch-2.561 dino-0.885 sam-1.676 plot-0.000 save-0.000]
+BATCH: [98 / 1809], TIME: [batch-2.593 dino-0.908 sam-1.684 plot-0.000 save-0.000]
+BATCH: [99 / 1809], TIME: [batch-2.550 dino-0.879 sam-1.671 plot-0.000 save-0.000]
+BATCH: [100 / 1809], TIME: [batch-2.545 dino-0.877 sam-1.668 plot-0.000 save-0.000]
+BATCH: [101 / 1809], TIME: [batch-3.962 dino-0.876 sam-1.674 plot-0.827 save-0.585]
+BATCH: [102 / 1809], TIME: [batch-2.390 dino-0.868 sam-1.522 plot-0.000 save-0.000]
+BATCH: [103 / 1809], TIME: [batch-2.423 dino-0.864 sam-1.558 plot-0.000 save-0.000]
+BATCH: [104 / 1809], TIME: [batch-2.404 dino-0.872 sam-1.531 plot-0.000 save-0.000]
+BATCH: [105 / 1809], TIME: [batch-2.460 dino-0.876 sam-1.584 plot-0.000 save-0.000]
+BATCH: [106 / 1809], TIME: [batch-2.481 dino-0.870 sam-1.610 plot-0.000 save-0.000]
+BATCH: [107 / 1809], TIME: [batch-2.530 dino-0.896 sam-1.634 plot-0.000 save-0.000]
+BATCH: [108 / 1809], TIME: [batch-2.459 dino-0.878 sam-1.581 plot-0.000 save-0.000]
+BATCH: [109 / 1809], TIME: [batch-2.346 dino-0.867 sam-1.478 plot-0.000 save-0.000]
+BATCH: [110 / 1809], TIME: [batch-2.331 dino-0.877 sam-1.454 plot-0.000 save-0.000]
+BATCH: [111 / 1809], TIME: [batch-4.117 dino-0.891 sam-1.506 plot-1.135 save-0.584]
+BATCH: [112 / 1809], TIME: [batch-2.376 dino-0.873 sam-1.503 plot-0.000 save-0.000]
+BATCH: [113 / 1809], TIME: [batch-2.548 dino-0.885 sam-1.663 plot-0.000 save-0.000]
+BATCH: [114 / 1809], TIME: [batch-2.573 dino-0.899 sam-1.674 plot-0.000 save-0.000]
+BATCH: [115 / 1809], TIME: [batch-2.564 dino-0.874 sam-1.689 plot-0.000 save-0.000]
+BATCH: [116 / 1809], TIME: [batch-2.535 dino-0.868 sam-1.666 plot-0.000 save-0.000]
+BATCH: [117 / 1809], TIME: [batch-2.408 dino-0.880 sam-1.528 plot-0.000 save-0.000]
+BATCH: [118 / 1809], TIME: [batch-2.351 dino-0.899 sam-1.452 plot-0.000 save-0.000]
+BATCH: [119 / 1809], TIME: [batch-2.426 dino-0.900 sam-1.525 plot-0.000 save-0.000]
+BATCH: [120 / 1809], TIME: [batch-2.360 dino-0.885 sam-1.474 plot-0.000 save-0.000]
+BATCH: [121 / 1809], TIME: [batch-4.265 dino-0.887 sam-1.588 plot-1.148 save-0.642]
+BATCH: [122 / 1809], TIME: [batch-2.560 dino-0.876 sam-1.684 plot-0.000 save-0.000]
+BATCH: [123 / 1809], TIME: [batch-2.492 dino-0.870 sam-1.622 plot-0.000 save-0.000]
+BATCH: [124 / 1809], TIME: [batch-2.533 dino-0.894 sam-1.639 plot-0.000 save-0.000]
+BATCH: [125 / 1809], TIME: [batch-2.473 dino-0.889 sam-1.584 plot-0.000 save-0.000]
+BATCH: [126 / 1809], TIME: [batch-2.479 dino-0.902 sam-1.577 plot-0.000 save-0.000]
+BATCH: [127 / 1809], TIME: [batch-2.347 dino-0.879 sam-1.468 plot-0.000 save-0.000]
+BATCH: [128 / 1809], TIME: [batch-2.345 dino-0.879 sam-1.466 plot-0.000 save-0.000]
+BATCH: [129 / 1809], TIME: [batch-2.444 dino-0.885 sam-1.559 plot-0.000 save-0.000]
+BATCH: [130 / 1809], TIME: [batch-2.360 dino-0.874 sam-1.486 plot-0.000 save-0.000]
+BATCH: [131 / 1809], TIME: [batch-3.916 dino-0.878 sam-1.637 plot-0.795 save-0.605]
+BATCH: [132 / 1809], TIME: [batch-2.507 dino-0.901 sam-1.606 plot-0.000 save-0.000]
+BATCH: [133 / 1809], TIME: [batch-2.374 dino-0.872 sam-1.502 plot-0.000 save-0.000]
+BATCH: [134 / 1809], TIME: [batch-2.481 dino-0.878 sam-1.603 plot-0.000 save-0.000]
+BATCH: [135 / 1809], TIME: [batch-2.571 dino-0.901 sam-1.670 plot-0.000 save-0.000]
+BATCH: [136 / 1809], TIME: [batch-2.552 dino-0.875 sam-1.676 plot-0.000 save-0.000]
+BATCH: [137 / 1809], TIME: [batch-2.549 dino-0.869 sam-1.680 plot-0.000 save-0.000]
+BATCH: [138 / 1809], TIME: [batch-2.575 dino-0.876 sam-1.698 plot-0.000 save-0.000]
+BATCH: [139 / 1809], TIME: [batch-2.422 dino-0.871 sam-1.551 plot-0.000 save-0.000]
+BATCH: [140 / 1809], TIME: [batch-2.341 dino-0.887 sam-1.453 plot-0.000 save-0.000]
+BATCH: [141 / 1809], TIME: [batch-4.303 dino-0.880 sam-1.517 plot-1.251 save-0.655]
+BATCH: [142 / 1809], TIME: [batch-2.399 dino-0.880 sam-1.519 plot-0.000 save-0.000]
+BATCH: [143 / 1809], TIME: [batch-2.453 dino-0.869 sam-1.583 plot-0.000 save-0.000]
+BATCH: [144 / 1809], TIME: [batch-2.537 dino-0.879 sam-1.658 plot-0.000 save-0.000]
+BATCH: [145 / 1809], TIME: [batch-2.544 dino-0.860 sam-1.684 plot-0.000 save-0.000]
+BATCH: [146 / 1809], TIME: [batch-2.499 dino-0.866 sam-1.632 plot-0.000 save-0.000]
+BATCH: [147 / 1809], TIME: [batch-2.511 dino-0.882 sam-1.629 plot-0.000 save-0.000]
+BATCH: [148 / 1809], TIME: [batch-2.514 dino-0.872 sam-1.641 plot-0.000 save-0.000]
+BATCH: [149 / 1809], TIME: [batch-2.517 dino-0.870 sam-1.646 plot-0.000 save-0.000]
+BATCH: [150 / 1809], TIME: [batch-2.500 dino-0.872 sam-1.628 plot-0.000 save-0.000]
+BATCH: [151 / 1809], TIME: [batch-3.740 dino-0.870 sam-1.505 plot-0.706 save-0.659]
+BATCH: [152 / 1809], TIME: [batch-2.546 dino-0.883 sam-1.663 plot-0.000 save-0.000]
+BATCH: [153 / 1809], TIME: [batch-2.503 dino-0.865 sam-1.637 plot-0.000 save-0.000]
+BATCH: [154 / 1809], TIME: [batch-2.350 dino-0.866 sam-1.483 plot-0.000 save-0.000]
+BATCH: [155 / 1809], TIME: [batch-2.353 dino-0.872 sam-1.480 plot-0.000 save-0.000]
+BATCH: [156 / 1809], TIME: [batch-2.360 dino-0.877 sam-1.483 plot-0.000 save-0.000]
+BATCH: [157 / 1809], TIME: [batch-2.422 dino-0.876 sam-1.545 plot-0.000 save-0.000]
+BATCH: [158 / 1809], TIME: [batch-2.415 dino-0.874 sam-1.540 plot-0.000 save-0.000]
+BATCH: [159 / 1809], TIME: [batch-2.477 dino-0.871 sam-1.606 plot-0.000 save-0.000]
+BATCH: [160 / 1809], TIME: [batch-2.421 dino-0.876 sam-1.544 plot-0.000 save-0.000]
+BATCH: [161 / 1809], TIME: [batch-3.812 dino-0.871 sam-1.629 plot-0.646 save-0.666]
+BATCH: [162 / 1809], TIME: [batch-2.394 dino-0.864 sam-1.530 plot-0.000 save-0.000]
+BATCH: [163 / 1809], TIME: [batch-2.485 dino-0.905 sam-1.580 plot-0.000 save-0.000]
+BATCH: [164 / 1809], TIME: [batch-2.377 dino-0.879 sam-1.498 plot-0.000 save-0.000]
+BATCH: [165 / 1809], TIME: [batch-2.376 dino-0.879 sam-1.497 plot-0.000 save-0.000]
+BATCH: [166 / 1809], TIME: [batch-2.434 dino-0.881 sam-1.553 plot-0.000 save-0.000]
+BATCH: [167 / 1809], TIME: [batch-2.451 dino-0.874 sam-1.577 plot-0.000 save-0.000]
+BATCH: [168 / 1809], TIME: [batch-2.533 dino-0.885 sam-1.648 plot-0.000 save-0.000]
+BATCH: [169 / 1809], TIME: [batch-2.509 dino-0.869 sam-1.640 plot-0.000 save-0.000]
+BATCH: [170 / 1809], TIME: [batch-2.490 dino-0.872 sam-1.617 plot-0.000 save-0.000]
+BATCH: [171 / 1809], TIME: [batch-3.955 dino-0.877 sam-1.593 plot-0.738 save-0.747]
+BATCH: [172 / 1809], TIME: [batch-2.411 dino-0.872 sam-1.539 plot-0.000 save-0.000]
+BATCH: [173 / 1809], TIME: [batch-2.449 dino-0.869 sam-1.579 plot-0.000 save-0.001]
+BATCH: [174 / 1809], TIME: [batch-2.341 dino-0.865 sam-1.475 plot-0.000 save-0.000]
+BATCH: [175 / 1809], TIME: [batch-2.349 dino-0.875 sam-1.474 plot-0.000 save-0.000]
+BATCH: [176 / 1809], TIME: [batch-2.489 dino-0.882 sam-1.607 plot-0.000 save-0.000]
+BATCH: [177 / 1809], TIME: [batch-2.412 dino-0.872 sam-1.540 plot-0.000 save-0.000]
+BATCH: [178 / 1809], TIME: [batch-2.471 dino-0.870 sam-1.601 plot-0.000 save-0.000]
+BATCH: [179 / 1809], TIME: [batch-2.444 dino-0.868 sam-1.575 plot-0.000 save-0.000]
+BATCH: [180 / 1809], TIME: [batch-2.462 dino-0.874 sam-1.588 plot-0.000 save-0.000]
+BATCH: [181 / 1809], TIME: [batch-3.788 dino-0.866 sam-1.468 plot-0.637 save-0.817]
+BATCH: [182 / 1809], TIME: [batch-2.354 dino-0.880 sam-1.473 plot-0.000 save-0.000]
+BATCH: [183 / 1809], TIME: [batch-2.377 dino-0.886 sam-1.491 plot-0.000 save-0.000]
+BATCH: [184 / 1809], TIME: [batch-2.509 dino-0.876 sam-1.632 plot-0.000 save-0.000]
+BATCH: [185 / 1809], TIME: [batch-2.619 dino-0.874 sam-1.745 plot-0.000 save-0.000]
+BATCH: [186 / 1809], TIME: [batch-2.641 dino-0.873 sam-1.768 plot-0.000 save-0.000]
+BATCH: [187 / 1809], TIME: [batch-2.641 dino-0.875 sam-1.765 plot-0.000 save-0.000]
+BATCH: [188 / 1809], TIME: [batch-2.629 dino-0.878 sam-1.751 plot-0.000 save-0.000]
+BATCH: [189 / 1809], TIME: [batch-2.417 dino-0.867 sam-1.550 plot-0.000 save-0.000]
+BATCH: [190 / 1809], TIME: [batch-2.443 dino-0.877 sam-1.566 plot-0.000 save-0.000]
+BATCH: [191 / 1809], TIME: [batch-3.975 dino-0.884 sam-1.545 plot-0.663 save-0.883]
+BATCH: [192 / 1809], TIME: [batch-2.499 dino-0.871 sam-1.627 plot-0.000 save-0.000]
+BATCH: [193 / 1809], TIME: [batch-2.499 dino-0.877 sam-1.621 plot-0.000 save-0.000]
+BATCH: [194 / 1809], TIME: [batch-2.476 dino-0.868 sam-1.608 plot-0.000 save-0.000]
+BATCH: [195 / 1809], TIME: [batch-2.549 dino-0.872 sam-1.677 plot-0.000 save-0.000]
+BATCH: [196 / 1809], TIME: [batch-2.428 dino-0.872 sam-1.556 plot-0.000 save-0.000]
+BATCH: [197 / 1809], TIME: [batch-2.486 dino-0.868 sam-1.617 plot-0.000 save-0.000]
+BATCH: [198 / 1809], TIME: [batch-2.468 dino-0.874 sam-1.593 plot-0.000 save-0.000]
+BATCH: [199 / 1809], TIME: [batch-2.397 dino-0.871 sam-1.526 plot-0.000 save-0.000]
+BATCH: [200 / 1809], TIME: [batch-2.427 dino-0.879 sam-1.547 plot-0.000 save-0.000]
+BATCH: [201 / 1809], TIME: [batch-4.193 dino-0.866 sam-1.664 plot-0.739 save-0.923]
+BATCH: [202 / 1809], TIME: [batch-2.532 dino-0.874 sam-1.657 plot-0.000 save-0.000]
+BATCH: [203 / 1809], TIME: [batch-2.560 dino-0.872 sam-1.688 plot-0.000 save-0.000]
+BATCH: [204 / 1809], TIME: [batch-2.546 dino-0.871 sam-1.674 plot-0.000 save-0.000]
+BATCH: [205 / 1809], TIME: [batch-2.478 dino-0.874 sam-1.603 plot-0.000 save-0.000]
+BATCH: [206 / 1809], TIME: [batch-2.396 dino-0.867 sam-1.528 plot-0.000 save-0.000]
+BATCH: [207 / 1809], TIME: [batch-2.377 dino-0.881 sam-1.496 plot-0.000 save-0.000]
+BATCH: [208 / 1809], TIME: [batch-2.424 dino-0.888 sam-1.536 plot-0.000 save-0.000]
+BATCH: [209 / 1809], TIME: [batch-2.377 dino-0.876 sam-1.500 plot-0.000 save-0.000]
+BATCH: [210 / 1809], TIME: [batch-2.527 dino-0.878 sam-1.648 plot-0.000 save-0.000]
+BATCH: [211 / 1809], TIME: [batch-4.323 dino-0.876 sam-1.715 plot-0.753 save-0.979]
+BATCH: [212 / 1809], TIME: [batch-2.551 dino-0.871 sam-1.680 plot-0.000 save-0.000]
+BATCH: [213 / 1809], TIME: [batch-2.532 dino-0.869 sam-1.662 plot-0.000 save-0.000]
+BATCH: [214 / 1809], TIME: [batch-2.342 dino-0.869 sam-1.472 plot-0.000 save-0.000]
+BATCH: [215 / 1809], TIME: [batch-2.357 dino-0.877 sam-1.480 plot-0.000 save-0.000]
+BATCH: [216 / 1809], TIME: [batch-2.344 dino-0.879 sam-1.465 plot-0.000 save-0.000]
+BATCH: [217 / 1809], TIME: [batch-2.355 dino-0.875 sam-1.480 plot-0.000 save-0.000]
+BATCH: [218 / 1809], TIME: [batch-2.354 dino-0.877 sam-1.477 plot-0.000 save-0.000]
+BATCH: [219 / 1809], TIME: [batch-2.500 dino-0.891 sam-1.608 plot-0.000 save-0.000]
+BATCH: [220 / 1809], TIME: [batch-2.459 dino-0.875 sam-1.583 plot-0.000 save-0.000]
+BATCH: [221 / 1809], TIME: [batch-4.291 dino-0.876 sam-1.534 plot-0.827 save-1.054]
+BATCH: [222 / 1809], TIME: [batch-2.434 dino-0.873 sam-1.560 plot-0.000 save-0.000]
+BATCH: [223 / 1809], TIME: [batch-2.525 dino-0.886 sam-1.639 plot-0.000 save-0.000]
+BATCH: [224 / 1809], TIME: [batch-2.497 dino-0.872 sam-1.625 plot-0.000 save-0.000]
+BATCH: [225 / 1809], TIME: [batch-2.449 dino-0.865 sam-1.584 plot-0.000 save-0.000]
+BATCH: [226 / 1809], TIME: [batch-2.445 dino-0.883 sam-1.561 plot-0.000 save-0.000]
+BATCH: [227 / 1809], TIME: [batch-2.512 dino-0.882 sam-1.629 plot-0.000 save-0.000]
+BATCH: [228 / 1809], TIME: [batch-2.471 dino-0.879 sam-1.592 plot-0.000 save-0.000]
+BATCH: [229 / 1809], TIME: [batch-2.533 dino-0.914 sam-1.618 plot-0.000 save-0.000]
+BATCH: [230 / 1809], TIME: [batch-2.567 dino-0.928 sam-1.638 plot-0.000 save-0.000]
+BATCH: [231 / 1809], TIME: [batch-4.611 dino-0.895 sam-1.654 plot-0.977 save-1.086]
+BATCH: [232 / 1809], TIME: [batch-2.622 dino-0.929 sam-1.692 plot-0.000 save-0.000]
+BATCH: [233 / 1809], TIME: [batch-2.547 dino-0.880 sam-1.666 plot-0.000 save-0.000]
+BATCH: [234 / 1809], TIME: [batch-2.540 dino-0.873 sam-1.666 plot-0.000 save-0.000]
+BATCH: [235 / 1809], TIME: [batch-2.515 dino-0.881 sam-1.633 plot-0.000 save-0.000]
+BATCH: [236 / 1809], TIME: [batch-2.537 dino-0.871 sam-1.665 plot-0.000 save-0.000]
+BATCH: [237 / 1809], TIME: [batch-2.566 dino-0.893 sam-1.673 plot-0.000 save-0.000]
+BATCH: [238 / 1809], TIME: [batch-2.517 dino-0.874 sam-1.643 plot-0.000 save-0.000]
+BATCH: [239 / 1809], TIME: [batch-2.445 dino-0.887 sam-1.557 plot-0.000 save-0.000]
+BATCH: [240 / 1809], TIME: [batch-2.568 dino-0.905 sam-1.662 plot-0.000 save-0.000]
+Traceback (most recent call last):
+  File "groundedeSAM.py", line 311, in <module>
+    main(args)
+  File "/discobox/wjpeng/env/openVCLIP/lib/python3.8/site-packages/torch/autograd/grad_mode.py", line 27, in decorate_context
+    return func(*args, **kwargs)
+  File "groundedeSAM.py", line 230, in main
+    boxes_filt, pred_phrases = get_grounding_output(
+  File "groundedeSAM.py", line 60, in get_grounding_output
+    outputs = model(image, captions=[caption] * args.batch_size)
+  File "/discobox/wjpeng/env/openVCLIP/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1190, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/discobox/wjpeng/code/202306/ngc-workspace/segment_video/Grounded-Segment-Anything/GroundingDINO/groundingdino/models/GroundingDINO/groundingdino.py", line 313, in forward
+    hs, reference, hs_enc, ref_enc, init_box_proposal = self.transformer(
+  File "/discobox/wjpeng/env/openVCLIP/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1190, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/discobox/wjpeng/code/202306/ngc-workspace/segment_video/Grounded-Segment-Anything/GroundingDINO/groundingdino/models/GroundingDINO/transformer.py", line 285, in forward
+    output_memory, output_proposals = gen_encoder_output_proposals(
+  File "/discobox/wjpeng/code/202306/ngc-workspace/segment_video/Grounded-Segment-Anything/GroundingDINO/groundingdino/models/GroundingDINO/utils.py", line 73, in gen_encoder_output_proposals
+    mask_flatten_ = memory_padding_mask[:, _cur : (_cur + H_ * W_)].view(N_, H_, W_, 1)
+KeyboardInterrupt
+Error in sys.excepthook:
+Traceback (most recent call last):
+  File "/discobox/wjpeng/env/openVCLIP/lib/python3.8/site-packages/rich/console.py", line 1699, in print
+    extend(render(renderable, render_options))
+  File "/discobox/wjpeng/env/openVCLIP/lib/python3.8/site-packages/rich/console.py", line 1335, in render
+    yield from self.render(render_output, _options)
+  File "/discobox/wjpeng/env/openVCLIP/lib/python3.8/site-packages/rich/console.py", line 1331, in render
+    for render_output in iter_render:
+  File "/discobox/wjpeng/env/openVCLIP/lib/python3.8/site-packages/rich/constrain.py", line 29, in __rich_console__
+    yield from console.render(self.renderable, child_options)
+  File "/discobox/wjpeng/env/openVCLIP/lib/python3.8/site-packages/rich/console.py", line 1331, in render
+    for render_output in iter_render:
+  File "/discobox/wjpeng/env/openVCLIP/lib/python3.8/site-packages/rich/panel.py", line 220, in __rich_console__
+    lines = console.render_lines(renderable, child_options, style=style)
+  File "/discobox/wjpeng/env/openVCLIP/lib/python3.8/site-packages/rich/console.py", line 1371, in render_lines
+    lines = list(
+  File "/discobox/wjpeng/env/openVCLIP/lib/python3.8/site-packages/rich/segment.py", line 292, in split_and_crop_lines
+    for segment in segments:
+  File "/discobox/wjpeng/env/openVCLIP/lib/python3.8/site-packages/rich/console.py", line 1331, in render
+    for render_output in iter_render:
+  File "/discobox/wjpeng/env/openVCLIP/lib/python3.8/site-packages/rich/padding.py", line 97, in __rich_console__
+    lines = console.render_lines(
+  File "/discobox/wjpeng/env/openVCLIP/lib/python3.8/site-packages/rich/console.py", line 1371, in render_lines
+    lines = list(
+  File "/discobox/wjpeng/env/openVCLIP/lib/python3.8/site-packages/rich/segment.py", line 292, in split_and_crop_lines
+    for segment in segments:
+  File "/discobox/wjpeng/env/openVCLIP/lib/python3.8/site-packages/rich/console.py", line 1335, in render
+    yield from self.render(render_output, _options)
+  File "/discobox/wjpeng/env/openVCLIP/lib/python3.8/site-packages/rich/console.py", line 1331, in render
+    for render_output in iter_render:
+  File "/discobox/wjpeng/env/openVCLIP/lib/python3.8/site-packages/rich/syntax.py", line 611, in __rich_console__
+    segments = Segments(self._get_syntax(console, options))
+  File "/discobox/wjpeng/env/openVCLIP/lib/python3.8/site-packages/rich/segment.py", line 668, in __init__
+    self.segments = list(segments)
+  File "/discobox/wjpeng/env/openVCLIP/lib/python3.8/site-packages/rich/syntax.py", line 639, in _get_syntax
+    text = self.highlight(processed_code, self.line_range)
+  File "/discobox/wjpeng/env/openVCLIP/lib/python3.8/site-packages/rich/syntax.py", line 512, in highlight
+    text.append_tokens(tokens_to_spans())
+  File "/discobox/wjpeng/env/openVCLIP/lib/python3.8/site-packages/rich/text.py", line 991, in append_tokens
+    for content, style in tokens:
+  File "/discobox/wjpeng/env/openVCLIP/lib/python3.8/site-packages/rich/syntax.py", line 498, in tokens_to_spans
+    _token_type, token = next(tokens)
+  File "/discobox/wjpeng/env/openVCLIP/lib/python3.8/site-packages/rich/syntax.py", line 484, in line_tokenize
+    for token_type, token in lexer.get_tokens(code):
+  File "/discobox/wjpeng/env/openVCLIP/lib/python3.8/site-packages/pygments/lexer.py", line 250, in streamer
+    for _, t, v in self.get_tokens_unprocessed(text):
+  File "/discobox/wjpeng/env/openVCLIP/lib/python3.8/site-packages/pygments/lexer.py", line 693, in get_tokens_unprocessed
+    m = rexmatch(text, pos)
+KeyboardInterrupt
+Original exception was:
+Traceback (most recent call last):
+  File "groundedeSAM.py", line 311, in <module>
+    main(args)
+  File "/discobox/wjpeng/env/openVCLIP/lib/python3.8/site-packages/torch/autograd/grad_mode.py", line 27, in decorate_context
+    return func(*args, **kwargs)
+  File "groundedeSAM.py", line 230, in main
+    boxes_filt, pred_phrases = get_grounding_output(
+  File "groundedeSAM.py", line 60, in get_grounding_output
+    outputs = model(image, captions=[caption] * args.batch_size)
+  File "/discobox/wjpeng/env/openVCLIP/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1190, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/discobox/wjpeng/code/202306/ngc-workspace/segment_video/Grounded-Segment-Anything/GroundingDINO/groundingdino/models/GroundingDINO/groundingdino.py", line 313, in forward
+    hs, reference, hs_enc, ref_enc, init_box_proposal = self.transformer(
+  File "/discobox/wjpeng/env/openVCLIP/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1190, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/discobox/wjpeng/code/202306/ngc-workspace/segment_video/Grounded-Segment-Anything/GroundingDINO/groundingdino/models/GroundingDINO/transformer.py", line 285, in forward
+    output_memory, output_proposals = gen_encoder_output_proposals(
+  File "/discobox/wjpeng/code/202306/ngc-workspace/segment_video/Grounded-Segment-Anything/GroundingDINO/groundingdino/models/GroundingDINO/utils.py", line 73, in gen_encoder_output_proposals
+    mask_flatten_ = memory_padding_mask[:, _cur : (_cur + H_ * W_)].view(N_, H_, W_, 1)
+KeyboardInterrupt

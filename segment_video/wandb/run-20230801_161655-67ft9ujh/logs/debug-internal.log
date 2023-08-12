@@ -1,0 +1,913 @@
+2023-08-01 16:16:55,201 INFO    StreamThr :212779 [internal.py:wandb_internal():86] W&B internal server running at pid: 212779, started at: 2023-08-01 16:16:55.200310
+2023-08-01 16:16:55,205 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status
+2023-08-01 16:16:55,207 INFO    WriterThread:212779 [datastore.py:open_for_write():85] open: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/run-67ft9ujh.wandb
+2023-08-01 16:16:55,211 DEBUG   SenderThread:212779 [sender.py:send():369] send: header
+2023-08-01 16:16:55,239 DEBUG   SenderThread:212779 [sender.py:send():369] send: run
+2023-08-01 16:16:55,609 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: check_version
+2023-08-01 16:16:55,611 INFO    SenderThread:212779 [dir_watcher.py:__init__():211] watching files in: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files
+2023-08-01 16:16:55,611 INFO    SenderThread:212779 [sender.py:_start_run_threads():1100] run started: 67ft9ujh with start time 1690906615.198952
+2023-08-01 16:16:55,612 DEBUG   SenderThread:212779 [sender.py:send_request():396] send_request: summary_record
+2023-08-01 16:16:55,614 INFO    SenderThread:212779 [sender.py:_save_file():1354] saving file wandb-summary.json with policy end
+2023-08-01 16:16:55,614 DEBUG   SenderThread:212779 [sender.py:send_request():396] send_request: check_version
+2023-08-01 16:16:55,665 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: run_start
+2023-08-01 16:16:55,674 DEBUG   HandlerThread:212779 [system_info.py:__init__():31] System info init
+2023-08-01 16:16:55,674 DEBUG   HandlerThread:212779 [system_info.py:__init__():46] System info init done
+2023-08-01 16:16:55,675 INFO    HandlerThread:212779 [system_monitor.py:start():181] Starting system monitor
+2023-08-01 16:16:55,675 INFO    SystemMonitor:212779 [system_monitor.py:_start():145] Starting system asset monitoring threads
+2023-08-01 16:16:55,675 INFO    HandlerThread:212779 [system_monitor.py:probe():201] Collecting system info
+2023-08-01 16:16:55,677 INFO    SystemMonitor:212779 [interfaces.py:start():190] Started cpu monitoring
+2023-08-01 16:16:55,678 INFO    SystemMonitor:212779 [interfaces.py:start():190] Started disk monitoring
+2023-08-01 16:16:55,679 INFO    SystemMonitor:212779 [interfaces.py:start():190] Started gpu monitoring
+2023-08-01 16:16:55,681 INFO    SystemMonitor:212779 [interfaces.py:start():190] Started memory monitoring
+2023-08-01 16:16:55,682 INFO    SystemMonitor:212779 [interfaces.py:start():190] Started network monitoring
+2023-08-01 16:16:55,753 DEBUG   HandlerThread:212779 [system_info.py:probe():195] Probing system
+2023-08-01 16:16:55,755 DEBUG   HandlerThread:212779 [system_info.py:_probe_git():180] Probing git
+2023-08-01 16:16:55,819 DEBUG   HandlerThread:212779 [system_info.py:_probe_git():188] Probing git done
+2023-08-01 16:16:55,820 DEBUG   HandlerThread:212779 [system_info.py:probe():240] Probing system done
+2023-08-01 16:16:55,820 DEBUG   HandlerThread:212779 [system_monitor.py:probe():210] {'os': 'Linux-5.4.0-107-generic-x86_64-with-glibc2.17', 'python': '3.8.13', 'heartbeatAt': '2023-08-01T16:16:55.754080', 'startedAt': '2023-08-01T16:16:55.177144', 'docker': None, 'cuda': None, 'args': ('--sample_stride', '8', '--batch_size', '8', '--sam_img_size', '1024', '--grounding_dino_img_size', '800', '--config', 'Grounded-Segment-Anything/GroundingDINO/groundingdino/config/GroundingDINO_SwinT_OGC.py', '--grounded_checkpoint', '/discobox/wjpeng/weights/groundingDINO/groundingdino_swint_ogc.pth', '--sam_hq_checkpoint', '/discobox/wjpeng/weights/hq-sam/sam_hq_vit_b.pth', '--use_sam_hq', '--data_path', '/discobox/wjpeng/dataset/k400/ann/rawframe_list.txt', '--output', '/discobox/wjpeng/dataset/k400/ann/groundedSAM/DINO-SwinT-imgSize800_SAMHQ-ViTB-imgSize1024_stride8.npy', '--box_threshold', '0.3', '--text_threshold', '0.25', '--visualize_freq', '10', '--save_freq', '10', '--text_prompt', 'people.music instrument.animal.ball.tool.'), 'state': 'running', 'program': 'groundedeSAM.py', 'codePath': 'segment_video/groundedeSAM.py', 'git': {'remote': 'https://github.com/wujianP/ngc-workspace.git', 'commit': 'd968f4831347b70af3c8d530c8febe3222d4e5c6'}, 'email': None, 'root': '/discobox/wjpeng/code/202306/ngc-workspace', 'host': '4940474', 'username': 'root', 'executable': '/discobox/wjpeng/env/openVCLIP/bin/python', 'cpu_count': 40, 'cpu_count_logical': 80, 'cpu_freq': {'current': 2693.9646624999978, 'min': 1200.0, 'max': 3600.0}, 'cpu_freq_per_core': [{'current': 2693.963, 'min': 1200.0, 'max': 3600.0}, {'current': 2693.964, 'min': 1200.0, 'max': 3600.0}, {'current': 2693.964, 'min': 1200.0, 'max': 3600.0}, {'current': 2693.963, 'min': 1200.0, 'max': 3600.0}, {'current': 2693.962, 'min': 1200.0, 'max': 3600.0}, {'current': 2693.965, 'min': 1200.0, 'max': 3600.0}, {'current': 2693.964, 'min': 1200.0, 'max': 3600.0}, {'current': 2693.966, 'min': 1200.0, 'max': 3600.0}, {'current': 2693.965, 'min': 1200.0, 'max': 3600.0}, {'current': 2693.965, 'min': 1200.0, 'max': 3600.0}, {'current': 2693.965, 'min': 1200.0, 'max': 3600.0}, {'current': 2693.963, 'min': 1200.0, 'max': 3600.0}, {'current': 2693.964, 'min': 1200.0, 'max': 3600.0}, {'current': 2693.964, 'min': 1200.0, 'max': 3600.0}, {'current': 2693.963, 'min': 1200.0, 'max': 3600.0}, {'current': 2693.963, 'min': 1200.0, 'max': 3600.0}, {'current': 2693.965, 'min': 1200.0, 'max': 3600.0}, {'current': 2693.964, 'min': 1200.0, 'max': 3600.0}, {'current': 2693.964, 'min': 1200.0, 'max': 3600.0}, {'current': 2693.963, 'min': 1200.0, 'max': 3600.0}, {'current': 2693.963, 'min': 1200.0, 'max': 3600.0}, {'current': 2693.965, 'min': 1200.0, 'max': 3600.0}, {'current': 2693.963, 'min': 1200.0, 'max': 3600.0}, {'current': 2693.964, 'min': 1200.0, 'max': 3600.0}, {'current': 2693.965, 'min': 1200.0, 'max': 3600.0}, {'current': 2693.962, 'min': 1200.0, 'max': 3600.0}, {'current': 2693.963, 'min': 1200.0, 'max': 3600.0}, {'current': 2693.965, 'min': 1200.0, 'max': 3600.0}, {'current': 2693.963, 'min': 1200.0, 'max': 3600.0}, {'current': 2693.965, 'min': 1200.0, 'max': 3600.0}, {'current': 2693.964, 'min': 1200.0, 'max': 3600.0}, {'current': 2693.964, 'min': 1200.0, 'max': 3600.0}, {'current': 2693.964, 'min': 1200.0, 'max': 3600.0}, {'current': 2693.964, 'min': 1200.0, 'max': 3600.0}, {'current': 2693.964, 'min': 1200.0, 'max': 3600.0}, {'current': 2693.964, 'min': 1200.0, 'max': 3600.0}, {'current': 2693.964, 'min': 1200.0, 'max': 3600.0}, {'current': 2693.963, 'min': 1200.0, 'max': 3600.0}, {'current': 2693.964, 'min': 1200.0, 'max': 3600.0}, {'current': 2693.962, 'min': 1200.0, 'max': 3600.0}, {'current': 2693.964, 'min': 1200.0, 'max': 3600.0}, {'current': 2693.964, 'min': 1200.0, 'max': 3600.0}, {'current': 2693.964, 'min': 1200.0, 'max': 3600.0}, {'current': 2693.965, 'min': 1200.0, 'max': 3600.0}, {'current': 2693.964, 'min': 1200.0, 'max': 3600.0}, {'current': 2693.964, 'min': 1200.0, 'max': 3600.0}, {'current': 2693.964, 'min': 1200.0, 'max': 3600.0}, {'current': 2693.963, 'min': 1200.0, 'max': 3600.0}, {'current': 2693.964, 'min': 1200.0, 'max': 3600.0}, {'current': 2693.965, 'min': 1200.0, 'max': 3600.0}, {'current': 2693.966, 'min': 1200.0, 'max': 3600.0}, {'current': 2693.963, 'min': 1200.0, 'max': 3600.0}, {'current': 2693.965, 'min': 1200.0, 'max': 3600.0}, {'current': 2693.963, 'min': 1200.0, 'max': 3600.0}, {'current': 2693.964, 'min': 1200.0, 'max': 3600.0}, {'current': 2693.965, 'min': 1200.0, 'max': 3600.0}, {'current': 2693.964, 'min': 1200.0, 'max': 3600.0}, {'current': 2693.963, 'min': 1200.0, 'max': 3600.0}, {'current': 2693.964, 'min': 1200.0, 'max': 3600.0}, {'current': 2693.964, 'min': 1200.0, 'max': 3600.0}, {'current': 2693.964, 'min': 1200.0, 'max': 3600.0}, {'current': 2693.964, 'min': 1200.0, 'max': 3600.0}, {'current': 2693.965, 'min': 1200.0, 'max': 3600.0}, {'current': 2693.964, 'min': 1200.0, 'max': 3600.0}, {'current': 2693.965, 'min': 1200.0, 'max': 3600.0}, {'current': 2693.962, 'min': 1200.0, 'max': 3600.0}, {'current': 2693.964, 'min': 1200.0, 'max': 3600.0}, {'current': 2693.964, 'min': 1200.0, 'max': 3600.0}, {'current': 2693.963, 'min': 1200.0, 'max': 3600.0}, {'current': 2693.965, 'min': 1200.0, 'max': 3600.0}, {'current': 2693.963, 'min': 1200.0, 'max': 3600.0}, {'current': 2693.963, 'min': 1200.0, 'max': 3600.0}, {'current': 2693.966, 'min': 1200.0, 'max': 3600.0}, {'current': 2693.964, 'min': 1200.0, 'max': 3600.0}, {'current': 2693.965, 'min': 1200.0, 'max': 3600.0}, {'current': 2693.964, 'min': 1200.0, 'max': 3600.0}, {'current': 2693.964, 'min': 1200.0, 'max': 3600.0}, {'current': 2693.965, 'min': 1200.0, 'max': 3600.0}, {'current': 2693.965, 'min': 1200.0, 'max': 3600.0}, {'current': 2693.963, 'min': 1200.0, 'max': 3600.0}], 'disk': {'total': 438.1221580505371, 'used': 318.97151947021484}, 'gpu': 'Tesla V100-SXM2-32GB-LS', 'gpu_count': 8, 'gpu_devices': [{'name': 'Tesla V100-SXM2-32GB-LS', 'memory_total': 34359738368}, {'name': 'Tesla V100-SXM2-32GB-LS', 'memory_total': 34359738368}, {'name': 'Tesla V100-SXM2-32GB-LS', 'memory_total': 34359738368}, {'name': 'Tesla V100-SXM2-32GB-LS', 'memory_total': 34359738368}, {'name': 'Tesla V100-SXM2-32GB-LS', 'memory_total': 34359738368}, {'name': 'Tesla V100-SXM2-32GB-LS', 'memory_total': 34359738368}, {'name': 'Tesla V100-SXM2-32GB-LS', 'memory_total': 34359738368}, {'name': 'Tesla V100-SXM2-32GB-LS', 'memory_total': 34359738368}], 'memory': {'total': 503.7783851623535}}
+2023-08-01 16:16:55,820 INFO    HandlerThread:212779 [system_monitor.py:probe():211] Finished collecting system info
+2023-08-01 16:16:55,821 INFO    HandlerThread:212779 [system_monitor.py:probe():214] Publishing system info
+2023-08-01 16:16:55,821 DEBUG   HandlerThread:212779 [system_info.py:_save_pip():51] Saving list of pip packages installed into the current environment
+2023-08-01 16:16:55,823 DEBUG   HandlerThread:212779 [system_info.py:_save_pip():67] Saving pip packages done
+2023-08-01 16:16:55,824 DEBUG   HandlerThread:212779 [system_info.py:_save_conda():74] Saving list of conda packages installed into the current environment
+2023-08-01 16:16:56,616 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_created():272] file/dir created: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/wandb-summary.json
+2023-08-01 16:16:56,616 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_created():272] file/dir created: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/conda-environment.yaml
+2023-08-01 16:16:56,617 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_created():272] file/dir created: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/requirements.txt
+2023-08-01 16:17:07,807 DEBUG   HandlerThread:212779 [system_info.py:_save_conda():86] Saving conda packages done
+2023-08-01 16:17:07,811 INFO    HandlerThread:212779 [system_monitor.py:probe():216] Finished publishing system info
+2023-08-01 16:17:07,833 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:17:07,834 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: keepalive
+2023-08-01 16:17:07,834 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:17:07,835 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: keepalive
+2023-08-01 16:17:07,835 DEBUG   SenderThread:212779 [sender.py:send():369] send: files
+2023-08-01 16:17:07,835 INFO    SenderThread:212779 [sender.py:_save_file():1354] saving file wandb-metadata.json with policy now
+2023-08-01 16:17:07,844 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: stop_status
+2023-08-01 16:17:07,844 DEBUG   SenderThread:212779 [sender.py:send_request():396] send_request: stop_status
+2023-08-01 16:17:08,002 DEBUG   SenderThread:212779 [sender.py:send():369] send: telemetry
+2023-08-01 16:17:08,630 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/conda-environment.yaml
+2023-08-01 16:17:08,630 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_created():272] file/dir created: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:17:08,630 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_created():272] file/dir created: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/wandb-metadata.json
+2023-08-01 16:17:08,704 INFO    wandb-upload_0:212779 [upload_job.py:push():133] Uploaded file /tmp/tmp735_j_pzwandb/s6ekjqg4-wandb-metadata.json
+2023-08-01 16:17:10,632 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:17:10,975 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:17:11,633 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:17:12,635 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:17:15,638 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:17:16,115 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:17:21,646 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:17:21,924 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:17:22,647 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:17:22,844 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: stop_status
+2023-08-01 16:17:22,845 DEBUG   SenderThread:212779 [sender.py:send_request():396] send_request: stop_status
+2023-08-01 16:17:27,191 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:17:27,654 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/config.yaml
+2023-08-01 16:17:28,655 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:17:29,633 DEBUG   SenderThread:212779 [sender.py:send():369] send: files
+2023-08-01 16:17:29,633 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: partial_history
+2023-08-01 16:17:29,633 INFO    SenderThread:212779 [sender.py:_save_file():1354] saving file media/images/Visualization_0_30cd1f76eef4f83ca017.png with policy now
+2023-08-01 16:17:29,636 DEBUG   SenderThread:212779 [sender.py:send():369] send: history
+2023-08-01 16:17:29,636 DEBUG   SenderThread:212779 [sender.py:send_request():396] send_request: summary_record
+2023-08-01 16:17:29,638 INFO    SenderThread:212779 [sender.py:_save_file():1354] saving file wandb-summary.json with policy end
+2023-08-01 16:17:29,659 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/wandb-summary.json
+2023-08-01 16:17:29,660 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_created():272] file/dir created: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/media/images/Visualization_0_30cd1f76eef4f83ca017.png
+2023-08-01 16:17:29,660 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_created():272] file/dir created: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/media
+2023-08-01 16:17:29,661 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_created():272] file/dir created: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/media/images
+2023-08-01 16:17:30,300 INFO    wandb-upload_0:212779 [upload_job.py:push():133] Uploaded file /tmp/tmp735_j_pzwandb/ughlnemk-media/images/Visualization_0_30cd1f76eef4f83ca017.png
+2023-08-01 16:17:30,828 INFO    wandb-upload_0:212779 [upload_job.py:push():133] Uploaded file /tmp/tmp735_j_pzwandb/gyrbi7se-media/images/Visualization_0_30cd1f76eef4f83ca017.png
+2023-08-01 16:17:31,664 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:17:33,185 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:17:33,668 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:17:37,676 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:17:37,843 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: stop_status
+2023-08-01 16:17:37,844 DEBUG   SenderThread:212779 [sender.py:send_request():396] send_request: stop_status
+2023-08-01 16:17:38,928 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:17:39,681 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:17:41,685 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:17:43,689 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:17:44,364 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:17:45,693 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:17:49,701 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:17:49,845 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:17:51,705 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:17:52,843 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: stop_status
+2023-08-01 16:17:52,844 DEBUG   SenderThread:212779 [sender.py:send_request():396] send_request: stop_status
+2023-08-01 16:17:53,709 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:17:55,139 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:17:55,558 DEBUG   SenderThread:212779 [sender.py:send():369] send: files
+2023-08-01 16:17:55,558 INFO    SenderThread:212779 [sender.py:_save_file():1354] saving file media/images/Visualization_1_683ccbf1341f1db3c822.png with policy now
+2023-08-01 16:17:55,558 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: partial_history
+2023-08-01 16:17:55,560 DEBUG   SenderThread:212779 [sender.py:send():369] send: history
+2023-08-01 16:17:55,560 DEBUG   SenderThread:212779 [sender.py:send_request():396] send_request: summary_record
+2023-08-01 16:17:55,562 INFO    SenderThread:212779 [sender.py:_save_file():1354] saving file wandb-summary.json with policy end
+2023-08-01 16:17:55,682 DEBUG   SystemMonitor:212779 [system_monitor.py:_start():159] Starting system metrics aggregation loop
+2023-08-01 16:17:55,686 DEBUG   SenderThread:212779 [sender.py:send():369] send: stats
+2023-08-01 16:17:55,715 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/wandb-summary.json
+2023-08-01 16:17:55,715 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_created():272] file/dir created: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/media/images/Visualization_1_683ccbf1341f1db3c822.png
+2023-08-01 16:17:55,716 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/media/images
+2023-08-01 16:17:55,980 INFO    wandb-upload_0:212779 [upload_job.py:push():133] Uploaded file /tmp/tmp735_j_pzwandb/ow9tkzqw-media/images/Visualization_1_683ccbf1341f1db3c822.png
+2023-08-01 16:17:56,515 INFO    wandb-upload_0:212779 [upload_job.py:push():133] Uploaded file /tmp/tmp735_j_pzwandb/5fot6wqq-media/images/Visualization_1_683ccbf1341f1db3c822.png
+2023-08-01 16:17:57,719 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:17:59,723 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:18:00,453 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:18:01,728 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:18:03,732 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:18:06,422 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:18:07,740 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:18:07,844 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: stop_status
+2023-08-01 16:18:07,844 DEBUG   SenderThread:212779 [sender.py:send_request():396] send_request: stop_status
+2023-08-01 16:18:09,744 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:18:11,512 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:18:11,749 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:18:13,753 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:18:16,866 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:18:17,761 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:18:19,765 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:18:21,824 DEBUG   SenderThread:212779 [sender.py:send():369] send: files
+2023-08-01 16:18:21,824 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: partial_history
+2023-08-01 16:18:21,824 INFO    SenderThread:212779 [sender.py:_save_file():1354] saving file media/images/Visualization_2_4aef63a42a2d23efbed7.png with policy now
+2023-08-01 16:18:21,826 DEBUG   SenderThread:212779 [sender.py:send():369] send: history
+2023-08-01 16:18:21,827 DEBUG   SenderThread:212779 [sender.py:send_request():396] send_request: summary_record
+2023-08-01 16:18:21,828 INFO    SenderThread:212779 [sender.py:_save_file():1354] saving file wandb-summary.json with policy end
+2023-08-01 16:18:21,939 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:18:22,284 INFO    wandb-upload_0:212779 [upload_job.py:push():133] Uploaded file /tmp/tmp735_j_pzwandb/supcavfw-media/images/Visualization_2_4aef63a42a2d23efbed7.png
+2023-08-01 16:18:22,773 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/wandb-summary.json
+2023-08-01 16:18:22,773 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_created():272] file/dir created: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/media/images/Visualization_2_4aef63a42a2d23efbed7.png
+2023-08-01 16:18:22,774 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/media/images
+2023-08-01 16:18:22,843 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: stop_status
+2023-08-01 16:18:22,844 DEBUG   SenderThread:212779 [sender.py:send_request():396] send_request: stop_status
+2023-08-01 16:18:23,204 INFO    wandb-upload_0:212779 [upload_job.py:push():133] Uploaded file /tmp/tmp735_j_pzwandb/63k32uvi-media/images/Visualization_2_4aef63a42a2d23efbed7.png
+2023-08-01 16:18:23,775 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:18:25,689 DEBUG   SenderThread:212779 [sender.py:send():369] send: stats
+2023-08-01 16:18:25,779 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:18:27,138 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:18:27,784 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:18:31,792 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:18:32,368 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:18:33,796 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:18:35,803 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:18:37,579 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:18:37,844 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: stop_status
+2023-08-01 16:18:37,844 DEBUG   SenderThread:212779 [sender.py:send_request():396] send_request: stop_status
+2023-08-01 16:18:39,811 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:18:41,815 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:18:43,571 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:18:43,820 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:18:45,824 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:18:48,171 DEBUG   SenderThread:212779 [sender.py:send():369] send: files
+2023-08-01 16:18:48,171 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: partial_history
+2023-08-01 16:18:48,171 INFO    SenderThread:212779 [sender.py:_save_file():1354] saving file media/images/Visualization_3_fb89f4a33e5191a4680a.png with policy now
+2023-08-01 16:18:48,173 DEBUG   SenderThread:212779 [sender.py:send():369] send: history
+2023-08-01 16:18:48,173 DEBUG   SenderThread:212779 [sender.py:send_request():396] send_request: summary_record
+2023-08-01 16:18:48,175 INFO    SenderThread:212779 [sender.py:_save_file():1354] saving file wandb-summary.json with policy end
+2023-08-01 16:18:48,552 INFO    wandb-upload_0:212779 [upload_job.py:push():133] Uploaded file /tmp/tmp735_j_pzwandb/sj3wdckj-media/images/Visualization_3_fb89f4a33e5191a4680a.png
+2023-08-01 16:18:48,832 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/wandb-summary.json
+2023-08-01 16:18:48,832 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_created():272] file/dir created: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/media/images/Visualization_3_fb89f4a33e5191a4680a.png
+2023-08-01 16:18:48,833 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/media/images
+2023-08-01 16:18:49,295 INFO    wandb-upload_0:212779 [upload_job.py:push():133] Uploaded file /tmp/tmp735_j_pzwandb/av1fqemg-media/images/Visualization_3_fb89f4a33e5191a4680a.png
+2023-08-01 16:18:49,366 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:18:49,834 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:18:51,838 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:18:52,844 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: stop_status
+2023-08-01 16:18:52,844 DEBUG   SenderThread:212779 [sender.py:send_request():396] send_request: stop_status
+2023-08-01 16:18:55,219 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:18:55,693 DEBUG   SenderThread:212779 [sender.py:send():369] send: stats
+2023-08-01 16:18:55,847 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:18:57,851 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:18:59,855 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:19:00,757 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:19:01,861 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:19:05,869 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:19:06,640 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:19:07,844 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: stop_status
+2023-08-01 16:19:07,844 DEBUG   SenderThread:212779 [sender.py:send_request():396] send_request: stop_status
+2023-08-01 16:19:07,873 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:19:09,878 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:19:11,882 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:19:12,609 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:19:13,908 DEBUG   SenderThread:212779 [sender.py:send():369] send: files
+2023-08-01 16:19:13,909 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: partial_history
+2023-08-01 16:19:13,909 INFO    SenderThread:212779 [sender.py:_save_file():1354] saving file media/images/Visualization_4_be13934c93f3392556c8.png with policy now
+2023-08-01 16:19:13,911 DEBUG   SenderThread:212779 [sender.py:send():369] send: history
+2023-08-01 16:19:13,911 DEBUG   SenderThread:212779 [sender.py:send_request():396] send_request: summary_record
+2023-08-01 16:19:13,912 INFO    SenderThread:212779 [sender.py:_save_file():1354] saving file wandb-summary.json with policy end
+2023-08-01 16:19:14,345 INFO    wandb-upload_0:212779 [upload_job.py:push():133] Uploaded file /tmp/tmp735_j_pzwandb/3ondwwk6-media/images/Visualization_4_be13934c93f3392556c8.png
+2023-08-01 16:19:14,890 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/wandb-summary.json
+2023-08-01 16:19:14,891 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_created():272] file/dir created: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/media/images/Visualization_4_be13934c93f3392556c8.png
+2023-08-01 16:19:14,891 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/media/images
+2023-08-01 16:19:15,611 INFO    wandb-upload_0:212779 [upload_job.py:push():133] Uploaded file /tmp/tmp735_j_pzwandb/6nacr5gv-media/images/Visualization_4_be13934c93f3392556c8.png
+2023-08-01 16:19:15,893 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:19:17,696 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:19:17,897 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:19:19,902 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:19:22,844 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: stop_status
+2023-08-01 16:19:22,845 DEBUG   SenderThread:212779 [sender.py:send_request():396] send_request: stop_status
+2023-08-01 16:19:22,970 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:19:23,911 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:19:25,696 DEBUG   SenderThread:212779 [sender.py:send():369] send: stats
+2023-08-01 16:19:25,915 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:19:27,920 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:19:28,311 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:19:29,924 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:19:31,929 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:19:33,565 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:19:35,938 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:19:37,844 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: stop_status
+2023-08-01 16:19:37,845 DEBUG   SenderThread:212779 [sender.py:send_request():396] send_request: stop_status
+2023-08-01 16:19:37,943 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:19:38,955 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:19:39,625 DEBUG   SenderThread:212779 [sender.py:send():369] send: files
+2023-08-01 16:19:39,625 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: partial_history
+2023-08-01 16:19:39,625 INFO    SenderThread:212779 [sender.py:_save_file():1354] saving file media/images/Visualization_5_927061a93d01bbe4a1fc.png with policy now
+2023-08-01 16:19:39,627 DEBUG   SenderThread:212779 [sender.py:send():369] send: history
+2023-08-01 16:19:39,627 DEBUG   SenderThread:212779 [sender.py:send_request():396] send_request: summary_record
+2023-08-01 16:19:39,629 INFO    SenderThread:212779 [sender.py:_save_file():1354] saving file wandb-summary.json with policy end
+2023-08-01 16:19:39,949 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/wandb-summary.json
+2023-08-01 16:19:39,949 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_created():272] file/dir created: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/media/images/Visualization_5_927061a93d01bbe4a1fc.png
+2023-08-01 16:19:39,949 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/media/images
+2023-08-01 16:19:40,045 INFO    wandb-upload_0:212779 [upload_job.py:push():133] Uploaded file /tmp/tmp735_j_pzwandb/tineh3n3-media/images/Visualization_5_927061a93d01bbe4a1fc.png
+2023-08-01 16:19:40,477 INFO    wandb-upload_0:212779 [upload_job.py:push():133] Uploaded file /tmp/tmp735_j_pzwandb/gxslvfw5-media/images/Visualization_5_927061a93d01bbe4a1fc.png
+2023-08-01 16:19:41,953 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:19:43,958 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:19:44,481 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:19:45,963 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:19:49,603 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:19:49,971 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:19:51,976 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:19:52,844 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: stop_status
+2023-08-01 16:19:52,845 DEBUG   SenderThread:212779 [sender.py:send_request():396] send_request: stop_status
+2023-08-01 16:19:53,980 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:19:54,999 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:19:55,699 DEBUG   SenderThread:212779 [sender.py:send():369] send: stats
+2023-08-01 16:19:55,985 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:19:59,994 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:20:00,871 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:20:01,999 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:20:04,004 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:20:05,366 DEBUG   SenderThread:212779 [sender.py:send():369] send: files
+2023-08-01 16:20:05,366 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: partial_history
+2023-08-01 16:20:05,367 INFO    SenderThread:212779 [sender.py:_save_file():1354] saving file media/images/Visualization_6_9552ecdd8310dfd756e9.png with policy now
+2023-08-01 16:20:05,369 DEBUG   SenderThread:212779 [sender.py:send():369] send: history
+2023-08-01 16:20:05,369 DEBUG   SenderThread:212779 [sender.py:send_request():396] send_request: summary_record
+2023-08-01 16:20:05,373 INFO    SenderThread:212779 [sender.py:_save_file():1354] saving file wandb-summary.json with policy end
+2023-08-01 16:20:05,790 INFO    wandb-upload_0:212779 [upload_job.py:push():133] Uploaded file /tmp/tmp735_j_pzwandb/kktfq7pz-media/images/Visualization_6_9552ecdd8310dfd756e9.png
+2023-08-01 16:20:06,010 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/wandb-summary.json
+2023-08-01 16:20:06,010 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_created():272] file/dir created: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/media/images/Visualization_6_9552ecdd8310dfd756e9.png
+2023-08-01 16:20:06,011 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/media/images
+2023-08-01 16:20:06,560 INFO    wandb-upload_0:212779 [upload_job.py:push():133] Uploaded file /tmp/tmp735_j_pzwandb/whgp1d41-media/images/Visualization_6_9552ecdd8310dfd756e9.png
+2023-08-01 16:20:06,715 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:20:07,844 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: stop_status
+2023-08-01 16:20:07,845 DEBUG   SenderThread:212779 [sender.py:send_request():396] send_request: stop_status
+2023-08-01 16:20:08,014 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:20:10,019 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:20:11,811 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:20:12,024 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:20:16,033 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:20:17,802 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:20:18,037 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:20:20,042 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:20:22,047 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:20:22,844 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: stop_status
+2023-08-01 16:20:22,845 DEBUG   SenderThread:212779 [sender.py:send_request():396] send_request: stop_status
+2023-08-01 16:20:22,962 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:20:25,702 DEBUG   SenderThread:212779 [sender.py:send():369] send: stats
+2023-08-01 16:20:26,056 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:20:28,061 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:20:28,397 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:20:30,065 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:20:31,413 DEBUG   SenderThread:212779 [sender.py:send():369] send: files
+2023-08-01 16:20:31,414 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: partial_history
+2023-08-01 16:20:31,414 INFO    SenderThread:212779 [sender.py:_save_file():1354] saving file media/images/Visualization_7_c69dd9aa4f9ac8fe7799.png with policy now
+2023-08-01 16:20:31,416 DEBUG   SenderThread:212779 [sender.py:send():369] send: history
+2023-08-01 16:20:31,416 DEBUG   SenderThread:212779 [sender.py:send_request():396] send_request: summary_record
+2023-08-01 16:20:31,418 INFO    SenderThread:212779 [sender.py:_save_file():1354] saving file wandb-summary.json with policy end
+2023-08-01 16:20:31,862 INFO    wandb-upload_0:212779 [upload_job.py:push():133] Uploaded file /tmp/tmp735_j_pzwandb/kblq6wdb-media/images/Visualization_7_c69dd9aa4f9ac8fe7799.png
+2023-08-01 16:20:32,072 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/wandb-summary.json
+2023-08-01 16:20:32,072 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_created():272] file/dir created: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/media/images/Visualization_7_c69dd9aa4f9ac8fe7799.png
+2023-08-01 16:20:32,073 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/media/images
+2023-08-01 16:20:32,587 INFO    wandb-upload_0:212779 [upload_job.py:push():133] Uploaded file /tmp/tmp735_j_pzwandb/co034td0-media/images/Visualization_7_c69dd9aa4f9ac8fe7799.png
+2023-08-01 16:20:33,828 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:20:34,077 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:20:36,082 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:20:37,844 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: stop_status
+2023-08-01 16:20:37,845 DEBUG   SenderThread:212779 [sender.py:send_request():396] send_request: stop_status
+2023-08-01 16:20:38,086 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:20:39,009 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:20:42,096 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:20:44,101 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:20:44,112 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:20:46,105 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:20:48,110 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:20:49,856 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:20:50,115 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:20:52,119 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:20:52,845 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: stop_status
+2023-08-01 16:20:52,845 DEBUG   SenderThread:212779 [sender.py:send_request():396] send_request: stop_status
+2023-08-01 16:20:55,706 DEBUG   SenderThread:212779 [sender.py:send():369] send: stats
+2023-08-01 16:20:55,707 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:20:56,128 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:20:56,793 DEBUG   SenderThread:212779 [sender.py:send():369] send: files
+2023-08-01 16:20:56,793 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: partial_history
+2023-08-01 16:20:56,793 INFO    SenderThread:212779 [sender.py:_save_file():1354] saving file media/images/Visualization_8_d41b8e384d24ffc46ed4.png with policy now
+2023-08-01 16:20:56,795 DEBUG   SenderThread:212779 [sender.py:send():369] send: history
+2023-08-01 16:20:56,796 DEBUG   SenderThread:212779 [sender.py:send_request():396] send_request: summary_record
+2023-08-01 16:20:56,797 INFO    SenderThread:212779 [sender.py:_save_file():1354] saving file wandb-summary.json with policy end
+2023-08-01 16:20:57,130 INFO    wandb-upload_0:212779 [upload_job.py:push():133] Uploaded file /tmp/tmp735_j_pzwandb/ev6dfinu-media/images/Visualization_8_d41b8e384d24ffc46ed4.png
+2023-08-01 16:20:57,133 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/wandb-summary.json
+2023-08-01 16:20:57,133 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_created():272] file/dir created: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/media/images/Visualization_8_d41b8e384d24ffc46ed4.png
+2023-08-01 16:20:57,133 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/media/images
+2023-08-01 16:20:57,752 INFO    wandb-upload_0:212779 [upload_job.py:push():133] Uploaded file /tmp/tmp735_j_pzwandb/injece5c-media/images/Visualization_8_d41b8e384d24ffc46ed4.png
+2023-08-01 16:20:58,135 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:21:01,634 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:21:02,145 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:21:04,149 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:21:06,154 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:21:06,784 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:21:07,845 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: stop_status
+2023-08-01 16:21:07,845 DEBUG   SenderThread:212779 [sender.py:send_request():396] send_request: stop_status
+2023-08-01 16:21:10,164 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:21:12,039 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:21:12,169 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:21:14,173 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:21:16,178 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:21:17,139 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:21:20,187 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:21:22,182 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:21:22,192 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:21:22,845 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: stop_status
+2023-08-01 16:21:22,846 DEBUG   SenderThread:212779 [sender.py:send_request():396] send_request: stop_status
+2023-08-01 16:21:23,418 DEBUG   SenderThread:212779 [sender.py:send():369] send: files
+2023-08-01 16:21:23,418 INFO    SenderThread:212779 [sender.py:_save_file():1354] saving file media/images/Visualization_9_0494260005eb6f30ca6a.png with policy now
+2023-08-01 16:21:23,418 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: partial_history
+2023-08-01 16:21:23,420 DEBUG   SenderThread:212779 [sender.py:send():369] send: history
+2023-08-01 16:21:23,420 DEBUG   SenderThread:212779 [sender.py:send_request():396] send_request: summary_record
+2023-08-01 16:21:23,422 INFO    SenderThread:212779 [sender.py:_save_file():1354] saving file wandb-summary.json with policy end
+2023-08-01 16:21:23,747 INFO    wandb-upload_0:212779 [upload_job.py:push():133] Uploaded file /tmp/tmp735_j_pzwandb/uab5eu9y-media/images/Visualization_9_0494260005eb6f30ca6a.png
+2023-08-01 16:21:24,199 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/wandb-summary.json
+2023-08-01 16:21:24,199 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_created():272] file/dir created: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/media/images/Visualization_9_0494260005eb6f30ca6a.png
+2023-08-01 16:21:24,200 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/media/images
+2023-08-01 16:21:24,738 INFO    wandb-upload_0:212779 [upload_job.py:push():133] Uploaded file /tmp/tmp735_j_pzwandb/zacrjdwh-media/images/Visualization_9_0494260005eb6f30ca6a.png
+2023-08-01 16:21:25,709 DEBUG   SenderThread:212779 [sender.py:send():369] send: stats
+2023-08-01 16:21:26,204 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:21:27,396 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:21:28,209 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:21:30,214 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:21:32,411 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:21:34,224 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:21:36,228 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:21:37,474 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:21:37,845 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: stop_status
+2023-08-01 16:21:37,846 DEBUG   SenderThread:212779 [sender.py:send_request():396] send_request: stop_status
+2023-08-01 16:21:38,233 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:21:40,239 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:21:42,631 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:21:44,248 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:21:46,253 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:21:47,728 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:21:48,258 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:21:50,104 DEBUG   SenderThread:212779 [sender.py:send():369] send: files
+2023-08-01 16:21:50,104 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: partial_history
+2023-08-01 16:21:50,104 INFO    SenderThread:212779 [sender.py:_save_file():1354] saving file media/images/Visualization_10_da394d41d85cc598c800.png with policy now
+2023-08-01 16:21:50,106 DEBUG   SenderThread:212779 [sender.py:send():369] send: history
+2023-08-01 16:21:50,106 DEBUG   SenderThread:212779 [sender.py:send_request():396] send_request: summary_record
+2023-08-01 16:21:50,110 INFO    SenderThread:212779 [sender.py:_save_file():1354] saving file wandb-summary.json with policy end
+2023-08-01 16:21:50,264 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/wandb-summary.json
+2023-08-01 16:21:50,265 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_created():272] file/dir created: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/media/images/Visualization_10_da394d41d85cc598c800.png
+2023-08-01 16:21:50,266 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/media/images
+2023-08-01 16:21:50,504 INFO    wandb-upload_0:212779 [upload_job.py:push():133] Uploaded file /tmp/tmp735_j_pzwandb/6b7x7rj2-media/images/Visualization_10_da394d41d85cc598c800.png
+2023-08-01 16:21:50,942 INFO    wandb-upload_0:212779 [upload_job.py:push():133] Uploaded file /tmp/tmp735_j_pzwandb/smiwwnxd-media/images/Visualization_10_da394d41d85cc598c800.png
+2023-08-01 16:21:52,270 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:21:52,845 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: stop_status
+2023-08-01 16:21:52,846 DEBUG   SenderThread:212779 [sender.py:send_request():396] send_request: stop_status
+2023-08-01 16:21:53,011 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:21:54,275 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:21:55,712 DEBUG   SenderThread:212779 [sender.py:send():369] send: stats
+2023-08-01 16:21:58,285 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:21:58,910 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:22:00,290 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:22:02,295 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:22:04,301 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:22:04,853 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:22:06,305 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:22:07,845 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: stop_status
+2023-08-01 16:22:07,845 DEBUG   SenderThread:212779 [sender.py:send_request():396] send_request: stop_status
+2023-08-01 16:22:09,966 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:22:10,316 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:22:12,321 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:22:14,326 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:22:15,522 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:22:16,054 DEBUG   SenderThread:212779 [sender.py:send():369] send: files
+2023-08-01 16:22:16,054 INFO    SenderThread:212779 [sender.py:_save_file():1354] saving file media/images/Visualization_11_c38cc63e10276db44fef.png with policy now
+2023-08-01 16:22:16,055 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: partial_history
+2023-08-01 16:22:16,056 DEBUG   SenderThread:212779 [sender.py:send():369] send: history
+2023-08-01 16:22:16,056 DEBUG   SenderThread:212779 [sender.py:send_request():396] send_request: summary_record
+2023-08-01 16:22:16,058 INFO    SenderThread:212779 [sender.py:_save_file():1354] saving file wandb-summary.json with policy end
+2023-08-01 16:22:16,332 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/wandb-summary.json
+2023-08-01 16:22:16,332 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_created():272] file/dir created: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/media/images/Visualization_11_c38cc63e10276db44fef.png
+2023-08-01 16:22:16,333 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/media/images
+2023-08-01 16:22:16,471 INFO    wandb-upload_0:212779 [upload_job.py:push():133] Uploaded file /tmp/tmp735_j_pzwandb/20kv6mdq-media/images/Visualization_11_c38cc63e10276db44fef.png
+2023-08-01 16:22:16,965 INFO    wandb-upload_0:212779 [upload_job.py:push():133] Uploaded file /tmp/tmp735_j_pzwandb/sui8yhmm-media/images/Visualization_11_c38cc63e10276db44fef.png
+2023-08-01 16:22:18,337 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:22:20,343 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:22:21,017 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:22:22,845 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: stop_status
+2023-08-01 16:22:22,846 DEBUG   SenderThread:212779 [sender.py:send_request():396] send_request: stop_status
+2023-08-01 16:22:24,353 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:22:25,715 DEBUG   SenderThread:212779 [sender.py:send():369] send: stats
+2023-08-01 16:22:26,358 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:22:26,704 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:22:28,365 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:22:30,370 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:22:32,648 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:22:34,381 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:22:36,387 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:22:37,845 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: stop_status
+2023-08-01 16:22:37,846 DEBUG   SenderThread:212779 [sender.py:send_request():396] send_request: stop_status
+2023-08-01 16:22:38,036 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:22:38,393 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:22:40,398 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:22:42,410 DEBUG   SenderThread:212779 [sender.py:send():369] send: files
+2023-08-01 16:22:42,410 INFO    SenderThread:212779 [sender.py:_save_file():1354] saving file media/images/Visualization_12_15784c31cc72e0e30860.png with policy now
+2023-08-01 16:22:42,410 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: partial_history
+2023-08-01 16:22:42,412 DEBUG   SenderThread:212779 [sender.py:send():369] send: history
+2023-08-01 16:22:42,412 DEBUG   SenderThread:212779 [sender.py:send_request():396] send_request: summary_record
+2023-08-01 16:22:42,414 INFO    SenderThread:212779 [sender.py:_save_file():1354] saving file wandb-summary.json with policy end
+2023-08-01 16:22:42,825 INFO    wandb-upload_0:212779 [upload_job.py:push():133] Uploaded file /tmp/tmp735_j_pzwandb/h0elhl1l-media/images/Visualization_12_15784c31cc72e0e30860.png
+2023-08-01 16:22:43,053 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:22:43,407 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/wandb-summary.json
+2023-08-01 16:22:43,408 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_created():272] file/dir created: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/media/images/Visualization_12_15784c31cc72e0e30860.png
+2023-08-01 16:22:43,408 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/media/images
+2023-08-01 16:22:43,913 INFO    wandb-upload_0:212779 [upload_job.py:push():133] Uploaded file /tmp/tmp735_j_pzwandb/cqpvjrln-media/images/Visualization_12_15784c31cc72e0e30860.png
+2023-08-01 16:22:44,410 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:22:48,107 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:22:48,421 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:22:50,427 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:22:52,432 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:22:52,845 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: stop_status
+2023-08-01 16:22:52,846 DEBUG   SenderThread:212779 [sender.py:send_request():396] send_request: stop_status
+2023-08-01 16:22:53,114 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:22:54,437 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:22:55,718 DEBUG   SenderThread:212779 [sender.py:send():369] send: stats
+2023-08-01 16:22:58,448 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:22:58,943 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:23:00,453 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:23:02,458 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:23:04,464 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:23:04,734 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:23:06,469 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:23:07,845 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: stop_status
+2023-08-01 16:23:07,846 DEBUG   SenderThread:212779 [sender.py:send_request():396] send_request: stop_status
+2023-08-01 16:23:08,404 DEBUG   SenderThread:212779 [sender.py:send():369] send: files
+2023-08-01 16:23:08,405 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: partial_history
+2023-08-01 16:23:08,405 INFO    SenderThread:212779 [sender.py:_save_file():1354] saving file media/images/Visualization_13_0f6f0223c44c9ad1b8af.png with policy now
+2023-08-01 16:23:08,407 DEBUG   SenderThread:212779 [sender.py:send():369] send: history
+2023-08-01 16:23:08,407 DEBUG   SenderThread:212779 [sender.py:send_request():396] send_request: summary_record
+2023-08-01 16:23:08,409 INFO    SenderThread:212779 [sender.py:_save_file():1354] saving file wandb-summary.json with policy end
+2023-08-01 16:23:08,475 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/wandb-summary.json
+2023-08-01 16:23:08,475 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_created():272] file/dir created: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/media/images/Visualization_13_0f6f0223c44c9ad1b8af.png
+2023-08-01 16:23:08,476 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/media/images
+2023-08-01 16:23:08,808 INFO    wandb-upload_0:212779 [upload_job.py:push():133] Uploaded file /tmp/tmp735_j_pzwandb/ne1og0n7-media/images/Visualization_13_0f6f0223c44c9ad1b8af.png
+2023-08-01 16:23:09,221 INFO    wandb-upload_0:212779 [upload_job.py:push():133] Uploaded file /tmp/tmp735_j_pzwandb/94opu6ae-media/images/Visualization_13_0f6f0223c44c9ad1b8af.png
+2023-08-01 16:23:10,011 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:23:10,481 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:23:14,492 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:23:15,899 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:23:16,497 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:23:18,502 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:23:20,508 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:23:20,948 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:23:22,846 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: stop_status
+2023-08-01 16:23:22,846 DEBUG   SenderThread:212779 [sender.py:send_request():396] send_request: stop_status
+2023-08-01 16:23:24,518 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:23:25,721 DEBUG   SenderThread:212779 [sender.py:send():369] send: stats
+2023-08-01 16:23:26,523 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:23:26,625 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:23:28,529 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:23:30,534 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:23:32,390 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:23:32,539 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:23:35,037 DEBUG   SenderThread:212779 [sender.py:send():369] send: files
+2023-08-01 16:23:35,038 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: partial_history
+2023-08-01 16:23:35,038 INFO    SenderThread:212779 [sender.py:_save_file():1354] saving file media/images/Visualization_14_bdb9e2e91359ceffa29e.png with policy now
+2023-08-01 16:23:35,040 DEBUG   SenderThread:212779 [sender.py:send():369] send: history
+2023-08-01 16:23:35,040 DEBUG   SenderThread:212779 [sender.py:send_request():396] send_request: summary_record
+2023-08-01 16:23:35,042 INFO    SenderThread:212779 [sender.py:_save_file():1354] saving file wandb-summary.json with policy end
+2023-08-01 16:23:35,448 INFO    wandb-upload_0:212779 [upload_job.py:push():133] Uploaded file /tmp/tmp735_j_pzwandb/rxt38h1g-media/images/Visualization_14_bdb9e2e91359ceffa29e.png
+2023-08-01 16:23:35,549 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/wandb-summary.json
+2023-08-01 16:23:35,549 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_created():272] file/dir created: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/media/images/Visualization_14_bdb9e2e91359ceffa29e.png
+2023-08-01 16:23:35,550 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/media/images
+2023-08-01 16:23:36,028 INFO    wandb-upload_0:212779 [upload_job.py:push():133] Uploaded file /tmp/tmp735_j_pzwandb/7997hiih-media/images/Visualization_14_bdb9e2e91359ceffa29e.png
+2023-08-01 16:23:37,695 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:23:37,846 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: stop_status
+2023-08-01 16:23:37,846 DEBUG   SenderThread:212779 [sender.py:send_request():396] send_request: stop_status
+2023-08-01 16:23:38,557 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:23:40,562 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:23:42,568 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:23:43,085 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:23:44,573 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:23:48,130 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:23:48,583 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:23:50,589 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:23:52,594 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:23:52,846 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: stop_status
+2023-08-01 16:23:52,846 DEBUG   SenderThread:212779 [sender.py:send_request():396] send_request: stop_status
+2023-08-01 16:23:53,156 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:23:54,599 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:23:55,725 DEBUG   SenderThread:212779 [sender.py:send():369] send: stats
+2023-08-01 16:23:58,174 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:23:58,610 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:24:00,616 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:24:01,255 DEBUG   SenderThread:212779 [sender.py:send():369] send: files
+2023-08-01 16:24:01,255 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: partial_history
+2023-08-01 16:24:01,255 INFO    SenderThread:212779 [sender.py:_save_file():1354] saving file media/images/Visualization_15_5947d894372b30f05b9a.png with policy now
+2023-08-01 16:24:01,257 DEBUG   SenderThread:212779 [sender.py:send():369] send: history
+2023-08-01 16:24:01,258 DEBUG   SenderThread:212779 [sender.py:send_request():396] send_request: summary_record
+2023-08-01 16:24:01,259 INFO    SenderThread:212779 [sender.py:_save_file():1354] saving file wandb-summary.json with policy end
+2023-08-01 16:24:01,614 INFO    wandb-upload_0:212779 [upload_job.py:push():133] Uploaded file /tmp/tmp735_j_pzwandb/l2fm58d4-media/images/Visualization_15_5947d894372b30f05b9a.png
+2023-08-01 16:24:01,620 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/wandb-summary.json
+2023-08-01 16:24:01,620 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_created():272] file/dir created: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/media/images/Visualization_15_5947d894372b30f05b9a.png
+2023-08-01 16:24:01,621 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/media/images
+2023-08-01 16:24:02,116 INFO    wandb-upload_0:212779 [upload_job.py:push():133] Uploaded file /tmp/tmp735_j_pzwandb/qjkuujr7-media/images/Visualization_15_5947d894372b30f05b9a.png
+2023-08-01 16:24:03,915 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:24:04,628 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:24:06,634 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:24:07,846 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: stop_status
+2023-08-01 16:24:07,846 DEBUG   SenderThread:212779 [sender.py:send_request():396] send_request: stop_status
+2023-08-01 16:24:08,640 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:24:09,025 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:24:09,642 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:24:13,653 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:24:14,030 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:24:15,658 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:24:17,664 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:24:19,669 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:24:19,868 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:24:21,675 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:24:22,846 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: stop_status
+2023-08-01 16:24:22,847 DEBUG   SenderThread:212779 [sender.py:send_request():396] send_request: stop_status
+2023-08-01 16:24:25,686 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:24:25,727 DEBUG   SenderThread:212779 [sender.py:send():369] send: stats
+2023-08-01 16:24:25,728 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:24:26,912 DEBUG   SenderThread:212779 [sender.py:send():369] send: files
+2023-08-01 16:24:26,913 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: partial_history
+2023-08-01 16:24:26,913 INFO    SenderThread:212779 [sender.py:_save_file():1354] saving file media/images/Visualization_16_4a18ffa15b906557f68c.png with policy now
+2023-08-01 16:24:26,915 DEBUG   SenderThread:212779 [sender.py:send():369] send: history
+2023-08-01 16:24:26,915 DEBUG   SenderThread:212779 [sender.py:send_request():396] send_request: summary_record
+2023-08-01 16:24:26,917 INFO    SenderThread:212779 [sender.py:_save_file():1354] saving file wandb-summary.json with policy end
+2023-08-01 16:24:27,401 INFO    wandb-upload_0:212779 [upload_job.py:push():133] Uploaded file /tmp/tmp735_j_pzwandb/cta03chc-media/images/Visualization_16_4a18ffa15b906557f68c.png
+2023-08-01 16:24:27,693 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/wandb-summary.json
+2023-08-01 16:24:27,693 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_created():272] file/dir created: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/media/images/Visualization_16_4a18ffa15b906557f68c.png
+2023-08-01 16:24:27,694 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/media/images
+2023-08-01 16:24:28,179 INFO    wandb-upload_0:212779 [upload_job.py:push():133] Uploaded file /tmp/tmp735_j_pzwandb/fo1tg6g2-media/images/Visualization_16_4a18ffa15b906557f68c.png
+2023-08-01 16:24:29,698 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:24:30,975 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:24:31,704 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:24:33,710 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:24:35,715 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:24:36,838 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:24:37,721 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:24:37,846 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: stop_status
+2023-08-01 16:24:37,847 DEBUG   SenderThread:212779 [sender.py:send_request():396] send_request: stop_status
+2023-08-01 16:24:41,732 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:24:42,101 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:24:43,738 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:24:45,743 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:24:47,145 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:24:47,749 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:24:51,760 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:24:52,636 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:24:52,842 DEBUG   SenderThread:212779 [sender.py:send():369] send: files
+2023-08-01 16:24:52,842 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: partial_history
+2023-08-01 16:24:52,842 INFO    SenderThread:212779 [sender.py:_save_file():1354] saving file media/images/Visualization_17_0276334298454286bf6c.png with policy now
+2023-08-01 16:24:52,844 DEBUG   SenderThread:212779 [sender.py:send():369] send: history
+2023-08-01 16:24:52,844 DEBUG   SenderThread:212779 [sender.py:send_request():396] send_request: summary_record
+2023-08-01 16:24:52,846 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: stop_status
+2023-08-01 16:24:52,846 INFO    SenderThread:212779 [sender.py:_save_file():1354] saving file wandb-summary.json with policy end
+2023-08-01 16:24:52,847 DEBUG   SenderThread:212779 [sender.py:send_request():396] send_request: stop_status
+2023-08-01 16:24:53,265 INFO    wandb-upload_0:212779 [upload_job.py:push():133] Uploaded file /tmp/tmp735_j_pzwandb/xe27c4a9-media/images/Visualization_17_0276334298454286bf6c.png
+2023-08-01 16:24:53,767 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:24:53,767 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/wandb-summary.json
+2023-08-01 16:24:53,768 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_created():272] file/dir created: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/media/images/Visualization_17_0276334298454286bf6c.png
+2023-08-01 16:24:53,768 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/media/images
+2023-08-01 16:24:54,286 INFO    wandb-upload_0:212779 [upload_job.py:push():133] Uploaded file /tmp/tmp735_j_pzwandb/d2bg1prj-media/images/Visualization_17_0276334298454286bf6c.png
+2023-08-01 16:24:55,730 DEBUG   SenderThread:212779 [sender.py:send():369] send: stats
+2023-08-01 16:24:57,778 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:24:58,003 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:24:59,784 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:25:01,790 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:25:03,143 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:25:03,795 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:25:07,807 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:25:07,846 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: stop_status
+2023-08-01 16:25:07,847 DEBUG   SenderThread:212779 [sender.py:send_request():396] send_request: stop_status
+2023-08-01 16:25:09,046 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:25:09,813 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:25:11,818 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:25:13,824 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:25:14,962 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:25:15,829 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:25:18,395 DEBUG   SenderThread:212779 [sender.py:send():369] send: files
+2023-08-01 16:25:18,395 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: partial_history
+2023-08-01 16:25:18,395 INFO    SenderThread:212779 [sender.py:_save_file():1354] saving file media/images/Visualization_18_f81886b65d9c81ddd0c6.png with policy now
+2023-08-01 16:25:18,397 DEBUG   SenderThread:212779 [sender.py:send():369] send: history
+2023-08-01 16:25:18,397 DEBUG   SenderThread:212779 [sender.py:send_request():396] send_request: summary_record
+2023-08-01 16:25:18,399 INFO    SenderThread:212779 [sender.py:_save_file():1354] saving file wandb-summary.json with policy end
+2023-08-01 16:25:18,782 INFO    wandb-upload_0:212779 [upload_job.py:push():133] Uploaded file /tmp/tmp735_j_pzwandb/ztmw68jw-media/images/Visualization_18_f81886b65d9c81ddd0c6.png
+2023-08-01 16:25:18,839 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/wandb-summary.json
+2023-08-01 16:25:18,840 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_created():272] file/dir created: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/media/images/Visualization_18_f81886b65d9c81ddd0c6.png
+2023-08-01 16:25:18,840 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/media/images
+2023-08-01 16:25:19,340 INFO    wandb-upload_0:212779 [upload_job.py:push():133] Uploaded file /tmp/tmp735_j_pzwandb/s918tsun-media/images/Visualization_18_f81886b65d9c81ddd0c6.png
+2023-08-01 16:25:19,842 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:25:20,213 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:25:21,848 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:25:22,846 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: stop_status
+2023-08-01 16:25:22,847 DEBUG   SenderThread:212779 [sender.py:send_request():396] send_request: stop_status
+2023-08-01 16:25:25,733 DEBUG   SenderThread:212779 [sender.py:send():369] send: stats
+2023-08-01 16:25:25,736 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:25:25,861 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:25:27,867 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:25:29,873 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:25:31,074 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:25:33,884 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:25:35,890 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:25:36,358 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:25:37,846 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: stop_status
+2023-08-01 16:25:37,847 DEBUG   SenderThread:212779 [sender.py:send_request():396] send_request: stop_status
+2023-08-01 16:25:37,895 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:25:39,901 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:25:41,406 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:25:43,912 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:25:44,940 DEBUG   SenderThread:212779 [sender.py:send():369] send: files
+2023-08-01 16:25:44,940 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: partial_history
+2023-08-01 16:25:44,940 INFO    SenderThread:212779 [sender.py:_save_file():1354] saving file media/images/Visualization_19_9bbd133bd1fb35fc9605.png with policy now
+2023-08-01 16:25:44,942 DEBUG   SenderThread:212779 [sender.py:send():369] send: history
+2023-08-01 16:25:44,942 DEBUG   SenderThread:212779 [sender.py:send_request():396] send_request: summary_record
+2023-08-01 16:25:44,944 INFO    SenderThread:212779 [sender.py:_save_file():1354] saving file wandb-summary.json with policy end
+2023-08-01 16:25:45,403 INFO    wandb-upload_0:212779 [upload_job.py:push():133] Uploaded file /tmp/tmp735_j_pzwandb/p6q8av3a-media/images/Visualization_19_9bbd133bd1fb35fc9605.png
+2023-08-01 16:25:45,919 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/wandb-summary.json
+2023-08-01 16:25:45,920 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_created():272] file/dir created: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/media/images/Visualization_19_9bbd133bd1fb35fc9605.png
+2023-08-01 16:25:45,920 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/media/images
+2023-08-01 16:25:46,409 INFO    wandb-upload_0:212779 [upload_job.py:push():133] Uploaded file /tmp/tmp735_j_pzwandb/i8gwgrgv-media/images/Visualization_19_9bbd133bd1fb35fc9605.png
+2023-08-01 16:25:46,825 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:25:47,925 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:25:49,931 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:25:51,937 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:25:52,825 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:25:52,846 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: stop_status
+2023-08-01 16:25:52,847 DEBUG   SenderThread:212779 [sender.py:send_request():396] send_request: stop_status
+2023-08-01 16:25:53,942 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:25:55,736 DEBUG   SenderThread:212779 [sender.py:send():369] send: stats
+2023-08-01 16:25:57,851 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:25:57,954 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:25:59,959 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:26:01,965 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:26:03,234 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:26:03,971 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:26:05,977 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:26:07,847 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: stop_status
+2023-08-01 16:26:07,847 DEBUG   SenderThread:212779 [sender.py:send_request():396] send_request: stop_status
+2023-08-01 16:26:09,059 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:26:09,988 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:26:11,327 DEBUG   SenderThread:212779 [sender.py:send():369] send: files
+2023-08-01 16:26:11,328 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: partial_history
+2023-08-01 16:26:11,328 INFO    SenderThread:212779 [sender.py:_save_file():1354] saving file media/images/Visualization_20_a39cbfe1874a71c61b1d.png with policy now
+2023-08-01 16:26:11,330 DEBUG   SenderThread:212779 [sender.py:send():369] send: history
+2023-08-01 16:26:11,330 DEBUG   SenderThread:212779 [sender.py:send_request():396] send_request: summary_record
+2023-08-01 16:26:11,336 INFO    SenderThread:212779 [sender.py:_save_file():1354] saving file wandb-summary.json with policy end
+2023-08-01 16:26:11,706 INFO    wandb-upload_0:212779 [upload_job.py:push():133] Uploaded file /tmp/tmp735_j_pzwandb/c9vti318-media/images/Visualization_20_a39cbfe1874a71c61b1d.png
+2023-08-01 16:26:11,996 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/wandb-summary.json
+2023-08-01 16:26:11,996 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_created():272] file/dir created: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/media/images/Visualization_20_a39cbfe1874a71c61b1d.png
+2023-08-01 16:26:11,997 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/media/images
+2023-08-01 16:26:12,452 INFO    wandb-upload_0:212779 [upload_job.py:push():133] Uploaded file /tmp/tmp735_j_pzwandb/w0ravgvt-media/images/Visualization_20_a39cbfe1874a71c61b1d.png
+2023-08-01 16:26:14,002 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:26:14,252 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:26:16,009 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:26:18,015 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:26:19,346 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:26:22,027 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:26:22,847 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: stop_status
+2023-08-01 16:26:22,847 DEBUG   SenderThread:212779 [sender.py:send_request():396] send_request: stop_status
+2023-08-01 16:26:24,033 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:26:24,767 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:26:25,739 DEBUG   SenderThread:212779 [sender.py:send():369] send: stats
+2023-08-01 16:26:26,038 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:26:28,045 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:26:30,052 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:26:30,570 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:26:34,064 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:26:36,070 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:26:36,475 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:26:37,818 DEBUG   SenderThread:212779 [sender.py:send():369] send: files
+2023-08-01 16:26:37,819 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: partial_history
+2023-08-01 16:26:37,819 INFO    SenderThread:212779 [sender.py:_save_file():1354] saving file media/images/Visualization_21_1631e443170c82b52799.png with policy now
+2023-08-01 16:26:37,821 DEBUG   SenderThread:212779 [sender.py:send():369] send: history
+2023-08-01 16:26:37,821 DEBUG   SenderThread:212779 [sender.py:send_request():396] send_request: summary_record
+2023-08-01 16:26:37,822 INFO    SenderThread:212779 [sender.py:_save_file():1354] saving file wandb-summary.json with policy end
+2023-08-01 16:26:37,847 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: stop_status
+2023-08-01 16:26:37,847 DEBUG   SenderThread:212779 [sender.py:send_request():396] send_request: stop_status
+2023-08-01 16:26:38,077 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/wandb-summary.json
+2023-08-01 16:26:38,077 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_created():272] file/dir created: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/media/images/Visualization_21_1631e443170c82b52799.png
+2023-08-01 16:26:38,078 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/media/images
+2023-08-01 16:26:38,273 INFO    wandb-upload_0:212779 [upload_job.py:push():133] Uploaded file /tmp/tmp735_j_pzwandb/b4ymn3ua-media/images/Visualization_21_1631e443170c82b52799.png
+2023-08-01 16:26:38,741 INFO    wandb-upload_0:212779 [upload_job.py:push():133] Uploaded file /tmp/tmp735_j_pzwandb/3o2869pw-media/images/Visualization_21_1631e443170c82b52799.png
+2023-08-01 16:26:40,083 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:26:42,089 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:26:42,351 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:26:46,101 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:26:48,106 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:26:48,225 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:26:50,112 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:26:52,118 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:26:52,847 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: stop_status
+2023-08-01 16:26:52,848 DEBUG   SenderThread:212779 [sender.py:send_request():396] send_request: stop_status
+2023-08-01 16:26:53,284 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:26:54,124 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:26:55,742 DEBUG   SenderThread:212779 [sender.py:send():369] send: stats
+2023-08-01 16:26:56,130 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:26:59,140 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:27:00,142 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:27:02,148 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:27:03,836 DEBUG   SenderThread:212779 [sender.py:send():369] send: files
+2023-08-01 16:27:03,836 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: partial_history
+2023-08-01 16:27:03,836 INFO    SenderThread:212779 [sender.py:_save_file():1354] saving file media/images/Visualization_22_35f62e59943deb60ad1f.png with policy now
+2023-08-01 16:27:03,838 DEBUG   SenderThread:212779 [sender.py:send():369] send: history
+2023-08-01 16:27:03,838 DEBUG   SenderThread:212779 [sender.py:send_request():396] send_request: summary_record
+2023-08-01 16:27:03,840 INFO    SenderThread:212779 [sender.py:_save_file():1354] saving file wandb-summary.json with policy end
+2023-08-01 16:27:04,156 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/wandb-summary.json
+2023-08-01 16:27:04,156 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_created():272] file/dir created: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/media/images/Visualization_22_35f62e59943deb60ad1f.png
+2023-08-01 16:27:04,157 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/media/images
+2023-08-01 16:27:04,169 INFO    wandb-upload_0:212779 [upload_job.py:push():133] Uploaded file /tmp/tmp735_j_pzwandb/mvzjbxl3-media/images/Visualization_22_35f62e59943deb60ad1f.png
+2023-08-01 16:27:04,690 INFO    wandb-upload_0:212779 [upload_job.py:push():133] Uploaded file /tmp/tmp735_j_pzwandb/eqezd5g0-media/images/Visualization_22_35f62e59943deb60ad1f.png
+2023-08-01 16:27:04,841 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:27:06,162 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:27:07,847 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: stop_status
+2023-08-01 16:27:07,848 DEBUG   SenderThread:212779 [sender.py:send_request():396] send_request: stop_status
+2023-08-01 16:27:08,168 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:27:09,851 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:27:12,180 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:27:14,186 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:27:15,798 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:27:16,192 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:27:18,197 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:27:20,204 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:27:21,757 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:27:22,847 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: stop_status
+2023-08-01 16:27:22,848 DEBUG   SenderThread:212779 [sender.py:send_request():396] send_request: stop_status
+2023-08-01 16:27:24,216 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:27:25,745 DEBUG   SenderThread:212779 [sender.py:send():369] send: stats
+2023-08-01 16:27:26,222 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:27:27,330 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:27:28,228 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:27:30,855 DEBUG   SenderThread:212779 [sender.py:send():369] send: files
+2023-08-01 16:27:30,855 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: partial_history
+2023-08-01 16:27:30,855 INFO    SenderThread:212779 [sender.py:_save_file():1354] saving file media/images/Visualization_23_d98e4ed13395988a2dc6.png with policy now
+2023-08-01 16:27:30,857 DEBUG   SenderThread:212779 [sender.py:send():369] send: history
+2023-08-01 16:27:30,857 DEBUG   SenderThread:212779 [sender.py:send_request():396] send_request: summary_record
+2023-08-01 16:27:30,859 INFO    SenderThread:212779 [sender.py:_save_file():1354] saving file wandb-summary.json with policy end
+2023-08-01 16:27:31,228 INFO    wandb-upload_0:212779 [upload_job.py:push():133] Uploaded file /tmp/tmp735_j_pzwandb/phc4s49a-media/images/Visualization_23_d98e4ed13395988a2dc6.png
+2023-08-01 16:27:31,239 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/wandb-summary.json
+2023-08-01 16:27:31,240 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_created():272] file/dir created: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/media/images/Visualization_23_d98e4ed13395988a2dc6.png
+2023-08-01 16:27:31,240 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/media/images
+2023-08-01 16:27:31,655 INFO    wandb-upload_0:212779 [upload_job.py:push():133] Uploaded file /tmp/tmp735_j_pzwandb/4rm1cv17-media/images/Visualization_23_d98e4ed13395988a2dc6.png
+2023-08-01 16:27:32,942 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:27:34,253 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:27:36,259 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:27:37,847 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: stop_status
+2023-08-01 16:27:37,848 DEBUG   SenderThread:212779 [sender.py:send_request():396] send_request: stop_status
+2023-08-01 16:27:38,190 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:27:38,265 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:27:40,271 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:27:44,169 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:27:44,283 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:27:46,289 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:27:48,295 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:27:49,273 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:27:50,301 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:27:52,847 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: stop_status
+2023-08-01 16:27:52,848 DEBUG   SenderThread:212779 [sender.py:send_request():396] send_request: stop_status
+2023-08-01 16:27:54,313 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:27:54,805 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:27:55,748 DEBUG   SenderThread:212779 [sender.py:send():369] send: stats
+2023-08-01 16:27:55,866 DEBUG   SenderThread:212779 [sender.py:send():369] send: exit
+2023-08-01 16:27:55,866 INFO    SenderThread:212779 [sender.py:send_exit():574] handling exit code: 255
+2023-08-01 16:27:55,866 INFO    SenderThread:212779 [sender.py:send_exit():576] handling runtime: 660
+2023-08-01 16:27:55,868 INFO    SenderThread:212779 [sender.py:_save_file():1354] saving file wandb-summary.json with policy end
+2023-08-01 16:27:55,868 INFO    SenderThread:212779 [sender.py:send_exit():582] send defer
+2023-08-01 16:27:55,869 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: defer
+2023-08-01 16:27:55,869 INFO    HandlerThread:212779 [handler.py:handle_request_defer():170] handle defer: 0
+2023-08-01 16:27:55,869 DEBUG   SenderThread:212779 [sender.py:send_request():396] send_request: defer
+2023-08-01 16:27:55,869 INFO    SenderThread:212779 [sender.py:send_request_defer():598] handle sender defer: 0
+2023-08-01 16:27:55,869 INFO    SenderThread:212779 [sender.py:transition_state():602] send defer: 1
+2023-08-01 16:27:55,869 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: defer
+2023-08-01 16:27:55,870 INFO    HandlerThread:212779 [handler.py:handle_request_defer():170] handle defer: 1
+2023-08-01 16:27:55,870 DEBUG   SenderThread:212779 [sender.py:send_request():396] send_request: defer
+2023-08-01 16:27:55,870 INFO    SenderThread:212779 [sender.py:send_request_defer():598] handle sender defer: 1
+2023-08-01 16:27:55,870 INFO    SenderThread:212779 [sender.py:transition_state():602] send defer: 2
+2023-08-01 16:27:55,870 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: defer
+2023-08-01 16:27:55,870 INFO    HandlerThread:212779 [handler.py:handle_request_defer():170] handle defer: 2
+2023-08-01 16:27:55,870 INFO    HandlerThread:212779 [system_monitor.py:finish():190] Stopping system monitor
+2023-08-01 16:27:55,871 DEBUG   SystemMonitor:212779 [system_monitor.py:_start():166] Finished system metrics aggregation loop
+2023-08-01 16:27:55,872 INFO    HandlerThread:212779 [interfaces.py:finish():202] Joined cpu monitor
+2023-08-01 16:27:55,872 DEBUG   SystemMonitor:212779 [system_monitor.py:_start():170] Publishing last batch of metrics
+2023-08-01 16:27:55,872 INFO    HandlerThread:212779 [interfaces.py:finish():202] Joined disk monitor
+2023-08-01 16:27:55,985 INFO    HandlerThread:212779 [interfaces.py:finish():202] Joined gpu monitor
+2023-08-01 16:27:55,985 INFO    HandlerThread:212779 [interfaces.py:finish():202] Joined memory monitor
+2023-08-01 16:27:55,986 INFO    HandlerThread:212779 [interfaces.py:finish():202] Joined network monitor
+2023-08-01 16:27:55,987 DEBUG   SenderThread:212779 [sender.py:send_request():396] send_request: defer
+2023-08-01 16:27:55,987 INFO    SenderThread:212779 [sender.py:send_request_defer():598] handle sender defer: 2
+2023-08-01 16:27:55,987 INFO    SenderThread:212779 [sender.py:transition_state():602] send defer: 3
+2023-08-01 16:27:55,987 DEBUG   SenderThread:212779 [sender.py:send():369] send: stats
+2023-08-01 16:27:55,987 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: defer
+2023-08-01 16:27:55,988 INFO    HandlerThread:212779 [handler.py:handle_request_defer():170] handle defer: 3
+2023-08-01 16:27:55,988 DEBUG   SenderThread:212779 [sender.py:send_request():396] send_request: defer
+2023-08-01 16:27:55,988 INFO    SenderThread:212779 [sender.py:send_request_defer():598] handle sender defer: 3
+2023-08-01 16:27:55,988 INFO    SenderThread:212779 [sender.py:transition_state():602] send defer: 4
+2023-08-01 16:27:55,988 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: defer
+2023-08-01 16:27:55,989 INFO    HandlerThread:212779 [handler.py:handle_request_defer():170] handle defer: 4
+2023-08-01 16:27:55,989 DEBUG   SenderThread:212779 [sender.py:send_request():396] send_request: defer
+2023-08-01 16:27:55,989 INFO    SenderThread:212779 [sender.py:send_request_defer():598] handle sender defer: 4
+2023-08-01 16:27:55,989 INFO    SenderThread:212779 [sender.py:transition_state():602] send defer: 5
+2023-08-01 16:27:55,989 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: defer
+2023-08-01 16:27:55,989 INFO    HandlerThread:212779 [handler.py:handle_request_defer():170] handle defer: 5
+2023-08-01 16:27:55,990 DEBUG   SenderThread:212779 [sender.py:send():369] send: summary
+2023-08-01 16:27:55,991 INFO    SenderThread:212779 [sender.py:_save_file():1354] saving file wandb-summary.json with policy end
+2023-08-01 16:27:55,992 DEBUG   SenderThread:212779 [sender.py:send_request():396] send_request: defer
+2023-08-01 16:27:55,992 INFO    SenderThread:212779 [sender.py:send_request_defer():598] handle sender defer: 5
+2023-08-01 16:27:55,992 INFO    SenderThread:212779 [sender.py:transition_state():602] send defer: 6
+2023-08-01 16:27:55,992 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: defer
+2023-08-01 16:27:55,992 INFO    HandlerThread:212779 [handler.py:handle_request_defer():170] handle defer: 6
+2023-08-01 16:27:55,993 DEBUG   SenderThread:212779 [sender.py:send_request():396] send_request: defer
+2023-08-01 16:27:55,993 INFO    SenderThread:212779 [sender.py:send_request_defer():598] handle sender defer: 6
+2023-08-01 16:27:55,993 INFO    SenderThread:212779 [sender.py:transition_state():602] send defer: 7
+2023-08-01 16:27:55,993 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: status_report
+2023-08-01 16:27:55,993 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: defer
+2023-08-01 16:27:55,993 INFO    HandlerThread:212779 [handler.py:handle_request_defer():170] handle defer: 7
+2023-08-01 16:27:55,993 DEBUG   SenderThread:212779 [sender.py:send_request():396] send_request: defer
+2023-08-01 16:27:55,994 INFO    SenderThread:212779 [sender.py:send_request_defer():598] handle sender defer: 7
+2023-08-01 16:27:56,320 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:27:56,321 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/wandb-summary.json
+2023-08-01 16:27:56,866 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: poll_exit
+2023-08-01 16:27:57,323 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:27:57,927 INFO    SenderThread:212779 [sender.py:transition_state():602] send defer: 8
+2023-08-01 16:27:57,927 DEBUG   SenderThread:212779 [sender.py:send_request():396] send_request: poll_exit
+2023-08-01 16:27:57,927 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: defer
+2023-08-01 16:27:57,928 INFO    HandlerThread:212779 [handler.py:handle_request_defer():170] handle defer: 8
+2023-08-01 16:27:57,928 DEBUG   SenderThread:212779 [sender.py:send_request():396] send_request: defer
+2023-08-01 16:27:57,928 INFO    SenderThread:212779 [sender.py:send_request_defer():598] handle sender defer: 8
+2023-08-01 16:27:57,928 INFO    SenderThread:212779 [job_builder.py:build():232] Attempting to build job artifact
+2023-08-01 16:27:57,930 INFO    SenderThread:212779 [job_builder.py:build():256] is repo sourced job
+2023-08-01 16:27:57,933 INFO    SenderThread:212779 [job_builder.py:build():297] adding wandb-job metadata file
+2023-08-01 16:27:57,938 INFO    SenderThread:212779 [sender.py:transition_state():602] send defer: 9
+2023-08-01 16:27:57,938 DEBUG   HandlerThread:212779 [handler.py:handle_request():144] handle_request: defer
+2023-08-01 16:27:57,938 DEBUG   SenderThread:212779 [sender.py:send():369] send: artifact
+2023-08-01 16:27:57,938 INFO    HandlerThread:212779 [handler.py:handle_request_defer():170] handle defer: 9
+2023-08-01 16:27:58,330 INFO    Thread-12 :212779 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:27:58,901 INFO    wandb-upload_0:212779 [upload_job.py:push():88] Skipped uploading /root/.local/share/wandb/artifacts/staging/tmpwf2sdqia
+2023-08-01 16:27:59,322 INFO    wandb-upload_1:212779 [upload_job.py:push():91] Uploaded file /root/.local/share/wandb/artifacts/staging/tmprhovztmp
+2023-08-01 16:28:00,672 INFO    SenderThread:212779 [sender.py:send_artifact():1450] sent artifact job-https___github.com_wujianP_ngc-workspace.git_segment_video_groundedeSAM.py - {'id': 'QXJ0aWZhY3Q6NTI5MTcwNTU5', 'digest': '19e2594480e145261dd9dd09901bf39a', 'state': 'PENDING', 'aliases': [], 'artifactSequence': {'id': 'QXJ0aWZhY3RDb2xsZWN0aW9uOjg3MTA0MTQ1', 'latestArtifact': {'id': 'QXJ0aWZhY3Q6NTI5MDU4OTYz', 'versionIndex': 3}}, 'version': 'latest'}
+2023-08-01 16:28:00,672 DEBUG   SenderThread:212779 [sender.py:send_request():396] send_request: defer
+2023-08-01 16:28:00,672 INFO    SenderThread:212779 [sender.py:send_request_defer():598] handle sender defer: 9
+2023-08-01 16:28:00,672 INFO    SenderThread:212779 [dir_watcher.py:finish():359] shutting down directory watcher
+2023-08-01 16:28:00,874 WARNING StreamThr :212779 [internal.py:is_dead():414] Internal process exiting, parent pid 212747 disappeared
+2023-08-01 16:28:00,875 ERROR   StreamThr :212779 [internal.py:wandb_internal():152] Internal process shutdown.
+2023-08-01 16:28:00,942 INFO    HandlerThread:212779 [handler.py:finish():854] shutting down handler
+2023-08-01 16:28:00,943 INFO    WriterThread:212779 [datastore.py:close():298] close: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/run-67ft9ujh.wandb
+2023-08-01 16:28:01,334 INFO    SenderThread:212779 [dir_watcher.py:finish():389] scan: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files
+2023-08-01 16:28:01,335 INFO    SenderThread:212779 [dir_watcher.py:finish():403] scan save: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/requirements.txt requirements.txt
+2023-08-01 16:28:01,335 INFO    SenderThread:212779 [dir_watcher.py:finish():403] scan save: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/wandb-summary.json wandb-summary.json
+2023-08-01 16:28:01,340 INFO    SenderThread:212779 [dir_watcher.py:finish():403] scan save: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/wandb-metadata.json wandb-metadata.json
+2023-08-01 16:28:01,340 INFO    SenderThread:212779 [dir_watcher.py:finish():403] scan save: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log output.log
+2023-08-01 16:28:01,345 INFO    SenderThread:212779 [dir_watcher.py:finish():403] scan save: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/config.yaml config.yaml
+2023-08-01 16:28:01,350 INFO    SenderThread:212779 [dir_watcher.py:finish():403] scan save: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/conda-environment.yaml conda-environment.yaml
+2023-08-01 16:28:01,362 INFO    SenderThread:212779 [dir_watcher.py:finish():403] scan save: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/media/images/Visualization_19_9bbd133bd1fb35fc9605.png media/images/Visualization_19_9bbd133bd1fb35fc9605.png
+2023-08-01 16:28:01,362 INFO    SenderThread:212779 [dir_watcher.py:finish():403] scan save: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/media/images/Visualization_4_be13934c93f3392556c8.png media/images/Visualization_4_be13934c93f3392556c8.png
+2023-08-01 16:28:01,362 INFO    SenderThread:212779 [dir_watcher.py:finish():403] scan save: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/media/images/Visualization_7_c69dd9aa4f9ac8fe7799.png media/images/Visualization_7_c69dd9aa4f9ac8fe7799.png
+2023-08-01 16:28:01,363 INFO    SenderThread:212779 [dir_watcher.py:finish():403] scan save: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/media/images/Visualization_6_9552ecdd8310dfd756e9.png media/images/Visualization_6_9552ecdd8310dfd756e9.png
+2023-08-01 16:28:01,363 INFO    SenderThread:212779 [dir_watcher.py:finish():403] scan save: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/media/images/Visualization_0_30cd1f76eef4f83ca017.png media/images/Visualization_0_30cd1f76eef4f83ca017.png
+2023-08-01 16:28:01,363 INFO    SenderThread:212779 [dir_watcher.py:finish():403] scan save: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/media/images/Visualization_11_c38cc63e10276db44fef.png media/images/Visualization_11_c38cc63e10276db44fef.png
+2023-08-01 16:28:01,363 INFO    SenderThread:212779 [dir_watcher.py:finish():403] scan save: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/media/images/Visualization_22_35f62e59943deb60ad1f.png media/images/Visualization_22_35f62e59943deb60ad1f.png
+2023-08-01 16:28:01,364 INFO    SenderThread:212779 [dir_watcher.py:finish():403] scan save: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/media/images/Visualization_14_bdb9e2e91359ceffa29e.png media/images/Visualization_14_bdb9e2e91359ceffa29e.png
+2023-08-01 16:28:01,364 INFO    SenderThread:212779 [dir_watcher.py:finish():403] scan save: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/media/images/Visualization_21_1631e443170c82b52799.png media/images/Visualization_21_1631e443170c82b52799.png
+2023-08-01 16:28:01,364 INFO    SenderThread:212779 [dir_watcher.py:finish():403] scan save: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/media/images/Visualization_12_15784c31cc72e0e30860.png media/images/Visualization_12_15784c31cc72e0e30860.png
+2023-08-01 16:28:01,364 INFO    SenderThread:212779 [dir_watcher.py:finish():403] scan save: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/media/images/Visualization_18_f81886b65d9c81ddd0c6.png media/images/Visualization_18_f81886b65d9c81ddd0c6.png
+2023-08-01 16:28:01,364 INFO    SenderThread:212779 [dir_watcher.py:finish():403] scan save: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/media/images/Visualization_5_927061a93d01bbe4a1fc.png media/images/Visualization_5_927061a93d01bbe4a1fc.png
+2023-08-01 16:28:01,364 INFO    SenderThread:212779 [dir_watcher.py:finish():403] scan save: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/media/images/Visualization_2_4aef63a42a2d23efbed7.png media/images/Visualization_2_4aef63a42a2d23efbed7.png
+2023-08-01 16:28:01,365 INFO    SenderThread:212779 [dir_watcher.py:finish():403] scan save: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/media/images/Visualization_3_fb89f4a33e5191a4680a.png media/images/Visualization_3_fb89f4a33e5191a4680a.png
+2023-08-01 16:28:01,365 INFO    SenderThread:212779 [dir_watcher.py:finish():403] scan save: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/media/images/Visualization_13_0f6f0223c44c9ad1b8af.png media/images/Visualization_13_0f6f0223c44c9ad1b8af.png
+2023-08-01 16:28:01,365 INFO    SenderThread:212779 [dir_watcher.py:finish():403] scan save: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/media/images/Visualization_17_0276334298454286bf6c.png media/images/Visualization_17_0276334298454286bf6c.png
+2023-08-01 16:28:01,365 INFO    SenderThread:212779 [dir_watcher.py:finish():403] scan save: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/media/images/Visualization_8_d41b8e384d24ffc46ed4.png media/images/Visualization_8_d41b8e384d24ffc46ed4.png
+2023-08-01 16:28:01,365 INFO    SenderThread:212779 [dir_watcher.py:finish():403] scan save: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/media/images/Visualization_23_d98e4ed13395988a2dc6.png media/images/Visualization_23_d98e4ed13395988a2dc6.png
+2023-08-01 16:28:01,365 INFO    SenderThread:212779 [dir_watcher.py:finish():403] scan save: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/media/images/Visualization_10_da394d41d85cc598c800.png media/images/Visualization_10_da394d41d85cc598c800.png
+2023-08-01 16:28:01,366 INFO    SenderThread:212779 [dir_watcher.py:finish():403] scan save: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/media/images/Visualization_20_a39cbfe1874a71c61b1d.png media/images/Visualization_20_a39cbfe1874a71c61b1d.png
+2023-08-01 16:28:01,366 INFO    SenderThread:212779 [dir_watcher.py:finish():403] scan save: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/media/images/Visualization_16_4a18ffa15b906557f68c.png media/images/Visualization_16_4a18ffa15b906557f68c.png
+2023-08-01 16:28:01,366 INFO    SenderThread:212779 [dir_watcher.py:finish():403] scan save: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/media/images/Visualization_1_683ccbf1341f1db3c822.png media/images/Visualization_1_683ccbf1341f1db3c822.png
+2023-08-01 16:28:01,366 INFO    SenderThread:212779 [dir_watcher.py:finish():403] scan save: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/media/images/Visualization_9_0494260005eb6f30ca6a.png media/images/Visualization_9_0494260005eb6f30ca6a.png
+2023-08-01 16:28:01,366 INFO    SenderThread:212779 [dir_watcher.py:finish():403] scan save: /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/media/images/Visualization_15_5947d894372b30f05b9a.png media/images/Visualization_15_5947d894372b30f05b9a.png
+2023-08-01 16:28:01,366 INFO    SenderThread:212779 [sender.py:transition_state():602] send defer: 10
+2023-08-01 16:28:01,367 INFO    SenderThread:212779 [sender.py:finish():1526] shutting down sender
+2023-08-01 16:28:01,367 INFO    SenderThread:212779 [file_pusher.py:finish():159] shutting down file pusher
+2023-08-01 16:28:01,367 INFO    SenderThread:212779 [file_pusher.py:join():164] waiting for file pusher
+2023-08-01 16:28:01,699 INFO    wandb-upload_1:212779 [upload_job.py:push():133] Uploaded file /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/wandb-summary.json
+2023-08-01 16:28:01,793 INFO    wandb-upload_3:212779 [upload_job.py:push():133] Uploaded file /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/config.yaml
+2023-08-01 16:28:01,809 INFO    wandb-upload_2:212779 [upload_job.py:push():133] Uploaded file /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/output.log
+2023-08-01 16:28:01,834 INFO    wandb-upload_4:212779 [upload_job.py:push():133] Uploaded file /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/conda-environment.yaml
+2023-08-01 16:28:02,374 INFO    wandb-upload_0:212779 [upload_job.py:push():133] Uploaded file /discobox/wjpeng/code/202306/ngc-workspace/segment_video/wandb/run-20230801_161655-67ft9ujh/files/requirements.txt

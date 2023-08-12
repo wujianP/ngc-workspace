@@ -1,0 +1,11 @@
+[34m[1mwandb[39m[22m: [32m[41mERROR[39m[49m wandb.Video requires moviepy and imageio when passing raw data.  Install with "pip install moviepy imageio"
+Traceback (most recent call last):
+  File "visualize_video.py", line 45, in <module>
+    run.log({'video': wandb.Video(video, fps=4)})
+  File "/discobox/wjpeng/env/openVCLIP/lib/python3.8/site-packages/wandb/sdk/data_types/video.py", line 128, in __init__
+    self.encode()
+  File "/discobox/wjpeng/env/openVCLIP/lib/python3.8/site-packages/wandb/sdk/data_types/video.py", line 131, in encode
+    mpy = util.get_module(
+  File "/discobox/wjpeng/env/openVCLIP/lib/python3.8/site-packages/wandb/util.py", line 229, in get_module
+    raise wandb.Error(required)
+wandb.errors.Error: wandb.Video requires moviepy and imageio when passing raw data.  Install with "pip install moviepy imageio"
