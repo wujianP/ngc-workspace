@@ -16,11 +16,19 @@ def process_captions(captions, prompt):
         dialog = [
             {"role": "system", "content": prompt},
             {"role": "user", "content": 'A brown horse is grazing grass near a red house.'},
-            {"role": "assistant", "content": """Modified Sentence: 
-            A red horse is grazing grass near a brown house."""},
-            {"role": "user", "content": 'A brown horse is grazing grass near a red house.'},
-            {"role": "assistant", "content": """Modified Sentence: 
-            A red horse is grazing grass near a brown house."""},
+            {"role": "assistant", "content": """Reason: (swap two adjectives): Result: A red horse is grazing grass near a brown house."""},
+            {"role": "user", "content": 'An angled view of a beautifully decorated bathroom.'},
+            {"role": "assistant", "content": """Reason: (alter an adjective): Result: An angled view of a poorly decorated bathroom."""},
+            {"role": "user", "content": 'A bus is parked by a bench at night.'},
+            {"role": "assistant", "content": """Reason: (alter a noun): Result: A bus is parked by a bench at night."""},
+            {"role": "user", "content": 'Two bicycles and a woman walking in front of a shop'},
+            {"role": "assistant", "content": """Reason: (swap two nouns): Result: Two woman and a bicycles walking in front of a shop"""},
+            {"role": "user", "content": 'A sink and a toilet inside a small bathroom.'},
+            {"role": "assistant", "content": """Reason: (alter a preposition): Result: A sink and a toilet outside a small bathroom."""},
+            {"role": "user", "content": 'The two people are sitting down the beach.'},
+            {"role": "assistant", "content": """Reason: (alter a verb): Result: The two people are sitting down the beach."""},
+            {"role": "user", "content": 'Two cats sleep on the bed while a man stands'},
+            {"role": "assistant", "content": """Reason: (swap two verbs): Result: Two cats stand on the bed while a man sleeps"""},
             {"role": "user", "content": caption}
         ]
         dialogs.append(dialog)
@@ -87,7 +95,7 @@ def main(args):
             # save
             result_to_save[ann_id] = caption_list
         if cur_idx % args.save_freq == 0:
-            filename = os.path.join(args.output_dir, args.filename + f'_{args.gpu}')
+            filename = os.path.join(args.output_dir, args.filename + f'_gpu{args.gpu}.pth')
             torch.save(result_to_save, filename)
 
         for cap, result in zip(captions, results):
