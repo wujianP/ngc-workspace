@@ -18,4 +18,4 @@ if __name__ == '__main__':
     parser.add_argument('--out', type=str)
     args = parser.parse_args()
 
-    zip_directory(directory_path=args.dir, output_zip_file=args.out)
+    zip_directory(directory_path=args.dir, output_zip_path=args.out)
