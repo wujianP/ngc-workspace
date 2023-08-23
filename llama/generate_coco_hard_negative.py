@@ -5,7 +5,7 @@ import os
 
 import numpy as np
 
-from dataset import CocoDataset
+from dataset import CocoShardedDataset
 from llama import Llama
 from torch.utils.data import DataLoader
 
@@ -56,7 +56,7 @@ def main(args):
         max_batch_size=args.max_batch_size,
     )
 
-    dataset = CocoDataset(image_root=args.images_path,
+    dataset = CocoShardedDataset(image_root=args.images_path,
                           json=args.annotations_path,
                           gpu_id=args.gpu)
 

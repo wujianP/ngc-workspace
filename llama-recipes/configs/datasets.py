@@ -26,3 +26,10 @@ class alpaca_dataset:
     train_split: str = "train"
     test_split: str = "val"
     data_path: str = "ft_datasets/alpaca_data.json"
+
+
+@dataclass
+class coco_hard_caption_dataset:
+    dataset: str = "coco_hard_caption_dataset"
+    train_split: str = "train"
+    test_split: str = "validation"

@@ -1,4 +1,4 @@
-from .coco import CocoDataset
+from .coco import CocoDataset, CocoShardedDataset
 
 
-__all__ = ['CocoDataset']
+__all__ = ['CocoDataset', 'CocoShardedDataset']
