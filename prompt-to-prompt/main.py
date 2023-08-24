@@ -295,7 +295,9 @@ if __name__ == '__main__':
     prompts = ["A woman and a man riding motor bikes next to a red compact car.",
                "A woman and a man driving an red compact car next to a motor bikes."]
 
-    controller = AttentionReplace(prompts, NUM_DIFFUSION_STEPS, cross_replace_steps=.8, self_replace_steps=0.4)
+    controller = AttentionRefine(prompts, NUM_DIFFUSION_STEPS,
+                             cross_replace_steps=.5,
+                             self_replace_steps=.2)
     _ = run_and_display(prompts, controller, latent=None)
     import wandb
     wandb.login('8cff0498531e0409db5f3c43b52a26b0d068f2dc')
