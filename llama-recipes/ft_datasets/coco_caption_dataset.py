@@ -18,8 +18,8 @@ class CoCoCaptionDataset:
         ipt = self.data[idx]['input']
         opt = self.data[idx]['output']
         input_ids = self.tokenizer(ipt, padding=True)['input_ids']
-        labels = self.tokenizer(opt)['input_ids']
-        attention_mask = self.tokenizer(opt)['attention_mask']
+        labels = self.tokenizer(opt, padding=True)['input_ids']
+        attention_mask = self.tokenizer(opt, padding=True)['attention_mask']
         data = {
             "input_ids": input_ids,
             "labels": labels,
