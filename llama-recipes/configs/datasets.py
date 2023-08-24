@@ -31,5 +31,5 @@ class alpaca_dataset:
 @dataclass
 class coco_caption_dataset:
     dataset: str = "coco_caption_dataset"
-    train_split: str = "train.csv"
-    test_split: str = "validation.csv"
+    train_split: str = "/discobox/wjpeng/dataset/coco2014/coco_hard_human_filtered.pth"
+    test_split: str = "/discobox/wjpeng/dataset/coco2014/coco_hard_human_filtered.pth"
