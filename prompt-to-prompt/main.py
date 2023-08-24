@@ -289,7 +289,7 @@ if __name__ == '__main__':
     MAX_NUM_WORDS = 77
 
     device = torch.device("cuda:0")
-    ldm_stable = StableDiffusionPipeline.from_pretrained("CompVis/stable-diffusion-v1-4").to("cuda")
+    ldm_stable = StableDiffusionPipeline.from_pretrained("stabilityai/stable-diffusion-2-1-base").to("cuda")
     tokenizer = ldm_stable.tokenizer
 
     prompts = ["A woman and a man riding motor bikes next to a red compact car.",
