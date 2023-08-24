@@ -58,4 +58,4 @@ def generate_dataset_config(train_config, kwargs):
     dataset_config = {k:v for k, v in inspect.getmembers(datasets)}[train_config.dataset]
     update_config(dataset_config, **kwargs)
     
-    return  dataset_config
+    return dataset_config

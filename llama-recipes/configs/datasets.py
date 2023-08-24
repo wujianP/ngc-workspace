@@ -29,7 +29,7 @@ class alpaca_dataset:
 
 
 @dataclass
-class coco_hard_caption_dataset:
-    dataset: str = "coco_hard_caption_dataset"
-    train_split: str = "train"
-    test_split: str = "validation"
+class coco_caption_dataset:
+    dataset: str = "coco_caption_dataset"
+    train_split: str = "train.csv"
+    test_split: str = "validation.csv"
