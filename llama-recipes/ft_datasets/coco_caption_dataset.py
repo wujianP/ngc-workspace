@@ -17,7 +17,7 @@ class CoCoCaptionDataset:
     def __getitem__(self, idx):
         ipt = self.data[idx]['input']
         opt = self.data[idx]['output']
-        input_ids = self.tokenizer(ipt)['input_ids']
+        input_ids = self.tokenizer(ipt, padding=True)['input_ids']
         labels = self.tokenizer(opt)['input_ids']
         attention_mask = self.tokenizer(opt)['attention_mask']
         data = {
