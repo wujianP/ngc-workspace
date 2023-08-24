@@ -304,6 +304,3 @@ if __name__ == '__main__':
     run = wandb.init('prompt')
     from IPython import embed
     embed()
-
-
-
