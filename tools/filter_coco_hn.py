@@ -6,12 +6,12 @@ if __name__ == '__main__':
 
     data = []
     for line in lines:
-        input = line.strip().split(',')[0].strip()
-        output = line.strip().split(',')[1].strip()
+        input = line.strip().split('[sep]')[0].strip()
+        output = line.strip().split('[sep]')[1].strip()
         if len(output) > 5:
             data.append({
-                'input': input,
-                'output': output
+                'input': input[:-1],
+                'output': output[1:]
             })
     import torch
     torch.save(data, 'coco_hard_human_filtered.pth')
