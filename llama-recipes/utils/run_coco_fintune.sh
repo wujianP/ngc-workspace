@@ -5,4 +5,6 @@ python llama_finetuning.py  \
 --model_name /discobox/wjpeng/weights/llama2-7b-hf \
 --output_dir /discobox/wjpeng/weights/llama2-7b-coco \
 --num_epochs 1 \
---dataset coco_caption_dataset
+--dataset coco_caption_dataset \
+--batch_size_training 1 \
+--lr 1e-5
