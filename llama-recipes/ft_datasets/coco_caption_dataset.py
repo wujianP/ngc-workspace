@@ -18,7 +18,7 @@ class CoCoCaptionDataset:
         ipt = self.data[idx]['input']
         opt = self.data[idx]['output']
         tmp = 'this is a test, this is a test, this is a test, this is a test, this is a test, this is a test, this is a test, '
-        inputs = self.tokenizer([ipt, opt, tmp], padding=True)
+        inputs = self.tokenizer([ipt, opt, tmp], padding=True, max_length=self.tokenizer.model_max_length)
         data = {
             "input_ids": inputs['input_ids'][0],
             "labels": inputs['input_ids'][1],
