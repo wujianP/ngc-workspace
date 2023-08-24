@@ -6,7 +6,7 @@ if __name__ == '__main__':
                        json='/discobox/wjpeng/dataset/coco2014/annotations/captions_train2014.json')
     output = '/discobox/wjpeng/dataset/coco2014/captions_demo.txt'
     for i in range(len(coco)):
-        if i % 100 == 0:
+        if i % 500 == 0:
             cap, _ = coco[i]
             with open(output, mode='a') as f:
                 f.write(cap + '\n')
