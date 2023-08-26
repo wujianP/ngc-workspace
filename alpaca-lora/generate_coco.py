@@ -2,13 +2,10 @@ import os
 import sys
 
 import fire
-import gradio as gr
 import torch
-import transformers
 from peft import PeftModel
 from transformers import GenerationConfig, LlamaForCausalLM, LlamaTokenizer
 
-from utils.callbacks import Iteratorize, Stream
 from utils.prompter import Prompter
 
 if torch.cuda.is_available():
@@ -23,6 +20,7 @@ except:  # noqa: E722
     pass
 
 
+@torch.no_grad()
 def main(
     load_8bit: bool = False,
     base_model: str = "",
@@ -89,7 +87,7 @@ def main(
         top_p=0.75,
         top_k=40,
         num_beams=4,
-        max_new_tokens=128,
+        max_new_tokens=80,
         **kwargs,
     ):
         prompt = prompter.generate_prompt(instruction, input)
@@ -99,23 +97,21 @@ def main(
             temperature=temperature,
             top_p=top_p,
             top_k=top_k,
+            repeatition_penalty=2.0,
             num_beams=num_beams,
             **kwargs,
         )
 
-        with torch.no_grad():
-            generation_output = model.generate(
-                input_ids=input_ids,
-                generation_config=generation_config,
-                return_dict_in_generate=True,
-                output_scores=True,
-                max_new_tokens=max_new_tokens,
-            )
+        generation_output = model.generate(
+            input_ids=input_ids,
+            generation_config=generation_config,
+            return_dict_in_generate=True,
+            output_scores=True,
+            max_new_tokens=max_new_tokens,
+        )
         s = generation_output.sequences[0]
-        output = tokenizer.decode(s)
-        from IPython import embed
-        embed()
-        return output
+        # tokenizer.batch_decode(generate_ids, skip_special_tokens=True, clean_up_tokenization_spaces=False)[0]
+        return tokenizer.decode(s)
 
     from IPython import embed
     embed()
