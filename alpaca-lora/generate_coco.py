@@ -156,7 +156,8 @@ def main(
             )
         s = generation_output.sequences[0]
         output = tokenizer.decode(s)
-        yield prompter.get_response(output)
+        # yield prompter.get_response(output)
+        return output
 
     from IPython import embed
     embed()
@@ -219,3 +220,6 @@ def main(
 
 if __name__ == "__main__":
     fire.Fire(main)
+
+    # instruction = "Change the meaning of the input sentence with minimal modifications while keeping the overall structure unchanged."
+    # input = "A woman looks up while typing on her laptop."

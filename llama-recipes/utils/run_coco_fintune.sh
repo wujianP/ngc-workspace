@@ -32,6 +32,6 @@ python llama_finetuning.py  \
 --output_dir /discobox/wjpeng/weights/llama-2-7b-coco-lora
 
 
-python generate.py \
+python generate_coco.py \
     --base_model '/discobox/wjpeng/weights/llama-2-7b-hf' \
     --lora_weights '/discobox/wjpeng/weights/llama-2-7b-coco-lora'
