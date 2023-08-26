@@ -86,7 +86,7 @@ def main(
         temperature=0.1,
         top_p=0.75,
         top_k=40,
-        num_beams=4,
+        num_beams=1,
         max_new_tokens=80,
         **kwargs,
     ):
@@ -95,9 +95,10 @@ def main(
         input_ids = inputs["input_ids"].to(device)
         generation_config = GenerationConfig(
             temperature=temperature,
-            top_p=top_p,
-            top_k=top_k,
+            # top_p=top_p,
+            # top_k=top_k,
             repeatition_penalty=2.0,
+            do_sample=True,
             num_beams=num_beams,
             **kwargs,
         )
@@ -122,3 +123,14 @@ if __name__ == "__main__":
 
 
 # evaluate(input="A man is smiling while talking on his cell phone.")
+def test():
+    inputs = [
+        "A man smiles at a woman holding a blender.",
+        "A young girl is inside a refrigerator door.",
+        "A man wearing a camera while standing near a metal pole.",
+        "There are three phones left out on the table.",
+        "Baby stands up in car styled walker with bunch of beads around his neck.",
+        "A tennis player runs across the court to hit a ball."
+    ]
+    for ipt in inputs:
+        print(evaluate(input=ipt))
