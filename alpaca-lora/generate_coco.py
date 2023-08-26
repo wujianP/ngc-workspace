@@ -22,10 +22,10 @@ except:  # noqa: E722
 
 @torch.no_grad()
 def main(
-    load_8bit: bool = False,
-    base_model: str = "",
-    lora_weights: str = "tloen/alpaca-lora-7b",
-    prompt_template: str = "",  # The prompt template to use, will default to alpaca.
+        load_8bit: bool = False,
+        base_model: str = "",
+        lora_weights: str = "tloen/alpaca-lora-7b",
+        prompt_template: str = "",  # The prompt template to use, will default to alpaca.
 ):
     base_model = base_model or os.environ.get("BASE_MODEL", "")
     assert (
@@ -81,14 +81,14 @@ def main(
         model = torch.compile(model)
 
     def evaluate(
-        instruction="Change the meaning of the input sentence with minimal modifications while keeping the overall structure unchanged.",
-        input=None,
-        temperature=0.1,
-        top_p=0.75,
-        top_k=40,
-        num_beams=4,
-        max_new_tokens=80,
-        **kwargs,
+            instruction="Change the meaning of the input sentence with minimal modifications while keeping the overall structure unchanged.",
+            input=None,
+            temperature=0.1,
+            top_p=0.75,
+            top_k=40,
+            num_beams=4,
+            max_new_tokens=80,
+            **kwargs,
     ):
         prompt = prompter.generate_prompt(instruction, input)
         inputs = tokenizer(prompt, return_tensors="pt")
@@ -133,3 +133,21 @@ def test():
     ]
     for ipt in inputs:
         print(evaluate(input=ipt))
+
+# #############
+# from datasets import load_dataset
+#
+# examples = load_dataset('facebook/winoground', use_auth_token="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")['test']
+# data = []
+# for i in range(len(examples)):
+#     data.append({
+#         "instruction": "Generate two sentences, where the meanings of the two sentences are different, but the overall structure is similar.",
+#         "input": "",
+#         "output": f"sentence 1: {examples[i]['caption_0']}, sentence 2: {examples[i]['caption_1']}"
+#     })
+#
+# import json
+# # 将数据列表保存为JSON文件（UTF-8编码）
+# file_path = "/discobox/wjpeng/dataset/alpaca/winoground_generate.json"
+# with open(file_path, 'w', encoding='utf-8') as json_file:
+#     json.dump(data, json_file, ensure_ascii=False, indent=4)
