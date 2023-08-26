@@ -86,7 +86,7 @@ def main(
         temperature=0.1,
         top_p=0.75,
         top_k=40,
-        num_beams=1,
+        num_beams=4,
         max_new_tokens=80,
         **kwargs,
     ):
@@ -95,10 +95,9 @@ def main(
         input_ids = inputs["input_ids"].to(device)
         generation_config = GenerationConfig(
             temperature=temperature,
-            # top_p=top_p,
-            # top_k=top_k,
+            top_p=top_p,
+            top_k=top_k,
             repeatition_penalty=2.0,
-            do_sample=True,
             num_beams=num_beams,
             **kwargs,
         )
