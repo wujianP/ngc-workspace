@@ -156,6 +156,8 @@ def main(
             )
         s = generation_output.sequences[0]
         output = tokenizer.decode(s)
+        from IPython import embed
+        embed()
         # yield prompter.get_response(output)
         return output
 
