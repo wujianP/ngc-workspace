@@ -21,6 +21,7 @@ import matplotlib.pyplot as plt
 
 # Tag2Text
 import sys
+
 sys.path.append('Tag2Text')
 from Tag2Text.models import tag2text
 from Tag2Text import inference_tag2text
@@ -30,6 +31,7 @@ from dataset import CoCoDataset
 from torch.utils.data import DataLoader
 
 import wandb
+
 wandb.login()
 run = wandb.init('Tag2Text & Grounded DINO & HQ-SAM')
 
@@ -130,7 +132,7 @@ def load_grounding_dino_model(model_config_path, model_checkpoint_path):
     return model.cuda()
 
 
-def get_grounding_output(model, image, caption, box_threshold, text_threshold,device="cpu"):
+def get_grounding_output(model, image, caption, box_threshold, text_threshold, device="cpu"):
     caption = caption.lower()
     caption = caption.strip()
     if not caption.endswith("."):
@@ -169,7 +171,7 @@ def show_mask(mask, ax, random_color=False):
     if random_color:
         color = np.concatenate([np.random.random(3), np.array([0.6])], axis=0)
     else:
-        color = np.array([30/255, 144/255, 255/255, 0.6])
+        color = np.array([30 / 255, 144 / 255, 255 / 255, 0.6])
     h, w = mask.shape[-2:]
     mask_image = mask.reshape(h, w, 1) * color.reshape(1, 1, -1)
     ax.imshow(mask_image)
@@ -178,7 +180,7 @@ def show_mask(mask, ax, random_color=False):
 def show_box(box, ax, label):
     x0, y0 = box[0], box[1]
     w, h = box[2] - box[0], box[3] - box[1]
-    ax.add_patch(plt.Rectangle((x0, y0), w, h, edgecolor='green', facecolor=(0,0,0,0), lw=2)) 
+    ax.add_patch(plt.Rectangle((x0, y0), w, h, edgecolor='green', facecolor=(0, 0, 0, 0), lw=2))
     ax.text(x0, y0, label)
 
 
@@ -195,7 +197,7 @@ def save_mask_data(output_dir, caption, mask_list, box_list, label_list):
 
     json_data = {
         'caption': caption,
-        'mask':[{
+        'mask': [{
             'value': value,
             'label': 'background'
         }]
@@ -203,7 +205,7 @@ def save_mask_data(output_dir, caption, mask_list, box_list, label_list):
     for label, box in zip(label_list, box_list):
         value += 1
         name, logit = label.split('(')
-        logit = logit[:-1] # the last is ')'
+        logit = logit[:-1]  # the last is ')'
         json_data['mask'].append({
             'value': value,
             'label': name,
@@ -212,7 +214,7 @@ def save_mask_data(output_dir, caption, mask_list, box_list, label_list):
         })
     with open(os.path.join(output_dir, 'label.json'), 'w') as f:
         json.dump(json_data, f)
-    
+
 
 if __name__ == "__main__":
 
@@ -263,9 +265,6 @@ if __name__ == "__main__":
         sam = build_sam(checkpoint=args.sam_checkpoint).cuda()
 
     # load Tag2Text model
-    transform = TS.Compose([TS.Resize((384, 384)),
-                            TS.ToTensor(),
-                            TS.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])])
     # filter out attributes and action categories which are difficult to grounding
     delete_tag_index = []
     for i in range(3012, 3429):
@@ -274,7 +273,7 @@ if __name__ == "__main__":
                                                delete_tag_index=delete_tag_index,
                                                image_size=384,
                                                vit='swin_b').cuda()
-    tag2text_model.threshold = 0.64     # we reduce the threshold to obtain more tags
+    tag2text_model.threshold = 0.64  # we reduce the threshold to obtain more tags
     tag2text_model.eval()
 
     # iterate forward pass
@@ -282,8 +281,18 @@ if __name__ == "__main__":
     result_dict = {'configure': vars(args)}
     for iter_idx, (images, Ws, Hs, paths) in enumerate(dataloader):
 
+        # >>> Tagging: inference tag2text >>>
+        transform_tag2text = TS.Compose([TS.Resize((384, 384)),
+                                         TS.ToTensor(),
+                                         TS.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])])
+        images_tag2text = torch.stack([transform_tag2text(img) for img in images]).cuda()
         from IPython import embed
         embed()
+        # >>> Detection: inference grounded dino >>>
+
+        # >>> Segmentation: inference sam >>>
+
+        # >>> Inpainting: inference stable diffusion or lama >>>
 
     # raw_image = image_pil.resize((384, 384))
     # raw_image = transform(raw_image).unsqueeze(0).to(device)
@@ -331,12 +340,12 @@ if __name__ == "__main__":
     transformed_boxes = predictor.transform.apply_boxes_torch(boxes_filt, image.shape[:2]).to(device)
 
     masks, _, _ = predictor.predict_torch(
-        point_coords = None,
-        point_labels = None,
-        boxes = transformed_boxes.to(device),
-        multimask_output = False,
+        point_coords=None,
+        point_labels=None,
+        boxes=transformed_boxes.to(device),
+        multimask_output=False,
     )
-    
+
     # draw output image
     plt.figure(figsize=(10, 10))
     plt.imshow(image)
