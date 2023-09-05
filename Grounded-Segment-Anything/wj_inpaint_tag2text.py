@@ -11,12 +11,12 @@ from PIL import Image, ImageDraw, ImageFont
 # Grounding DINO
 import GroundingDINO.groundingdino.datasets.transforms as T
 from GroundingDINO.groundingdino.models import build_model
-from GroundingDINO.groundingdino.util import box_ops
+# from GroundingDINO.groundingdino.util import box_ops
 from GroundingDINO.groundingdino.util.slconfig import SLConfig
 from GroundingDINO.groundingdino.util.utils import clean_state_dict, get_phrases_from_posmap
 
 # segment anything
-from segment_anything import build_sam, SamPredictor 
+from segment_anything import build_sam, SamPredictor, build_sam_hq
 import cv2
 import numpy as np
 import matplotlib.pyplot as plt
@@ -28,9 +28,23 @@ from Tag2Text.models import tag2text
 from Tag2Text import inference_tag2text
 import torchvision.transforms as TS
 
-# ChatGPT or nltk is required when using captions
-# import openai
-# import nltk
+from dataset import CoCoDataset
+from torch.utils.data import DataLoader
+
+import wandb
+wandb.login()
+run = wandb.init('Tag2Text & Grounded DINO & HQ-SAM')
+
+
+def my_collate_fn(batch):
+    images, Ws, Hs, paths = [], [], [], []
+    for item in batch:
+        images.append(item[0])
+        Ws.append(item[1])
+        Hs.append(item[2])
+        paths.append(item[3])
+    return [images, Ws, Hs, paths]
+
 
 def load_image(image_path):
     # load image
@@ -205,59 +219,45 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser("Grounded-Segment-Anything Demo", add_help=True)
     parser.add_argument("--config", type=str, required=True, help="path to config file")
-    parser.add_argument(
-        "--tag2text_checkpoint", type=str, required=True, help="path to checkpoint file"
-    )
-    parser.add_argument(
-        "--grounded_checkpoint", type=str, required=True, help="path to checkpoint file"
-    )
-    parser.add_argument(
-        "--sam_checkpoint", type=str, required=True, help="path to checkpoint file"
-    )
-    parser.add_argument("--input_image", type=str, required=True, help="path to image file")
+    parser.add_argument("--tag2text_checkpoint", type=str, required=True, help="path to checkpoint file")
+    parser.add_argument("--grounded_checkpoint", type=str, required=True, help="path to checkpoint file")
+    parser.add_argument("--sam_checkpoint", type=str, required=True, help="path to checkpoint file")
+    parser.add_argument("--sam_hq_checkpoint", type=str, required=True, help="path to checkpoint file")
+    parser.add_argument("--use_sam_hq", action="store_true", help="using sam-hq for prediction")
     parser.add_argument("--split", default=",", type=str, help="split for text prompt")
-    parser.add_argument("--openai_key", type=str, help="key for chatgpt")
-    parser.add_argument("--openai_proxy", default=None, type=str, help="proxy for chatgpt")
-    parser.add_argument(
-        "--output_dir", "-o", type=str, default="outputs", required=True, help="output directory"
-    )
+    parser.add_argument("--output_dir", "-o", type=str, default="outputs", required=True, help="output directory")
 
     parser.add_argument("--box_threshold", type=float, default=0.25, help="box threshold")
     parser.add_argument("--text_threshold", type=float, default=0.2, help="text threshold")
     parser.add_argument("--iou_threshold", type=float, default=0.5, help="iou threshold")
 
-    parser.add_argument("--device", type=str, default="cpu", help="running on cpu only!, default=False")
+    parser.add_argument("--data_root", type=str)
+    parser.add_argument("--data_ann", type=str)
+    parser.add_argument("--batch_size", type=int, default=32)
+    parser.add_argument("--num_workers", type=int, default=8)
+
     args = parser.parse_args()
 
     # cfg
-    config_file = args.config  # change the path of the model config file
-    tag2text_checkpoint = args.tag2text_checkpoint  # change the path of the model
-    grounded_checkpoint = args.grounded_checkpoint  # change the path of the model
-    sam_checkpoint = args.sam_checkpoint
-    image_path = args.input_image
-    split = args.split
-    openai_key = args.openai_key
-    openai_proxy = args.openai_proxy
-    output_dir = args.output_dir
-    box_threshold = args.box_threshold
-    text_threshold = args.text_threshold
-    iou_threshold = args.iou_threshold
-    device = args.device
-    
-    # ChatGPT or nltk is required when using captions
-    # openai.api_key = openai_key
-    # if openai_proxy:
-        # openai.proxy = {"http": openai_proxy, "https": openai_proxy}
+    config_file = args.config
+    device = "cuda"
 
-    # make dir
-    os.makedirs(output_dir, exist_ok=True)
-    # load image
-    image_pil, image = load_image(image_path)
+    # load data
+    dataset = CoCoDataset(image_root=args.data_root, json=args.data_ann)
+    dataloader = DataLoader(dataset=dataset,
+                            batch_size=args.batch_size,
+                            num_workers=args.num_workers,
+                            pin_memory=True,
+                            shuffle=False,
+                            collate_fn=my_collate_fn)
+    from IPython import embed
+    embed()
+
     # load model
-    model = load_model(config_file, grounded_checkpoint, device=device)
+    model = load_model(config_file, args.grounded_checkpoint, device=device)
 
     # visualize raw image
-    image_pil.save(os.path.join(output_dir, "raw_image.jpg"))
+    image_pil.save(os.path.join(args.output_dir, "raw_image.jpg"))
 
     # initialize Tag2Text
     normalize = TS.Normalize(mean=[0.485, 0.456, 0.406],
@@ -274,7 +274,7 @@ if __name__ == "__main__":
 
     specified_tags='None'
     # load model
-    tag2text_model = tag2text.tag2text_caption(pretrained=tag2text_checkpoint,
+    tag2text_model = tag2text.tag2text_caption(pretrained=args.tag2text_checkpoint,
                                         image_size=384,
                                         vit='swin_b',
                                         delete_tag_index=delete_tag_index)
@@ -300,11 +300,11 @@ if __name__ == "__main__":
 
     # run grounding dino model
     boxes_filt, scores, pred_phrases = get_grounding_output(
-        model, image, text_prompt, box_threshold, text_threshold, device=device
+        model, image, text_prompt, args.box_threshold, args.text_threshold, device=device
     )
 
     # initialize SAM
-    predictor = SamPredictor(build_sam(checkpoint=sam_checkpoint).to(device))
+    predictor = SamPredictor(build_sam(checkpoint=args.sam_checkpoint).to(device))
     image = cv2.imread(image_path)
     image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
     predictor.set_image(image)
@@ -319,7 +319,7 @@ if __name__ == "__main__":
     boxes_filt = boxes_filt.cpu()
     # use NMS to handle overlapped boxes
     print(f"Before NMS: {boxes_filt.shape[0]} boxes")
-    nms_idx = torchvision.ops.nms(boxes_filt, scores, iou_threshold).numpy().tolist()
+    nms_idx = torchvision.ops.nms(boxes_filt, scores, args.iou_threshold).numpy().tolist()
     boxes_filt = boxes_filt[nms_idx]
     pred_phrases = [pred_phrases[idx] for idx in nms_idx]
     print(f"After NMS: {boxes_filt.shape[0]} boxes")
@@ -346,8 +346,8 @@ if __name__ == "__main__":
     plt.title('Tag2Text-Captioning: ' + caption + '\n' + 'Tag2Text-Tagging' + text_prompt + '\n')
     plt.axis('off')
     plt.savefig(
-        os.path.join(output_dir, "automatic_label_output.jpg"), 
+        os.path.join(args.output_dir, "automatic_label_output.jpg"),
         bbox_inches="tight", dpi=300, pad_inches=0.0
     )
 
-    save_mask_data(output_dir, caption, masks, boxes_filt, pred_phrases)
+    save_mask_data(args.output_dir, caption, masks, boxes_filt, pred_phrases)

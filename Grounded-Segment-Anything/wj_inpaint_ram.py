@@ -34,7 +34,7 @@ from dataset import CoCoDataset
 
 import wandb
 wandb.login()
-run = wandb.init('Tag2Text & Grounded DINO & HQ-SAM')
+run = wandb.init('RAM & Grounded DINO & HQ-SAM')
 
 
 def my_collate_fn(batch):
