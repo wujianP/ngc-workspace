@@ -8,7 +8,7 @@ python wj_inpaint_tag2text.py \
   --config GroundingDINO/groundingdino/config/GroundingDINO_SwinT_OGC.py \
   --grounded_checkpoint /discobox/wjpeng/weights/groundingDINO/groundingdino_swint_ogc.pth \
   --tag2text_checkpoint /discobox/wjpeng/weights/tag2text/tag2text_swin_14m.pth \
-  --sam_hq_checkpoint /discobox/wjpeng/weights/hq-sam/sam_hq_vit_l.pth \
+  --sam_hq_checkpoint /discobox/wjpeng/weights/hq-sam/sam_hq_vit_b.pth \
   --use_sam_hq \
   --output_dir "outputs" \
   --box_threshold 0.25 \

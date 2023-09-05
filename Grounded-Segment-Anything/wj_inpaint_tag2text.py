@@ -15,7 +15,7 @@ from GroundingDINO.groundingdino.util.slconfig import SLConfig
 from GroundingDINO.groundingdino.util.utils import clean_state_dict, get_phrases_from_posmap
 
 # segment anything
-from segment_anything import build_sam, SamPredictor, build_sam_hq, build_sam_hq_vit_l
+from segment_anything import build_sam, SamPredictor, build_sam_hq, build_sam_hq_vit_b
 from segment_anything.utils.transforms import ResizeLongestSide
 
 # Tag2Text
@@ -263,7 +263,7 @@ if __name__ == "__main__":
 
     # load hq-SAM
     if args.use_sam_hq:
-        sam = build_sam_hq_vit_l(checkpoint=args.sam_hq_checkpoint).cuda()
+        sam = build_sam_hq_vit_b(checkpoint=args.sam_hq_checkpoint).cuda()
     else:
         sam = build_sam(checkpoint=args.sam_checkpoint).cuda()
 
@@ -335,7 +335,7 @@ if __name__ == "__main__":
         from IPython import embed
         embed()
         # forward sam
-        batched_output = sam(batched_input, multimask_output=False)
+        batched_output = sam(batched_input[:16], multimask_output=False)
         masks_list = [output['masks'].cpu().numpy() for output in batched_output]
 
         # >>> Inpainting: inference stable diffusion or lama >>>
