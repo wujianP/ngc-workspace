@@ -235,6 +235,9 @@ if __name__ == "__main__":
     parser.add_argument("--batch_size", type=int, default=32)
     parser.add_argument("--num_workers", type=int, default=8)
 
+    parser.add_argument("--user_specified_tags", type=str, default="None",
+                        help="user specified tags for tag2text, if more than one, use ',' to split")
+
     args = parser.parse_args()
 
     # cfg
@@ -249,11 +252,15 @@ if __name__ == "__main__":
                             pin_memory=True,
                             shuffle=False,
                             collate_fn=my_collate_fn)
-    from IPython import embed
-    embed()
 
     # load Grounded-DINO model
     grounding_dino_model = load_grounding_dino_model(config_file, args.grounded_checkpoint)
+
+    # load hq-SAM
+    if args.use_sam_hq:
+        sam = build_sam_hq(checkpoint=args.sam_hq_checkpoint).cuda()
+    else:
+        sam = build_sam(checkpoint=args.sam_checkpoint).cuda()
 
     # load Tag2Text model
     transform = TS.Compose([TS.Resize((384, 384)),
@@ -263,28 +270,39 @@ if __name__ == "__main__":
     delete_tag_index = []
     for i in range(3012, 3429):
         delete_tag_index.append(i)
-    specified_tags = 'None'
-    tag2text_model = tag2text.tag2text_caption(pretrained=args.tag2text_checkpoint, image_size=384, vit='swin_b', delete_tag_index=delete_tag_index).cuda()
+    tag2text_model = tag2text.tag2text_caption(pretrained=args.tag2text_checkpoint,
+                                               delete_tag_index=delete_tag_index,
+                                               image_size=384,
+                                               vit='swin_b').cuda()
     tag2text_model.threshold = 0.64     # we reduce the threshold to obtain more tags
     tag2text_model.eval()
 
+    # iterate forward pass
+    total_iter = len(dataloader)
+    result_dict = {'configure': vars(args)}
+    for iter_idx, (images, Ws, Hs, paths) in enumerate(dataloader):
+
+        from IPython import embed
+        embed()
+
     # raw_image = image_pil.resize((384, 384))
     # raw_image = transform(raw_image).unsqueeze(0).to(device)
-
+    raw_image, _, _, _ = dataset[0]
+    raw_image_pt = transform(raw_image).unsqueeze(0).cuda()
     # Inference Tag2Text
-    res = inference_tag2text.inference(raw_image, tag2text_model, specified_tags)
+    res = inference_tag2text.inference(image=raw_image_pt, model=tag2text_model, input_tag=args.user_specified_tags)
 
     # Currently ", " is better for detecting single tags
     # while ". " is a little worse in some case
-    text_prompt=res[0].replace(' |', ',')
-    caption=res[2]
-
-    print(f"Caption: {caption}")
-    print(f"Tags: {text_prompt}")
+    text_prompt, caption = res[0].replace(' |', ','), res[2]
 
     # run grounding dino model
     boxes_filt, scores, pred_phrases = get_grounding_output(
-        model, image, text_prompt, args.box_threshold, args.text_threshold, device=device
+        model=grounding_dino_model,
+        image=dino_images,
+        caption=text_prompt,
+        box_threshold=args.box_threshold,
+        text_threshold=args.text_threshold
     )
 
     # initialize SAM

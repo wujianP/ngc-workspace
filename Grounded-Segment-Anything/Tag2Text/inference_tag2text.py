@@ -46,7 +46,7 @@ def inference(image, model, input_tag="None"):
                                               return_tag_predict=True)
 
     if input_tag == '' or input_tag == 'none' or input_tag == 'None':
-        return tag_predict[0], None, caption[0]
+        return tag_predict, None, caption
 
     # If user input specified tags:
     else:
@@ -59,7 +59,7 @@ def inference(image, model, input_tag="None"):
                                                 max_length=50,
                                                 return_tag_predict=True)
 
-        return tag_predict[0], input_tag[0], caption[0]
+        return tag_predict, input_tag, caption
 
 
 if __name__ == "__main__":
