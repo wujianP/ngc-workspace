@@ -76,7 +76,7 @@ def check_tags_chinese(tags_chinese, pred_phrases, max_tokens=100, model="gpt-3.
 def load_grounding_dino_model(model_config_path, model_checkpoint_path):
     """load groundingdino model"""
     cfg = SLConfig.fromfile(model_config_path)
-    args.device = "cuda"
+    cfg.device = "cuda"
     model = build_model(cfg)
     checkpoint = torch.load(model_checkpoint_path, map_location="cpu")
     load_res = model.load_state_dict(clean_state_dict(checkpoint["model"]), strict=False)

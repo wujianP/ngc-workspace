@@ -1,12 +1,10 @@
 import argparse
 import os
-import copy
 
-import numpy as np
 import json
 import torch
 import torchvision
-from PIL import Image, ImageDraw, ImageFont
+from PIL import Image
 
 # Grounding DINO
 import GroundingDINO.groundingdino.datasets.transforms as T
@@ -120,15 +118,16 @@ def check_caption(caption, pred_phrases, max_tokens=100, model="gpt-3.5-turbo"):
     return caption
 
 
-def load_model(model_config_path, model_checkpoint_path, device):
-    args = SLConfig.fromfile(model_config_path)
-    args.device = device
-    model = build_model(args)
+def load_grounding_dino_model(model_config_path, model_checkpoint_path):
+    """load groundingdino model"""
+    cfg = SLConfig.fromfile(model_config_path)
+    cfg.device = "cuda"
+    model = build_model(cfg)
     checkpoint = torch.load(model_checkpoint_path, map_location="cpu")
     load_res = model.load_state_dict(clean_state_dict(checkpoint["model"]), strict=False)
     print(load_res)
     _ = model.eval()
-    return model
+    return model.cuda()
 
 
 def get_grounding_output(model, image, caption, box_threshold, text_threshold,device="cpu"):
@@ -253,42 +252,27 @@ if __name__ == "__main__":
     from IPython import embed
     embed()
 
-    # load model
-    model = load_model(config_file, args.grounded_checkpoint, device=device)
+    # load Grounded-DINO model
+    grounding_dino_model = load_grounding_dino_model(config_file, args.grounded_checkpoint)
 
-    # visualize raw image
-    image_pil.save(os.path.join(args.output_dir, "raw_image.jpg"))
-
-    # initialize Tag2Text
-    normalize = TS.Normalize(mean=[0.485, 0.456, 0.406],
-                                     std=[0.229, 0.224, 0.225])
-    transform = TS.Compose([
-                    TS.Resize((384, 384)),
-                    TS.ToTensor(), normalize
-                ])
-    
+    # load Tag2Text model
+    transform = TS.Compose([TS.Resize((384, 384)),
+                            TS.ToTensor(),
+                            TS.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])])
     # filter out attributes and action categories which are difficult to grounding
     delete_tag_index = []
     for i in range(3012, 3429):
         delete_tag_index.append(i)
-
-    specified_tags='None'
-    # load model
-    tag2text_model = tag2text.tag2text_caption(pretrained=args.tag2text_checkpoint,
-                                        image_size=384,
-                                        vit='swin_b',
-                                        delete_tag_index=delete_tag_index)
-    # threshold for tagging
-    # we reduce the threshold to obtain more tags
-    tag2text_model.threshold = 0.64 
+    specified_tags = 'None'
+    tag2text_model = tag2text.tag2text_caption(pretrained=args.tag2text_checkpoint, image_size=384, vit='swin_b', delete_tag_index=delete_tag_index).cuda()
+    tag2text_model.threshold = 0.64     # we reduce the threshold to obtain more tags
     tag2text_model.eval()
 
-    tag2text_model = tag2text_model.to(device)
-    raw_image = image_pil.resize(
-                    (384, 384))
-    raw_image  = transform(raw_image).unsqueeze(0).to(device)
+    # raw_image = image_pil.resize((384, 384))
+    # raw_image = transform(raw_image).unsqueeze(0).to(device)
 
-    res = inference_tag2text.inference(raw_image , tag2text_model, specified_tags)
+    # Inference Tag2Text
+    res = inference_tag2text.inference(raw_image, tag2text_model, specified_tags)
 
     # Currently ", " is better for detecting single tags
     # while ". " is a little worse in some case
