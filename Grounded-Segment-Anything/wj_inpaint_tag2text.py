@@ -1,51 +1,36 @@
 import argparse
 import os
+import copy
 
+import numpy as np
 import json
 import torch
 import torchvision
-from PIL import Image
+from PIL import Image, ImageDraw, ImageFont
 
 # Grounding DINO
 import GroundingDINO.groundingdino.datasets.transforms as T
 from GroundingDINO.groundingdino.models import build_model
+from GroundingDINO.groundingdino.util import box_ops
 from GroundingDINO.groundingdino.util.slconfig import SLConfig
 from GroundingDINO.groundingdino.util.utils import clean_state_dict, get_phrases_from_posmap
 
 # segment anything
-from segment_anything import (
-    build_sam,
-    build_sam_hq,
-    SamPredictor
-) 
+from segment_anything import build_sam, SamPredictor 
 import cv2
 import numpy as np
 import matplotlib.pyplot as plt
 
-# Recognize Anything Model & Tag2Text
+# Tag2Text
 import sys
 sys.path.append('Tag2Text')
 from Tag2Text.models import tag2text
-from Tag2Text import inference_ram
+from Tag2Text import inference_tag2text
 import torchvision.transforms as TS
-from torch.utils.data import DataLoader
 
-# ChatGPT or nltk is required when using tags_chineses
+# ChatGPT or nltk is required when using captions
 # import openai
 # import nltk
-
-from dataset import CoCoDataset
-
-
-def my_collate_fn(batch):
-    images, Ws, Hs, paths = [], [], [], []
-    for item in batch:
-        images.append(item[0])
-        Ws.append(item[1])
-        Hs.append(item[2])
-        paths.append(item[3])
-    return [images, Ws, Hs, paths]
-
 
 def load_image(image_path):
     # load image
@@ -62,7 +47,41 @@ def load_image(image_path):
     return image_pil, image
 
 
-def check_tags_chinese(tags_chinese, pred_phrases, max_tokens=100, model="gpt-3.5-turbo"):
+def generate_caption(raw_image, device):
+    # unconditional image captioning
+    if device == "cuda":
+        inputs = processor(raw_image, return_tensors="pt").to("cuda", torch.float16)
+    else:
+        inputs = processor(raw_image, return_tensors="pt")
+    out = blip_model.generate(**inputs)
+    caption = processor.decode(out[0], skip_special_tokens=True)
+    return caption
+
+
+def generate_tags(caption, split=',', max_tokens=100, model="gpt-3.5-turbo"):
+    lemma = nltk.wordnet.WordNetLemmatizer()
+    if openai_key:
+        prompt = [
+            {
+                'role': 'system',
+                'content': 'Extract the unique nouns in the caption. Remove all the adjectives. ' + \
+                           f'List the nouns in singular form. Split them by "{split} ". ' + \
+                           f'Caption: {caption}.'
+            }
+        ]
+        response = openai.ChatCompletion.create(model=model, messages=prompt, temperature=0.6, max_tokens=max_tokens)
+        reply = response['choices'][0]['message']['content']
+        # sometimes return with "noun: xxx, xxx, xxx"
+        tags = reply.split(':')[-1].strip()
+    else:
+        nltk.download(['punkt', 'averaged_perceptron_tagger', 'wordnet'])
+        tags_list = [word for (word, pos) in nltk.pos_tag(nltk.word_tokenize(caption)) if pos[0] == 'N']
+        tags_lemma = [lemma.lemmatize(w) for w in tags_list]
+        tags = ', '.join(map(str, tags_lemma))
+    return tags
+
+
+def check_caption(caption, pred_phrases, max_tokens=100, model="gpt-3.5-turbo"):
     object_list = [obj.split('(')[0] for obj in pred_phrases]
     object_num = []
     for obj in set(object_list):
@@ -70,7 +89,21 @@ def check_tags_chinese(tags_chinese, pred_phrases, max_tokens=100, model="gpt-3.
     object_num = ', '.join(object_num)
     print(f"Correct object number: {object_num}")
 
-    return tags_chinese
+    if openai_key:
+        prompt = [
+            {
+                'role': 'system',
+                'content': 'Revise the number in the caption if it is wrong. ' + \
+                           f'Caption: {caption}. ' + \
+                           f'True object number: {object_num}. ' + \
+                           'Only give the revised caption: '
+            }
+        ]
+        response = openai.ChatCompletion.create(model=model, messages=prompt, temperature=0.6, max_tokens=max_tokens)
+        reply = response['choices'][0]['message']['content']
+        # sometimes return with "Caption: xxx, xxx, xxx"
+        caption = reply.split(':')[-1].strip()
+    return caption
 
 
 def load_model(model_config_path, model_checkpoint_path, device):
@@ -136,7 +169,7 @@ def show_box(box, ax, label):
     ax.text(x0, y0, label)
 
 
-def save_mask_data(output_dir, tags_chinese, mask_list, box_list, label_list):
+def save_mask_data(output_dir, caption, mask_list, box_list, label_list):
     value = 0  # 0 for background
 
     mask_img = torch.zeros(mask_list.shape[-2:])
@@ -148,7 +181,7 @@ def save_mask_data(output_dir, tags_chinese, mask_list, box_list, label_list):
     plt.savefig(os.path.join(output_dir, 'mask.jpg'), bbox_inches="tight", dpi=300, pad_inches=0.0)
 
     json_data = {
-        'tags_chinese': tags_chinese,
+        'caption': caption,
         'mask':[{
             'value': value,
             'label': 'background'
@@ -169,80 +202,109 @@ def save_mask_data(output_dir, tags_chinese, mask_list, box_list, label_list):
     
 
 if __name__ == "__main__":
-    # args
+
     parser = argparse.ArgumentParser("Grounded-Segment-Anything Demo", add_help=True)
     parser.add_argument("--config", type=str, required=True, help="path to config file")
-    parser.add_argument("--ram_checkpoint", type=str, required=True, help="path to checkpoint file")
-    parser.add_argument("--grounded_checkpoint", type=str, required=True, help="path to checkpoint file")
-    parser.add_argument("--sam_checkpoint", type=str, required=True, help="path to checkpoint file")
-    parser.add_argument("--sam_hq_checkpoint", type=str, default=None, help="path to sam-hq checkpoint file")
-    parser.add_argument("--use_sam_hq", action="store_true", help="using sam-hq for prediction")
+    parser.add_argument(
+        "--tag2text_checkpoint", type=str, required=True, help="path to checkpoint file"
+    )
+    parser.add_argument(
+        "--grounded_checkpoint", type=str, required=True, help="path to checkpoint file"
+    )
+    parser.add_argument(
+        "--sam_checkpoint", type=str, required=True, help="path to checkpoint file"
+    )
+    parser.add_argument("--input_image", type=str, required=True, help="path to image file")
     parser.add_argument("--split", default=",", type=str, help="split for text prompt")
-    parser.add_argument("--output_dir", "-o", type=str, default="outputs", required=True, help="output directory")
+    parser.add_argument("--openai_key", type=str, help="key for chatgpt")
+    parser.add_argument("--openai_proxy", default=None, type=str, help="proxy for chatgpt")
+    parser.add_argument(
+        "--output_dir", "-o", type=str, default="outputs", required=True, help="output directory"
+    )
 
     parser.add_argument("--box_threshold", type=float, default=0.25, help="box threshold")
     parser.add_argument("--text_threshold", type=float, default=0.2, help="text threshold")
     parser.add_argument("--iou_threshold", type=float, default=0.5, help="iou threshold")
 
-    parser.add_argument("--data_root", type=str)
-    parser.add_argument("--data_ann", type=str)
-    parser.add_argument("--batch_size", type=int, default=32)
-    parser.add_argument("--num_workers", type=int, default=8)
+    parser.add_argument("--device", type=str, default="cpu", help="running on cpu only!, default=False")
     args = parser.parse_args()
 
     # cfg
     config_file = args.config  # change the path of the model config file
-    device = "cuda"
+    tag2text_checkpoint = args.tag2text_checkpoint  # change the path of the model
+    grounded_checkpoint = args.grounded_checkpoint  # change the path of the model
+    sam_checkpoint = args.sam_checkpoint
+    image_path = args.input_image
+    split = args.split
+    openai_key = args.openai_key
+    openai_proxy = args.openai_proxy
+    output_dir = args.output_dir
+    box_threshold = args.box_threshold
+    text_threshold = args.text_threshold
+    iou_threshold = args.iou_threshold
+    device = args.device
+    
+    # ChatGPT or nltk is required when using captions
+    # openai.api_key = openai_key
+    # if openai_proxy:
+        # openai.proxy = {"http": openai_proxy, "https": openai_proxy}
 
-    # load data
-    dataset = CoCoDataset(image_root=args.data_root, json=args.data_ann)
-    dataloader = DataLoader(dataset=dataset,
-                            batch_size=args.batch_size,
-                            num_workers=args.num_workers,
-                            pin_memory=True,
-                            shuffle=False,
-                            collate_fn=my_collate_fn)
-    from IPython import embed
-    embed()
-    # image_pil, image = load_image(image_path)
+    # make dir
+    os.makedirs(output_dir, exist_ok=True)
+    # load image
+    image_pil, image = load_image(image_path)
+    # load model
+    model = load_model(config_file, grounded_checkpoint, device=device)
 
-    # load Grounded-DINO model
-    model = load_model(config_file, args.grounded_checkpoint, device=device)
-    # load RAM model
-    ram_model = tag2text.ram(pretrained=args.ram_checkpoint, image_size=384, vit='swin_l')
-    ram_model.eval()
-    ram_model = ram_model.to(device)
+    # visualize raw image
+    image_pil.save(os.path.join(output_dir, "raw_image.jpg"))
 
-    # initialize Recognize Anything Model
-    normalize = TS.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
-    transform = TS.Compose([TS.Resize((384, 384)), TS.ToTensor(), normalize])
+    # initialize Tag2Text
+    normalize = TS.Normalize(mean=[0.485, 0.456, 0.406],
+                                     std=[0.229, 0.224, 0.225])
+    transform = TS.Compose([
+                    TS.Resize((384, 384)),
+                    TS.ToTensor(), normalize
+                ])
+    
+    # filter out attributes and action categories which are difficult to grounding
+    delete_tag_index = []
+    for i in range(3012, 3429):
+        delete_tag_index.append(i)
 
+    specified_tags='None'
+    # load model
+    tag2text_model = tag2text.tag2text_caption(pretrained=tag2text_checkpoint,
+                                        image_size=384,
+                                        vit='swin_b',
+                                        delete_tag_index=delete_tag_index)
     # threshold for tagging
     # we reduce the threshold to obtain more tags
-    raw_image = image_pil.resize((384, 384))
-    raw_image = transform(raw_image).unsqueeze(0).to(device)
+    tag2text_model.threshold = 0.64 
+    tag2text_model.eval()
 
-    res = inference_ram.inference(raw_image, ram_model)
+    tag2text_model = tag2text_model.to(device)
+    raw_image = image_pil.resize(
+                    (384, 384))
+    raw_image  = transform(raw_image).unsqueeze(0).to(device)
+
+    res = inference_tag2text.inference(raw_image , tag2text_model, specified_tags)
 
     # Currently ", " is better for detecting single tags
     # while ". " is a little worse in some case
-    tags = res[0].replace(' |', ',')
-    tags_chinese = res[1].replace(' |', ',')
+    text_prompt=res[0].replace(' |', ',')
+    caption=res[2]
 
-    # print("Image Tags: ", res[0])
-    # print("图像标签: ", res[1])
+    print(f"Caption: {caption}")
+    print(f"Tags: {text_prompt}")
 
     # run grounding dino model
     boxes_filt, scores, pred_phrases = get_grounding_output(
-        model, image, tags, args.box_threshold, args.text_threshold, device=device
+        model, image, text_prompt, box_threshold, text_threshold, device=device
     )
 
     # initialize SAM
-    if args.use_sam_hq:
-        print("Initialize SAM-HQ Predictor")
-        predictor = SamPredictor(build_sam_hq(checkpoint=args.sam_hq_checkpoint).to(device))
-    else:
-        predictor = SamPredictor(build_sam(checkpoint=args.sam_checkpoint).to(device))
+    predictor = SamPredictor(build_sam(checkpoint=sam_checkpoint).to(device))
     image = cv2.imread(image_path)
     image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
     predictor.set_image(image)
@@ -257,12 +319,12 @@ if __name__ == "__main__":
     boxes_filt = boxes_filt.cpu()
     # use NMS to handle overlapped boxes
     print(f"Before NMS: {boxes_filt.shape[0]} boxes")
-    nms_idx = torchvision.ops.nms(boxes_filt, scores, args.iou_threshold).numpy().tolist()
+    nms_idx = torchvision.ops.nms(boxes_filt, scores, iou_threshold).numpy().tolist()
     boxes_filt = boxes_filt[nms_idx]
     pred_phrases = [pred_phrases[idx] for idx in nms_idx]
     print(f"After NMS: {boxes_filt.shape[0]} boxes")
-    tags_chinese = check_tags_chinese(tags_chinese, pred_phrases)
-    print(f"Revise tags_chinese with number: {tags_chinese}")
+    caption = check_caption(caption, pred_phrases)
+    print(f"Revise caption with number: {caption}")
 
     transformed_boxes = predictor.transform.apply_boxes_torch(boxes_filt, image.shape[:2]).to(device)
 
@@ -281,11 +343,11 @@ if __name__ == "__main__":
     for box, label in zip(boxes_filt, pred_phrases):
         show_box(box.numpy(), plt.gca(), label)
 
-    # plt.title('RAM-tags' + tags + '\n' + 'RAM-tags_chineseing: ' + tags_chinese + '\n')
+    plt.title('Tag2Text-Captioning: ' + caption + '\n' + 'Tag2Text-Tagging' + text_prompt + '\n')
     plt.axis('off')
     plt.savefig(
-        os.path.join(args.output_dir, "automatic_label_output.jpg"),
+        os.path.join(output_dir, "automatic_label_output.jpg"), 
         bbox_inches="tight", dpi=300, pad_inches=0.0
     )
 
-    save_mask_data(args.output_dir, tags_chinese, masks, boxes_filt, pred_phrases)
+    save_mask_data(output_dir, caption, masks, boxes_filt, pred_phrases)

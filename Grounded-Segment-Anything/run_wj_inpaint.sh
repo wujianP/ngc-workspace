@@ -2,7 +2,7 @@ conda activate /discobox/wjpeng/env/clip
 cd /discobox/wjpeng/code/202306/ngc-workspace/Grounded-Segment-Anything
 
 export CUDA_VISIBLE_DEVICES=0
-python wj_inpaint.py \
+python wj_inpaint_tag2text.py \
   --data_root /DDN_ROOT/wjpeng/dataset/coco2014/val2014 \
   --data_ann /DDN_ROOT/wjpeng/dataset/coco2014/annotations/captions_val2014.json \
   --config GroundingDINO/groundingdino/config/GroundingDINO_SwinT_OGC.py \
