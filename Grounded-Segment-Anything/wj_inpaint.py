@@ -203,6 +203,7 @@ if __name__ == "__main__":
                             shuffle=False,
                             collate_fn=my_collate_fn)
     from IPython import embed
+    embed()
     # image_pil, image = load_image(image_path)
 
     # load Grounded-DINO model
