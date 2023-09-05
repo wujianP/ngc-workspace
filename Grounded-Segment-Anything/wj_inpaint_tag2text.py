@@ -4,24 +4,22 @@ import os
 import json
 import torch
 import torchvision
-from PIL import Image
+import cv2
+import numpy as np
+import matplotlib.pyplot as plt
 
 # Grounding DINO
 import GroundingDINO.groundingdino.datasets.transforms as T
 from GroundingDINO.groundingdino.models import build_model
-# from GroundingDINO.groundingdino.util import box_ops
 from GroundingDINO.groundingdino.util.slconfig import SLConfig
 from GroundingDINO.groundingdino.util.utils import clean_state_dict, get_phrases_from_posmap
 
 # segment anything
 from segment_anything import build_sam, SamPredictor, build_sam_hq
-import cv2
-import numpy as np
-import matplotlib.pyplot as plt
+from segment_anything.utils.transforms import ResizeLongestSide
 
 # Tag2Text
 import sys
-
 sys.path.append('Tag2Text')
 from Tag2Text.models import tag2text
 from Tag2Text import inference_tag2text
@@ -29,6 +27,7 @@ import torchvision.transforms as TS
 
 from dataset import CoCoDataset
 from torch.utils.data import DataLoader
+from PIL import Image
 
 import wandb
 
@@ -44,21 +43,6 @@ def my_collate_fn(batch):
         Hs.append(item[2])
         paths.append(item[3])
     return [images, Ws, Hs, paths]
-
-
-def load_image(image_path):
-    # load image
-    image_pil = Image.open(image_path).convert("RGB")  # load image
-
-    transform = T.Compose(
-        [
-            T.RandomResize([800], max_size=1333),
-            T.ToTensor(),
-            T.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225]),
-        ]
-    )
-    image, _ = transform(image_pil, None)  # 3, h, w
-    return image_pil, image
 
 
 def generate_caption(raw_image, device):
@@ -132,39 +116,36 @@ def load_grounding_dino_model(model_config_path, model_checkpoint_path):
     return model.cuda()
 
 
-def get_grounding_output(model, image, caption, box_threshold, text_threshold, device="cpu"):
-    caption = caption.lower()
-    caption = caption.strip()
-    if not caption.endswith("."):
-        caption = caption + "."
-    model = model.to(device)
-    image = image.to(device)
+def get_grounding_output(model, image, caption, box_threshold, text_threshold, with_logits=True):
+    # preprocess captions
+    for k in range(len(caption)):
+        caption[k] = caption[k].lower().strip()
+        if not caption[k].endswith("."):
+            caption[k] = caption[k] + "."
+    # forward grounded dino
     with torch.no_grad():
-        outputs = model(image[None], captions=[caption])
-    logits = outputs["pred_logits"].cpu().sigmoid()[0]  # (nq, 256)
-    boxes = outputs["pred_boxes"].cpu()[0]  # (nq, 4)
-    logits.shape[0]
-
-    # filter output
-    logits_filt = logits.clone()
-    boxes_filt = boxes.clone()
-    filt_mask = logits_filt.max(dim=1)[0] > box_threshold
-    logits_filt = logits_filt[filt_mask]  # num_filt, 256
-    boxes_filt = boxes_filt[filt_mask]  # num_filt, 4
-    logits_filt.shape[0]
-
-    # get phrase
-    tokenlizer = model.tokenizer
-    tokenized = tokenlizer(caption)
-    # build pred
-    pred_phrases = []
-    scores = []
-    for logit, box in zip(logits_filt, boxes_filt):
-        pred_phrase = get_phrases_from_posmap(logit > text_threshold, tokenized, tokenlizer)
-        pred_phrases.append(pred_phrase + f"({str(logit.max().item())[:4]})")
-        scores.append(logit.max().item())
-
-    return boxes_filt, torch.Tensor(scores), pred_phrases
+        outputs = model(image, captions=caption)
+    logits = outputs["pred_logits"].cpu().sigmoid()  # (bs, nq, 256)
+    boxes = outputs["pred_boxes"].cpu()  # (bs, nq, 4)
+    # post process
+    boxes_list, scores_list, phrases_list = [], [], []
+    for ub_logits, ub_boxex, cap in zip(logits, boxes, caption):
+        mask = ub_logits.max(dim=1)[0] > box_threshold
+        logits_filtered = ub_logits[mask]  # (n, 256)
+        boxes_filtered = ub_boxex[mask]  # (n, 4)
+        phrases_filtered = []
+        scores_filtered = []
+        for logit, box in zip(logits_filtered, boxes_filtered):
+            pred_phrase = get_phrases_from_posmap(logit > text_threshold, model.tokenizer(cap), model.tokenizer)
+            if with_logits:
+                phrases_filtered.append(pred_phrase + f"({str(logit.max().item())[:4]})")
+            else:
+                phrases_filtered.append(pred_phrase)
+            scores_filtered.append(logit.max().item())
+        boxes_list.append(boxes_filtered)
+        scores_list.append(torch.Tensor(scores_filtered))
+        phrases_list.append(phrases_filtered)
+    return boxes_list, scores_list, phrases_list
 
 
 def show_mask(mask, ax, random_color=False):
@@ -214,6 +195,27 @@ def save_mask_data(output_dir, caption, mask_list, box_list, label_list):
         })
     with open(os.path.join(output_dir, 'label.json'), 'w') as f:
         json.dump(json_data, f)
+
+
+def prepare_sam_data(images, boxes, Hs, Ws, resize_size):
+    resize_transform = ResizeLongestSide(resize_size)
+
+    def prepare_image(image, transform):
+        image = np.array(image)
+        image = transform.apply_image(image)
+        image = torch.as_tensor(image).cuda()
+        return image.permute(2, 0, 1).contiguous()
+
+    batched_input = []
+    for i in range(len(images)):
+        data = {
+            'image': prepare_image(images[i], resize_transform),
+            'original_size': (Hs[i], Ws[i])
+        }
+        if boxes[i].shape[0] > 0:
+            data['boxes'] = resize_transform.apply_boxes_torch(boxes[i], (Hs[i], Ws[i]))
+        batched_input.append(data)
+    return batched_input
 
 
 if __name__ == "__main__":
@@ -291,9 +293,11 @@ if __name__ == "__main__":
                                                     input_tag=args.user_specified_tags)
         tags = [tag.replace(' |', ',') for tag in tag2text_ret[0]]
         tag2text_captions = tag2text_ret[2]
-        torch.cuda.empty_cache()  # empty cache
+        # empty cache
+        torch.cuda.empty_cache()
 
         # >>> Detection: inference grounded dino >>>
+        # preprocess images
         trans_grounded = TS.Compose(
             [
                 TS.Resize((args.grounding_dino_img_size, args.grounding_dino_img_size)),
@@ -302,11 +306,33 @@ if __name__ == "__main__":
             ]
         )
         dino_images = torch.stack([trans_grounded(img) for img in images], dim=0).cuda()
+        # forward grounded dino
+        boxes_filt, scores, pred_phrases = get_grounding_output(
+            model=grounding_dino_model,
+            image=dino_images,
+            caption=tags,
+            box_threshold=args.box_threshold,
+            text_threshold=args.text_threshold
+        )
+        # post process bounding box
+        for i in range(len(boxes_filt)):
+            H, W = Hs[i], Ws[i]
+            boxes = boxes_filt[i]
+            for k in range(boxes.size(0)):
+                boxes[k] = boxes[k] * torch.Tensor([W, H, W, H])
+                boxes[k][:2] -= boxes[k][2:] / 2
+                boxes[k][2:] += boxes[k][:2]
+            boxes_filt[i] = boxes.cuda()
+        # empty cache
+        torch.cuda.empty_cache()
+
+        # >>> Segmentation: inference sam >>>
+        batched_input = prepare_sam_data(images=images, boxes=boxes_filt,
+                                         Hs=Hs, Ws=Ws,
+                                         resize_size=sam.image_encoder.img_size)
 
         from IPython import embed
-
         embed()
-        # >>> Segmentation: inference sam >>>
 
         # >>> Inpainting: inference stable diffusion or lama >>>
 
