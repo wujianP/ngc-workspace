@@ -239,6 +239,7 @@ if __name__ == "__main__":
 
     parser.add_argument("--user_specified_tags", type=str, default="None",
                         help="user specified tags for tag2text, if more than one, use ',' to split")
+    parser.add_argument("--grounding_dino_img_size", type=int, default=800)
 
     args = parser.parse_args()
 
@@ -280,16 +281,31 @@ if __name__ == "__main__":
     total_iter = len(dataloader)
     result_dict = {'configure': vars(args)}
     for iter_idx, (images, Ws, Hs, paths) in enumerate(dataloader):
-
         # >>> Tagging: inference tag2text >>>
-        transform_tag2text = TS.Compose([TS.Resize((384, 384)),
-                                         TS.ToTensor(),
-                                         TS.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])])
-        images_tag2text = torch.stack([transform_tag2text(img) for img in images]).cuda()
-        from IPython import embed
-        embed()
-        # >>> Detection: inference grounded dino >>>
+        trans_tag2text = TS.Compose([TS.Resize((384, 384)),
+                                     TS.ToTensor(),
+                                     TS.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])])
+        images_tag2text = torch.stack([trans_tag2text(img) for img in images]).cuda()
+        tag2text_ret = inference_tag2text.inference(image=images_tag2text,
+                                                    model=tag2text_model,
+                                                    input_tag=args.user_specified_tags)
+        tags = [tag.replace(' |', ',') for tag in tag2text_ret[0]]
+        tag2text_captions = tag2text_ret[2]
+        torch.cuda.empty_cache()  # empty cache
 
+        # >>> Detection: inference grounded dino >>>
+        trans_grounded = TS.Compose(
+            [
+                TS.Resize((args.grounding_dino_img_size, args.grounding_dino_img_size)),
+                TS.ToTensor(),
+                TS.Normalize((0.485, 0.456, 0.406), (0.229, 0.224, 0.225)),
+            ]
+        )
+        dino_images = torch.stack([trans_grounded(img) for img in images], dim=0).cuda()
+
+        from IPython import embed
+
+        embed()
         # >>> Segmentation: inference sam >>>
 
         # >>> Inpainting: inference stable diffusion or lama >>>
