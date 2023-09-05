@@ -61,7 +61,8 @@ def parse_args():
                         type=str,
                         choices=(
                             "openimages_common_214",
-                            "openimages_rare_200"
+                            "openimages_rare_200",
+                            "coco"
                         ),
                         required=True)
     parser.add_argument("--input-size",
@@ -71,7 +72,7 @@ def parse_args():
     group = parser.add_mutually_exclusive_group()
     group.add_argument("--threshold",
                        type=float,
-                       default=None,
+                       default=0.68,
                        help=(
                            "Use custom threshold for all classes. Mutually "
                            "exclusive with `--threshold-file`. If both "

@@ -5,20 +5,21 @@ export CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
 
 torchrun --nnodes 1 --nproc_per_node 8 llama_finetuning.py  \
 --dataset alpaca_dataset  \
---num_epochs 2 \
+--num_epochs 1 \
 --num_workers_dataloader 8 \
---batch_size_training 4 \
+--batch_size_training 8 \
 --lr 1e-5 \
 --use_peft \
 --peft_method lora \
 --quantization \
 --model_name /discobox/wjpeng/weights/llama-2-7b-hf \
---output_dir /discobox/wjpeng/weights/llama-2-7b-tuned/winoground_eidt
+--output_dir /discobox/wjpeng/weights/llama-2-7b-tuned/winoground_edit
 
 
+cd /discobox/wjpeng/code/202306/ngc-workspace/alpaca-lora/
 python generate_coco.py \
     --base_model '/discobox/wjpeng/weights/llama-2-7b-hf' \
-    --lora_weights '/discobox/wjpeng/weights/llama-2-7b-coco-lora'
+    --lora_weights '/discobox/wjpeng/weights/llama-2-7b-tuned/winoground_edit'
 
 import huggingface_hub
 huggingface_hub.snapshot_download(

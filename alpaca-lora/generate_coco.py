@@ -124,30 +124,34 @@ if __name__ == "__main__":
 # evaluate(input="A man is smiling while talking on his cell phone.")
 def test():
     inputs = [
-        "A man smiles at a woman holding a blender.",
-        "A young girl is inside a refrigerator door.",
-        "A man wearing a camera while standing near a metal pole.",
-        "There are three phones left out on the table.",
+        "A woman marking a cake with the back of a chef's knife",
+        "a young kid with head phones on using a computer",
+        "A small child wearing headphones plays on the computer.",
         "Baby stands up in car styled walker with bunch of beads around his neck.",
         "A tennis player runs across the court to hit a ball."
     ]
     for ipt in inputs:
-        print(evaluate(input=ipt))
+        print(evaluate(instruction=instruction, input=ipt))
 
-# #############
-# from datasets import load_dataset
-#
-# examples = load_dataset('facebook/winoground', use_auth_token="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")['test']
-# data = []
-# for i in range(len(examples)):
-#     data.append({
-#         "instruction": "Generate two sentences, where the meanings of the two sentences are different, but the overall structure is similar.",
-#         "input": "",
-#         "output": f"sentence 1: {examples[i]['caption_0']}, sentence 2: {examples[i]['caption_1']}"
-#     })
-#
-# import json
-# # 将数据列表保存为JSON文件（UTF-8编码）
-# file_path = "/discobox/wjpeng/dataset/alpaca/winoground_generate.json"
-# with open(file_path, 'w', encoding='utf-8') as json_file:
-#     json.dump(data, json_file, ensure_ascii=False, indent=4)
+#############
+from datasets import load_dataset
+
+examples = load_dataset('facebook/winoground', use_auth_token="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")['test']
+data = []
+for i in range(len(examples)):
+    data.append({
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": examples[i]['caption_1'],
+        "output": examples[i]['caption_0']
+    })
+
+    data.append({
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": examples[i]['caption_0'],
+        "output": examples[i]['caption_1']
+    })
+import json
+# 将数据列表保存为JSON文件（UTF-8编码）
+file_path = "/discobox/wjpeng/dataset/alpaca/winoground_edit.json"
+with open(file_path, 'w', encoding='utf-8') as json_file:
+    json.dump(data, json_file, ensure_ascii=False, indent=4)
