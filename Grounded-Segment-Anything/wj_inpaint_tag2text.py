@@ -327,9 +327,13 @@ if __name__ == "__main__":
         torch.cuda.empty_cache()
 
         # >>> Segmentation: inference sam >>>
+        # preprocess images
         batched_input = prepare_sam_data(images=images, boxes=boxes_filt,
                                          Hs=Hs, Ws=Ws,
                                          resize_size=sam.image_encoder.img_size)
+        # forward sam
+        batched_output = sam(batched_input, multimask_output=False)
+        masks_list = [output['masks'].cpu().numpy() for output in batched_output]
 
         from IPython import embed
         embed()
