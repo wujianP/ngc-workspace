@@ -308,6 +308,7 @@ if __name__ == "__main__":
     total_iter = len(dataloader)
     result_dict = {'configure': vars(args)}
     for iter_idx, (images, Ws, Hs, paths) in enumerate(dataloader):
+
         # >>> Tagging: inference tag2text >>>
         trans_tag2text = TS.Compose([TS.Resize((384, 384)),
                                      TS.ToTensor(),
@@ -349,12 +350,11 @@ if __name__ == "__main__":
                 boxes[k][2:] += boxes[k][:2]
             boxes_filt_list[i] = boxes.cuda()
         # use NMS to handle overlapped boxes
-        for boxes_filt, scores, pred_phrases, tag2text_caption in\
-                zip(boxes_filt_list, scores_list, pred_phrases_list, tag2text_captions_list):
-            boxes_filt = boxes_filt.cpu()
-            nms_idx = torchvision.ops.nms(boxes_filt, scores, args.iou_threshold).numpy().tolist()
-            boxes_filt = boxes_filt[nms_idx]
-            pred_phrases = [pred_phrases[idx] for idx in nms_idx]
+        for i in range(args.batch_size):
+            boxes_filt_list[i] = boxes_filt_list[i].cpu()
+            nms_idx = torchvision.ops.nms(boxes_filt_list[i], scores_list[i], args.iou_threshold).numpy().tolist()
+            boxes_filt_list[i] = boxes_filt_list[i][nms_idx]
+            pred_phrases_list[i] = [pred_phrases_list[i][idx] for idx in nms_idx]
             # caption = check_caption(tag2text_caption, pred_phrases)
         # empty cache
         torch.cuda.empty_cache()
