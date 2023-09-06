@@ -218,6 +218,31 @@ def prepare_sam_data(images, boxes, Hs, Ws, resize_size):
     return batched_input
 
 
+def wandb_visualize(images, tags, boxes_filt, masks_list, pred_phrases):
+    for i in range(len(images)):
+        img, tag, boxes, masks, labels = images[i], tags[i], boxes_filt[i], masks_list[i], pred_phrases[i]
+        if len(boxes) > 0:
+            fig, ax = plt.subplots(1, 3, figsize=(10, 10))
+            # show image only
+            ax[0].imshow(img)
+            ax[0].axis('off')
+            # show boxes, masks, image
+            ax[1].imshow(img)
+            for (box, label) in zip(boxes, labels):
+                show_box(box.cpu().numpy(), ax[1], label)
+            mask_all = np.logical_or.reduce(masks, axis=0)
+            show_mask(mask_all, ax[1])
+            ax[1].axis('off')
+            # show masks only
+            show_mask(mask_all, ax[2], random_color=True)
+            ax[2].axis('off')
+            # send to wandb
+            plt.tight_layout()
+            run.log({'Visualization': wandb.Image(plt.gcf(), caption=tag)})
+            plt.close()
+            return
+
+
 if __name__ == "__main__":
 
     parser = argparse.ArgumentParser("Grounded-Segment-Anything Demo", add_help=True)
@@ -291,8 +316,8 @@ if __name__ == "__main__":
         tag2text_ret = inference_tag2text.inference(image=images_tag2text,
                                                     model=tag2text_model,
                                                     input_tag=args.user_specified_tags)
-        tags = [tag.replace(' |', ',') for tag in tag2text_ret[0]]
-        tag2text_captions = tag2text_ret[2]
+        tags_list = [tag.replace(' |', ',') for tag in tag2text_ret[0]]
+        tag2text_captions_list = tag2text_ret[2]
         # empty cache
         torch.cuda.empty_cache()
 
@@ -307,35 +332,43 @@ if __name__ == "__main__":
         )
         dino_images = torch.stack([trans_grounded(img) for img in images], dim=0).cuda()
         # forward grounded dino
-        boxes_filt, scores, pred_phrases = get_grounding_output(
+        boxes_filt_list, scores_list, pred_phrases_list = get_grounding_output(
             model=grounding_dino_model,
             image=dino_images,
-            caption=tags,
+            caption=tags_list,
             box_threshold=args.box_threshold,
             text_threshold=args.text_threshold
         )
         # post process bounding box
-        for i in range(len(boxes_filt)):
+        for i in range(len(boxes_filt_list)):
             H, W = Hs[i], Ws[i]
-            boxes = boxes_filt[i]
+            boxes = boxes_filt_list[i]
             for k in range(boxes.size(0)):
                 boxes[k] = boxes[k] * torch.Tensor([W, H, W, H])
                 boxes[k][:2] -= boxes[k][2:] / 2
                 boxes[k][2:] += boxes[k][:2]
-            boxes_filt[i] = boxes.cuda()
+            boxes_filt_list[i] = boxes.cuda()
+        # use NMS to handle overlapped boxes
+        for boxes_filt, scores, pred_phrases, tag2text_caption in\
+                zip(boxes_filt_list, scores_list, pred_phrases_list, tag2text_captions_list):
+            boxes_filt = boxes_filt.cpu()
+            nms_idx = torchvision.ops.nms(boxes_filt, scores, args.iou_threshold).numpy().tolist()
+            boxes_filt = boxes_filt[nms_idx]
+            pred_phrases = [pred_phrases[idx] for idx in nms_idx]
+            # caption = check_caption(tag2text_caption, pred_phrases)
         # empty cache
         torch.cuda.empty_cache()
 
         # >>> Segmentation: inference sam >>>
         # preprocess images
-        batched_input = prepare_sam_data(images=images, boxes=boxes_filt,
+        batched_input = prepare_sam_data(images=images, boxes=boxes_filt_list,
                                          Hs=Hs, Ws=Ws,
                                          resize_size=sam.image_encoder.img_size)
 
         from IPython import embed
         embed()
         # forward sam
-        batched_output = sam(batched_input[:16], multimask_output=False)
+        batched_output = sam(batched_input[:8], multimask_output=False)
         masks_list = [output['masks'].cpu().numpy() for output in batched_output]
 
         # >>> Inpainting: inference stable diffusion or lama >>>
