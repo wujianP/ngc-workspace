@@ -214,7 +214,6 @@ def wandb_visualize(images, tags, captions, boxes_filt, masks_list, pred_phrases
 if __name__ == "__main__":
 
     parser = argparse.ArgumentParser("Grounded-Segment-Anything Demo", add_help=True)
-    parser.add_argument("--config", type=str, required=True, help="path to config file")
     parser.add_argument("--sam_checkpoint", type=str, help="path to checkpoint file")
     parser.add_argument("--sam_hq_checkpoint", type=str, help="path to checkpoint file")
     parser.add_argument("--use_sam_hq", action="store_true", help="using sam-hq for prediction")
@@ -225,15 +224,12 @@ if __name__ == "__main__":
     parser.add_argument("--text_threshold", type=float, default=0.2, help="text threshold")
     parser.add_argument("--iou_threshold", type=float, default=0.5, help="iou threshold")
 
-    parser.add_argument("--data_root", type=str)
-    parser.add_argument("--data_ann", type=str)
     parser.add_argument("--batch_size", type=int, default=32)
     parser.add_argument("--num_workers", type=int, default=8)
 
     args = parser.parse_args()
 
     # cfg
-    config_file = args.config
     device = "cuda"
 
     # load data

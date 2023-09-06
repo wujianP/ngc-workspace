@@ -1,3 +1,19 @@
+# >>>>>>>> Visual Genome >>>>>>>>>>
+conda activate /discobox/wjpeng/env/clip
+cd /discobox/wjpeng/code/202306/ngc-workspace/Grounded-Segment-Anything
+
+export CUDA_VISIBLE_DEVICES=0
+python wj_inpaint_visual_genome.py \
+  --sam_hq_checkpoint /discobox/wjpeng/weights/hq-sam/sam_hq_vit_l.pth \
+  --use_sam_hq \
+  --output_dir "outputs" \
+  --box_threshold 0.25 \
+  --text_threshold 0.2 \
+  --iou_threshold 0.5 \
+  --batch_size 4 \
+  --num_workers 8
+
+# >>>>>>>> Tag2Text on CoCo >>>>>>>>>>
 conda activate /discobox/wjpeng/env/clip
 cd /discobox/wjpeng/code/202306/ngc-workspace/Grounded-Segment-Anything
 
