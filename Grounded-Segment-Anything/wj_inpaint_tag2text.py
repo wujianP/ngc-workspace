@@ -14,7 +14,7 @@ from GroundingDINO.groundingdino.util.slconfig import SLConfig
 from GroundingDINO.groundingdino.util.utils import clean_state_dict, get_phrases_from_posmap
 
 # segment anything
-from segment_anything import build_sam, SamPredictor, build_sam_hq, build_sam_hq_vit_b
+from segment_anything import build_sam, SamPredictor, build_sam_hq, build_sam_hq
 from segment_anything.utils.transforms import ResizeLongestSide
 
 # Tag2Text
@@ -184,9 +184,9 @@ def prepare_sam_data(images, boxes, Hs, Ws, resize_size):
     return batched_input
 
 
-def wandb_visualize(images, tags, boxes_filt, masks_list, pred_phrases):
+def wandb_visualize(images, tags, captions, boxes_filt, masks_list, pred_phrases):
     for i in range(len(images)):
-        img, tag, boxes, masks, labels = images[i], tags[i], boxes_filt[i], masks_list[i], pred_phrases[i]
+        img, tag, caption, boxes, masks, labels = images[i], tags[i], captions[i], boxes_filt[i], masks_list[i], pred_phrases[i]
         if len(boxes) > 0:
             fig, ax = plt.subplots(1, 3, figsize=(10, 10))
             # show image only
@@ -204,9 +204,8 @@ def wandb_visualize(images, tags, boxes_filt, masks_list, pred_phrases):
             ax[2].axis('off')
             # send to wandb
             plt.tight_layout()
-            run.log({'Visualization': wandb.Image(plt.gcf(), caption=tag)})
+            run.log({'Visualization': wandb.Image(plt.gcf(), caption=f'Tags: {tag}\nCaption:{caption}')})
             plt.close()
-            return
 
 
 if __name__ == "__main__":
@@ -254,7 +253,7 @@ if __name__ == "__main__":
 
     # load hq-SAM
     if args.use_sam_hq:
-        sam = build_sam_hq_vit_b(checkpoint=args.sam_hq_checkpoint).cuda()
+        sam = build_sam_hq(checkpoint=args.sam_hq_checkpoint).cuda()
     else:
         sam = build_sam(checkpoint=args.sam_checkpoint).cuda()
 
@@ -319,7 +318,7 @@ if __name__ == "__main__":
         for i in range(args.batch_size):
             boxes_filt_list[i] = boxes_filt_list[i].cpu()
             nms_idx = torchvision.ops.nms(boxes_filt_list[i], scores_list[i], args.iou_threshold).numpy().tolist()
-            boxes_filt_list[i] = boxes_filt_list[i][nms_idx]
+            boxes_filt_list[i] = boxes_filt_list[i][nms_idx].cuda()
             pred_phrases_list[i] = [pred_phrases_list[i][idx] for idx in nms_idx]
             # caption = check_caption(tag2text_caption, pred_phrases)
         # empty cache
@@ -330,27 +329,27 @@ if __name__ == "__main__":
         batched_input = prepare_sam_data(images=images, boxes=boxes_filt_list,
                                          Hs=Hs, Ws=Ws,
                                          resize_size=sam.image_encoder.img_size)
-
-        from IPython import embed
-        embed()
         # forward sam
-        batched_output = sam(batched_input[:8], multimask_output=False)
+        batched_output = sam(batched_input, multimask_output=False)
         masks_list = [output['masks'].cpu().numpy() for output in batched_output]
+        # empty cache
+        torch.cuda.empty_cache()
 
         # >>> Caption: BLIP-2
-        processor = Blip2Processor.from_pretrained("Salesforce/blip2-opt-2.7b")
-        model = Blip2ForConditionalGeneration.from_pretrained(
-            "Salesforce/blip2-opt-2.7b", torch_dtype=torch.float32
-        ).to(device)
-
-        prompt = "Question: how many cats are there? Answer:"
-        inputs = processor(images=image, text=prompt, return_tensors="pt").to(device, torch.float16)
-
-        generated_ids = model.generate(**inputs)
-        generated_text = processor.batch_decode(generated_ids, skip_special_tokens=True)[0].strip()
+        # processor = Blip2Processor.from_pretrained("Salesforce/blip2-opt-2.7b")
+        # model = Blip2ForConditionalGeneration.from_pretrained(
+        #     "Salesforce/blip2-opt-2.7b", torch_dtype=torch.float32
+        # ).cuda()
+        # prompt = "Question: how many cats are there? Answer:"
+        # inputs = processor(images=images,  return_tensors="pt").to(device, torch.float16)
+        # generated_ids = model.generate(**inputs)
+        # generated_text = processor.batch_decode(generated_ids, skip_special_tokens=True)[0].strip()
 
         # >>> Wandb visualize >>>
 
+        from IPython import embed
+        embed()
+        wandb_visualize(images, tags_list, tag2text_captions_list, boxes_filt_list, masks_list, pred_phrases_list)
 
         # >>> Inpainting: inference stable diffusion or lama >>>
 
