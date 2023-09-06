@@ -23,8 +23,8 @@ sys.path.append('Tag2Text')
 from Tag2Text.models import tag2text
 from Tag2Text import inference_tag2text
 
-# BLIP-2
-from transformers import Blip2Processor, Blip2ForConditionalGeneration
+# transformer
+from datasets import load_dataset
 
 # wandb
 import wandb
@@ -215,8 +215,6 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser("Grounded-Segment-Anything Demo", add_help=True)
     parser.add_argument("--config", type=str, required=True, help="path to config file")
-    parser.add_argument("--tag2text_checkpoint", type=str, required=True, help="path to checkpoint file")
-    parser.add_argument("--grounded_checkpoint", type=str, required=True, help="path to checkpoint file")
     parser.add_argument("--sam_checkpoint", type=str, help="path to checkpoint file")
     parser.add_argument("--sam_hq_checkpoint", type=str, help="path to checkpoint file")
     parser.add_argument("--use_sam_hq", action="store_true", help="using sam-hq for prediction")
@@ -232,10 +230,6 @@ if __name__ == "__main__":
     parser.add_argument("--batch_size", type=int, default=32)
     parser.add_argument("--num_workers", type=int, default=8)
 
-    parser.add_argument("--user_specified_tags", type=str, default="None",
-                        help="user specified tags for tag2text, if more than one, use ',' to split")
-    parser.add_argument("--grounding_dino_img_size", type=int, default=800)
-
     args = parser.parse_args()
 
     # cfg
@@ -243,8 +237,10 @@ if __name__ == "__main__":
     device = "cuda"
 
     # load data
-    dataset = CoCoDataset(image_root=args.data_root, json=args.data_ann)
-    dataloader = DataLoader(dataset=dataset,
+    from IPython import embed
+    embed()
+    vg_obj = load_dataset(path="visual_genome", name="objects_v1.2.0", split="train")
+    dataloader = DataLoader(dataset=vg_obj,
                             batch_size=args.batch_size,
                             num_workers=args.num_workers,
                             pin_memory=True,

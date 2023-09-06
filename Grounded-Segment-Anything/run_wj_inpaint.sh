@@ -8,11 +8,11 @@ python wj_inpaint_tag2text.py \
   --config GroundingDINO/groundingdino/config/GroundingDINO_SwinB.py \
   --grounded_checkpoint /discobox/wjpeng/weights/groundingDINO/groundingdino_swinb_cogcoor.pth \
   --tag2text_checkpoint /discobox/wjpeng/weights/tag2text/tag2text_swin_14m.pth \
-  --sam_hq_checkpoint /discobox/wjpeng/weights/hq-sam/sam_hq_vit_h.pth \
+  --sam_hq_checkpoint /discobox/wjpeng/weights/hq-sam/sam_hq_vit_l.pth \
   --use_sam_hq \
   --output_dir "outputs" \
   --box_threshold 0.25 \
   --text_threshold 0.2 \
   --iou_threshold 0.5 \
-  --batch_size 8 \
+  --batch_size 4 \
   --num_workers 8
