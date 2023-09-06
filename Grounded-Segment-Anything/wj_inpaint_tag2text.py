@@ -1,15 +1,14 @@
 import argparse
 import os
-
 import json
 import torch
 import torchvision
 import cv2
 import numpy as np
 import matplotlib.pyplot as plt
+import torchvision.transforms as TS
 
 # Grounding DINO
-import GroundingDINO.groundingdino.datasets.transforms as T
 from GroundingDINO.groundingdino.models import build_model
 from GroundingDINO.groundingdino.util.slconfig import SLConfig
 from GroundingDINO.groundingdino.util.utils import clean_state_dict, get_phrases_from_posmap
@@ -23,16 +22,17 @@ import sys
 sys.path.append('Tag2Text')
 from Tag2Text.models import tag2text
 from Tag2Text import inference_tag2text
-import torchvision.transforms as TS
+
+# BLIP-2
+from transformers import Blip2Processor, Blip2ForConditionalGeneration
+
+# wandb
+import wandb
+wandb.login()
+run = wandb.init('Tag2Text & Grounded DINO & HQ-SAM')
 
 from dataset import CoCoDataset
 from torch.utils.data import DataLoader
-from PIL import Image
-
-import wandb
-
-wandb.login()
-run = wandb.init('Tag2Text & Grounded DINO & HQ-SAM')
 
 
 def my_collate_fn(batch):
@@ -43,40 +43,6 @@ def my_collate_fn(batch):
         Hs.append(item[2])
         paths.append(item[3])
     return [images, Ws, Hs, paths]
-
-
-def generate_caption(raw_image, device):
-    # unconditional image captioning
-    if device == "cuda":
-        inputs = processor(raw_image, return_tensors="pt").to("cuda", torch.float16)
-    else:
-        inputs = processor(raw_image, return_tensors="pt")
-    out = blip_model.generate(**inputs)
-    caption = processor.decode(out[0], skip_special_tokens=True)
-    return caption
-
-
-def generate_tags(caption, split=',', max_tokens=100, model="gpt-3.5-turbo"):
-    lemma = nltk.wordnet.WordNetLemmatizer()
-    if openai_key:
-        prompt = [
-            {
-                'role': 'system',
-                'content': 'Extract the unique nouns in the caption. Remove all the adjectives. ' + \
-                           f'List the nouns in singular form. Split them by "{split} ". ' + \
-                           f'Caption: {caption}.'
-            }
-        ]
-        response = openai.ChatCompletion.create(model=model, messages=prompt, temperature=0.6, max_tokens=max_tokens)
-        reply = response['choices'][0]['message']['content']
-        # sometimes return with "noun: xxx, xxx, xxx"
-        tags = reply.split(':')[-1].strip()
-    else:
-        nltk.download(['punkt', 'averaged_perceptron_tagger', 'wordnet'])
-        tags_list = [word for (word, pos) in nltk.pos_tag(nltk.word_tokenize(caption)) if pos[0] == 'N']
-        tags_lemma = [lemma.lemmatize(w) for w in tags_list]
-        tags = ', '.join(map(str, tags_lemma))
-    return tags
 
 
 def check_caption(caption, pred_phrases, max_tokens=100, model="gpt-3.5-turbo"):
@@ -370,6 +336,21 @@ if __name__ == "__main__":
         # forward sam
         batched_output = sam(batched_input[:8], multimask_output=False)
         masks_list = [output['masks'].cpu().numpy() for output in batched_output]
+
+        # >>> Caption: BLIP-2
+        processor = Blip2Processor.from_pretrained("Salesforce/blip2-opt-2.7b")
+        model = Blip2ForConditionalGeneration.from_pretrained(
+            "Salesforce/blip2-opt-2.7b", torch_dtype=torch.float32
+        ).to(device)
+
+        prompt = "Question: how many cats are there? Answer:"
+        inputs = processor(images=image, text=prompt, return_tensors="pt").to(device, torch.float16)
+
+        generated_ids = model.generate(**inputs)
+        generated_text = processor.batch_decode(generated_ids, skip_special_tokens=True)[0].strip()
+
+        # >>> Wandb visualize >>>
+
 
         # >>> Inpainting: inference stable diffusion or lama >>>
 
