@@ -145,7 +145,7 @@ def prepare_sam_data(images, boxes, Hs, Ws, resize_size):
 def wandb_visualize(images, tags, boxes_filt, masks_list, pred_phrases):
     for i in range(len(images)):
         img, tag, boxes, masks, labels = images[i], tags[i], boxes_filt[i], masks_list[i], \
-        pred_phrases[i]
+            pred_phrases[i]
         if len(boxes) > 0:
             fig, ax = plt.subplots(1, 3, figsize=(10, 10))
             # show image only
@@ -235,11 +235,9 @@ if __name__ == "__main__":
 
         # >>> Tagging: inference RAM >>>
         trans_ram = TS.Compose([TS.Resize((384, 384)),
-                                     TS.ToTensor(),
-                                     TS.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])])
+                                TS.ToTensor(),
+                                TS.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])])
         ram_images = torch.stack([trans_ram(img) for img in images]).cuda()
-        from IPython import embed
-        embed()
         ram_ret = inference_ram.inference(image=ram_images, model=ram_model)
 
         tags_list = [tag.replace(' |', ',') for tag in ram_ret[0]]
