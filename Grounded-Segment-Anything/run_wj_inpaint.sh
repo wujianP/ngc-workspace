@@ -13,7 +13,7 @@ python wj_inpaint_visual_genome.py \
   --batch_size 4 \
   --num_workers 8
 
-# >>>>>>>> Tag2Text on CoCo >>>>>>>>>>
+# >>>>>>>> Tag2Text on Visual Genome >>>>>>>>>>
 conda activate /discobox/wjpeng/env/clip
 cd /discobox/wjpeng/code/202306/ngc-workspace/Grounded-Segment-Anything
 
@@ -30,5 +30,5 @@ python wj_inpaint_tag2text.py \
   --box_threshold 0.25 \
   --text_threshold 0.2 \
   --iou_threshold 0.5 \
-  --batch_size 1 \
+  --batch_size 4 \
   --num_workers 8

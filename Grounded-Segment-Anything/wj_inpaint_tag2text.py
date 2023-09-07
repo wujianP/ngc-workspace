@@ -189,7 +189,8 @@ if __name__ == "__main__":
 
     # load data
     # dataset = CoCoDataset(image_root=args.data_root, json=args.data_ann)
-    dataset = load_dataset(path="visual_genome", name="objects_v1.2.0", split="train")
+    dataset = load_dataset(path="visual_genome", name="objects_v1.2.0",
+                           split="train", cache_dir=args.dataset)
     dataloader = DataLoader(dataset=dataset,
                             batch_size=args.batch_size,
                             num_workers=args.num_workers,
@@ -221,8 +222,11 @@ if __name__ == "__main__":
     # iterate forward pass
     total_iter = len(dataloader)
     result_dict = {'configure': vars(args)}
-    for iter_idx, (images, Ws, Hs, paths) in enumerate(dataloader):
+    # for iter_idx, (images, Ws, Hs, paths) in enumerate(dataloader):
+    for iter_idx, (images, image_ids, Ws, Hs, objects) in enumerate(dataloader):
 
+        from IPython import embed
+        embed()
         # >>> Tagging: inference tag2text >>>
         trans_tag2text = TS.Compose([TS.Resize((384, 384)),
                                      TS.ToTensor(),
