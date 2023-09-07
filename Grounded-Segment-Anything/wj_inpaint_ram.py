@@ -233,13 +233,13 @@ if __name__ == "__main__":
     # for iter_idx, (images, Ws, Hs, paths) in enumerate(dataloader):
     for iter_idx, (images, image_ids, Ws, Hs, objects) in enumerate(dataloader):
 
-        from IPython import embed
-        embed()
         # >>> Tagging: inference RAM >>>
         trans_ram = TS.Compose([TS.Resize((384, 384)),
                                      TS.ToTensor(),
                                      TS.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])])
         ram_images = torch.stack([trans_ram(img) for img in images]).cuda()
+        from IPython import embed
+        embed()
         ram_ret = inference_ram.inference(image=ram_images, model=ram_model)
 
         tags_list = [tag.replace(' |', ',') for tag in ram_ret[0]]
