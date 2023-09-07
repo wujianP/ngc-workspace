@@ -2,116 +2,35 @@ import argparse
 import os
 import json
 import torch
-import torchvision
-import cv2
 import numpy as np
 import matplotlib.pyplot as plt
-import torchvision.transforms as TS
-
-# Grounding DINO
-from GroundingDINO.groundingdino.models import build_model
-from GroundingDINO.groundingdino.util.slconfig import SLConfig
-from GroundingDINO.groundingdino.util.utils import clean_state_dict, get_phrases_from_posmap
 
 # segment anything
 from segment_anything import build_sam, SamPredictor, build_sam_hq, build_sam_hq_vit_l
 from segment_anything.utils.transforms import ResizeLongestSide
 
-# Tag2Text
-import sys
-sys.path.append('Tag2Text')
-from Tag2Text.models import tag2text
-from Tag2Text import inference_tag2text
-
 # transformer
 from datasets import load_dataset
+from diffusers import StableDiffusionInpaintPipeline
+from PIL import Image
 
 # wandb
 import wandb
-wandb.login()
-run = wandb.init('Tag2Text & Grounded DINO & HQ-SAM')
 
-from dataset import CoCoDataset
+wandb.login()
+
 from torch.utils.data import DataLoader
 
 
 def my_collate_fn(batch):
-    images, Ws, Hs, paths = [], [], [], []
+    images, image_ids, Ws, Hs, objects = [], [], [], [], []
     for item in batch:
-        images.append(item[0])
-        Ws.append(item[1])
-        Hs.append(item[2])
-        paths.append(item[3])
-    return [images, Ws, Hs, paths]
-
-
-def check_caption(caption, pred_phrases, max_tokens=100, model="gpt-3.5-turbo"):
-    object_list = [obj.split('(')[0] for obj in pred_phrases]
-    object_num = []
-    for obj in set(object_list):
-        object_num.append(f'{object_list.count(obj)} {obj}')
-    object_num = ', '.join(object_num)
-    print(f"Correct object number: {object_num}")
-
-    if openai_key:
-        prompt = [
-            {
-                'role': 'system',
-                'content': 'Revise the number in the caption if it is wrong. ' + \
-                           f'Caption: {caption}. ' + \
-                           f'True object number: {object_num}. ' + \
-                           'Only give the revised caption: '
-            }
-        ]
-        response = openai.ChatCompletion.create(model=model, messages=prompt, temperature=0.6, max_tokens=max_tokens)
-        reply = response['choices'][0]['message']['content']
-        # sometimes return with "Caption: xxx, xxx, xxx"
-        caption = reply.split(':')[-1].strip()
-    return caption
-
-
-def load_grounding_dino_model(model_config_path, model_checkpoint_path):
-    """load groundingdino model"""
-    cfg = SLConfig.fromfile(model_config_path)
-    cfg.device = "cuda"
-    model = build_model(cfg)
-    checkpoint = torch.load(model_checkpoint_path, map_location="cpu")
-    load_res = model.load_state_dict(clean_state_dict(checkpoint["model"]), strict=False)
-    print(load_res)
-    _ = model.eval()
-    return model.cuda()
-
-
-def get_grounding_output(model, image, caption, box_threshold, text_threshold, with_logits=True):
-    # preprocess captions
-    for k in range(len(caption)):
-        caption[k] = caption[k].lower().strip()
-        if not caption[k].endswith("."):
-            caption[k] = caption[k] + "."
-    # forward grounded dino
-    with torch.no_grad():
-        outputs = model(image, captions=caption)
-    logits = outputs["pred_logits"].cpu().sigmoid()  # (bs, nq, 256)
-    boxes = outputs["pred_boxes"].cpu()  # (bs, nq, 4)
-    # post process
-    boxes_list, scores_list, phrases_list = [], [], []
-    for ub_logits, ub_boxex, cap in zip(logits, boxes, caption):
-        mask = ub_logits.max(dim=1)[0] > box_threshold
-        logits_filtered = ub_logits[mask]  # (n, 256)
-        boxes_filtered = ub_boxex[mask]  # (n, 4)
-        phrases_filtered = []
-        scores_filtered = []
-        for logit, box in zip(logits_filtered, boxes_filtered):
-            pred_phrase = get_phrases_from_posmap(logit > text_threshold, model.tokenizer(cap), model.tokenizer)
-            if with_logits:
-                phrases_filtered.append(pred_phrase + f"({str(logit.max().item())[:4]})")
-            else:
-                phrases_filtered.append(pred_phrase)
-            scores_filtered.append(logit.max().item())
-        boxes_list.append(boxes_filtered)
-        scores_list.append(torch.Tensor(scores_filtered))
-        phrases_list.append(phrases_filtered)
-    return boxes_list, scores_list, phrases_list
+        images.append(item['image'])
+        image_ids.append(item['image_id'])
+        Ws.append(item['width'])
+        Hs.append(item['height'])
+        objects.append(item['objects'])
+    return [images, image_ids, Ws, Hs, objects]
 
 
 def show_mask(mask, ax, random_color=False):
@@ -163,8 +82,18 @@ def save_mask_data(output_dir, caption, mask_list, box_list, label_list):
         json.dump(json_data, f)
 
 
-def prepare_sam_data(images, boxes, Hs, Ws, resize_size):
+def prepare_sam_data(images, objects_list, Hs, Ws, resize_size):
     resize_transform = ResizeLongestSide(resize_size)
+
+    boxes_list, obj_name_list = [], []
+    for objects in objects_list:
+        # transform from x,y,w,h -> xyxy format
+        boxes = [torch.tensor([obj['x'], obj['y'], obj['x'] + obj['w'], obj['y'] + obj['h']]).cuda() for obj in objects]
+        boxes = torch.stack(boxes, dim=0)
+        boxes_list.append(boxes)
+        # object names
+        obj_names = [obj['names'][0] for obj in objects]
+        obj_name_list.append(obj_names)
 
     def prepare_image(image, transform):
         image = np.array(image)
@@ -178,15 +107,15 @@ def prepare_sam_data(images, boxes, Hs, Ws, resize_size):
             'image': prepare_image(images[i], resize_transform),
             'original_size': (Hs[i], Ws[i])
         }
-        if boxes[i].shape[0] > 0:
-            data['boxes'] = resize_transform.apply_boxes_torch(boxes[i], (Hs[i], Ws[i]))
+        if boxes_list[i].shape[0] > 0:
+            data['boxes'] = resize_transform.apply_boxes_torch(boxes_list[i], (Hs[i], Ws[i]))
         batched_input.append(data)
-    return batched_input
+    return batched_input, boxes_list, obj_name_list
 
 
-def wandb_visualize(images, tags, captions, boxes_filt, masks_list, pred_phrases):
+def wandb_visualize(images, boxes_filt, masks_list, pred_phrases):
     for i in range(len(images)):
-        img, tag, caption, boxes, masks, labels = images[i], tags[i], captions[i], boxes_filt[i], masks_list[i], pred_phrases[i]
+        img, boxes, masks, labels = images[i], boxes_filt[i], masks_list[i], pred_phrases[i]
         if len(boxes) > 0:
             fig, ax = plt.subplots(1, 3, figsize=(10, 10))
             # show image only
@@ -207,12 +136,63 @@ def wandb_visualize(images, tags, captions, boxes_filt, masks_list, pred_phrases
             ax[2].axis('off')
             # send to wandb
             plt.tight_layout()
-            run.log({'Visualization': wandb.Image(plt.gcf(), caption=f'Tags: {tag}\nCaption:{caption}')})
+            run.log({'Visualization': wandb.Image(plt.gcf())})
             plt.close()
 
 
-if __name__ == "__main__":
+@torch.no_grad()
+def main():
+    # load data
+    vg_obj = load_dataset(path="visual_genome", name="objects_v1.2.0", split="train")
+    dataloader = DataLoader(dataset=vg_obj,
+                            batch_size=args.batch_size,
+                            num_workers=args.num_workers,
+                            pin_memory=True,
+                            shuffle=False,
+                            collate_fn=my_collate_fn)
 
+    # load hq-SAM
+    if args.use_sam_hq:
+        sam = build_sam_hq_vit_l(checkpoint=args.sam_hq_checkpoint).cuda()
+    else:
+        sam = build_sam(checkpoint=args.sam_checkpoint).cuda()
+
+    # iterate forward pass
+    total_iter = len(dataloader)
+    result_dict = {'configure': vars(args)}
+    for iter_idx, (images, image_ids, Ws, Hs, objects) in enumerate(dataloader):
+        # >>> Segmentation: SAM-HQ
+        # preprocess images
+        batched_input, boxes_list, object_name_list = prepare_sam_data(images=images, objects_list=objects,
+                                                                       Hs=Hs, Ws=Ws,
+                                                                       resize_size=sam.image_encoder.img_size)
+        # forward sam
+        batched_output = sam(batched_input, multimask_output=False)
+        masks_list = [output['masks'].cpu().numpy() for output in batched_output]
+
+        # >>> Inpainting: Stable Diffusion
+        inpaint_pipe = StableDiffusionInpaintPipeline.from_pretrained(
+            "runwayml/stable-diffusion-inpainting", torch_dtype=torch.float16).to("cuda")
+        inpaint_images = [img.resize((512, 512)) for img in images]
+        inpaint_masks = []
+        for masks in masks_list:
+            mask = masks[0][0]
+            mask = Image.fromarray(mask).resize((512, 512))
+            inpaint_masks.append(mask)
+        after_inpaint_images = inpaint_pipe(image=inpaint_images, prompt=[''] * args.batch_size, mask_image=inpaint_masks).images
+        for ipt_img, ipt_mask, aft_ipt_img, h, w in zip(inpaint_images, inpaint_masks, after_inpaint_images, Hs, Ws):
+            run.log({'inpaint': [wandb.Image(ipt_img.resize((w, h)), caption='raw image'),
+                                 wandb.Image(ipt_mask.resize((w, h)), caption='inpaint mask'),
+                                 wandb.Image(aft_ipt_img.resize((w, h)), caption='inpainted image')]})
+
+        # >>> Visualize: Wandb
+        wandb_visualize(images, boxes_list, masks_list, object_name_list)
+
+        from IPython import embed
+        embed()
+
+
+if __name__ == "__main__":
     parser = argparse.ArgumentParser("Grounded-Segment-Anything Demo", add_help=True)
     parser.add_argument("--sam_checkpoint", type=str, help="path to checkpoint file")
     parser.add_argument("--sam_hq_checkpoint", type=str, help="path to checkpoint file")
@@ -228,122 +208,8 @@ if __name__ == "__main__":
     parser.add_argument("--num_workers", type=int, default=8)
 
     args = parser.parse_args()
-
-    # cfg
     device = "cuda"
 
-    # load data
-    from IPython import embed
-    embed()
-    vg_obj = load_dataset(path="visual_genome", name="objects_v1.2.0", split="train")
-    dataloader = DataLoader(dataset=vg_obj,
-                            batch_size=args.batch_size,
-                            num_workers=args.num_workers,
-                            pin_memory=True,
-                            shuffle=False,
-                            collate_fn=my_collate_fn)
-
-    # load Grounded-DINO model
-    grounding_dino_model = load_grounding_dino_model(config_file, args.grounded_checkpoint)
-
-    # load hq-SAM
-    if args.use_sam_hq:
-        sam = build_sam_hq_vit_l(checkpoint=args.sam_hq_checkpoint).cuda()
-    else:
-        sam = build_sam(checkpoint=args.sam_checkpoint).cuda()
-
-    # load Tag2Text model
-    # filter out attributes and action categories which are difficult to grounding
-    delete_tag_index = []
-    for i in range(3012, 3429):
-        delete_tag_index.append(i)
-    tag2text_model = tag2text.tag2text_caption(pretrained=args.tag2text_checkpoint,
-                                               delete_tag_index=delete_tag_index,
-                                               image_size=384,
-                                               vit='swin_b').cuda()
-    tag2text_model.threshold = 0.64  # we reduce the threshold to obtain more tags
-    tag2text_model.eval()
-
-    # iterate forward pass
-    total_iter = len(dataloader)
-    result_dict = {'configure': vars(args)}
-    for iter_idx, (images, Ws, Hs, paths) in enumerate(dataloader):
-
-        # >>> Tagging: inference tag2text >>>
-        trans_tag2text = TS.Compose([TS.Resize((384, 384)),
-                                     TS.ToTensor(),
-                                     TS.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])])
-        images_tag2text = torch.stack([trans_tag2text(img) for img in images]).cuda()
-        tag2text_ret = inference_tag2text.inference(image=images_tag2text,
-                                                    model=tag2text_model,
-                                                    input_tag=args.user_specified_tags)
-        tags_list = [tag.replace(' |', ',') for tag in tag2text_ret[0]]
-        tag2text_captions_list = tag2text_ret[2]
-        # empty cache
-        torch.cuda.empty_cache()
-
-        # >>> Detection: inference grounded dino >>>
-        # preprocess images
-        trans_grounded = TS.Compose(
-            [
-                TS.Resize((args.grounding_dino_img_size, args.grounding_dino_img_size)),
-                TS.ToTensor(),
-                TS.Normalize((0.485, 0.456, 0.406), (0.229, 0.224, 0.225)),
-            ]
-        )
-        dino_images = torch.stack([trans_grounded(img) for img in images], dim=0).cuda()
-        # forward grounded dino
-        boxes_filt_list, scores_list, pred_phrases_list = get_grounding_output(
-            model=grounding_dino_model,
-            image=dino_images,
-            caption=tags_list,
-            box_threshold=args.box_threshold,
-            text_threshold=args.text_threshold
-        )
-        # post process bounding box
-        for i in range(len(boxes_filt_list)):
-            H, W = Hs[i], Ws[i]
-            boxes = boxes_filt_list[i]
-            for k in range(boxes.size(0)):
-                boxes[k] = boxes[k] * torch.Tensor([W, H, W, H])
-                boxes[k][:2] -= boxes[k][2:] / 2
-                boxes[k][2:] += boxes[k][:2]
-            boxes_filt_list[i] = boxes.cuda()
-        # use NMS to handle overlapped boxes
-        for i in range(args.batch_size):
-            boxes_filt_list[i] = boxes_filt_list[i].cpu()
-            nms_idx = torchvision.ops.nms(boxes_filt_list[i], scores_list[i], args.iou_threshold).numpy().tolist()
-            boxes_filt_list[i] = boxes_filt_list[i][nms_idx].cuda()
-            pred_phrases_list[i] = [pred_phrases_list[i][idx] for idx in nms_idx]
-            # caption = check_caption(tag2text_caption, pred_phrases)
-        # empty cache
-        torch.cuda.empty_cache()
-
-        # >>> Segmentation: inference sam >>>
-        # preprocess images
-        batched_input = prepare_sam_data(images=images, boxes=boxes_filt_list,
-                                         Hs=Hs, Ws=Ws,
-                                         resize_size=sam.image_encoder.img_size)
-        # forward sam
-        batched_output = sam(batched_input, multimask_output=False)
-        masks_list = [output['masks'].cpu().numpy() for output in batched_output]
-        # empty cache
-        torch.cuda.empty_cache()
-
-        # >>> Caption: BLIP-2
-        # processor = Blip2Processor.from_pretrained("Salesforce/blip2-opt-2.7b")
-        # model = Blip2ForConditionalGeneration.from_pretrained(
-        #     "Salesforce/blip2-opt-2.7b", torch_dtype=torch.float32
-        # ).cuda()
-        # prompt = "Question: how many cats are there? Answer:"
-        # inputs = processor(images=images,  return_tensors="pt").to(device, torch.float16)
-        # generated_ids = model.generate(**inputs)
-        # generated_text = processor.batch_decode(generated_ids, skip_special_tokens=True)[0].strip()
-
-        # >>> Wandb visualize >>>
-        wandb_visualize(images, tags_list, tag2text_captions_list, boxes_filt_list, masks_list, pred_phrases_list)
-
-        # >>> Inpainting: inference stable diffusion or lama >>>
-
-        from IPython import embed
-        embed()
+    run = wandb.init('Tag2Text & Grounded DINO & HQ-SAM')
+    main()
+    wandb.finish()

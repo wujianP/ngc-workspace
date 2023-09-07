@@ -29,9 +29,11 @@ from transformers import Blip2Processor, Blip2ForConditionalGeneration
 # wandb
 import wandb
 wandb.login()
-run = wandb.init('Tag2Text & Grounded DINO & HQ-SAM')
+run = wandb.init('Tag2Text & Grounded DINO & HQ-SAM & Visual Genome')
 
-from dataset import CoCoDataset
+from datasets import load_dataset
+from diffusers import StableDiffusionInpaintPipeline
+from PIL import Image
 from torch.utils.data import DataLoader
 
 
@@ -43,31 +45,6 @@ def my_collate_fn(batch):
         Hs.append(item[2])
         paths.append(item[3])
     return [images, Ws, Hs, paths]
-
-
-def check_caption(caption, pred_phrases, max_tokens=100, model="gpt-3.5-turbo"):
-    object_list = [obj.split('(')[0] for obj in pred_phrases]
-    object_num = []
-    for obj in set(object_list):
-        object_num.append(f'{object_list.count(obj)} {obj}')
-    object_num = ', '.join(object_num)
-    print(f"Correct object number: {object_num}")
-
-    if openai_key:
-        prompt = [
-            {
-                'role': 'system',
-                'content': 'Revise the number in the caption if it is wrong. ' + \
-                           f'Caption: {caption}. ' + \
-                           f'True object number: {object_num}. ' + \
-                           'Only give the revised caption: '
-            }
-        ]
-        response = openai.ChatCompletion.create(model=model, messages=prompt, temperature=0.6, max_tokens=max_tokens)
-        reply = response['choices'][0]['message']['content']
-        # sometimes return with "Caption: xxx, xxx, xxx"
-        caption = reply.split(':')[-1].strip()
-    return caption
 
 
 def load_grounding_dino_model(model_config_path, model_checkpoint_path):
@@ -129,38 +106,6 @@ def show_box(box, ax, label):
     w, h = box[2] - box[0], box[3] - box[1]
     ax.add_patch(plt.Rectangle((x0, y0), w, h, edgecolor='green', facecolor=(0, 0, 0, 0), lw=2))
     ax.text(x0, y0, label)
-
-
-def save_mask_data(output_dir, caption, mask_list, box_list, label_list):
-    value = 0  # 0 for background
-
-    mask_img = torch.zeros(mask_list.shape[-2:])
-    for idx, mask in enumerate(mask_list):
-        mask_img[mask.cpu().numpy()[0] == True] = value + idx + 1
-    plt.figure(figsize=(10, 10))
-    plt.imshow(mask_img.numpy())
-    plt.axis('off')
-    plt.savefig(os.path.join(output_dir, 'mask.jpg'), bbox_inches="tight", dpi=300, pad_inches=0.0)
-
-    json_data = {
-        'caption': caption,
-        'mask': [{
-            'value': value,
-            'label': 'background'
-        }]
-    }
-    for label, box in zip(label_list, box_list):
-        value += 1
-        name, logit = label.split('(')
-        logit = logit[:-1]  # the last is ')'
-        json_data['mask'].append({
-            'value': value,
-            'label': name,
-            'logit': float(logit),
-            'box': box.numpy().tolist(),
-        })
-    with open(os.path.join(output_dir, 'label.json'), 'w') as f:
-        json.dump(json_data, f)
 
 
 def prepare_sam_data(images, boxes, Hs, Ws, resize_size):
@@ -243,7 +188,8 @@ if __name__ == "__main__":
     device = "cuda"
 
     # load data
-    dataset = CoCoDataset(image_root=args.data_root, json=args.data_ann)
+    # dataset = CoCoDataset(image_root=args.data_root, json=args.data_ann)
+    dataset = load_dataset(path="visual_genome", name="objects_v1.2.0", split="train")
     dataloader = DataLoader(dataset=dataset,
                             batch_size=args.batch_size,
                             num_workers=args.num_workers,
