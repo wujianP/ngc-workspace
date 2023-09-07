@@ -37,14 +37,25 @@ from PIL import Image
 from torch.utils.data import DataLoader
 
 
+# def my_collate_fn(batch):
+#     images, Ws, Hs, paths = [], [], [], []
+#     for item in batch:
+#         images.append(item[0])
+#         Ws.append(item[1])
+#         Hs.append(item[2])
+#         paths.append(item[3])
+#     return [images, Ws, Hs, paths]
+
+
 def my_collate_fn(batch):
-    images, Ws, Hs, paths = [], [], [], []
+    images, image_ids, Ws, Hs, objects = [], [], [], [], []
     for item in batch:
-        images.append(item[0])
-        Ws.append(item[1])
-        Hs.append(item[2])
-        paths.append(item[3])
-    return [images, Ws, Hs, paths]
+        images.append(item['image'])
+        image_ids.append(item['image_id'])
+        Ws.append(item['width'])
+        Hs.append(item['height'])
+        objects.append(item['objects'])
+    return [images, image_ids, Ws, Hs, objects]
 
 
 def load_grounding_dino_model(model_config_path, model_checkpoint_path):
@@ -231,8 +242,8 @@ if __name__ == "__main__":
         trans_tag2text = TS.Compose([TS.Resize((384, 384)),
                                      TS.ToTensor(),
                                      TS.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])])
-        images_tag2text = torch.stack([trans_tag2text(img) for img in images]).cuda()
-        tag2text_ret = inference_tag2text.inference(image=images_tag2text,
+        tag2text_images = torch.stack([trans_tag2text(img) for img in images]).cuda()
+        tag2text_ret = inference_tag2text.inference(image=tag2text_images,
                                                     model=tag2text_model,
                                                     input_tag=args.user_specified_tags)
         tags_list = [tag.replace(' |', ',') for tag in tag2text_ret[0]]
