@@ -33,7 +33,7 @@ run = wandb.init('Tag2Text & Grounded DINO & HQ-SAM & Visual Genome')
 
 from datasets import load_dataset
 from diffusers import StableDiffusionInpaintPipeline
-from PIL import Image
+from PIL import Image, ImageFilter, ImageDraw
 from torch.utils.data import DataLoader
 
 
@@ -311,6 +311,33 @@ if __name__ == "__main__":
         wandb_visualize(images, tags_list, tag2text_captions_list, boxes_filt_list, masks_list, pred_phrases_list)
 
         # >>> Inpainting: inference stable diffusion or lama >>>
+        inpaint_pipe = StableDiffusionInpaintPipeline.from_pretrained(
+            "stabilityai/stable-diffusion-2-inpainting",
+            torch_dtype=torch.float16,
+        ).to("cuda")
+        inpaint_images = [img.resize((512, 512)) for img in images]
+
+        # inpaint_masks = []
+        # for masks in masks_list:
+        #     mask = masks[0][0]  # choose the object to be masked
+        #     mask = Image.fromarray(mask).resize((512, 512))
+        #     mask = mask.filter(ImageFilter.MaxFilter(size=5))   # dilate the mask edge
+        #     inpaint_masks.append(mask)
+
+        inpaint_masks = []
+        for boxes, w, h in zip(boxes_filt_list, Ws, Hs):
+            x1, y1, x2, y2 = boxes[0][0].item(), boxes[0][1].item(), boxes[0][2].item(), boxes[0][3].item()
+            mask = Image.new('L', (w, h), 0)
+            draw = ImageDraw.Draw(mask)
+            draw.rectangle([(x1, y1), (x2, y2)], fill=1)
+            mask = mask.resize((512, 512))
+            inpaint_masks.append(mask)
+        after_inpaint_images = inpaint_pipe(image=inpaint_images, prompt=[''] * args.batch_size,
+                                            mask_image=inpaint_masks).images
+        for ipt_img, ipt_mask, aft_ipt_img, h, w in zip(inpaint_images, inpaint_masks, after_inpaint_images, Hs, Ws):
+            run.log({'inpaint': [wandb.Image(ipt_img.resize((w, h)), caption='raw image'),
+                                 wandb.Image(ipt_mask.resize((w, h)), caption='inpaint mask'),
+                                 wandb.Image(aft_ipt_img.resize((w, h)), caption='inpainted image')]})
 
         from IPython import embed
         embed()
