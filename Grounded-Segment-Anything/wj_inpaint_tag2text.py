@@ -227,7 +227,7 @@ if __name__ == "__main__":
                                                delete_tag_index=delete_tag_index,
                                                image_size=384,
                                                vit='swin_b').cuda()
-    tag2text_model.threshold = 0.64  # we reduce the threshold to obtain more tags
+    tag2text_model.threshold = 0.7  # we reduce the threshold to obtain more tags
     tag2text_model.eval()
 
     # iterate forward pass
