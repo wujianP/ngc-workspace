@@ -236,8 +236,6 @@ if __name__ == "__main__":
     # for iter_idx, (images, Ws, Hs, paths) in enumerate(dataloader):
     for iter_idx, (images, image_ids, Ws, Hs, objects) in enumerate(dataloader):
 
-        from IPython import embed
-        embed()
         # >>> Tagging: inference tag2text >>>
         trans_tag2text = TS.Compose([TS.Resize((384, 384)),
                                      TS.ToTensor(),
