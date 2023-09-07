@@ -1,9 +1,7 @@
 import argparse
-import os
-import json
 import torch
 import torchvision
-import cv2
+import random
 import numpy as np
 import matplotlib.pyplot as plt
 import torchvision.transforms as TS
@@ -35,16 +33,6 @@ from datasets import load_dataset
 from diffusers import StableDiffusionInpaintPipeline
 from PIL import Image, ImageFilter, ImageDraw
 from torch.utils.data import DataLoader
-
-
-# def my_collate_fn(batch):
-#     images, Ws, Hs, paths = [], [], [], []
-#     for item in batch:
-#         images.append(item[0])
-#         Ws.append(item[1])
-#         Hs.append(item[2])
-#         paths.append(item[3])
-#     return [images, Ws, Hs, paths]
 
 
 def my_collate_fn(batch):
@@ -167,6 +155,31 @@ def wandb_visualize(images, tags, captions, boxes_filt, masks_list, pred_phrases
             plt.close()
 
 
+def filter_and_select_bounding_boxes(bounding_boxes, masks, W, H, n, high_threshold, low_threshold):
+    if len(bounding_boxes) == 0:
+        return None, True
+
+    selected_masks = []
+
+    for i, box in enumerate(bounding_boxes):
+        x1, y1, x2, y2 = box.cpu()
+        area = (x2 - x1) * (y2 - y1)
+        box_percentage = area / (W * H)
+
+        if box_percentage >= high_threshold or box_percentage <= low_threshold:
+            continue
+
+        selected_masks.append(masks[i])
+
+    if len(selected_masks) == 0:
+        return None, True
+
+    if n > len(selected_masks):
+        return selected_masks, False
+
+    return random.sample(selected_masks, n), False
+
+
 if __name__ == "__main__":
 
     parser = argparse.ArgumentParser("Grounded-Segment-Anything Demo", add_help=True)
@@ -191,6 +204,10 @@ if __name__ == "__main__":
     parser.add_argument("--user_specified_tags", type=str, default="None",
                         help="user specified tags for tag2text, if more than one, use ',' to split")
     parser.add_argument("--grounding_dino_img_size", type=int, default=800)
+    parser.add_argument("--mask_dilate_size", type=int, default=10)
+    parser.add_argument("--inpaint_object_num", type=int, default=1)
+    parser.add_argument("--inpaint_select_upperbound", type=float, default=0.6)
+    parser.add_argument("--inpaint_select_lowerbound", type=float, default=0.05)
 
     args = parser.parse_args()
 
@@ -297,16 +314,6 @@ if __name__ == "__main__":
         # empty cache
         torch.cuda.empty_cache()
 
-        # >>> Caption: BLIP-2
-        # processor = Blip2Processor.from_pretrained("Salesforce/blip2-opt-2.7b")
-        # model = Blip2ForConditionalGeneration.from_pretrained(
-        #     "Salesforce/blip2-opt-2.7b", torch_dtype=torch.float32
-        # ).cuda()
-        # prompt = "Question: how many cats are there? Answer:"
-        # inputs = processor(images=images,  return_tensors="pt").to(device, torch.float16)
-        # generated_ids = model.generate(**inputs)
-        # generated_text = processor.batch_decode(generated_ids, skip_special_tokens=True)[0].strip()
-
         # >>> Wandb visualize >>>
         wandb_visualize(images, tags_list, tag2text_captions_list, boxes_filt_list, masks_list, pred_phrases_list)
 
@@ -317,21 +324,26 @@ if __name__ == "__main__":
         ).to("cuda")
         inpaint_images = [img.resize((512, 512)) for img in images]
 
-        # inpaint_masks = []
-        # for masks in masks_list:
-        #     mask = masks[0][0]  # choose the object to be masked
-        #     mask = Image.fromarray(mask).resize((512, 512))
-        #     mask = mask.filter(ImageFilter.MaxFilter(size=5))   # dilate the mask edge
-        #     inpaint_masks.append(mask)
+        from IPython import embed
+        embed()
 
+        # > use segmentation mask >
         inpaint_masks = []
-        for boxes, w, h in zip(boxes_filt_list, Ws, Hs):
-            x1, y1, x2, y2 = boxes[0][0].item(), boxes[0][1].item(), boxes[0][2].item(), boxes[0][3].item()
-            mask = Image.new('L', (w, h), 0)
-            draw = ImageDraw.Draw(mask)
-            draw.rectangle([(x1, y1), (x2, y2)], fill=1)
-            mask = mask.resize((512, 512))
+        for masks, boxes, W, H in zip(masks_list, boxes_filt_list, Ws, Hs):
+            # choose the object to be masked
+            selected_masks, no_valid_flag = filter_and_select_bounding_boxes(bounding_boxes=boxes,
+                                                                             masks=masks, W=W, H=H,
+                                                                             n=args.inpaint_object_num,
+                                                                             high_threshold=args.inpaint_select_upperbound,
+                                                                             low_threshold=args.inpaint_select_lowerbound)
+            # if mask num > 1, merge them
+            mask = torch.sum(selected_masks, dim=0)
+            mask = torch.where(masks > 0, True, False)
+
+            mask = Image.fromarray(mask).resize((512, 512))
+            mask = mask.filter(ImageFilter.MaxFilter(size=args.mask_dilate_size))   # dilate the mask edge
             inpaint_masks.append(mask)
+
         after_inpaint_images = inpaint_pipe(image=inpaint_images, prompt=[''] * args.batch_size,
                                             mask_image=inpaint_masks).images
         for ipt_img, ipt_mask, aft_ipt_img, h, w in zip(inpaint_images, inpaint_masks, after_inpaint_images, Hs, Ws):
