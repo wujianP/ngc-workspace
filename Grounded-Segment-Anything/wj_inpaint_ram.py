@@ -254,6 +254,10 @@ if __name__ == "__main__":
                 TS.Normalize((0.485, 0.456, 0.406), (0.229, 0.224, 0.225)),
             ]
         )
+
+        from IPython import embed
+        embed()
+
         dino_images = torch.stack([trans_grounded(img) for img in images], dim=0).cuda()
         # forward grounded dino
         boxes_filt_list, scores_list, pred_phrases_list = get_grounding_output(
