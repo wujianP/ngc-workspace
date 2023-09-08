@@ -166,6 +166,8 @@ def filter_and_select_bounding_boxes(bounding_boxes, masks, W, H, n, high_thresh
         if box_percentage >= high_threshold or box_percentage <= low_threshold:
             continue
 
+        # if masks[i].sum()
+
         selected_masks.append(masks[i])
 
     if len(selected_masks) == 0:
@@ -298,7 +300,11 @@ def main():
         inpaint_images = [img.resize((512, 512)) for img in images]
 
         # > use segmentation mask >
+        from IPython import embed
+        embed()
+
         inpaint_masks = []
+        inpaint_mask_flags = []
         for masks, boxes, W, H in zip(masks_list, boxes_filt_list, Ws, Hs):
             # choose the object to be masked
             selected_masks, no_valid_flag = filter_and_select_bounding_boxes(bounding_boxes=boxes,
@@ -311,6 +317,7 @@ def main():
             mask = Image.fromarray(mask).resize((512, 512))  # transform to PIL Image
             mask = mask.filter(ImageFilter.MaxFilter(size=args.mask_dilate_size))  # dilate the mask edge
             inpaint_masks.append(mask)
+            inpaint_mask_flags.append(no_valid_flag)
 
         after_inpaint_images = inpaint_pipe(image=inpaint_images, prompt=[''] * args.batch_size,
                                             mask_image=inpaint_masks).images
@@ -333,14 +340,15 @@ def main():
         start_time = time.time()
 
         # >>> Output: print and save
-        print(f'[{iter_idx + 1 / total_iter}]: data: {data_time:.3f} tag: {tag_time:.3f} det: {det_time:.3f} '
-              f'seg: {seg_time:.3f} inpaint: {ipt_time:.3f} wandb: {vis_time:.3f}'
+        print(f'[{iter_idx + 1} / {total_iter}]({(iter_idx + 1) / total_iter * 100:.2f}%): '
+              f'data: {data_time:.3f} tag: {tag_time:.3f} det: {det_time:.3f} '
+              f'seg: {seg_time:.3f} inpaint: {ipt_time:.3f} wandb: {vis_time:.3f} '
               f'total: {data_time+tag_time+det_time+seg_time+ipt_time+vis_time:.3f}')
 
 
 if __name__ == "__main__":
 
-    parser = argparse.ArgumentParser("Grounded-Segment-Anything Demo", add_help=True)
+    parser = argparse.ArgumentParser("Visual Genome Inpainting Demo", add_help=True)
     parser.add_argument("--config", type=str, required=True, help="path to config file")
     parser.add_argument("--tag2text_checkpoint", type=str, required=True, help="path to checkpoint file")
     parser.add_argument("--grounded_checkpoint", type=str, required=True, help="path to checkpoint file")
