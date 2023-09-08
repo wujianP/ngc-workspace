@@ -351,11 +351,9 @@ def main():
         # > preprocess images
         inpaint_images = [img.resize((512, 512)) for img in images]
         # > preprocess segmentation masks >
-        from IPython import embed
-        embed()
-
         inpaint_masks = []
         inpaint_mask_flags = []
+        selected_tags_list = []
         for masks, boxes, pred_phrases, W, H in zip(masks_list, boxes_filt_list, pred_phrases_list, Ws, Hs):
             # choose the object to be masked
             selected_masks, selected_tags, no_valid_flag = filter_and_select_bounding_boxes_and_masks(
@@ -367,11 +365,12 @@ def main():
                 low_threshold=args.inpaint_select_lowerbound,
                 mask_threshold=args.inpaint_mask_threshold)
             # merge selected masks
-            mask = np.logical_or.reduce(selected_masks, axis=0)[0]  # merge all masks
+            mask = np.logical_or.reduce(selected_masks, axis=0)  # merge all masks
             mask = Image.fromarray(mask).resize((512, 512))  # transform to PIL Image
             mask = mask.filter(ImageFilter.MaxFilter(size=args.mask_dilate_size))  # dilate the mask edge
             inpaint_masks.append(mask)
             inpaint_mask_flags.append(no_valid_flag)
+            selected_tags_list.append(selected_tags)
 
         after_inpaint_images = inpaint_pipe(image=inpaint_images, prompt=[''] * args.batch_size,
                                             mask_image=inpaint_masks).images
