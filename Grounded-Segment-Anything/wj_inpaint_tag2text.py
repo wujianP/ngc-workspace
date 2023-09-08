@@ -360,6 +360,8 @@ def main():
         inpaint_masks = []
         inpaint_mask_flags = []
         selected_tags_list = []
+        from IPython import embed
+        embed()
         for masks, boxes, pred_phrases, W, H in zip(masks_list, boxes_filt_list, pred_phrases_list, Ws, Hs):
             # choose the object to be masked
             selected_masks, selected_tags, no_valid_flag = filter_and_select_bounding_boxes_and_masks(
