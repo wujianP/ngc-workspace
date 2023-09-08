@@ -18,12 +18,14 @@ from segment_anything.utils.transforms import ResizeLongestSide
 
 # Tag2Text
 import sys
+
 sys.path.append('Tag2Text')
 from Tag2Text.models import tag2text
 from Tag2Text import inference_tag2text
 
 # wandb
 import wandb
+
 wandb.login()
 
 from datasets import load_dataset
@@ -127,7 +129,8 @@ def prepare_sam_data(images, boxes, Hs, Ws, resize_size):
 
 def wandb_visualize(images, tags, captions, boxes_filt, masks_list, pred_phrases):
     for i in range(len(images)):
-        img, tag, caption, boxes, masks, labels = images[i], tags[i], captions[i], boxes_filt[i], masks_list[i], pred_phrases[i]
+        img, tag, caption, boxes, masks, labels = images[i], tags[i], captions[i], boxes_filt[i], masks_list[i], \
+        pred_phrases[i]
         if len(boxes) > 0:
             fig, ax = plt.subplots(1, 3, figsize=(10, 10))
             # show image only
@@ -152,21 +155,42 @@ def wandb_visualize(images, tags, captions, boxes_filt, masks_list, pred_phrases
             plt.close()
 
 
-def filter_and_select_bounding_boxes(bounding_boxes, masks, W, H, n, high_threshold, low_threshold):
+def filter_and_select_bounding_boxes_and_masks(bounding_boxes, masks, tags, W, H, n,
+                                               high_threshold, low_threshold, mask_threshold):
+    """
+
+    :param bounding_boxes:
+    :param masks:
+    :param tags:
+    :param W:
+    :param H:
+    :param n:
+    :param high_threshold:
+    :param low_threshold:
+    :param mask_threshold:
+    :return:
+    """
     if len(bounding_boxes) == 0:
         return None, True
 
     selected_masks = []
-
+    # First: filter all masks and boxes not statisfy requirements
     for i, box in enumerate(bounding_boxes):
         x1, y1, x2, y2 = box.cpu()
-        area = (x2 - x1) * (y2 - y1)
-        box_percentage = area / (W * H)
+        box_area = (x2 - x1) * (y2 - y1)
+        box_percentage = box_area / (W * H)
+        mask_area = masks[i].sum()
+        mask_percentage = mask_area / box_area
 
+        # filter bounding box with too large or small area
         if box_percentage >= high_threshold or box_percentage <= low_threshold:
             continue
 
-        # if masks[i].sum()
+        # filter masks with to small area
+        if mask_percentage <= mask_threshold:
+            continue
+
+        # merge all masks with the same category
 
         selected_masks.append(masks[i])
 
@@ -184,7 +208,7 @@ def main():
     # load data
     # dataset = CoCoDataset(image_root=args.data_root, json=args.data_ann)
     dataset = load_dataset(path="visual_genome", name="objects_v1.2.0",
-                           split="train")
+                           split="train", cache_dir=args.data_root)
     dataloader = DataLoader(dataset=dataset,
                             batch_size=args.batch_size,
                             num_workers=args.num_workers,
@@ -210,8 +234,15 @@ def main():
                                                delete_tag_index=delete_tag_index,
                                                image_size=384,
                                                vit='swin_b').cuda()
-    tag2text_model.threshold = 0.7  # we reduce the threshold to obtain more tags
+    tag2text_model.threshold = args.tag2text_threshold  # we reduce the threshold to obtain more tags
     tag2text_model.eval()
+
+    # load Stable-Diffusion-Inpaint
+    inpaint_pipe = StableDiffusionInpaintPipeline.from_pretrained(
+        "stabilityai/stable-diffusion-2-inpainting",
+        torch_dtype=torch.float16,
+        cache_dir=args.sd_inpaint_checkpoint
+    ).to("cuda")
 
     # iterate forward pass
     total_iter = len(dataloader)
@@ -293,25 +324,23 @@ def main():
         start_time = time.time()
 
         # >>> Inpainting: inference stable diffusion or lama >>>
-        inpaint_pipe = StableDiffusionInpaintPipeline.from_pretrained(
-            "stabilityai/stable-diffusion-2-inpainting",
-            torch_dtype=torch.float16,
-        ).to("cuda")
+        # > preprocess images
         inpaint_images = [img.resize((512, 512)) for img in images]
-
-        # > use segmentation mask >
+        # > preprocess segmentation masks >
         from IPython import embed
         embed()
 
         inpaint_masks = []
         inpaint_mask_flags = []
-        for masks, boxes, W, H in zip(masks_list, boxes_filt_list, Ws, Hs):
+        for masks, boxes, pred_phrases, W, H in zip(masks_list, boxes_filt_list, pred_phrases_list, Ws, Hs):
             # choose the object to be masked
-            selected_masks, no_valid_flag = filter_and_select_bounding_boxes(bounding_boxes=boxes,
-                                                                             masks=masks, W=W, H=H,
-                                                                             n=args.inpaint_object_num,
-                                                                             high_threshold=args.inpaint_select_upperbound,
-                                                                             low_threshold=args.inpaint_select_lowerbound)
+            selected_masks, no_valid_flag = filter_and_select_bounding_boxes_and_masks(bounding_boxes=boxes,
+                                                                                       tags=pred_phrases,
+                                                                                       masks=masks, W=W, H=H,
+                                                                                       n=args.inpaint_object_num,
+                                                                                       high_threshold=args.inpaint_select_upperbound,
+                                                                                       low_threshold=args.inpaint_select_lowerbound,
+                                                                                       mask_threshold=args.inpaint_mask_threshold)
             # if mask num > 1, merge them
             mask = np.logical_or.reduce(selected_masks, axis=0)[0]  # merge all masks
             mask = Image.fromarray(mask).resize((512, 512))  # transform to PIL Image
@@ -343,17 +372,17 @@ def main():
         print(f'[{iter_idx + 1} / {total_iter}]({(iter_idx + 1) / total_iter * 100:.2f}%): '
               f'data: {data_time:.3f} tag: {tag_time:.3f} det: {det_time:.3f} '
               f'seg: {seg_time:.3f} inpaint: {ipt_time:.3f} wandb: {vis_time:.3f} '
-              f'total: {data_time+tag_time+det_time+seg_time+ipt_time+vis_time:.3f}')
+              f'total: {data_time + tag_time + det_time + seg_time + ipt_time + vis_time:.3f}')
 
 
 if __name__ == "__main__":
-
     parser = argparse.ArgumentParser("Visual Genome Inpainting Demo", add_help=True)
     parser.add_argument("--config", type=str, required=True, help="path to config file")
     parser.add_argument("--tag2text_checkpoint", type=str, required=True, help="path to checkpoint file")
     parser.add_argument("--grounded_checkpoint", type=str, required=True, help="path to checkpoint file")
     parser.add_argument("--sam_checkpoint", type=str, help="path to checkpoint file")
     parser.add_argument("--sam_hq_checkpoint", type=str, help="path to checkpoint file")
+    parser.add_argument("--sd_inpaint_checkpoint", type=str, help="path to checkpoint file")
     parser.add_argument("--use_sam_hq", action="store_true", help="using sam-hq for prediction")
     parser.add_argument("--split", default=",", type=str, help="split for text prompt")
     parser.add_argument("--output_dir", "-o", type=str, default="outputs", required=True, help="output directory")
@@ -361,9 +390,9 @@ if __name__ == "__main__":
     parser.add_argument("--box_threshold", type=float, default=0.25, help="box threshold")
     parser.add_argument("--text_threshold", type=float, default=0.2, help="text threshold")
     parser.add_argument("--iou_threshold", type=float, default=0.5, help="iou threshold")
+    parser.add_argument("--tag2text_threshold", type=float, default=0.64, help="the lower the more tags detected")
 
     parser.add_argument("--data_root", type=str)
-    parser.add_argument("--data_ann", type=str)
     parser.add_argument("--batch_size", type=int, default=32)
     parser.add_argument("--num_workers", type=int, default=8)
 
@@ -374,6 +403,7 @@ if __name__ == "__main__":
     parser.add_argument("--inpaint_object_num", type=int, default=1)
     parser.add_argument("--inpaint_select_upperbound", type=float, default=0.6)
     parser.add_argument("--inpaint_select_lowerbound", type=float, default=0.05)
+    parser.add_argument("--inpaint_mask_threshold", type=float, default=0.2)
 
     args = parser.parse_args()
 
