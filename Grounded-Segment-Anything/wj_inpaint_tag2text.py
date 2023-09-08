@@ -128,10 +128,12 @@ def prepare_sam_data(images, boxes, Hs, Ws, resize_size):
     return batched_input
 
 
-def wandb_visualize(images, tags, captions, boxes_filt, masks_list, pred_phrases):
+def wandb_visualize(images, tags, captions, boxes_filt, masks_list, pred_phrases, inpaint_masks, after_inpaint_images, inpainted_tag_lis):
     for i in range(len(images)):
-        img, tag, caption, boxes, masks, labels = images[i], tags[i], captions[i], boxes_filt[i], masks_list[i], \
-            pred_phrases[i]
+        img, tag, caption, boxes, masks, labels, ipt_img, ipt_mask, ipt_tag = images[i], tags[i], captions[i],\
+            boxes_filt[i], masks_list[i], pred_phrases[i], after_inpaint_images[i], inpaint_masks[i], inpainted_tag_lis[i]
+        from IPython import embed
+        embed()
         if len(boxes) > 0:
             fig, ax = plt.subplots(1, 3, figsize=(10, 10))
             # show image only
@@ -155,6 +157,9 @@ def wandb_visualize(images, tags, captions, boxes_filt, masks_list, pred_phrases
             run.log({'Visualization': wandb.Image(plt.gcf(), caption=f'Tags: {tag}\nCaption:{caption}')})
             plt.close()
 
+            run.log({'inpaint': [wandb.Image(ipt_img.resize((w, h)), caption='raw image'),
+                                 wandb.Image(ipt_mask.resize((w, h)), caption='inpaint mask'),
+                                 wandb.Image(aft_ipt_img.resize((w, h)), caption='inpainted image')]})
 
 def filter_and_select_bounding_boxes_and_masks(bounding_boxes, masks, tags, W, H, n,
                                                high_threshold, low_threshold, mask_threshold):
@@ -380,6 +385,8 @@ def main():
 
         after_inpaint_images = inpaint_pipe(image=inpaint_images, prompt=[''] * args.batch_size,
                                             mask_image=inpaint_masks).images
+        # resize to original size
+        after_inpaint_images = [after_ipt_img.resize((w, h)) for after_ipt_img, w, h in zip(after_inpaint_images, Ws, Hs)]
         # empty cache
         torch.cuda.empty_cache()
         # inpainting time
@@ -391,7 +398,8 @@ def main():
             run.log({'inpaint': [wandb.Image(ipt_img.resize((w, h)), caption='raw image'),
                                  wandb.Image(ipt_mask.resize((w, h)), caption='inpaint mask'),
                                  wandb.Image(aft_ipt_img.resize((w, h)), caption='inpainted image')]})
-        wandb_visualize(images, tags_list, tag2text_captions_list, boxes_filt_list, masks_list, pred_phrases_list)
+        wandb_visualize(images, tags_list, tag2text_captions_list, boxes_filt_list, masks_list, pred_phrases_list,
+                        inpaint_masks, after_inpaint_images, selected_tags_list)
         # empty cache
         torch.cuda.empty_cache()
         # visualization time
