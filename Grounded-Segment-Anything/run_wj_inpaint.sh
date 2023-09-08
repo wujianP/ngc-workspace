@@ -52,5 +52,6 @@ python wj_inpaint_tag2text.py \
   --box_threshold 0.32 \
   --text_threshold 0.28 \
   --iou_threshold 0.5 \
+  --tag2text_threshold 0.7 \
   --batch_size 4 \
   --num_workers 8

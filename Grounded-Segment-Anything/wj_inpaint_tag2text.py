@@ -130,7 +130,7 @@ def prepare_sam_data(images, boxes, Hs, Ws, resize_size):
 def wandb_visualize(images, tags, captions, boxes_filt, masks_list, pred_phrases):
     for i in range(len(images)):
         img, tag, caption, boxes, masks, labels = images[i], tags[i], captions[i], boxes_filt[i], masks_list[i], \
-        pred_phrases[i]
+            pred_phrases[i]
         if len(boxes) > 0:
             fig, ax = plt.subplots(1, 3, figsize=(10, 10))
             # show image only
@@ -158,7 +158,11 @@ def wandb_visualize(images, tags, captions, boxes_filt, masks_list, pred_phrases
 def filter_and_select_bounding_boxes_and_masks(bounding_boxes, masks, tags, W, H, n,
                                                high_threshold, low_threshold, mask_threshold):
     """
-
+    1. Filter out boxes that are too large or too small in area.
+    2. Filter out boxes where the proportion of the mask to the box is too small.
+    3. Merge the masks that have not been filtered out according to their respective categories.
+    4. Select one mask to return.
+    5. Special case: If there are no masks that meet the criteria, then randomly generate a rectangular mask and return a flag.
     :param bounding_boxes:
     :param masks:
     :param tags:
@@ -168,13 +172,22 @@ def filter_and_select_bounding_boxes_and_masks(bounding_boxes, masks, tags, W, H
     :param high_threshold:
     :param low_threshold:
     :param mask_threshold:
-    :return:
+    :return: [selected mask, ...], [selected tag, ...], flag(Bool)
     """
-    if len(bounding_boxes) == 0:
-        return None, True
+    # generate mock mask map when no valid mask to be selected
+    mock_mask = Image.new('L', (W, H), 0)
+    draw = ImageDraw.Draw(mock_mask)
+    draw.rectangle([(W // 4, H // 4), (3 * W // 4, 3 * H // 4)], fill=255)
+    mock_mask = np.array(mock_mask) > 0  # to bool array
 
-    selected_masks = []
+    if len(bounding_boxes) == 0:
+        return [mock_mask], ['no-valid-mask'], True
+
+    # preprocess tags format
+    tags = np.array([tag.split('(')[0] for tag in tags])  # from 'cls1(0.27)' to 'cls'
+
     # First: filter all masks and boxes not statisfy requirements
+    selected_idx = []
     for i, box in enumerate(bounding_boxes):
         x1, y1, x2, y2 = box.cpu()
         box_area = (x2 - x1) * (y2 - y1)
@@ -189,24 +202,36 @@ def filter_and_select_bounding_boxes_and_masks(bounding_boxes, masks, tags, W, H
         # filter masks with to small area
         if mask_percentage <= mask_threshold:
             continue
+        # select
+        selected_idx.append(i)
 
-        # merge all masks with the same category
+    if len(selected_idx) == 0:
+        return [mock_mask], ['no-valid-mask'], True
 
-        selected_masks.append(masks[i])
+    # Then: merge all masks with the same category
+    selected_masks = masks[selected_idx]
+    selected_tags = tags[selected_idx]
+    merged_tags = np.unique(selected_tags)
+    merged_masks = []
+    for tag in merged_tags:
+        mask_indices = np.where(selected_tags == tag)
+        masks_with_same_tag = selected_masks[mask_indices]
+        merged_mask = np.logical_or.reduce(masks_with_same_tag, axis=0)[0]
+        merged_masks.append(merged_mask)
 
-    if len(selected_masks) == 0:
-        return None, True
+    if n > len(merged_masks):
+        return merged_masks, merged_tags, False
+    else:
+        sampled_indices = random.sample(range(len(merged_masks)), n)
+        sampled_masks = [merged_masks[idx] for idx in sampled_indices]
+        sampled_tags = [merged_tags[idx] for idx in sampled_indices]
 
-    if n > len(selected_masks):
-        return selected_masks, False
-
-    return random.sample(selected_masks, n), False
+    return sampled_masks, sampled_tags, False
 
 
 @torch.no_grad()
 def main():
     # load data
-    # dataset = CoCoDataset(image_root=args.data_root, json=args.data_ann)
     dataset = load_dataset(path="visual_genome", name="objects_v1.2.0",
                            split="train", cache_dir=args.data_root)
     dataloader = DataLoader(dataset=dataset,
@@ -246,7 +271,6 @@ def main():
 
     # iterate forward pass
     total_iter = len(dataloader)
-    result_dict = {'configure': vars(args)}
     start_time = time.time()
     for iter_idx, (images, image_ids, Ws, Hs, objects) in enumerate(dataloader):
         # >>> load data >>>
@@ -270,7 +294,7 @@ def main():
         start_time = time.time()
 
         # >>> Detection: inference grounded dino >>>
-        # preprocess images
+        # > preprocess images >
         trans_grounded = TS.Compose(
             [
                 TS.Resize((args.grounding_dino_img_size, args.grounding_dino_img_size)),
@@ -279,7 +303,7 @@ def main():
             ]
         )
         dino_images = torch.stack([trans_grounded(img) for img in images], dim=0).cuda()
-        # forward grounded dino
+        # > forward grounded dino >
         boxes_filt_list, scores_list, pred_phrases_list = get_grounding_output(
             model=grounding_dino_model,
             image=dino_images,
@@ -287,7 +311,7 @@ def main():
             box_threshold=args.box_threshold,
             text_threshold=args.text_threshold
         )
-        # post process bounding box
+        # > post process bounding box >
         for i in range(len(boxes_filt_list)):
             H, W = Hs[i], Ws[i]
             boxes = boxes_filt_list[i]
@@ -296,7 +320,7 @@ def main():
                 boxes[k][:2] -= boxes[k][2:] / 2
                 boxes[k][2:] += boxes[k][:2]
             boxes_filt_list[i] = boxes.cuda()
-        # use NMS to handle overlapped boxes
+        # > use NMS to handle overlapped boxes >
         for i in range(args.batch_size):
             boxes_filt_list[i] = boxes_filt_list[i].cpu()
             nms_idx = torchvision.ops.nms(boxes_filt_list[i], scores_list[i], args.iou_threshold).numpy().tolist()
@@ -310,11 +334,11 @@ def main():
         start_time = time.time()
 
         # >>> Segmentation: inference sam >>>
-        # preprocess images
+        # > preprocess images >
         batched_input = prepare_sam_data(images=images, boxes=boxes_filt_list,
                                          Hs=Hs, Ws=Ws,
                                          resize_size=sam.image_encoder.img_size)
-        # forward sam
+        # > forward sam >
         batched_output = sam(batched_input, multimask_output=False)
         masks_list = [output['masks'].cpu().numpy() for output in batched_output]
         # empty cache
@@ -334,14 +358,15 @@ def main():
         inpaint_mask_flags = []
         for masks, boxes, pred_phrases, W, H in zip(masks_list, boxes_filt_list, pred_phrases_list, Ws, Hs):
             # choose the object to be masked
-            selected_masks, no_valid_flag = filter_and_select_bounding_boxes_and_masks(bounding_boxes=boxes,
-                                                                                       tags=pred_phrases,
-                                                                                       masks=masks, W=W, H=H,
-                                                                                       n=args.inpaint_object_num,
-                                                                                       high_threshold=args.inpaint_select_upperbound,
-                                                                                       low_threshold=args.inpaint_select_lowerbound,
-                                                                                       mask_threshold=args.inpaint_mask_threshold)
-            # if mask num > 1, merge them
+            selected_masks, selected_tags, no_valid_flag = filter_and_select_bounding_boxes_and_masks(
+                bounding_boxes=boxes,
+                tags=pred_phrases,
+                masks=masks, W=W, H=H,
+                n=args.inpaint_object_num,
+                high_threshold=args.inpaint_select_upperbound,
+                low_threshold=args.inpaint_select_lowerbound,
+                mask_threshold=args.inpaint_mask_threshold)
+            # merge selected masks
             mask = np.logical_or.reduce(selected_masks, axis=0)[0]  # merge all masks
             mask = Image.fromarray(mask).resize((512, 512))  # transform to PIL Image
             mask = mask.filter(ImageFilter.MaxFilter(size=args.mask_dilate_size))  # dilate the mask edge
