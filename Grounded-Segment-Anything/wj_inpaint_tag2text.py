@@ -432,8 +432,8 @@ if __name__ == "__main__":
     parser.add_argument("--mask_dilate_edge_size", type=int, default=9, help="mast be an odd")
     parser.add_argument("--mask_dilate_kernel_size", type=int, default=15, help="mast be an odd")
     parser.add_argument("--inpaint_object_num", type=int, default=1)
-    parser.add_argument("--inpaint_select_upperbound", type=float, default=0.6)
-    parser.add_argument("--inpaint_select_lowerbound", type=float, default=0.05)
+    parser.add_argument("--inpaint_select_upperbound", type=float, default=0.4)
+    parser.add_argument("--inpaint_select_lowerbound", type=float, default=0.01)
     parser.add_argument("--inpaint_mask_threshold", type=float, default=0.2)
 
     args = parser.parse_args()
