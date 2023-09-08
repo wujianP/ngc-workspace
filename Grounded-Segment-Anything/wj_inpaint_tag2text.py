@@ -214,8 +214,11 @@ def main():
     # iterate forward pass
     total_iter = len(dataloader)
     result_dict = {'configure': vars(args)}
-    start_time = time()
+    start_time = time.time()
     for iter_idx, (images, image_ids, Ws, Hs, objects) in enumerate(dataloader):
+        # >>> load data >>>
+        data_time = time.time() - start_time
+        start_time = time.time()
 
         # >>> Tagging: inference tag2text >>>
         trans_tag2text = TS.Compose([TS.Resize((384, 384)),
@@ -229,6 +232,9 @@ def main():
         tag2text_captions_list = tag2text_ret[2]
         # empty cache
         torch.cuda.empty_cache()
+        # tagging time
+        tag_time = time.time() - start_time
+        start_time = time.time()
 
         # >>> Detection: inference grounded dino >>>
         # preprocess images
@@ -266,6 +272,9 @@ def main():
             # caption = check_caption(tag2text_caption, pred_phrases)
         # empty cache
         torch.cuda.empty_cache()
+        # detection time
+        det_time = time.time() - start_time
+        start_time = time.time()
 
         # >>> Segmentation: inference sam >>>
         # preprocess images
@@ -277,9 +286,9 @@ def main():
         masks_list = [output['masks'].cpu().numpy() for output in batched_output]
         # empty cache
         torch.cuda.empty_cache()
-
-        # >>> Wandb visualize >>>
-        wandb_visualize(images, tags_list, tag2text_captions_list, boxes_filt_list, masks_list, pred_phrases_list)
+        # segmentation time
+        seg_time = time.time() - start_time
+        start_time = time.time()
 
         # >>> Inpainting: inference stable diffusion or lama >>>
         inpaint_pipe = StableDiffusionInpaintPipeline.from_pretrained(
@@ -305,13 +314,28 @@ def main():
 
         after_inpaint_images = inpaint_pipe(image=inpaint_images, prompt=[''] * args.batch_size,
                                             mask_image=inpaint_masks).images
+        # empty cache
+        torch.cuda.empty_cache()
+        # inpainting time
+        ipt_time = time.time() - start_time
+        start_time = time.time()
+
+        # >>> Wandb visualize >>>
         for ipt_img, ipt_mask, aft_ipt_img, h, w in zip(inpaint_images, inpaint_masks, after_inpaint_images, Hs, Ws):
             run.log({'inpaint': [wandb.Image(ipt_img.resize((w, h)), caption='raw image'),
                                  wandb.Image(ipt_mask.resize((w, h)), caption='inpaint mask'),
                                  wandb.Image(aft_ipt_img.resize((w, h)), caption='inpainted image')]})
+        wandb_visualize(images, tags_list, tag2text_captions_list, boxes_filt_list, masks_list, pred_phrases_list)
+        # empty cache
+        torch.cuda.empty_cache()
+        # visualization time
+        vis_time = time.time() - start_time
+        start_time = time.time()
 
-        # from IPython import embed
-        # embed()
+        # >>> Output: print and save
+        print(f'[{iter_idx + 1 / total_iter}]: data: {data_time:.3f} tag: {tag_time:.3f} det: {det_time:.3f} '
+              f'seg: {seg_time:.3f} inpaint: {ipt_time:.3f} wandb: {vis_time:.3f}'
+              f'total: {data_time+tag_time+det_time+seg_time+ipt_time+vis_time:.3f}')
 
 
 if __name__ == "__main__":
