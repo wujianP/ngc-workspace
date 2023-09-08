@@ -2,6 +2,7 @@ import argparse
 import torch
 import torchvision
 import random
+import time
 import numpy as np
 import matplotlib.pyplot as plt
 import torchvision.transforms as TS
@@ -21,13 +22,9 @@ sys.path.append('Tag2Text')
 from Tag2Text.models import tag2text
 from Tag2Text import inference_tag2text
 
-# BLIP-2
-from transformers import Blip2Processor, Blip2ForConditionalGeneration
-
 # wandb
 import wandb
 wandb.login()
-run = wandb.init('Tag2Text & Grounded DINO & HQ-SAM & Visual Genome')
 
 from datasets import load_dataset
 from diffusers import StableDiffusionInpaintPipeline
@@ -180,41 +177,8 @@ def filter_and_select_bounding_boxes(bounding_boxes, masks, W, H, n, high_thresh
     return random.sample(selected_masks, n), False
 
 
-if __name__ == "__main__":
-
-    parser = argparse.ArgumentParser("Grounded-Segment-Anything Demo", add_help=True)
-    parser.add_argument("--config", type=str, required=True, help="path to config file")
-    parser.add_argument("--tag2text_checkpoint", type=str, required=True, help="path to checkpoint file")
-    parser.add_argument("--grounded_checkpoint", type=str, required=True, help="path to checkpoint file")
-    parser.add_argument("--sam_checkpoint", type=str, help="path to checkpoint file")
-    parser.add_argument("--sam_hq_checkpoint", type=str, help="path to checkpoint file")
-    parser.add_argument("--use_sam_hq", action="store_true", help="using sam-hq for prediction")
-    parser.add_argument("--split", default=",", type=str, help="split for text prompt")
-    parser.add_argument("--output_dir", "-o", type=str, default="outputs", required=True, help="output directory")
-
-    parser.add_argument("--box_threshold", type=float, default=0.25, help="box threshold")
-    parser.add_argument("--text_threshold", type=float, default=0.2, help="text threshold")
-    parser.add_argument("--iou_threshold", type=float, default=0.5, help="iou threshold")
-
-    parser.add_argument("--data_root", type=str)
-    parser.add_argument("--data_ann", type=str)
-    parser.add_argument("--batch_size", type=int, default=32)
-    parser.add_argument("--num_workers", type=int, default=8)
-
-    parser.add_argument("--user_specified_tags", type=str, default="None",
-                        help="user specified tags for tag2text, if more than one, use ',' to split")
-    parser.add_argument("--grounding_dino_img_size", type=int, default=800)
-    parser.add_argument("--mask_dilate_size", type=int, default=10)
-    parser.add_argument("--inpaint_object_num", type=int, default=1)
-    parser.add_argument("--inpaint_select_upperbound", type=float, default=0.6)
-    parser.add_argument("--inpaint_select_lowerbound", type=float, default=0.05)
-
-    args = parser.parse_args()
-
-    # cfg
-    config_file = args.config
-    device = "cuda"
-
+@torch.no_grad()
+def main():
     # load data
     # dataset = CoCoDataset(image_root=args.data_root, json=args.data_ann)
     dataset = load_dataset(path="visual_genome", name="objects_v1.2.0",
@@ -250,7 +214,7 @@ if __name__ == "__main__":
     # iterate forward pass
     total_iter = len(dataloader)
     result_dict = {'configure': vars(args)}
-    # for iter_idx, (images, Ws, Hs, paths) in enumerate(dataloader):
+    start_time = time()
     for iter_idx, (images, image_ids, Ws, Hs, objects) in enumerate(dataloader):
 
         # >>> Tagging: inference tag2text >>>
@@ -324,9 +288,6 @@ if __name__ == "__main__":
         ).to("cuda")
         inpaint_images = [img.resize((512, 512)) for img in images]
 
-        from IPython import embed
-        embed()
-
         # > use segmentation mask >
         inpaint_masks = []
         for masks, boxes, W, H in zip(masks_list, boxes_filt_list, Ws, Hs):
@@ -337,11 +298,9 @@ if __name__ == "__main__":
                                                                              high_threshold=args.inpaint_select_upperbound,
                                                                              low_threshold=args.inpaint_select_lowerbound)
             # if mask num > 1, merge them
-            mask = torch.sum(selected_masks, dim=0)
-            mask = torch.where(masks > 0, True, False)
-
-            mask = Image.fromarray(mask).resize((512, 512))
-            mask = mask.filter(ImageFilter.MaxFilter(size=args.mask_dilate_size))   # dilate the mask edge
+            mask = np.logical_or.reduce(selected_masks, axis=0)[0]  # merge all masks
+            mask = Image.fromarray(mask).resize((512, 512))  # transform to PIL Image
+            mask = mask.filter(ImageFilter.MaxFilter(size=args.mask_dilate_size))  # dilate the mask edge
             inpaint_masks.append(mask)
 
         after_inpaint_images = inpaint_pipe(image=inpaint_images, prompt=[''] * args.batch_size,
@@ -351,5 +310,45 @@ if __name__ == "__main__":
                                  wandb.Image(ipt_mask.resize((w, h)), caption='inpaint mask'),
                                  wandb.Image(aft_ipt_img.resize((w, h)), caption='inpainted image')]})
 
-        from IPython import embed
-        embed()
+        # from IPython import embed
+        # embed()
+
+
+if __name__ == "__main__":
+
+    parser = argparse.ArgumentParser("Grounded-Segment-Anything Demo", add_help=True)
+    parser.add_argument("--config", type=str, required=True, help="path to config file")
+    parser.add_argument("--tag2text_checkpoint", type=str, required=True, help="path to checkpoint file")
+    parser.add_argument("--grounded_checkpoint", type=str, required=True, help="path to checkpoint file")
+    parser.add_argument("--sam_checkpoint", type=str, help="path to checkpoint file")
+    parser.add_argument("--sam_hq_checkpoint", type=str, help="path to checkpoint file")
+    parser.add_argument("--use_sam_hq", action="store_true", help="using sam-hq for prediction")
+    parser.add_argument("--split", default=",", type=str, help="split for text prompt")
+    parser.add_argument("--output_dir", "-o", type=str, default="outputs", required=True, help="output directory")
+
+    parser.add_argument("--box_threshold", type=float, default=0.25, help="box threshold")
+    parser.add_argument("--text_threshold", type=float, default=0.2, help="text threshold")
+    parser.add_argument("--iou_threshold", type=float, default=0.5, help="iou threshold")
+
+    parser.add_argument("--data_root", type=str)
+    parser.add_argument("--data_ann", type=str)
+    parser.add_argument("--batch_size", type=int, default=32)
+    parser.add_argument("--num_workers", type=int, default=8)
+
+    parser.add_argument("--user_specified_tags", type=str, default="None",
+                        help="user specified tags for tag2text, if more than one, use ',' to split")
+    parser.add_argument("--grounding_dino_img_size", type=int, default=800)
+    parser.add_argument("--mask_dilate_size", type=int, default=9, help="mast be an odd")
+    parser.add_argument("--inpaint_object_num", type=int, default=1)
+    parser.add_argument("--inpaint_select_upperbound", type=float, default=0.6)
+    parser.add_argument("--inpaint_select_lowerbound", type=float, default=0.05)
+
+    args = parser.parse_args()
+
+    # cfg
+    config_file = args.config
+    device = "cuda"
+
+    run = wandb.init('Tag2Text & Grounded DINO & HQ-SAM & Visual Genome')
+    main()
+    wandb.finish()

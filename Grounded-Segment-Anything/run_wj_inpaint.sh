@@ -49,8 +49,8 @@ python wj_inpaint_tag2text.py \
   --sam_hq_checkpoint /discobox/wjpeng/weights/hq-sam/sam_hq_vit_l.pth \
   --use_sam_hq \
   --output_dir "outputs" \
-  --box_threshold 0.35 \
-  --text_threshold 0.3 \
+  --box_threshold 0.3 \
+  --text_threshold 0.25 \
   --iou_threshold 0.5 \
   --batch_size 4 \
   --num_workers 8
