@@ -3,6 +3,7 @@ import torch
 import torchvision
 import random
 import time
+import cv2
 import numpy as np
 import matplotlib.pyplot as plt
 import torchvision.transforms as TS
@@ -367,7 +368,12 @@ def main():
             # merge selected masks
             mask = np.logical_or.reduce(selected_masks, axis=0)  # merge all masks
             mask = Image.fromarray(mask).resize((512, 512))  # transform to PIL Image
-            mask = mask.filter(ImageFilter.MaxFilter(size=args.mask_dilate_size))  # dilate the mask edge
+            # dilate and erode
+            kernel = np.ones((args.mask_dilate_kernel_size, args.mask_dilate_kernel_size), np.uint8)
+            mask = cv2.dilate(mask, kernel, iterations=1)    # dilate
+            mask = cv2.erode(mask, kernel, iterations=1)    # erode
+            mask = mask.filter(ImageFilter.MaxFilter(size=args.mask_dilate_edge_size))  # dilate the mask edge
+
             inpaint_masks.append(mask)
             inpaint_mask_flags.append(no_valid_flag)
             selected_tags_list.append(selected_tags)
@@ -423,7 +429,8 @@ if __name__ == "__main__":
     parser.add_argument("--user_specified_tags", type=str, default="None",
                         help="user specified tags for tag2text, if more than one, use ',' to split")
     parser.add_argument("--grounding_dino_img_size", type=int, default=800)
-    parser.add_argument("--mask_dilate_size", type=int, default=9, help="mast be an odd")
+    parser.add_argument("--mask_dilate_edge_size", type=int, default=9, help="mast be an odd")
+    parser.add_argument("--mask_dilate_kernel_size", type=int, default=15, help="mast be an odd")
     parser.add_argument("--inpaint_object_num", type=int, default=1)
     parser.add_argument("--inpaint_select_upperbound", type=float, default=0.6)
     parser.add_argument("--inpaint_select_lowerbound", type=float, default=0.05)

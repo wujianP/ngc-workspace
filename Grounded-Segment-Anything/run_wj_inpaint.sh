@@ -31,7 +31,7 @@ python wj_inpaint_ram.py \
   --box_threshold 0.25 \
   --text_threshold 0.2 \
   --iou_threshold 0.5 \
-  --batch_size 4 \
+  --batch_size 8 \
   --num_workers 8
 
 
@@ -49,9 +49,9 @@ python wj_inpaint_tag2text.py \
   --sd_inpaint_checkpoint /discobox/wjpeng/weights/stable-difusion-2-inpaint \
   --use_sam_hq \
   --output_dir "outputs" \
-  --box_threshold 0.32 \
-  --text_threshold 0.28 \
+  --box_threshold 0.3 \
+  --text_threshold 0.25 \
   --iou_threshold 0.5 \
   --tag2text_threshold 0.7 \
-  --batch_size 4 \
+  --batch_size 8 \
   --num_workers 8
