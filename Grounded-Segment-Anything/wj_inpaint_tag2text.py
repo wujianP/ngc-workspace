@@ -138,7 +138,7 @@ def wandb_visualize(images, tags, captions, boxes_filt, masks_list, pred_phrases
             boxes_filt[i], masks_list[i], pred_phrases[i], after_inpaint_images[i], inpaint_masks[i], inpainted_tag_lis[i]
         w, h = img.size
         # masks, boxes and image
-        plt.figure(figsize=(w/100, h/100))
+        plt.figure(figsize=(w/80, h/80))
         ax1 = plt.gca()
         ax1.axis('off')
         ax1.imshow(img)
@@ -387,6 +387,7 @@ def main():
             mask = cv2.erode(mask, kernel, iterations=1)    # erode
             mask = cv2.dilate(mask, edge_kernel, iterations=1)    # dilate edge
             # mask = mask.filter(ImageFilter.MaxFilter(size=args.mask_dilate_edge_size))  # dilate the mask edge
+            mask = mask * 255
             mask = Image.fromarray(mask).resize((512, 512))
             inpaint_masks.append(mask)
             inpaint_mask_flags.append(no_valid_flag)
@@ -404,10 +405,6 @@ def main():
         start_time = time.time()
 
         # >>> Wandb visualize >>>
-        for ipt_img, ipt_mask, aft_ipt_img, h, w in zip(inpaint_images, inpaint_masks, after_inpaint_images, Hs, Ws):
-            run.log({'inpaint': [wandb.Image(ipt_img.resize((w, h)), caption='raw image'),
-                                 wandb.Image(ipt_mask.resize((w, h)), caption='inpaint mask'),
-                                 wandb.Image(aft_ipt_img.resize((w, h)), caption='inpainted image')]})
         wandb_visualize(images, tags_list, tag2text_captions_list, boxes_filt_list, masks_list, pred_phrases_list,
                         inpaint_masks, after_inpaint_images, selected_tags_list)
         # empty cache
@@ -417,10 +414,10 @@ def main():
         start_time = time.time()
 
         # >>> Output: print and save
-        print(f'[{iter_idx + 1} / {total_iter}]({(iter_idx + 1) / total_iter * 100:.2f}%): '
-              f'data: {data_time:.3f} tag: {tag_time:.3f} det: {det_time:.3f} '
-              f'seg: {seg_time:.3f} inpaint: {ipt_time:.3f} wandb: {vis_time:.3f} '
-              f'total: {data_time + tag_time + det_time + seg_time + ipt_time + vis_time:.3f}')
+        print(f'[{iter_idx + 1}/{total_iter}]({(iter_idx + 1) / total_iter * 100:.2f}%): '
+              f'data: {data_time:.2f} tag: {tag_time:.2f} det: {det_time:.2f} '
+              f'seg: {seg_time:.2f} inpaint: {ipt_time:.2f} wandb: {vis_time:.2f} '
+              f'total: {data_time + tag_time + det_time + seg_time + ipt_time + vis_time:.2f}')
 
 
 if __name__ == "__main__":
