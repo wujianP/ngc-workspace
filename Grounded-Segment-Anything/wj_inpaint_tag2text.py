@@ -31,7 +31,7 @@ wandb.login()
 
 from datasets import load_dataset
 from diffusers import StableDiffusionInpaintPipeline
-from PIL import Image, ImageFilter, ImageDraw
+from PIL import Image, ImageDraw
 from torch.utils.data import DataLoader
 
 
@@ -100,10 +100,14 @@ def show_mask(mask, ax, random_color=False):
     ax.imshow(mask_image)
 
 
-def show_box(box, ax, label):
+def show_box(box, ax, label, random_color=True):
+    if random_color:
+        color = np.concatenate([np.random.random(3), np.array([0.6])], axis=0)
+    else:
+        color = np.array([30 / 255, 144 / 255, 255 / 255, 0.6])
     x0, y0 = box[0], box[1]
     w, h = box[2] - box[0], box[3] - box[1]
-    ax.add_patch(plt.Rectangle((x0, y0), w, h, edgecolor='green', facecolor=(0, 0, 0, 0), lw=2))
+    ax.add_patch(plt.Rectangle((x0, y0), w, h, edgecolor=color, facecolor=(0, 0, 0, 0), lw=2))
     ax.text(x0, y0, label)
 
 
@@ -132,34 +136,34 @@ def wandb_visualize(images, tags, captions, boxes_filt, masks_list, pred_phrases
     for i in range(len(images)):
         img, tag, caption, boxes, masks, labels, ipt_img, ipt_mask, ipt_tag = images[i], tags[i], captions[i],\
             boxes_filt[i], masks_list[i], pred_phrases[i], after_inpaint_images[i], inpaint_masks[i], inpainted_tag_lis[i]
-        from IPython import embed
-        embed()
+        w, h = img.size
+        # masks, boxes and image
+        plt.figure(figsize=(w/100, h/100))
+        ax1 = plt.gca()
+        ax1.axis('off')
+        ax1.imshow(img)
         if len(boxes) > 0:
-            # original image
-            plt.figure()
-            plt.imshow()
-            fig, ax = plt.subplots(1, 3, figsize=(10, 10))
-            # show boxes, masks, image
-            ax[1].imshow(img)
             for (box, label) in zip(boxes, labels):
-                show_box(box.cpu().numpy(), ax[1], label)
+                show_box(box.cpu().numpy(), ax1, label)
             for mask in masks:
-                show_mask(mask, ax[1], random_color=True)
-            # mask_all = np.logical_or.reduce(masks, axis=0)
-            # show_mask(mask_all, ax[1], random_color=True)
-            ax[1].axis('off')
-            # show masks only
+                show_mask(mask, ax1, random_color=True)
+        fig1 = plt.gcf()
+        # all mask only
+        plt.figure(figsize=(w/100, h/100))
+        ax2 = plt.gca()
+        ax2.axis('off')
+        if len(boxes) > 0:
             for mask in masks:
-                show_mask(mask, ax[2], random_color=True)
-            ax[2].axis('off')
-            # send to wandb
-            plt.tight_layout()
-            run.log({'Visualization': wandb.Image(plt.gcf(), caption=f'Tags: {tag}\nCaption:{caption}')})
-            plt.close()
+                show_mask(mask, ax2, random_color=True)
+        fig2 = plt.gcf()
 
-            run.log({'inpaint': [wandb.Image(ipt_img.resize((w, h)), caption='raw image'),
-                                 wandb.Image(ipt_mask.resize((w, h)), caption='inpaint mask'),
-                                 wandb.Image(aft_ipt_img.resize((w, h)), caption='inpainted image')]})
+        # show
+        run.log({'inpaint': [wandb.Image(img, caption=f'raw image\ntag2text caption: {caption}'),
+                             wandb.Image(ipt_img, caption='inpainted image'),
+                             wandb.Image(ipt_mask, caption=f'inpainted mask\ninpaint tags: {ipt_tag}'),
+                             wandb.Image(fig1, caption=f'masks and boxes\ntag2text tags: {tag}'),
+                             wandb.Image(fig2, caption=f'masks')]})
+
 
 def filter_and_select_bounding_boxes_and_masks(bounding_boxes, masks, tags, W, H, n,
                                                high_threshold, low_threshold, mask_threshold):
@@ -392,6 +396,7 @@ def main():
                                             mask_image=inpaint_masks).images
         # resize to original size
         after_inpaint_images = [after_ipt_img.resize((w, h)) for after_ipt_img, w, h in zip(after_inpaint_images, Ws, Hs)]
+        inpaint_masks = [ipt_mask.resize((w, h)) for ipt_mask, w, h in zip(inpaint_masks, Ws, Hs)]
         # empty cache
         torch.cuda.empty_cache()
         # inpainting time
