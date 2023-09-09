@@ -364,8 +364,6 @@ def main():
         inpaint_masks = []
         inpaint_mask_flags = []
         selected_tags_list = []
-        from IPython import embed
-        embed()
         for masks, boxes, pred_phrases, W, H in zip(masks_list, boxes_filt_list, pred_phrases_list, Ws, Hs):
             # choose the object to be masked
             selected_masks, selected_tags, no_valid_flag = filter_and_select_bounding_boxes_and_masks(
@@ -405,8 +403,9 @@ def main():
         start_time = time.time()
 
         # >>> Wandb visualize >>>
-        wandb_visualize(images, tags_list, tag2text_captions_list, boxes_filt_list, masks_list, pred_phrases_list,
-                        inpaint_masks, after_inpaint_images, selected_tags_list)
+        if (iter_idx+1) % args.visualize_freq == 0:
+            wandb_visualize(images, tags_list, tag2text_captions_list, boxes_filt_list, masks_list, pred_phrases_list,
+                            inpaint_masks, after_inpaint_images, selected_tags_list)
         # empty cache
         torch.cuda.empty_cache()
         # visualization time
@@ -450,6 +449,7 @@ if __name__ == "__main__":
     parser.add_argument("--inpaint_select_upperbound", type=float, default=0.4)
     parser.add_argument("--inpaint_select_lowerbound", type=float, default=0.01)
     parser.add_argument("--inpaint_mask_threshold", type=float, default=0.2)
+    parser.add_argument("--visualize_freq", type=int, default=5)
 
     args = parser.parse_args()
 
