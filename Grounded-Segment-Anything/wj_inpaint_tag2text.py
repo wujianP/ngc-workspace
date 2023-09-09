@@ -135,10 +135,10 @@ def wandb_visualize(images, tags, captions, boxes_filt, masks_list, pred_phrases
         from IPython import embed
         embed()
         if len(boxes) > 0:
+            # original image
+            plt.figure()
+            plt.imshow()
             fig, ax = plt.subplots(1, 3, figsize=(10, 10))
-            # show image only
-            ax[0].imshow(img)
-            ax[0].axis('off')
             # show boxes, masks, image
             ax[1].imshow(img)
             for (box, label) in zip(boxes, labels):
@@ -374,13 +374,16 @@ def main():
                 mask_threshold=args.inpaint_mask_threshold)
             # merge selected masks
             mask = np.logical_or.reduce(selected_masks, axis=0)  # merge all masks
-            mask = Image.fromarray(mask).resize((512, 512))  # transform to PIL Image
+            mask = mask.astype(np.uint8)  # from bool to int
+            # mask = Image.fromarray(mask).resize((512, 512))  # transform to PIL Image
             # dilate and erode
             kernel = np.ones((args.mask_dilate_kernel_size, args.mask_dilate_kernel_size), np.uint8)
+            edge_kernel = np.ones((args.mask_dilate_edge_size, args.mask_dilate_edge_size), np.uint8)
             mask = cv2.dilate(mask, kernel, iterations=1)    # dilate
             mask = cv2.erode(mask, kernel, iterations=1)    # erode
-            mask = mask.filter(ImageFilter.MaxFilter(size=args.mask_dilate_edge_size))  # dilate the mask edge
-
+            mask = cv2.dilate(mask, edge_kernel, iterations=1)    # dilate edge
+            # mask = mask.filter(ImageFilter.MaxFilter(size=args.mask_dilate_edge_size))  # dilate the mask edge
+            mask = Image.fromarray(mask).resize((512, 512))
             inpaint_masks.append(mask)
             inpaint_mask_flags.append(no_valid_flag)
             selected_tags_list.append(selected_tags)
@@ -440,7 +443,7 @@ if __name__ == "__main__":
                         help="user specified tags for tag2text, if more than one, use ',' to split")
     parser.add_argument("--grounding_dino_img_size", type=int, default=800)
     parser.add_argument("--mask_dilate_edge_size", type=int, default=9, help="mast be an odd")
-    parser.add_argument("--mask_dilate_kernel_size", type=int, default=15, help="mast be an odd")
+    parser.add_argument("--mask_dilate_kernel_size", type=int, default=9, help="mast be an odd")
     parser.add_argument("--inpaint_object_num", type=int, default=1)
     parser.add_argument("--inpaint_select_upperbound", type=float, default=0.4)
     parser.add_argument("--inpaint_select_lowerbound", type=float, default=0.01)
