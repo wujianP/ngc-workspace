@@ -168,13 +168,14 @@ def wandb_visualize(images, tags, captions, boxes_filt, masks_list, pred_phrases
 
 
 def filter_and_select_bounding_boxes_and_masks(bounding_boxes, masks, tags, W, H, n,
-                                               high_threshold, low_threshold, mask_threshold):
+                                               high_threshold, low_threshold, mask_threshold, tag2cluster):
     """
     1. Filter out boxes that are too large or too small in area.
     2. Filter out boxes where the proportion of the mask to the box is too small.
     3. Merge the masks that have not been filtered out according to their respective categories.
     4. Select one mask to return.
     5. Special case: If there are no masks that meet the criteria, then randomly generate a rectangular mask and return a flag.
+    :param tag2cluster:
     :param bounding_boxes:
     :param masks:
     :param tags:
@@ -220,22 +221,21 @@ def filter_and_select_bounding_boxes_and_masks(bounding_boxes, masks, tags, W, H
     if len(selected_idx) == 0:
         return [mock_mask], ['no-valid-mask'], True
 
-    from IPython import embed
-    embed()
-
     # Then: merge all masks with the same category
     # with tag clustering
     selected_masks = masks[selected_idx]
     selected_tags = tags[selected_idx]
-    tag2cluster = np.load(args.clustered_tags, allow_pickle=True).tolist()['tag2cluster']
     tag_cluster_ids = [tag2cluster[tag] for tag in selected_tags]
     unique_cluster_ids = np.unique(tag_cluster_ids)
     merged_masks = []
+    merged_tags = []
     for cluster_ids in unique_cluster_ids:
         mask_indices = np.where(tag_cluster_ids == cluster_ids)
         masks_with_same_tag = selected_masks[mask_indices]
         merged_mask = np.logical_or.reduce(masks_with_same_tag, axis=0)[0]
+        merged_tag = np.unique(selected_tags[mask_indices])
         merged_masks.append(merged_mask)
+        merged_tags.append(merged_tag)
 
     # no tag clustering
     # merged_tags = np.unique(selected_tags)
@@ -382,6 +382,7 @@ def main():
         inpaint_masks = []
         inpaint_mask_flags = []
         selected_tags_list = []
+        tag2cluster = np.load(args.clustered_tags, allow_pickle=True).tolist()['tag2cluster']
         for masks, boxes, pred_phrases, W, H in zip(masks_list, boxes_filt_list, pred_phrases_list, Ws, Hs):
             # choose the object to be masked
             selected_masks, selected_tags, no_valid_flag = filter_and_select_bounding_boxes_and_masks(
@@ -391,7 +392,8 @@ def main():
                 n=args.inpaint_object_num,
                 high_threshold=args.inpaint_select_upperbound,
                 low_threshold=args.inpaint_select_lowerbound,
-                mask_threshold=args.inpaint_mask_threshold)
+                mask_threshold=args.inpaint_mask_threshold,
+                tag2cluster=tag2cluster)
             # merge selected masks
             mask = np.logical_or.reduce(selected_masks, axis=0)  # merge all masks
             mask = mask.astype(np.uint8)  # from bool to int
