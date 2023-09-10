@@ -218,6 +218,9 @@ def filter_and_select_bounding_boxes_and_masks(bounding_boxes, masks, tags, W, H
     if len(selected_idx) == 0:
         return [mock_mask], ['no-valid-mask'], True
 
+    from IPython import embed
+    embed()
+
     # Then: merge all masks with the same category
     selected_masks = masks[selected_idx]
     selected_tags = tags[selected_idx]
@@ -451,6 +454,7 @@ if __name__ == "__main__":
     parser.add_argument("--inpaint_select_lowerbound", type=float, default=0.01)
     parser.add_argument("--inpaint_mask_threshold", type=float, default=0.2)
     parser.add_argument("--visualize_freq", type=int, default=5)
+    parser.add_argument("--clustered_tags", type=str)
 
     args = parser.parse_args()
 
