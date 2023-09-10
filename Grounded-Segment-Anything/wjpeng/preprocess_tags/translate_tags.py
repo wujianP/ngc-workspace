@@ -20,6 +20,7 @@ def save_translation_to_file(input_file, output_file):
             chinese_meanings = translations.text
 
             line_to_write = f"{idx},{english_word},{chinese_meanings}\n"
+            print(line_to_write)
             file.write(line_to_write)
 
 
