@@ -222,17 +222,27 @@ def filter_and_select_bounding_boxes_and_masks(bounding_boxes, masks, tags, W, H
     embed()
 
     # Then: merge all masks with the same category
+    # with tag clustering
     selected_masks = masks[selected_idx]
     selected_tags = tags[selected_idx]
-
-
-    merged_tags = np.unique(selected_tags)
+    tag2cluster = np.load(args.clustered_tags, allow_pickle=True).tolist()['tag2cluster']
+    tag_cluster_ids = [tag2cluster[tag] for tag in selected_tags]
+    unique_cluster_ids = np.unique(tag_cluster_ids)
     merged_masks = []
-    for tag in merged_tags:
-        mask_indices = np.where(selected_tags == tag)
+    for cluster_ids in unique_cluster_ids:
+        mask_indices = np.where(tag_cluster_ids == cluster_ids)
         masks_with_same_tag = selected_masks[mask_indices]
         merged_mask = np.logical_or.reduce(masks_with_same_tag, axis=0)[0]
         merged_masks.append(merged_mask)
+
+    # no tag clustering
+    # merged_tags = np.unique(selected_tags)
+    # merged_masks = []
+    # for tag in merged_tags:
+    #     mask_indices = np.where(selected_tags == tag)
+    #     masks_with_same_tag = selected_masks[mask_indices]
+    #     merged_mask = np.logical_or.reduce(masks_with_same_tag, axis=0)[0]
+    #     merged_masks.append(merged_mask)
 
     if n > len(merged_masks):
         return merged_masks, merged_tags, False
@@ -300,6 +310,8 @@ def main():
         tag2text_ret = inference_tag2text.inference(image=tag2text_images,
                                                     model=tag2text_model,
                                                     input_tag=args.user_specified_tags)
+        from IPython import embed
+        embed()
         tags_list = [tag.replace(' |', ',') for tag in tag2text_ret[0]]
         tag2text_captions_list = tag2text_ret[2]
         # empty cache

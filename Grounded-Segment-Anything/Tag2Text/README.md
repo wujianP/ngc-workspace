@@ -52,7 +52,7 @@ We have combined Tag2Text and RAM with localization models (Grounding-DINO and S
 Tag2Text for Vision-Language Tasks.
 </font></summary>
 
-- **Tagging.** Without manual annotations, Tag2Text achieves **superior** image tag recognition ability of [**3,429**](../wjpeng/preprocess_tags/tag_list.txt) commonly human-used categories.
+- **Tagging.** Without manual annotations, Tag2Text achieves **superior** image tag recognition ability of [**3,429**](../wjpeng/preprocess_tags/tag2text/tag_list.txt) commonly human-used categories.
 - **Captioning.** Tag2Text integrates **recognized image tags** into text generation as **guiding elements**, resulting in the generation with **more comprehensive text descriptions**. 
 - **Retrieval.** Tag2Text provides **tags** as **additional visible alignment indicators.**
 
