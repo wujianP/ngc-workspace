@@ -402,6 +402,8 @@ def main():
         start_time = time.time()
 
         # >>> Inpainting: inference stable diffusion or lama >>>
+        from IPython import embed
+        embed()
         # > preprocess images
         inpaint_images = [img.resize((512, 512)) for img in images]
         # > preprocess segmentation masks >
@@ -488,6 +490,8 @@ if __name__ == "__main__":
     parser.add_argument("--sam_checkpoint", type=str, help="path to checkpoint file")
     parser.add_argument("--sam_hq_checkpoint", type=str, help="path to checkpoint file")
     parser.add_argument("--sd_inpaint_checkpoint", type=str, help="path to checkpoint file")
+    parser.add_argument("--lama_checkpoint", type=str, help="path to checkpoint file")
+    parser.add_argument("--lama_config", type=str, help="path to config file")
     parser.add_argument("--use_sam_hq", action="store_true", help="using sam-hq for prediction")
     parser.add_argument("--split", default=",", type=str, help="split for text prompt")
     parser.add_argument("--output_dir", "-o", type=str, default="outputs", required=True, help="output directory")

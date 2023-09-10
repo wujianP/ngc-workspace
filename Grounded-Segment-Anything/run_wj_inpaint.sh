@@ -41,6 +41,8 @@ cd /discobox/wjpeng/code/202306/ngc-workspace/Grounded-Segment-Anything
 
 export CUDA_VISIBLE_DEVICES=0
 python wj_inpaint_tag2text.py \
+  --lama_checkpoint /discobox/wjpeng/weights/big-lama \
+  --lama_config /discobox/wjpeng/code/202306/ngc-workspace/Grounded-Segment-Anything/lama/configs/prediction/default.yaml \
   --data_root /DDN_ROOT/wjpeng/dataset/visual-genome \
   --delete_tag_index /discobox/wjpeng/code/202306/ngc-workspace/Grounded-Segment-Anything/wjpeng/preprocess_tags/tag2text/excluded_tag_indices.npy \
   --clustered_tags /discobox/wjpeng/code/202306/ngc-workspace/Grounded-Segment-Anything/wjpeng/preprocess_tags/tag2text/clustered_tags.npy \
