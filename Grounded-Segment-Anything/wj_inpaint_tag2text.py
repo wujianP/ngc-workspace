@@ -391,11 +391,9 @@ def main():
             inpaint_mask_flags.append(no_valid_flag)
             selected_tags_list.append(selected_tags)
 
-        # after_inpaint_images = inpaint_pipe(image=inpaint_images, prompt=[''] * args.batch_size,
-        #                                     mask_image=inpaint_masks).images
-        prompt = [f'no {tag[0]}' for tag in selected_tags_list]
-        after_inpaint_images = inpaint_pipe(image=inpaint_images, prompt=prompt,
+        after_inpaint_images = inpaint_pipe(image=inpaint_images, prompt=[''] * args.batch_size,
                                             mask_image=inpaint_masks).images
+
         # resize to original size
         after_inpaint_images = [after_ipt_img.resize((w, h)) for after_ipt_img, w, h in zip(after_inpaint_images, Ws, Hs)]
         inpaint_masks = [ipt_mask.resize((w, h)) for ipt_mask, w, h in zip(inpaint_masks, Ws, Hs)]
