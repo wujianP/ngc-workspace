@@ -224,6 +224,8 @@ def filter_and_select_bounding_boxes_and_masks(bounding_boxes, masks, tags, W, H
     # Then: merge all masks with the same category
     selected_masks = masks[selected_idx]
     selected_tags = tags[selected_idx]
+
+
     merged_tags = np.unique(selected_tags)
     merged_masks = []
     for tag in merged_tags:
