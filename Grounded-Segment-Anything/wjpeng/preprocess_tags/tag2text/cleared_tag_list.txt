@@ -111,7 +111,7 @@
 110,christmas ball,圣诞节球
 111,headlight,大灯
 112,police,警察
-# 113,armchair,扶手椅
+113,armchair,扶手椅
 114,chart,图表
 115,yacht,游艇
 116,saw,锯
@@ -374,7 +374,7 @@
 373,raft,筏
 374,sea view,海景
 375,cactus,仙人掌
-# 376,office chair,办公椅
+376,office chair,办公椅
 # 377,overall,全面的
 # 378,rim,轮缘
 379,scaffolding,脚手架
@@ -423,7 +423,7 @@
 # 422,kitchen area,厨房区域
 423,robot,机器人
 424,tusk,象牙
-# 425,lounge chair,休息室椅子
+425,lounge chair,休息室椅子
 426,beam,光束
 427,paddle,桨
 428,camel,骆驼
@@ -710,7 +710,7 @@
 709,fuel,燃料
 710,laptop computer,笔记本电脑
 711,tennis shoe,网球鞋
-# 712,deck chair,躺椅
+712,deck chair,躺椅
 713,guitarist,吉他手
 714,barn,谷仓
 715,surgery,外科手术
@@ -1303,7 +1303,7 @@
 1302,warning sign,警告牌
 1303,strip,条
 1304,plaque,牌匾
-# 1305,wheelchair,轮椅
+1305,wheelchair,轮椅
 1306,headband,头巾
 1307,ginger,姜
 1308,dice,骰子
@@ -1350,7 +1350,7 @@
 1349,individual,个人
 1350,gentleman,绅士
 1351,greyhound,灵狮
-# 1352,rocking chair,摇椅
+1352,rocking chair,摇椅
 1353,rice,米
 1354,garbage,垃圾
 1355,platter,盘子
@@ -1652,7 +1652,7 @@
 1651,engagement,订婚
 1652,puck,冰球
 1653,advertisement,广告
-# 1654,chair,椅子
+1654,chair,椅子
 1655,zebra,斑马
 1656,driftwood,浮木
 1657,bumblebee,熊蜂
