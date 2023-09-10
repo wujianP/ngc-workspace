@@ -17,7 +17,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--src_file', type=str)
     parser.add_argument('--dest_file', type=str)
-    parser.add_argument('--dis_threshold', type=int, default=1.5)
+    parser.add_argument('--dis_threshold', type=float, default=1.5)
     args = parser.parse_args()
 
     # load corpus

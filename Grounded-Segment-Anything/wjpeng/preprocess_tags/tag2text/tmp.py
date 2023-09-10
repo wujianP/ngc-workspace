@@ -45,7 +45,7 @@
 44,map,地图
 45,creek,溪
 46,glass house,玻璃屋
-47,glass plate,玻璃盘
+# 47,glass plate,玻璃盘
 # 48,siding,壁板
 # 49,corner,角落
 50,water buffalo,水牛
@@ -294,7 +294,7 @@
 293,football player,足球运动员
 294,snack,小吃
 295,boxing glove,拳击手套
-296,dinner party,晚餐聚会
+# 296,dinner party,晚餐聚会
 297,airline,航空公司
 298,swing,摇摆
 299,port,港口
@@ -349,7 +349,7 @@
 348,family,家庭
 349,shopping cart,购物车
 350,stomach,胃
-351,church building,教堂大楼
+# 351,church building,教堂大楼
 352,screen door,屏门
 353,skater,溜冰者
 354,soccer field,足球场
@@ -447,7 +447,7 @@
 446,carpet,地毯
 447,beach chair,沙滩椅
 448,workout,锻炼
-449,street food,街头食品
+# 449,street food,街头食品
 450,fun,乐趣
 451,costumer film designer,服装粉电影设计师
 452,gadget,小工具
@@ -521,7 +521,7 @@
 520,touchdown,接地
 521,roundabout,迂回
 522,coyote,土狼
-523,street scene,街景
+# 523,street scene,街景
 524,tank,坦克
 525,wedding dress,婚纱
 526,mantle,地幔
@@ -611,7 +611,7 @@
 610,screw,拧紧
 611,goggle,护目镜
 612,halloween,万圣节
-613,city street,城市街
+# 613,city street,城市街
 614,swirl,漩涡
 615,cord,绳索
 # 616,forward,向前
@@ -700,7 +700,7 @@
 699,mosque,清真寺
 700,brunch,早午餐
 701,beanie,豆豆
-702,office building,办公楼
+# 702,office building,办公楼
 703,pattern,图案
 704,calendar,日历
 # 705,indoor,室内的
@@ -864,7 +864,7 @@
 863,shawl,披肩
 864,treasure,宝藏
 865,peach,桃
-866,dinner table,餐桌
+# 866,dinner table,餐桌
 867,injury,受伤
 868,harbor,港口
 869,witch,巫婆
@@ -911,7 +911,7 @@
 # 910,attraction,吸引力
 911,entertainer,艺人
 912,rear view,后视图
-913,sidewalk,人行道
+# 913,sidewalk,人行道
 914,parade,游行
 915,racing,赛车
 916,plane,飞机
@@ -943,7 +943,7 @@
 942,angel,天使
 943,beef,牛肉
 944,church tower,教堂塔
-945,dish,盘子
+# 945,dish,盘子
 946,pitch,沥青
 947,cupboard,橱柜
 948,thermometer,温度计
@@ -959,7 +959,7 @@
 958,banana tree,香蕉树
 959,tray,托盘
 960,moose,驼鹿
-961,roadway,道路
+# 961,roadway,道路
 962,carnival,狂欢
 963,antenna,天线
 # 964,pole,极
@@ -1011,7 +1011,7 @@
 # 1010,cork,软木
 1011,soccer goalkeeper,足球守门员
 1012,train bridge,火车桥
-1013,drinking water,饮用水
+# 1013,drinking water,饮用水
 # 1014,dew,露
 1015,baker,贝克
 1016,storm cloud,风暴云
@@ -1083,7 +1083,7 @@
 1082,rice field,稻田
 1083,hand,手
 1084,mustache,胡子
-1085,mountain road,山路
+# 1085,mountain road,山路
 # 1086,catwalk,猫步
 1087,conference,会议
 1088,cape,岬
@@ -1098,7 +1098,7 @@
 1097,passport,护照
 1098,post box,邮箱
 # 1099,point,观点
-1100,stone building,石头建筑
+# 1100,stone building,石头建筑
 1101,motorway,高速公路
 # 1102,mix,混合
 1103,dentist,牙医
@@ -1168,7 +1168,7 @@
 1167,woman,女士
 1168,antelope,羚羊
 1169,country artist,乡村艺术家
-1170,road trip,公路旅行
+# 1170,road trip,公路旅行
 1171,typewriter,打字机
 1172,tuxedo,燕尾服
 1173,brand,品牌
@@ -1504,7 +1504,7 @@
 1503,comedy,喜剧
 1504,baboon,狒狒
 1505,vendor,小贩
-1506,rise building,上升建筑
+# 1506,rise building,上升建筑
 1507,wrap,裹
 1508,food truck,食物餐车
 1509,cat bed,猫床
@@ -1627,7 +1627,7 @@
 1626,palace,宫
 1627,gun,枪
 1628,heel,脚跟
-1629,shopping street,购物街
+# 1629,shopping street,购物街
 1630,shooting basketball guard,射击篮球后卫
 1631,family photo,家庭照片
 1632,rooftop,屋顶
@@ -1696,7 +1696,7 @@
 1695,light,光
 1696,park,公园
 1697,horizon,地平线
-1698,road,路
+# 1698,road,路
 1699,sand bar,沙杆
 1700,trumpet,喇叭
 1701,lounge,休息室
@@ -1726,7 +1726,7 @@
 1725,reservoir,水库
 1726,hunt,打猎
 1727,piano,钢琴
-1728,plate,盘子
+# 1728,plate,盘子
 1729,dining area,就餐区
 1730,luggage,行李
 1731,skier,滑雪者
@@ -1845,7 +1845,7 @@
 1844,baby elephant,婴儿大象
 1845,accordion,手风琴
 1846,horseshoe,马蹄铁
-1847,building site,建筑工地
+# 1847,building site,建筑工地
 1848,clutch,离合器
 1849,harvest,收成
 1850,savanna,稀树草原
@@ -1869,7 +1869,7 @@
 1868,wedding photography,婚礼摄影
 1869,finish line,终点线
 1870,home plate,本垒
-1871,food,食物
+# 1871,food,食物
 1872,nose,鼻子
 1873,thumb,拇指
 1874,village,村庄
@@ -1933,7 +1933,7 @@
 1932,aurora,极光
 1933,glass bead,玻璃弹珠
 1934,produce,生产
-1935,apartment building,公寓楼
+# 1935,apartment building,公寓楼
 1936,cob,棒
 1937,miniature,微型
 1938,cockpit,座舱
@@ -1944,7 +1944,7 @@
 1943,steel,钢
 1944,watermelon,西瓜
 1945,clip art,剪贴画
-1946,paper plate,纸盘子
+# 1946,paper plate,纸盘子
 1947,ostrich,鸵鸟
 1948,contour,轮廓
 1949,mural,壁画
@@ -2121,7 +2121,7 @@
 2120,rack,架子
 2121,envelope,信封
 2122,shower,淋浴
-2123,dirt road,泥路
+# 2123,dirt road,泥路
 2124,mine,矿
 2125,oyster,牡蛎
 2126,monarch butterfly,帝王蝶
@@ -2262,7 +2262,7 @@
 2261,ear,耳朵
 2262,bronze,青铜
 2263,sunlight,阳光
-2264,street,街道
+# 2264,street,街道
 2265,energy,活力
 2266,barn door,谷仓
 2267,hike,远足
@@ -2310,7 +2310,7 @@
 2309,downtown,市中心
 2310,sink,下沉
 2311,press conference,新闻发布会
-2312,dinner,晚餐
+# 2312,dinner,晚餐
 2313,condiment,调味品
 2314,thread,线
 2315,audience,观众
@@ -2345,7 +2345,7 @@
 2344,remote control,遥控
 2345,watercolor painting,水彩绘画
 2346,show,展示
-2347,walk,走
+# 2347,walk,走
 2348,post office,邮局
 2349,bike path,自行车道
 2350,rap gangsta artist,说唱黑帮艺术家
@@ -2468,7 +2468,7 @@
 2467,store window,存储窗口
 2468,text message,短信
 2469,wreath,花圈
-2470,street view,街景
+# 2470,street view,街景
 2471,binocular,双眼
 2472,pet,宠物
 2473,facade,正面
@@ -2595,7 +2595,7 @@
 2594,boxer,拳击手
 2595,laundry room,洗衣房
 2596,campsite,营地
-2597,brick building,砖砌建筑
+# 2597,brick building,砖砌建筑
 2598,golf,高尔夫球
 2599,subway,地铁
 2600,headphone,耳机
@@ -2704,7 +2704,7 @@
 2703,asparagus,芦笋
 2704,art,艺术
 2705,lantern,灯笼
-2706,dishwasher,洗碗机
+# 2706,dishwasher,洗碗机
 2707,director,导演
 2708,snake,蛇
 2709,lecture,演讲
@@ -2731,7 +2731,7 @@
 2730,supercar,超级跑车
 2731,railing,栏杆
 2732,bedroom,卧室
-2733,seafood,海鲜
+# 2733,seafood,海鲜
 2734,waffle,胡扯
 2735,bronze statue,铜像
 2736,plan,计划
@@ -2743,7 +2743,7 @@
 2742,cypress tree,柏树树
 2743,soldier,士兵
 2744,skateboarder,滑板手
-2745,glass building,玻璃建筑
+# 2745,glass building,玻璃建筑
 2746,cherry tree,樱桃树
 2747,pump,泵
 2748,grain,粮食
@@ -2767,10 +2767,10 @@
 2766,teacher,老师
 2767,photography,摄影
 2768,dolly,多莉
-2769,boardwalk,木板路
+# 2769,boardwalk,木板路
 2770,water fountain,喷泉
 2771,athlete,运动员
-2772,side dish,小菜
+# 2772,side dish,小菜
 2773,bay,湾
 2774,ice hockey,冰球
 2775,phone,电话
@@ -2890,7 +2890,7 @@
 2889,electricity,电
 2890,business people,生意人
 2891,symmetry,对称
-2892,walkway,人行道
+# 2892,walkway,人行道
 2893,fisherman,渔夫
 2894,gas mask,防毒面具
 2895,loch,湖
@@ -2898,7 +2898,7 @@
 2897,hanger,衣架
 2898,dot,点
 2899,fish,鱼
-2900,street market,街头市场
+# 2900,street market,街头市场
 2901,animation film,动漫电影
 2902,crime fiction film,犯罪小说电影
 2903,boar,公猪
@@ -2991,7 +2991,7 @@
 2990,cyclist,骑自行车的人
 2991,crate,箱
 2992,grey,灰色的
-2993,asphalt road,沥青路
+# 2993,asphalt road,沥青路
 2994,soccer,足球
 2995,hostel,旅馆
 2996,municipality,市政当局
