@@ -1,4 +1,6 @@
 import argparse
+import os
+
 import torch
 import torchvision
 import random
@@ -279,6 +281,8 @@ def recompute_tag2cluster(corpus, embedder):
 
 @torch.no_grad()
 def main():
+    # make dir
+    os.makedirs(args.output_dir, exist_ok=True)
     # load data
     dataset = load_dataset(path="visual_genome", name="objects_v1.2.0",
                            split="train", cache_dir=args.data_root)
@@ -402,8 +406,6 @@ def main():
         start_time = time.time()
 
         # >>> Inpainting: inference stable diffusion or lama >>>
-        from IPython import embed
-        embed()
         # > preprocess images
         inpaint_images = [img.resize((512, 512)) for img in images]
         # > preprocess segmentation masks >
@@ -476,10 +478,24 @@ def main():
         start_time = time.time()
 
         # >>> Output: print and save
+        for image, image_id, inpaint_image, tags, remove_tags in zip(images, image_ids, after_inpaint_images, tags_list, selected_tags_list):
+            image.save(os.path.join(args.output_dir, f'{image_id:06d}', 'image.jpg'))
+            inpaint_image.save(os.path.join(args.output_dir, f'{image_id:06d}', 'inpainted_image.jpg'))
+            metadata = {
+                'original tags': tags,
+                'removed tags': remove_tags
+            }
+            torch.save(metadata, os.path.join(args.output_dir, f'{image_id:06d}', 'metadata.pth'))
+        save_time = time.time() - start_time
+        start_time = time.time()
+
         print(f'[{iter_idx + 1}/{total_iter}]({(iter_idx + 1) / total_iter * 100:.2f}%): '
               f'data: {data_time:.2f} tag: {tag_time:.2f} det: {det_time:.2f} '
               f'seg: {seg_time:.2f} inpaint: {ipt_time:.2f} wandb: {vis_time:.2f} '
-              f'total: {data_time + tag_time + det_time + seg_time + ipt_time + vis_time:.2f}')
+              f'save: {save_time:.2f}'
+              f'total: {data_time + tag_time + det_time + seg_time + ipt_time + vis_time + save_time:.2f}')
+        # empty cache
+        torch.cuda.empty_cache()
 
 
 if __name__ == "__main__":

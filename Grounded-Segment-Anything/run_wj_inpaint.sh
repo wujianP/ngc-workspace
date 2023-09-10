@@ -52,7 +52,7 @@ python wj_inpaint_tag2text.py \
   --sam_hq_checkpoint /discobox/wjpeng/weights/hq-sam/sam_hq_vit_l.pth \
   --sd_inpaint_checkpoint /discobox/wjpeng/weights/stable-difusion-2-inpaint \
   --use_sam_hq \
-  --output_dir "outputs" \
+  --output_dir /DDN_ROOT/wjpeng/dataset/inpainted-visual-genome/stable-diffusion \
   --box_threshold 0.3 \
   --text_threshold 0.25 \
   --iou_threshold 0.5 \
