@@ -284,6 +284,8 @@ def main():
     # make dir
     os.makedirs(args.output_dir, exist_ok=True)
     # load data
+    from IPython import embed
+    embed()
     dataset = load_dataset(path="visual_genome", name="objects_v1.2.0",
                            split="train", cache_dir=args.data_root)
     dataloader = DataLoader(dataset=dataset,
@@ -468,7 +470,7 @@ def main():
         start_time = time.time()
 
         # >>> Wandb visualize >>>
-        if (iter_idx+1) % args.visualize_freq == 0:
+        if ((iter_idx+1) % args.visualize_freq == 0) and (args.job_index == 0):
             wandb_visualize(images, tags_list, tag2text_captions_list, boxes_filt_list, masks_list, pred_phrases_list,
                             inpaint_masks, after_inpaint_images, selected_tags_list)
         # empty cache
@@ -492,7 +494,7 @@ def main():
         save_time = time.time() - start_time
         start_time = time.time()
 
-        print(f'[{iter_idx + 1}/{total_iter}]({(iter_idx + 1) / total_iter * 100:.2f}%): '
+        print(f'JOB: {args.job_index/args.job_nums} [{iter_idx + 1}/{total_iter}]({(iter_idx + 1) / total_iter * 100:.2f}%): '
               f'data: {data_time:.2f} tag: {tag_time:.2f} det: {det_time:.2f} '
               f'seg: {seg_time:.2f} inpaint: {ipt_time:.2f} wandb: {vis_time:.2f} '
               f'save: {save_time:.2f} '
@@ -536,6 +538,10 @@ if __name__ == "__main__":
     parser.add_argument("--visualize_freq", type=int, default=5)
     parser.add_argument("--clustered_tags", type=str)
     parser.add_argument("--delete_tag_index", type=str)
+
+    # parallel
+    parser.add_argument('--job_nums', type=int, default=1)
+    parser.add_argument('--job_index', type=int, default=0, help='start with 0')
 
     args = parser.parse_args()
 
