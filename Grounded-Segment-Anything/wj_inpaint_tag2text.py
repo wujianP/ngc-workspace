@@ -17,6 +17,11 @@ from GroundingDINO.groundingdino.util.utils import clean_state_dict, get_phrases
 from segment_anything import build_sam, SamPredictor, build_sam_hq, build_sam_hq_vit_l
 from segment_anything.utils.transforms import ResizeLongestSide
 
+# text cluster
+from sentence_transformers import SentenceTransformer
+from sklearn.cluster import AgglomerativeClustering
+
+
 # Tag2Text
 import sys
 
@@ -256,6 +261,22 @@ def filter_and_select_bounding_boxes_and_masks(bounding_boxes, masks, tags, W, H
     return sampled_masks, sampled_tags, False
 
 
+def recompute_tag2cluster(corpus, embedder):
+    tag_embeddings = embedder.encode(corpus)
+    tag_embeddings = tag_embeddings / np.linalg.norm(tag_embeddings, axis=1, keepdims=True)
+
+    # Perform k-mean clustering
+    clustering_model = AgglomerativeClustering(n_clusters=None,
+                                               distance_threshold=1)
+    clustering_model.fit(tag_embeddings)
+    cluster_assignment = clustering_model.labels_
+
+    tag2cluster = {}
+    for tag, cluster_id in zip(corpus, cluster_assignment):
+        tag2cluster[tag] = cluster_id
+    return tag2cluster
+
+
 @torch.no_grad()
 def main():
     # load data
@@ -295,6 +316,9 @@ def main():
         torch_dtype=torch.float16,
         cache_dir=args.sd_inpaint_checkpoint
     ).to("cuda")
+
+    # load text cluster embedder
+    text_clustering_embedder = SentenceTransformer('all-MiniLM-L6-v2').cuda()
 
     # iterate forward pass
     total_iter = len(dataloader)
@@ -397,8 +421,18 @@ def main():
                     mask_threshold=args.inpaint_mask_threshold,
                     tag2cluster=tag2cluster)
             except:
-                from IPython import embed
-                embed()
+                # recompute tag2cluster online
+                corpus = [word.split('(')[0] for word in pred_phrases]
+                tag2cluster = recompute_tag2cluster(corpus, embedder=text_clustering_embedder)
+                selected_masks, selected_tags, no_valid_flag = filter_and_select_bounding_boxes_and_masks(
+                    bounding_boxes=boxes,
+                    tags=pred_phrases,
+                    masks=masks, W=W, H=H,
+                    n=args.inpaint_object_num,
+                    high_threshold=args.inpaint_select_upperbound,
+                    low_threshold=args.inpaint_select_lowerbound,
+                    mask_threshold=args.inpaint_mask_threshold,
+                    tag2cluster=tag2cluster)
             # merge selected masks
             mask = np.logical_or.reduce(selected_masks, axis=0)  # merge all masks
             mask = mask.astype(np.uint8)  # from bool to int
