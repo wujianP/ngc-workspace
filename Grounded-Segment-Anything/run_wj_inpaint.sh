@@ -42,6 +42,7 @@ cd /discobox/wjpeng/code/202306/ngc-workspace/Grounded-Segment-Anything
 export CUDA_VISIBLE_DEVICES=0
 python wj_inpaint_tag2text.py \
   --data_root /DDN_ROOT/wjpeng/dataset/visual-genome \
+  --delete_tag_index /discobox/wjpeng/code/202306/ngc-workspace/Grounded-Segment-Anything/wjpeng/preprocess_tags/tag2text/excluded_tag_indices.npy \
   --clustered_tags /discobox/wjpeng/code/202306/ngc-workspace/Grounded-Segment-Anything/wjpeng/preprocess_tags/tag2text/clustered_tags.npy \
   --config GroundingDINO/groundingdino/config/GroundingDINO_SwinB.py \
   --grounded_checkpoint /discobox/wjpeng/weights/groundingDINO/groundingdino_swinb_cogcoor.pth \

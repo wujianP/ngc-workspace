@@ -300,9 +300,10 @@ def main():
 
     # load Tag2Text model
     # filter out attributes and action categories which are difficult to grounding
-    delete_tag_index = []
-    for i in range(3012, 3429):
-        delete_tag_index.append(i)
+    # delete_tag_index = []
+    # for i in range(3012, 3429):
+    #     delete_tag_index.append(i)
+    delete_tag_index = np.load(args.delete_tag_index).tolist()
     tag2text_model = tag2text.tag2text_caption(pretrained=args.tag2text_checkpoint,
                                                delete_tag_index=delete_tag_index,
                                                image_size=384,
@@ -511,6 +512,7 @@ if __name__ == "__main__":
     parser.add_argument("--inpaint_mask_threshold", type=float, default=0.2)
     parser.add_argument("--visualize_freq", type=int, default=5)
     parser.add_argument("--clustered_tags", type=str)
+    parser.add_argument("--delete_tag_index", type=str)
 
     args = parser.parse_args()
 
