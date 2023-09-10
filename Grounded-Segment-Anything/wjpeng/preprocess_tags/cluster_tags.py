@@ -20,9 +20,6 @@ if __name__ == '__main__':
     parser.add_argument('--dis_threshold', type=int, default=1.5)
     args = parser.parse_args()
 
-    from IPython import embed
-    embed()
-
     # load corpus
     tag_list = []
     idx_list = []
@@ -45,8 +42,6 @@ if __name__ == '__main__':
 
     # Perform k-mean clustering
     clustering_model = AgglomerativeClustering(n_clusters=None,
-                                               affinity='cosine',
-                                               linkage='average',
                                                distance_threshold=args.dis_threshold)
     clustering_model.fit(tag_embeddings)
     cluster_assignment = clustering_model.labels_
