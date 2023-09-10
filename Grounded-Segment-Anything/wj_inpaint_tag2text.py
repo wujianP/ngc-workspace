@@ -39,7 +39,7 @@ wandb.login()
 from datasets import load_dataset
 from diffusers import StableDiffusionInpaintPipeline
 from PIL import Image, ImageDraw
-from torch.utils.data import DataLoader
+from torch.utils.data import DataLoader, Subset
 
 
 def my_collate_fn(batch):
@@ -284,11 +284,20 @@ def main():
     # make dir
     os.makedirs(args.output_dir, exist_ok=True)
     # load data
-    from IPython import embed
-    embed()
     dataset = load_dataset(path="visual_genome", name="objects_v1.2.0",
                            split="train", cache_dir=args.data_root)
-    dataloader = DataLoader(dataset=dataset,
+    total_len = len(dataset)
+    split_len = total_len // args.job_nums
+    start_idx = args.job_index * split_len
+    end_idx = start_idx + split_len
+    if args.job_index == (args.job_nums - 1):
+        end_idx = total_len
+    split_dataset = Subset(dataset, range(start_idx, end_idx))
+
+    print('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>')
+    print(f'dataset split: start index: {start_idx}, end index: {end_idx}, split len: {len(split_dataset)}')
+
+    dataloader = DataLoader(dataset=split_dataset,
                             batch_size=args.batch_size,
                             num_workers=args.num_workers,
                             pin_memory=True,
