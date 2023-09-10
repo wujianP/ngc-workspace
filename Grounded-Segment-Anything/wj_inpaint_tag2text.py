@@ -312,7 +312,8 @@ def main():
         tag2text_ret = inference_tag2text.inference(image=tag2text_images,
                                                     model=tag2text_model,
                                                     input_tag=args.user_specified_tags)
-        tags_list = [tag.replace(' |', ',') for tag in tag2text_ret[0]]
+        tags_list = [tag.replace(' | ', '.') for tag in tag2text_ret[0]]
+        # tags_list = [tag.replace(' |', ',') for tag in tag2text_ret[0]]
         tag2text_captions_list = tag2text_ret[2]
         # empty cache
         torch.cuda.empty_cache()
