@@ -478,13 +478,15 @@ def main():
         start_time = time.time()
 
         # >>> Output: print and save
-        for image, image_id, inpaint_image, tags, remove_tags in zip(images, image_ids, after_inpaint_images, tags_list, selected_tags_list):
+        for image, image_id, inpaint_image, tags, remove_tags, inpaint_flag in zip(images, image_ids, after_inpaint_images, tags_list, selected_tags_list, inpaint_mask_flags):
             os.makedirs(os.path.join(args.output_dir, f'{image_id:06d}'), exist_ok=True)
             image.save(os.path.join(args.output_dir, f'{image_id:06d}', 'image.jpg'))
             inpaint_image.save(os.path.join(args.output_dir, f'{image_id:06d}', 'inpainted_image.jpg'))
             metadata = {
-                'original tags': tags,
-                'removed tags': remove_tags
+                'image_id': image_id,
+                'original_tags': tags,
+                'removed_tags': remove_tags,
+                'no_valid_mask_flag': inpaint_flag
             }
             torch.save(metadata, os.path.join(args.output_dir, f'{image_id:06d}', 'metadata.pth'))
         save_time = time.time() - start_time
@@ -493,7 +495,7 @@ def main():
         print(f'[{iter_idx + 1}/{total_iter}]({(iter_idx + 1) / total_iter * 100:.2f}%): '
               f'data: {data_time:.2f} tag: {tag_time:.2f} det: {det_time:.2f} '
               f'seg: {seg_time:.2f} inpaint: {ipt_time:.2f} wandb: {vis_time:.2f} '
-              f'save: {save_time:.2f}'
+              f'save: {save_time:.2f} '
               f'total: {data_time + tag_time + det_time + seg_time + ipt_time + vis_time + save_time:.2f}')
         # empty cache
         torch.cuda.empty_cache()
