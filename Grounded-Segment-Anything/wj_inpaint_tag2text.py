@@ -312,7 +312,7 @@ def main():
         tag2text_ret = inference_tag2text.inference(image=tag2text_images,
                                                     model=tag2text_model,
                                                     input_tag=args.user_specified_tags)
-        tags_list = [tag.replace(' | ', '.') for tag in tag2text_ret[0]]
+        tags_list = [tag.replace(' |', ',') for tag in tag2text_ret[0]]
         tag2text_captions_list = tag2text_ret[2]
         # empty cache
         torch.cuda.empty_cache()
@@ -385,15 +385,19 @@ def main():
         tag2cluster = np.load(args.clustered_tags, allow_pickle=True).tolist()['tag2cluster']
         for masks, boxes, pred_phrases, W, H in zip(masks_list, boxes_filt_list, pred_phrases_list, Ws, Hs):
             # choose the object to be masked
-            selected_masks, selected_tags, no_valid_flag = filter_and_select_bounding_boxes_and_masks(
-                bounding_boxes=boxes,
-                tags=pred_phrases,
-                masks=masks, W=W, H=H,
-                n=args.inpaint_object_num,
-                high_threshold=args.inpaint_select_upperbound,
-                low_threshold=args.inpaint_select_lowerbound,
-                mask_threshold=args.inpaint_mask_threshold,
-                tag2cluster=tag2cluster)
+            try:
+                selected_masks, selected_tags, no_valid_flag = filter_and_select_bounding_boxes_and_masks(
+                    bounding_boxes=boxes,
+                    tags=pred_phrases,
+                    masks=masks, W=W, H=H,
+                    n=args.inpaint_object_num,
+                    high_threshold=args.inpaint_select_upperbound,
+                    low_threshold=args.inpaint_select_lowerbound,
+                    mask_threshold=args.inpaint_mask_threshold,
+                    tag2cluster=tag2cluster)
+            except:
+                from IPython import embed
+                embed()
             # merge selected masks
             mask = np.logical_or.reduce(selected_masks, axis=0)  # merge all masks
             mask = mask.astype(np.uint8)  # from bool to int
