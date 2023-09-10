@@ -64,13 +64,13 @@
 63,trench coat,风衣
 64,monk,僧
 65,fiber,纤维
-66,kitchen window,厨房窗户
+# 66,kitchen window,厨房窗户
 67,sunglass,太阳镜
 68,coffee,咖啡
 # 69,security,安全
 70,strawberry,草莓
 71,penguin,企鹅
-72,tree root,树根
+# 72,tree root,树根
 73,loaf,面包
 74,engagement ring,订婚戒指
 75,lamb,羊肉
@@ -93,7 +93,7 @@
 92,tee,球座
 93,turtle,龟
 94,water surface,水面
-95,grassland,草原
+# 95,grassland,草原
 96,dolphin,海豚
 97,store,店铺
 98,dirt,污垢
@@ -111,7 +111,7 @@
 110,christmas ball,圣诞节球
 111,headlight,大灯
 112,police,警察
-113,armchair,扶手椅
+# 113,armchair,扶手椅
 114,chart,图表
 115,yacht,游艇
 116,saw,锯
@@ -150,7 +150,7 @@
 149,muscle,肌肉
 # 150,bob,鲍勃
 # 151,tv genre,电视类型
-152,bathroom window,浴室窗户
+# 152,bathroom window,浴室窗户
 153,radish,萝卜
 154,textile,纺织品
 # 155,pelican,鹈
@@ -220,7 +220,7 @@
 219,wicket,便门
 220,headboard,床头板
 221,buddha,佛
-222,flower field,花田
+# 222,flower field,花田
 223,dugout,独木舟
 224,cd,光盘
 225,bald eagle,白头鹰
@@ -228,7 +228,7 @@
 227,seaweed,海藻
 # 228,agriculture,农业
 # 229,emergency service,紧急服务
-230,maple tree,枫树
+# 230,maple tree,枫树
 231,parachute,降落伞
 232,continent,大陆
 233,amusement park,游乐园
@@ -253,7 +253,7 @@
 252,milk,牛奶
 253,golf course,高尔夫球场
 254,meal,一顿饭
-255,picnic table,野餐桌
+# 255,picnic table,野餐桌
 256,sail,帆
 257,volleyball,排球
 258,canal,运河
@@ -270,12 +270,12 @@
 269,night,夜晚
 270,twin,双胞胎
 # 271,letter logo,字母徽标
-272,autumn tree,秋天树
+# 272,autumn tree,秋天树
 # 273,powder,粉末
 # 274,convention,习俗
 # 275,creature,生物
 276,lighthouse,灯塔
-277,shop window,商店窗口
+# 277,shop window,商店窗口
 278,jacket,夹克
 279,stork,鹳
 280,taxi,出租车
@@ -314,7 +314,7 @@
 313,square,正方形
 # 314,facility,设施
 315,coral reef,珊瑚礁
-316,sea wall,海墙
+# 316,sea wall,海墙
 317,pizza,比萨
 318,exhibit,展示
 319,demolition,拆除
@@ -374,7 +374,7 @@
 373,raft,筏
 374,sea view,海景
 375,cactus,仙人掌
-376,office chair,办公椅
+# 376,office chair,办公椅
 # 377,overall,全面的
 # 378,rim,轮缘
 379,scaffolding,脚手架
@@ -423,7 +423,7 @@
 # 422,kitchen area,厨房区域
 423,robot,机器人
 424,tusk,象牙
-425,lounge chair,休息室椅子
+# 425,lounge chair,休息室椅子
 426,beam,光束
 427,paddle,桨
 428,camel,骆驼
@@ -443,7 +443,7 @@
 442,coastline,海岸线
 443,cutting board,切菜板
 # 444,booth,展位
-445,table top,桌上
+# 445,table top,桌上
 446,carpet,地毯
 447,beach chair,沙滩椅
 448,workout,锻炼
@@ -482,7 +482,7 @@
 481,planet,行星
 # 482,motif,主题
 483,christmas market,圣诞市场
-484,glass window,玻璃窗
+# 484,glass window,玻璃窗
 # 485,college,大学
 486,wheat,小麦
 # 487,damage,损害
@@ -508,7 +508,7 @@
 507,eiffel tower,埃菲尔铁塔
 508,cash,现金
 509,firefighter,消防队员
-510,cauliflower,菜花
+# 510,cauliflower,菜花
 511,bunker,掩体
 512,sled,雪橇
 513,manicure,修指甲
@@ -525,12 +525,12 @@
 524,tank,坦克
 525,wedding dress,婚纱
 526,mantle,地幔
-527,bedroom window,卧室的窗户
+# 527,bedroom window,卧室的窗户
 528,coconut,椰子
 529,chapel,教堂
 530,goat,山羊
 # 531,living space,居住空间
-532,rock wall,岩壁
+# 532,rock wall,岩壁
 533,polka dot,波尔卡圆点
 534,railway,铁路
 535,mandala,曼陀罗
@@ -595,7 +595,7 @@
 # 594,outskirt,郊区
 595,clock,钟
 596,factory,工厂
-597,oak tree,橡树
+# 597,oak tree,橡树
 598,physician,医师
 # 599,color,颜色
 600,room,房间
@@ -622,7 +622,7 @@
 # 621,lobby,游说
 622,mask,面具
 623,attic,阁楼
-624,kitchen table,厨房的桌子
+# 624,kitchen table,厨房的桌子
 625,skylight,天空之光
 626,fire,火
 627,exit,出口
@@ -670,10 +670,10 @@
 669,vegetable garden,菜园
 670,chocolate cake,巧克力蛋糕
 671,cabbage,卷心菜
-672,floor window,地板窗
+# 672,floor window,地板窗
 673,baby shower,婴儿洗澡
 674,magnifying glass,放大玻璃
-675,table,桌子
+# 675,table,桌子
 676,stethoscope,听诊器
 # 677,reading,阅读
 678,mission,使命
@@ -710,7 +710,7 @@
 709,fuel,燃料
 710,laptop computer,笔记本电脑
 711,tennis shoe,网球鞋
-712,deck chair,躺椅
+# 712,deck chair,躺椅
 713,guitarist,吉他手
 714,barn,谷仓
 715,surgery,外科手术
@@ -762,7 +762,7 @@
 # 761,composer,作曲家
 762,signature,签名
 763,olive oil,橄榄油
-764,hibiscus flower,芙蓉花
+# 764,hibiscus flower,芙蓉花
 765,rose,玫瑰
 # 766,vector icon,向量图标
 767,sunrise,日出
@@ -807,7 +807,7 @@
 806,golfer,高尔夫球手
 # 807,roadside,路边
 808,denim jacket,牛仔外套
-809,stone wall,石墙
+# 809,stone wall,石墙
 # 810,counter top,台面
 # 811,app icon,应用图标
 812,toast,烤面包
@@ -925,7 +925,7 @@
 924,sunset,日落
 925,troop,部队
 926,architect,建筑师
-927,coffee table,茶几
+# 927,coffee table,茶几
 # 928,dust,灰尘
 929,outline,大纲
 930,leather,皮革
@@ -933,7 +933,7 @@
 932,heat,热
 933,whale,鲸
 934,laundry,洗衣店
-935,coconut tree,椰子树
+# 935,coconut tree,椰子树
 936,crosswalk,人行横道
 937,pony,小马
 938,ant,蚂蚁
@@ -952,18 +952,18 @@
 # 951,minute,分钟
 952,cane,甘蔗
 953,pajama,睡衣
-954,flower garden,庭园
+# 954,flower garden,庭园
 955,autumn,秋天
 956,trash can,垃圾箱
 957,dachshund,腊肠犬
-958,banana tree,香蕉树
+# 958,banana tree,香蕉树
 959,tray,托盘
 960,moose,驼鹿
 # 961,roadway,道路
 962,carnival,狂欢
 963,antenna,天线
 # 964,pole,极
-965,castle wall,城堡墙
+# 965,castle wall,城堡墙
 966,ram,内存
 967,cattle,牛
 968,hay,干草
@@ -1027,7 +1027,7 @@
 1026,jewel,珠宝
 1027,scuba diver,潜水员
 # 1028,bite,咬
-1029,cat tree,猫树
+# 1029,cat tree,猫树
 1030,tent,帐篷
 # 1031,can,能
 1032,tennis match,网球比赛
@@ -1107,11 +1107,11 @@
 1106,boat,船
 # 1107,vineyard,Vinayard
 1108,treadmill,跑步机
-1109,glass wall,玻璃墙
+# 1109,glass wall,玻璃墙
 1110,water droplet,水滴
 1111,coffee mug,咖啡杯
 # 1112,graduate,毕业
-1113,sunflower,向日葵
+# 1113,sunflower,向日葵
 1114,parliament,议会
 1115,shepherd,牧羊人
 1116,movie,电影
@@ -1159,7 +1159,7 @@
 1158,pocket watch,袖珍手表
 1159,inscription,题词
 1160,youngster,青少年
-1161,fruit tree,果树
+# 1161,fruit tree,果树
 1162,movie poster,电影海报
 1163,engine,引擎
 1164,foundation,基础
@@ -1177,7 +1177,7 @@
 1176,paradise,天堂
 1177,texture,质地
 1178,balloon,气球
-1179,dining table,餐桌
+# 1179,dining table,餐桌
 1180,home,家
 1181,computer screen,显示屏
 1182,actor,演员
@@ -1195,7 +1195,7 @@
 1194,bird bath,鸟浴
 1195,classroom,课堂
 1196,bookstore,书店
-1197,city wall,城墙
+# 1197,city wall,城墙
 1198,tv programme,电视节目
 1199,blade,刀刃
 1200,easel,画架
@@ -1211,7 +1211,7 @@
 1210,street artist,街头艺术家
 1211,gas,气体
 1212,stamp,邮票
-1213,window display,屏幕显示
+# 1213,window display,屏幕显示
 1214,paper,纸
 1215,note,笔记
 # 1216,pint,品脱
@@ -1278,7 +1278,7 @@
 1277,microwave oven,微波炉
 1278,tournament,比赛
 1279,lawn,草地
-1280,car window,车窗
+# 1280,car window,车窗
 1281,alligator,鳄鱼
 1282,screen,屏幕
 1283,jetty,码头
@@ -1303,7 +1303,7 @@
 1302,warning sign,警告牌
 1303,strip,条
 1304,plaque,牌匾
-1305,wheelchair,轮椅
+# 1305,wheelchair,轮椅
 1306,headband,头巾
 1307,ginger,姜
 1308,dice,骰子
@@ -1336,7 +1336,7 @@
 1335,video camera,录影机
 1336,sticker,贴纸
 1337,peak,顶峰
-1338,wildflower,野花
+# 1338,wildflower,野花
 1339,santa hat,圣诞老人帽子
 1340,rodeo,牛仔竞技表演
 1341,wedding photographer,婚礼摄影师
@@ -1350,7 +1350,7 @@
 1349,individual,个人
 1350,gentleman,绅士
 1351,greyhound,灵狮
-1352,rocking chair,摇椅
+# 1352,rocking chair,摇椅
 1353,rice,米
 1354,garbage,垃圾
 1355,platter,盘子
@@ -1364,7 +1364,7 @@
 1363,garland,花环
 1364,slalom,激流回旋
 1365,unicorn,独角兽
-1366,tree stump,树桩
+# 1366,tree stump,树桩
 1367,painting,绘画
 1368,romance,浪漫
 # 1369,fight,斗争
@@ -1437,7 +1437,7 @@
 1436,luxury,奢华
 1437,hangar,机库
 1438,rv,RV
-1439,tree trunk,树干
+# 1439,tree trunk,树干
 1440,board,木板
 1441,gold,金子
 1442,project picture,项目图片
@@ -1452,7 +1452,7 @@
 1451,parking garage,停车库
 1452,crystal,水晶
 1453,broadcasting,广播
-1454,brick wall,砖墙
+# 1454,brick wall,砖墙
 1455,lab,实验室
 1456,flooring,地板
 1457,meeting,会议
@@ -1465,7 +1465,7 @@
 1464,homework,家庭作业
 1465,profile,轮廓
 1466,model,模型
-1467,flower pot,花盆
+# 1467,flower pot,花盆
 1468,street light,路灯
 1469,salt lake,盐湖
 1470,maple,枫
@@ -1591,7 +1591,7 @@
 1590,mountain,山
 1591,hydrangea,绣球
 1592,racer,赛车手
-1593,orange tree,橘子树
+# 1593,orange tree,橘子树
 1594,tide,浪潮
 1595,cowboy hat,牛仔帽
 1596,rapid,迅速的
@@ -1622,7 +1622,7 @@
 1621,food market,食品市场
 1622,slum,贫民窟
 1623,comic book character,漫画人物
-1624,flower market,花市场
+# 1624,flower market,花市场
 1625,love,爱
 1626,palace,宫
 1627,gun,枪
@@ -1652,7 +1652,7 @@
 1651,engagement,订婚
 1652,puck,冰球
 1653,advertisement,广告
-1654,chair,椅子
+# 1654,chair,椅子
 1655,zebra,斑马
 1656,driftwood,浮木
 1657,bumblebee,熊蜂
@@ -1668,7 +1668,7 @@
 1667,pilgrim,朝圣
 1668,mug,马克杯
 1669,branch,分支
-1670,window sill,窗台
+# 1670,window sill,窗台
 1671,baseball pitcher,棒球投手
 1672,bakery,面包店
 1673,lollipop,棒糖
@@ -1712,15 +1712,15 @@
 1711,ceiling,天花板
 1712,carousel,轮播
 1713,backpack,背包
-1714,plant pot,植物可以
+# 1714,plant pot,植物可以
 1715,atmosphere,气氛
-1716,sunflower field,向日葵田
+# 1716,sunflower field,向日葵田
 1717,spire,尖塔
 1718,vision,想象
 1719,woodpecker,啄木鸟
 1720,chip,芯片
 1721,pool table,泳池表
-1722,lotus flower,莲花
+# 1722,lotus flower,莲花
 1723,cone,锥体
 1724,humpback whale,座头鲸
 1725,reservoir,水库
@@ -1748,7 +1748,7 @@
 1747,berry,浆果
 1748,onlooker,旁观者
 1749,fauna,动物区系
-1750,birch tree,桦树
+# 1750,birch tree,桦树
 1751,retail,零售
 1752,hill,爬坡道
 1753,skeleton,骨骼
@@ -1771,11 +1771,11 @@
 1770,lizard,蜥蜴
 1771,daisy,雏菊
 1772,tablet computer,平板电脑
-1773,grass field,草地
+# 1773,grass field,草地
 1774,prison,监狱
 1775,metal artist,金属艺术家
 1776,bathroom mirror,浴室镜子
-1777,window frame,窗框
+# 1777,window frame,窗框
 1778,chest,胸部
 1779,flavor,味道
 1780,pop country artist,流行国家艺术家
@@ -1791,7 +1791,7 @@
 1790,tartan,格子呢
 1791,furniture,家具
 1792,appliance,器具
-1793,office window,办公室窗口
+# 1793,office window,办公室窗口
 1794,fish boat,鱼船
 1795,sand box,沙盒
 1796,tv sitcom,电视情景喜剧
@@ -1808,7 +1808,7 @@
 1807,pick,挑选
 1808,grandparent,祖父母
 1809,racket,球拍
-1810,tea plantation,茶园
+# 1810,tea plantation,茶园
 1811,outdoors,户外
 1812,egg,蛋
 1813,glass bowl,玻璃碗
@@ -1817,7 +1817,7 @@
 1816,lion,狮子
 1817,panel,控制板
 1818,station,车站
-1819,wallpaper,墙纸
+# 1819,wallpaper,墙纸
 1820,helicopter,直升机
 1821,salt,盐
 1822,vanity,虚荣
@@ -1853,7 +1853,7 @@
 1852,business woman,女商人
 1853,paddock,围场
 1854,patch,修补
-1855,beech tree,山毛榉树
+# 1855,beech tree,山毛榉树
 1856,war,战争
 1857,suburbs,郊区
 1858,hospital bed,病床
@@ -1873,7 +1873,7 @@
 1872,nose,鼻子
 1873,thumb,拇指
 1874,village,村庄
-1875,dining room table,餐桌
+# 1875,dining room table,餐桌
 1876,bumper,保险杠
 1877,monster,怪物
 1878,blackberry,黑莓
@@ -1904,7 +1904,7 @@
 1903,cello,大提琴
 1904,lemur,狐猴
 1905,astronaut,宇航员
-1906,glass table,玻璃桌子
+# 1906,glass table,玻璃桌子
 1907,blood,血
 1908,dvd,DVD
 1909,planter,播种机
@@ -2002,7 +2002,7 @@
 2001,gathering,搜集
 2002,ankle,踝
 2003,bunk bed,双层床
-2004,wood table,木桌
+# 2004,wood table,木桌
 2005,football coach,足球教练
 2006,monarch,君主
 2007,pharmacy,药店
@@ -2075,7 +2075,7 @@
 2074,wasp,黄蜂
 2075,salon,沙龙
 2076,tennis tournament,网球锦标赛
-2077,flower box,花盒
+# 2077,flower box,花盒
 2078,aquarium,水族馆
 2079,rain cloud,雨云
 2080,clothing store,服装店
@@ -2096,7 +2096,7 @@
 2095,silhouette,轮廓
 2096,wind turbine,风力涡轮机
 2097,sari,莎丽
-2098,bus window,巴士窗
+# 2098,bus window,巴士窗
 2099,cloud,云
 2100,charity,慈善机构
 2101,medal,勋章
@@ -2139,7 +2139,7 @@
 2138,popcorn,爆米花
 2139,oak,橡木
 2140,market stall,市场摊位
-2141,pine tree,松树
+# 2141,pine tree,松树
 2142,mountaineer,登山
 2143,student,学生
 2144,closet,壁橱
@@ -2163,7 +2163,7 @@
 2162,scarf,围巾
 2163,smoothie,冰沙
 2164,net,网
-2165,grass,草
+# 2165,grass,草
 2166,napkin,餐巾
 2167,ray,射线
 2168,eyebrow,眉
@@ -2276,7 +2276,7 @@
 2275,archive,档案
 2276,toddler,学步的儿童
 2277,referee,裁判
-2278,bay window,飘窗
+# 2278,bay window,飘窗
 2279,dove,鸽子
 2280,production company,制作公司
 2281,evening light,暮光
@@ -2317,14 +2317,14 @@
 2316,grid,网格
 2317,car,车
 2318,plastic,塑料
-2319,people,人们
+# 2319,people,人们
 2320,barbecue,烧烤
 2321,pigeon,鸽子
 2322,urinal,小便池
 2323,seagull,海鸥
 2324,volunteer,志愿者
 2325,hockey,曲棍球
-2326,fir tree,对于树
+# 2326,fir tree,对于树
 2327,pollution,污染
 2328,trial,审判
 2329,collar,衣领
@@ -2391,7 +2391,7 @@
 2390,porch,门廊
 2391,opening ceremony,开幕式
 2392,style,风格
-2393,palm tree,棕榈树
+# 2393,palm tree,棕榈树
 2394,fashion show,时装秀
 2395,universe,宇宙
 2396,scratch,划痕
@@ -2406,7 +2406,7 @@
 2405,stone bridge,石桥
 2406,nature reserve,自然保护区
 2407,track,追踪
-2408,train window,火车窗
+# 2408,train window,火车窗
 2409,punch,冲床
 2410,telephone pole,电线杆
 2411,velvet,天鹅绒
@@ -2465,7 +2465,7 @@
 2464,basketball,篮球
 2465,class,班级
 2466,bathroom door,浴室门
-2467,store window,存储窗口
+# 2467,store window,存储窗口
 2468,text message,短信
 2469,wreath,花圈
 # 2470,street view,街景
@@ -2476,7 +2476,7 @@
 2475,lemon,柠檬
 2476,new year,新年
 2477,night view,夜景
-2478,airplane window,飞机窗
+# 2478,airplane window,飞机窗
 2479,specie,特定
 2480,rule,规则
 2481,jaw,颚
@@ -2531,7 +2531,7 @@
 2530,supermarket,超级市场
 2531,belt,腰带
 2532,cricket,蟋蟀
-2533,window box,开窗盒
+# 2533,window box,开窗盒
 2534,dress shirt,礼服衬衫
 2535,letter,信
 2536,residence,住宅
@@ -2545,7 +2545,7 @@
 2544,funeral,葬礼
 2545,mill,磨
 2546,national park,国家公园
-2547,plant,植物
+# 2547,plant,植物
 2548,cop,警察
 2549,power line,电源线
 2550,perch,栖息
@@ -2650,14 +2650,14 @@
 2649,sewing machine,缝纫机
 2650,cooler,冷却器
 2651,actress,演员
-2652,apple tree,苹果树
+# 2652,apple tree,苹果树
 2653,cancer,癌症
 2654,starfish,海星
 2655,automobile make,汽车制造
 2656,dumbbell,哑铃
 2657,brace,支撑
 2658,tunnel,隧道
-2659,window,窗户
+# 2659,window,窗户
 2660,paint artist,油漆艺术家
 2661,composition,作品
 2662,school student,学校学生
@@ -2667,7 +2667,7 @@
 2666,selfie,自拍照
 2667,territory,领土
 2668,guide,指导
-2669,tree,树
+# 2669,tree,树
 2670,court,法庭
 2671,shrimp,虾
 2672,stone house,石屋
@@ -2683,14 +2683,14 @@
 2682,light bulb,灯泡
 2683,cafeteria,自助餐厅
 2684,badge,徽章
-2685,flower bed,花坛
+# 2685,flower bed,花坛
 2686,theater,剧院
 2687,root,根
 2688,racecar driver,赛车手
 2689,basketball boy game,篮球男孩游戏
 2690,glove,手套
 2691,skyline,天际线
-2692,wall,墙
+# 2692,wall,墙
 2693,glacier,冰川
 2694,airport terminal,机场航站楼
 2695,bug,漏洞
@@ -2709,7 +2709,7 @@
 2708,snake,蛇
 2709,lecture,演讲
 2710,game controller,游戏控制器
-2711,tree branch,树枝
+# 2711,tree branch,树枝
 2712,pub,酒吧
 2713,bathing suit,游泳衣
 2714,queue,队列
@@ -2740,11 +2740,11 @@
 2739,basketball game,篮球赛
 2740,automobile,汽车
 2741,scene,场景
-2742,cypress tree,柏树树
+# 2742,cypress tree,柏树树
 2743,soldier,士兵
 2744,skateboarder,滑板手
 # 2745,glass building,玻璃建筑
-2746,cherry tree,樱桃树
+# 2746,cherry tree,樱桃树
 2747,pump,泵
 2748,grain,粮食
 2749,wildebeest,牛羚
@@ -2880,7 +2880,7 @@
 2879,fairy,仙女
 2880,embankment,堤
 2881,hall,大厅
-2882,flower shop,花店
+# 2882,flower shop,花店
 2883,suburb,市郊
 2884,barrel,桶
 2885,biker,骑自行车的人
@@ -2888,7 +2888,7 @@
 2887,dragonfly,蜻蜓
 2888,formation,形成
 2889,electricity,电
-2890,business people,生意人
+# 2890,business people,生意人
 2891,symmetry,对称
 # 2892,walkway,人行道
 2893,fisherman,渔夫
@@ -2942,7 +2942,7 @@
 2941,tile floor,瓷砖地板
 2942,skull,颅骨
 2943,fossil,化石
-2944,flower arrangement,插花
+# 2944,flower arrangement,插花
 2945,diaper,尿布
 2946,sea turtle,海龟
 2947,cherry blossom,樱花
@@ -2975,7 +2975,7 @@
 2974,chestnut,板栗
 2975,photoshoot,照片拍摄
 2976,football field,足球场
-2977,olive tree,橄榄树
+# 2977,olive tree,橄榄树
 2978,pheasant,野鸡
 2979,sandal,檀香
 2980,toilet,洗手间
@@ -2997,7 +2997,7 @@
 2996,municipality,市政当局
 2997,courthouse,法院
 2998,roof,屋顶
-2999,end table,茶几
+# 2999,end table,茶几
 3000,pot,锅
 3001,sedan,轿车
 3002,structure,结构
