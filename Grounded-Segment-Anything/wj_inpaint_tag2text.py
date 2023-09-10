@@ -78,7 +78,9 @@ def get_grounding_output(model, image, caption, box_threshold, text_threshold, w
         phrases_filtered = []
         scores_filtered = []
         for logit, box in zip(logits_filtered, boxes_filtered):
-            pred_phrase = get_phrases_from_posmap(logit > text_threshold, model.tokenizer(cap), model.tokenizer)
+            # wj: only keep the most confident one
+            posmap = (logit > text_threshold) * (logit == logit.max())
+            pred_phrase = get_phrases_from_posmap(posmap, model.tokenizer(cap), model.tokenizer)
             if with_logits:
                 phrases_filtered.append(pred_phrase + f"({str(logit.max().item())[:4]})")
             else:
@@ -310,7 +312,7 @@ def main():
         tag2text_ret = inference_tag2text.inference(image=tag2text_images,
                                                     model=tag2text_model,
                                                     input_tag=args.user_specified_tags)
-        tags_list = [tag.replace(' |', ',') for tag in tag2text_ret[0]]
+        tags_list = [tag.replace(' | ', '.') for tag in tag2text_ret[0]]
         tag2text_captions_list = tag2text_ret[2]
         # empty cache
         torch.cuda.empty_cache()
@@ -336,9 +338,6 @@ def main():
             box_threshold=args.box_threshold,
             text_threshold=args.text_threshold
         )
-
-        from IPython import embed
-        embed()
 
         # > post process bounding box >
         for i in range(len(boxes_filt_list)):
