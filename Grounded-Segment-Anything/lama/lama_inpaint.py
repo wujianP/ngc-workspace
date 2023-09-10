@@ -16,9 +16,9 @@ os.environ['VECLIB_MAXIMUM_THREADS'] = '1'
 os.environ['NUMEXPR_NUM_THREADS'] = '1'
 
 sys.path.insert(0, str(Path(__file__).resolve().parent / "lama"))
-from saicinpainting.evaluation.utils import move_to_device
-from saicinpainting.training.trainers import load_checkpoint
-from saicinpainting.evaluation.data import pad_tensor_to_modulo
+from .saicinpainting.evaluation.utils import move_to_device
+from .saicinpainting.training.trainers import load_checkpoint
+from .saicinpainting.evaluation.data import pad_tensor_to_modulo
 
 
 def save_array_to_img(img_arr, img_p):
