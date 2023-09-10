@@ -479,6 +479,7 @@ def main():
 
         # >>> Output: print and save
         for image, image_id, inpaint_image, tags, remove_tags in zip(images, image_ids, after_inpaint_images, tags_list, selected_tags_list):
+            os.makedirs(os.path.join(args.output_dir, f'{image_id:06d}'), exist_ok=True)
             image.save(os.path.join(args.output_dir, f'{image_id:06d}', 'image.jpg'))
             inpaint_image.save(os.path.join(args.output_dir, f'{image_id:06d}', 'inpainted_image.jpg'))
             metadata = {
