@@ -43,6 +43,7 @@ if __name__ == '__main__':
     # blip = blip.cuda()
 
     instruct_blip = InstructBlipForConditionalGeneration.from_pretrained("Salesforce/instructblip-vicuna-7b",
+                                                                         torch_dtype=torch.float16,
                                                                          cache_dir='/discobox/wjpeng/weights/instruct-blip')
     instruct_blip = instruct_blip.cuda()
     instruct_processor = InstructBlipProcessor.from_pretrained("Salesforce/instructblip-vicuna-7b",
@@ -62,11 +63,11 @@ if __name__ == '__main__':
         embed()
 
         # Instruct BLIP
-        tags = metadata['original_tags'].replace('.', ' ,')
+        tags = metadata['original_tags'].replace('.', ' ,')[:-2]
         prompt = ['Write a detailed description.'] * 2
         inputs = instruct_processor(images=[image, inpainted_image],
                                     text=prompt,
-                                    return_tensors="pt").to("cuda", torch.float32)
+                                    return_tensors="pt").to("cuda", torch.float16)
         generated_ids = instruct_blip.generate(**inputs,
                                                do_sample=False,
                                                num_beams=5,
@@ -76,6 +77,6 @@ if __name__ == '__main__':
                                                repetition_penalty=1.5,
                                                length_penalty=1.0,
                                                temperature=1, )
-        generated_text = blip_processor.batch_decode(generated_ids, skip_special_tokens=True)
+        generated_text = instruct_processor.batch_decode(generated_ids, skip_special_tokens=True)
         print(generated_text)
 
