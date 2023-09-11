@@ -24,19 +24,10 @@ if __name__ == '__main__':
     parser.add_argument('--num_workers', type=int, default=8)
     args = parser.parse_args()
 
-    from IPython import embed
-    embed()
     dataset = InpaintedDataset(data_root=args.data_root, ann=args.data_ann)
-    dataloader = DataLoader(
-        dataset=dataset,
-        batch_size=args.batch_size,
-        num_workers=args.num_workers,
-        shuffle=False,
-        drop_last=False,
-        collate_fn=my_collate_fn
-    )
 
-    for iter_idx, (images, inpainted_images, metadatas) in enumerate(dataloader):
+    for idx, (image, inpainted_image, metadata) in enumerate(dataset):
+
         from IPython import embed
         embed()
 
