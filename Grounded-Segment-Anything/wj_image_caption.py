@@ -1,4 +1,5 @@
 import argparse
+
 from dataset import InpaintedDataset
 from torch.utils.data import DataLoader
 
@@ -23,6 +24,8 @@ if __name__ == '__main__':
     parser.add_argument('--num_workers', type=int, default=8)
     args = parser.parse_args()
 
+    from IPython import embed
+    embed()
     dataset = InpaintedDataset(data_root=args.data_root, ann=args.data_ann)
     dataloader = DataLoader(
         dataset=dataset,
