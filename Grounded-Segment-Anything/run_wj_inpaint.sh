@@ -36,14 +36,14 @@ python wj_inpaint_ram.py \
 
 
 # >>>>>>>> Tag2Text on Visual Genome >>>>>>>>>>
-JOB_ID=15
+JOB_ID=1
 conda activate /discobox/wjpeng/env/clip
 cd /discobox/wjpeng/code/202306/ngc-workspace/Grounded-Segment-Anything
 
-export CUDA_VISIBLE_DEVICES=7
+export CUDA_VISIBLE_DEVICES=$((JOB_ID % 8))
 python wj_inpaint_tag2text.py \
-  --job_index $((JOB_ID % 8)) \
-  --job_nums 16 \
+  --job_index $JOB_ID \
+  --job_nums 32 \
   --lama_checkpoint /discobox/wjpeng/weights/big-lama \
   --lama_config /discobox/wjpeng/code/202306/ngc-workspace/Grounded-Segment-Anything/lama/configs/prediction/default.yaml \
   --data_root /DDN_ROOT/wjpeng/dataset/visual-genome \

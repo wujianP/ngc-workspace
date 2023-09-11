@@ -502,8 +502,8 @@ def main():
                 zip(images, image_ids, after_inpaint_images, tags_list, selected_tags_list, inpaint_mask_flags, Hs, Ws):
             dir_path = os.path.join(args.output_dir, f'{image_id:010d}')
             os.makedirs(dir_path, exist_ok=True)
-            image.resize(512, 512).save(os.path.join(dir_path, 'image.jpg'))
-            inpaint_image.resize(512, 512).save(os.path.join(dir_path, 'inpainted_image.jpg'))
+            image.resize((512, 512)).save(os.path.join(dir_path, 'image.jpg'))
+            inpaint_image.resize((512, 512)).save(os.path.join(dir_path, 'inpainted_image.jpg'))
             metadata = {
                 'image_id': image_id,
                 'original_tags': tags,
