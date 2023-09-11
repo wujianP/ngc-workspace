@@ -36,7 +36,7 @@ python wj_inpaint_ram.py \
 
 
 # >>>>>>>> Tag2Text on Visual Genome >>>>>>>>>>
-JOB_ID=23
+JOB_ID=31
 conda activate /discobox/wjpeng/env/clip
 cd /discobox/wjpeng/code/202306/ngc-workspace/Grounded-Segment-Anything
 
@@ -62,4 +62,10 @@ python wj_inpaint_tag2text.py \
   --tag2text_threshold 0.64 \
   --batch_size 4 \
   --num_workers 8 \
-  --visualize_freq 20
+  --visualize_freq 10
+
+
+ngc workspace mount 2Nf5vMHESmOZMqGxgcqZzQ /home/mal/wjpeng/mnt --mode RW \
+--remote-path wjpeng/dataset/inpainted-visual-genome/
+
+ngc workspace unmount /home/mal/wjpeng/mnt
