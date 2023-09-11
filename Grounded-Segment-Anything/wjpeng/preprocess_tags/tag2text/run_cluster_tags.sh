@@ -4,4 +4,4 @@ cd /discobox/wjpeng/code/202306/ngc-workspace/Grounded-Segment-Anything/wjpeng/p
 python cluster_tags.py \
 --src_file='translated_tag_list.txt' \
 --dest_file='clustered_tags' \
---dis_threshold 2
+--dis_threshold 2.5

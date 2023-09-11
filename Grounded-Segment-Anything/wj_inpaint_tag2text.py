@@ -439,7 +439,10 @@ def main():
             except:
                 # recompute tag2cluster online
                 corpus = [word.split('(')[0] for word in pred_phrases]
-                tag2cluster = recompute_tag2cluster(corpus, embedder=text_clustering_embedder)
+                if len(corpus) == 0:
+                    # a minimum of 2 is required by AgglomerativeClustering
+                    corpus.append('none')
+                temp_tag2cluster = recompute_tag2cluster(corpus, embedder=text_clustering_embedder)
                 selected_masks, selected_tags, no_valid_flag = filter_and_select_bounding_boxes_and_masks(
                     bounding_boxes=boxes,
                     tags=pred_phrases,
@@ -448,7 +451,7 @@ def main():
                     high_threshold=args.inpaint_select_upperbound,
                     low_threshold=args.inpaint_select_lowerbound,
                     mask_threshold=args.inpaint_mask_threshold,
-                    tag2cluster=tag2cluster)
+                    tag2cluster=temp_tag2cluster)
             # merge selected masks
             mask = np.logical_or.reduce(selected_masks, axis=0)  # merge all masks
             mask = mask.astype(np.uint8)  # from bool to int
@@ -542,8 +545,8 @@ if __name__ == "__main__":
     parser.add_argument("--mask_dilate_kernel_size", type=int, default=25, help="mast be an odd")
     parser.add_argument("--inpaint_object_num", type=int, default=1)
     parser.add_argument("--inpaint_select_upperbound", type=float, default=0.4)
-    parser.add_argument("--inpaint_select_lowerbound", type=float, default=0.01)
-    parser.add_argument("--inpaint_mask_threshold", type=float, default=0.2)
+    parser.add_argument("--inpaint_select_lowerbound", type=float, default=0)
+    parser.add_argument("--inpaint_mask_threshold", type=float, default=0.18)
     parser.add_argument("--visualize_freq", type=int, default=5)
     parser.add_argument("--clustered_tags", type=str)
     parser.add_argument("--delete_tag_index", type=str)
