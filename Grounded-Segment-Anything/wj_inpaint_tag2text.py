@@ -343,6 +343,10 @@ def main():
         # >>> load data >>>
         data_time = time.time() - start_time
         start_time = time.time()
+        # > check if there is some gray image and convert to RGB
+        for i, image in enumerate(images):
+            if image.mode == 'L':
+                images[i] = image.convert('RGB')
 
         # >>> Tagging: inference tag2text >>>
         trans_tag2text = TS.Compose([TS.Resize((384, 384)),
