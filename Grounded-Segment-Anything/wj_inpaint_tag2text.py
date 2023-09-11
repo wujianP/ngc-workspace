@@ -6,6 +6,7 @@ import torchvision
 import random
 import time
 import cv2
+import json
 import numpy as np
 import matplotlib.pyplot as plt
 import torchvision.transforms as TS
@@ -502,17 +503,16 @@ def main():
                 zip(images, image_ids, after_inpaint_images, tags_list, selected_tags_list, inpaint_mask_flags, Hs, Ws):
             dir_path = os.path.join(args.output_dir, f'{image_id:010d}')
             os.makedirs(dir_path, exist_ok=True)
-            image.resize((512, 512)).save(os.path.join(dir_path, 'image.jpg'))
-            inpaint_image.resize((512, 512)).save(os.path.join(dir_path, 'inpainted_image.jpg'))
+            image.save(os.path.join(dir_path, 'image.jpg'))
+            inpaint_image.save(os.path.join(dir_path, 'inpainted_image.jpg'))
             metadata = {
                 'image_id': image_id,
                 'original_tags': tags,
                 'removed_tags': remove_tags,
                 'no_valid_mask_flag': inpaint_flag,
-                'original_width': h,
-                'original_height': w
             }
-            torch.save(metadata, os.path.join(dir_path, 'metadata.pth'))
+            with open(os.path.join(dir_path, 'metadata.json'), 'w') as file:
+                json.dump(metadata, file)
         save_time = time.time() - start_time
         start_time = time.time()
 
