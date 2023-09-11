@@ -42,7 +42,7 @@ cd /discobox/wjpeng/code/202306/ngc-workspace/Grounded-Segment-Anything
 
 export CUDA_VISIBLE_DEVICES=7
 python wj_inpaint_tag2text.py \
-  --job_index $JOB_ID \
+  --job_index $((JOB_ID % 8)) \
   --job_nums 16 \
   --lama_checkpoint /discobox/wjpeng/weights/big-lama \
   --lama_config /discobox/wjpeng/code/202306/ngc-workspace/Grounded-Segment-Anything/lama/configs/prediction/default.yaml \
@@ -55,7 +55,7 @@ python wj_inpaint_tag2text.py \
   --sam_hq_checkpoint /discobox/wjpeng/weights/hq-sam/sam_hq_vit_l.pth \
   --sd_inpaint_checkpoint /discobox/wjpeng/weights/stable-difusion-2-inpaint \
   --use_sam_hq \
-  --output_dir /DDN_ROOT/wjpeng/dataset/inpainted-visual-genome/stable-diffusion \
+  --output_dir /DDN_ROOT/wjpeng/dataset/inpainted-visual-genome/remove-stable-diffusion \
   --box_threshold 0.3 \
   --text_threshold 0.25 \
   --iou_threshold 0.5 \

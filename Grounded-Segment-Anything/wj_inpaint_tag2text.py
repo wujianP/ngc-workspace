@@ -23,7 +23,6 @@ from segment_anything.utils.transforms import ResizeLongestSide
 from sentence_transformers import SentenceTransformer
 from sklearn.cluster import AgglomerativeClustering
 
-
 # Tag2Text
 import sys
 
@@ -141,13 +140,15 @@ def prepare_sam_data(images, boxes, Hs, Ws, resize_size):
     return batched_input
 
 
-def wandb_visualize(images, tags, captions, boxes_filt, masks_list, pred_phrases, inpaint_masks, after_inpaint_images, inpainted_tag_lis):
+def wandb_visualize(images, tags, captions, boxes_filt, masks_list, pred_phrases, inpaint_masks, after_inpaint_images,
+                    inpainted_tag_lis):
     for i in range(len(images)):
-        img, tag, caption, boxes, masks, labels, ipt_img, ipt_mask, ipt_tag = images[i], tags[i], captions[i],\
-            boxes_filt[i], masks_list[i], pred_phrases[i], after_inpaint_images[i], inpaint_masks[i], inpainted_tag_lis[i]
+        img, tag, caption, boxes, masks, labels, ipt_img, ipt_mask, ipt_tag = images[i], tags[i], captions[i], \
+            boxes_filt[i], masks_list[i], pred_phrases[i], after_inpaint_images[i], inpaint_masks[i], inpainted_tag_lis[
+            i]
         w, h = img.size
         # masks, boxes and image
-        plt.figure(figsize=(w/80, h/80))
+        plt.figure(figsize=(w / 80, h / 80))
         ax1 = plt.gca()
         ax1.axis('off')
         ax1.imshow(img)
@@ -158,7 +159,7 @@ def wandb_visualize(images, tags, captions, boxes_filt, masks_list, pred_phrases
                 show_mask(mask, ax1, random_color=True)
         fig1 = plt.gcf()
         # all mask only
-        plt.figure(figsize=(w/100, h/100))
+        plt.figure(figsize=(w / 100, h / 100))
         ax2 = plt.gca()
         ax2.axis('off')
         if len(boxes) > 0:
@@ -242,7 +243,7 @@ def filter_and_select_bounding_boxes_and_masks(bounding_boxes, masks, tags, W, H
         merged_mask = np.logical_or.reduce(masks_with_same_tag, axis=0)[0]
         merged_tag = np.unique(selected_tags[mask_indices])
         merged_masks.append(merged_mask)
-        merged_tags.append(merged_tag)
+        merged_tags.append(merged_tag.tolist())
 
     # no tag clustering
     # merged_tags = np.unique(selected_tags)
@@ -329,7 +330,7 @@ def main():
     # load Stable-Diffusion-Inpaint
     inpaint_pipe = StableDiffusionInpaintPipeline.from_pretrained(
         "stabilityai/stable-diffusion-2-inpainting",
-        torch_dtype=torch.float16,
+        torch_dtype=torch.float32,
         cache_dir=args.sd_inpaint_checkpoint
     ).to("cuda")
 
@@ -463,9 +464,9 @@ def main():
             # dilate and erode
             kernel = np.ones((args.mask_dilate_kernel_size, args.mask_dilate_kernel_size), np.uint8)
             edge_kernel = np.ones((args.mask_dilate_edge_size, args.mask_dilate_edge_size), np.uint8)
-            mask = cv2.dilate(mask, kernel, iterations=1)    # dilate
-            mask = cv2.erode(mask, kernel, iterations=1)    # erode
-            mask = cv2.dilate(mask, edge_kernel, iterations=1)    # dilate edge
+            mask = cv2.dilate(mask, kernel, iterations=1)  # dilate
+            mask = cv2.erode(mask, kernel, iterations=1)  # erode
+            mask = cv2.dilate(mask, edge_kernel, iterations=1)  # dilate edge
             # mask = mask.filter(ImageFilter.MaxFilter(size=args.mask_dilate_edge_size))  # dilate the mask edge
             mask = mask * 255
             mask = Image.fromarray(mask).resize((512, 512))
@@ -477,7 +478,8 @@ def main():
                                             mask_image=inpaint_masks).images
 
         # resize to original size
-        after_inpaint_images = [after_ipt_img.resize((w, h)) for after_ipt_img, w, h in zip(after_inpaint_images, Ws, Hs)]
+        after_inpaint_images = [after_ipt_img.resize((w, h)) for after_ipt_img, w, h in
+                                zip(after_inpaint_images, Ws, Hs)]
         inpaint_masks = [ipt_mask.resize((w, h)) for ipt_mask, w, h in zip(inpaint_masks, Ws, Hs)]
         # empty cache
         torch.cuda.empty_cache()
@@ -486,7 +488,7 @@ def main():
         start_time = time.time()
 
         # >>> Wandb visualize >>>
-        if ((iter_idx+1) % args.visualize_freq == 0) and (args.job_index == 0):
+        if ((iter_idx + 1) % args.visualize_freq == 0) and (args.job_index == 0):
             wandb_visualize(images, tags_list, tag2text_captions_list, boxes_filt_list, masks_list, pred_phrases_list,
                             inpaint_masks, after_inpaint_images, selected_tags_list)
         # empty cache
@@ -496,25 +498,30 @@ def main():
         start_time = time.time()
 
         # >>> Output: print and save
-        for image, image_id, inpaint_image, tags, remove_tags, inpaint_flag in zip(images, image_ids, after_inpaint_images, tags_list, selected_tags_list, inpaint_mask_flags):
-            os.makedirs(os.path.join(args.output_dir, f'{image_id:06d}'), exist_ok=True)
-            image.save(os.path.join(args.output_dir, f'{image_id:06d}', 'image.jpg'))
-            inpaint_image.save(os.path.join(args.output_dir, f'{image_id:06d}', 'inpainted_image.jpg'))
+        for image, image_id, inpaint_image, tags, remove_tags, inpaint_flag, h, w in \
+                zip(images, image_ids, after_inpaint_images, tags_list, selected_tags_list, inpaint_mask_flags, Hs, Ws):
+            dir_path = os.path.join(args.output_dir, f'{image_id:010d}')
+            os.makedirs(dir_path, exist_ok=True)
+            image.resize(512, 512).save(os.path.join(dir_path, 'image.jpg'))
+            inpaint_image.resize(512, 512).save(os.path.join(dir_path, 'inpainted_image.jpg'))
             metadata = {
                 'image_id': image_id,
                 'original_tags': tags,
                 'removed_tags': remove_tags,
-                'no_valid_mask_flag': inpaint_flag
+                'no_valid_mask_flag': inpaint_flag,
+                'original_width': h,
+                'original_height': w
             }
-            torch.save(metadata, os.path.join(args.output_dir, f'{image_id:06d}', 'metadata.pth'))
+            torch.save(metadata, os.path.join(dir_path, 'metadata.pth'))
         save_time = time.time() - start_time
         start_time = time.time()
 
-        print(f'JOB: {args.job_index}/{args.job_nums} [{iter_idx + 1}/{total_iter}]({(iter_idx + 1) / total_iter * 100:.2f}%): '
-              f'data: {data_time:.2f} tag: {tag_time:.2f} det: {det_time:.2f} '
-              f'seg: {seg_time:.2f} inpaint: {ipt_time:.2f} wandb: {vis_time:.2f} '
-              f'save: {save_time:.2f} '
-              f'total: {data_time + tag_time + det_time + seg_time + ipt_time + vis_time + save_time:.2f}')
+        print(
+            f'JOB: {args.job_index}/{args.job_nums} [{iter_idx + 1}/{total_iter}]({(iter_idx + 1) / total_iter * 100:.2f}%): '
+            f'data: {data_time:.2f} tag: {tag_time:.2f} det: {det_time:.2f} '
+            f'seg: {seg_time:.2f} inpaint: {ipt_time:.2f} wandb: {vis_time:.2f} '
+            f'save: {save_time:.2f} '
+            f'total: {data_time + tag_time + det_time + seg_time + ipt_time + vis_time + save_time:.2f}')
         # empty cache
         torch.cuda.empty_cache()
 
