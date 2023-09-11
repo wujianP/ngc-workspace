@@ -503,7 +503,7 @@ def main():
         save_time = time.time() - start_time
         start_time = time.time()
 
-        print(f'JOB: {args.job_index/args.job_nums} [{iter_idx + 1}/{total_iter}]({(iter_idx + 1) / total_iter * 100:.2f}%): '
+        print(f'JOB: {args.job_index}/{args.job_nums} [{iter_idx + 1}/{total_iter}]({(iter_idx + 1) / total_iter * 100:.2f}%): '
               f'data: {data_time:.2f} tag: {tag_time:.2f} det: {det_time:.2f} '
               f'seg: {seg_time:.2f} inpaint: {ipt_time:.2f} wandb: {vis_time:.2f} '
               f'save: {save_time:.2f} '
