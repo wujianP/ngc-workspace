@@ -50,33 +50,34 @@ if __name__ == '__main__':
                                                                cache_dir='/discobox/wjpeng/weights/instruct-blip')
 
     for idx, (image, inpainted_image, metadata) in enumerate(dataset):
-        # inputs = blip_processor(images=[image, inpainted_image],
-        #                         return_tensors="pt").to("cuda", torch.float32)
-        # generated_ids = blip.generate(**inputs,
-        #                               max_length=256,
-        #                               do_sample=True)
-        # generated_text = blip_processor.batch_decode(generated_ids, skip_special_tokens=True)
-        # print(generated_text)
 
         from IPython import embed
 
         embed()
 
         # Instruct BLIP
-        tags = metadata['original_tags'].replace('.', ' ,')[:-2]
-        prompt = ['Write a detailed description.'] * 2
+
         inputs = instruct_processor(images=[image, inpainted_image],
-                                    text=prompt,
-                                    return_tensors="pt").to("cuda", torch.float16)
+                                    text=['Write a description of this image.',
+                                          'Write a description of this image.'],
+                                    return_tensors="pt")
+        inputs = inputs.to("cuda", torch.float16)
+
         generated_ids = instruct_blip.generate(**inputs,
                                                do_sample=False,
                                                num_beams=5,
-                                               max_length=256,
+                                               max_new_tokens=77,
                                                min_length=1,
                                                top_p=0.9,
                                                repetition_penalty=1.5,
                                                length_penalty=1.0,
                                                temperature=1, )
+
         generated_text = instruct_processor.batch_decode(generated_ids, skip_special_tokens=True)
+        caption, inpainted_caption = generated_text[0], generated_text[1]
         print(generated_text)
+        torch.cuda.empty_cache()
+
+        #  Visualize
+        run.log({'Caption': [wandb.Image(image, caption=caption), wandb.Image(inpainted_image, caption=inpainted_caption)]})
 
