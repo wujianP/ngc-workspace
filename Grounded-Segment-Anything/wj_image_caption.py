@@ -88,4 +88,4 @@ if __name__ == '__main__':
             }
             json.dump(ret, file, ensure_ascii=False, indent=4)
 
-        print(f'{idx+1}/{len(dataset)}')
+        print(f'{idx+1}/120')
