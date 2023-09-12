@@ -1,5 +1,8 @@
 import argparse
+import os.path
+
 import torch
+import json
 
 from dataset import InpaintedDataset
 from torch.utils.data import DataLoader
@@ -49,35 +52,40 @@ if __name__ == '__main__':
     instruct_processor = InstructBlipProcessor.from_pretrained("Salesforce/instructblip-vicuna-7b",
                                                                cache_dir='/discobox/wjpeng/weights/instruct-blip')
 
-    for idx, (image, inpainted_image, metadata) in enumerate(dataset):
-
-        from IPython import embed
-
-        embed()
+    for idx, (image, inpainted_image, metadata, path) in enumerate(dataset):
 
         # Instruct BLIP
+        tags = metadata['original_tags']
+        inpainted_tags = metadata['removed_tags'][0]
 
-        inputs = instruct_processor(images=[image, inpainted_image],
-                                    text=['Write a description of this image.',
-                                          'Write a description of this image.'],
+        inputs = instruct_processor(images=image,
+                                    text='Write a detailed description of this image.',
                                     return_tensors="pt")
         inputs = inputs.to("cuda", torch.float16)
 
         generated_ids = instruct_blip.generate(**inputs,
                                                do_sample=False,
                                                num_beams=5,
-                                               max_new_tokens=77,
+                                               max_new_tokens=256,
                                                min_length=1,
                                                top_p=0.9,
                                                repetition_penalty=1.5,
                                                length_penalty=1.0,
                                                temperature=1, )
 
-        generated_text = instruct_processor.batch_decode(generated_ids, skip_special_tokens=True)
-        caption, inpainted_caption = generated_text[0], generated_text[1]
-        print(generated_text)
+        caption = instruct_processor.batch_decode(generated_ids, skip_special_tokens=True)[0]
+        print(caption)
         torch.cuda.empty_cache()
 
         #  Visualize
-        run.log({'Caption': [wandb.Image(image, caption=caption), wandb.Image(inpainted_image, caption=inpainted_caption)]})
+        run.log({'Caption': [wandb.Image(image, caption=f'InstructBLIP: {caption}'),
+                             wandb.Image(inpainted_image)]})
 
+        # Save
+        with open(os.path.join(path, 'captions.json'), 'w', encoding='utf-8') as file:
+            ret = {
+                'instruct-blip': caption
+            }
+            json.dump(ret, file, ensure_ascii=False, indent=4)
+
+        print(f'{idx+1}/{len(dataset)}')

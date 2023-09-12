@@ -22,4 +22,4 @@ class InpaintedDataset(Dataset):
         inpainted_image = Image.open(os.path.join(path, 'inpainted_image.jpg')).convert('RGB')
         with open(os.path.join(path, 'metadata.json'), 'r') as f:
             metadata = json.load(f)
-        return image, inpainted_image, metadata
+        return image, inpainted_image, metadata, path
