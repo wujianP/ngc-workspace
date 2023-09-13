@@ -37,13 +37,13 @@ if __name__ == '__main__':
 
     dataset = InpaintedDataset(data_root=args.data_root, ann=args.data_ann)
 
-    # blip_processor = Blip2Processor.from_pretrained("Salesforce/blip2-opt-2.7b", cache_dir=args.model_checkpoint)
-    # blip = Blip2ForConditionalGeneration.from_pretrained(
-    #     "Salesforce/blip2-opt-2.7b", torch_dtype=torch.float32,
-    #     cache_dir=args.model_checkpoint
-    #
-    # )
-    # blip = blip.cuda()
+    blip_processor = Blip2Processor.from_pretrained("Salesforce/blip2-opt-2.7b", cache_dir=args.model_checkpoint)
+    blip = Blip2ForConditionalGeneration.from_pretrained(
+        "Salesforce/blip2-opt-2.7b", torch_dtype=torch.float32,
+        cache_dir=args.model_checkpoint
+
+    )
+    blip = blip.cuda()
 
     instruct_blip = InstructBlipForConditionalGeneration.from_pretrained("Salesforce/instructblip-vicuna-7b",
                                                                          torch_dtype=torch.float16,
@@ -53,7 +53,8 @@ if __name__ == '__main__':
                                                                cache_dir='/discobox/wjpeng/weights/instruct-blip')
 
     for idx, (image, inpainted_image, metadata, path) in enumerate(dataset):
-
+        from IPython import embed
+        embed()
         # Instruct BLIP
         tags = metadata['original_tags']
         inpainted_tags = metadata['removed_tags'][0]
