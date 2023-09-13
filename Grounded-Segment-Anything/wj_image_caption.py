@@ -36,7 +36,7 @@ if __name__ == '__main__':
     parser.add_argument('--num_workers', type=int, default=8)
     args = parser.parse_args()
 
-    os.makedirs(args.data_save_dir, exist_ok=True)
+    os.makedirs(args.outputs, exist_ok=True)
 
     dataset = InpaintedDataset(data_root=args.data_root, ann=args.data_ann)
 
