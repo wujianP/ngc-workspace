@@ -202,6 +202,10 @@ def main():
         end_time = time.time()
         batch_time = end_time - start_time
 
+        print(f'Input: {caption_list[0]}\n'
+              f'Name Entities: {sen2ne_outputs[0]}\n'
+              f'Hard Negative: {ne2sen_outputs[0]}')
+
         print(f"[ Job: {args.job_id}/{args.job_num} Iteration:{cur_iter + 1}/{total_iters}"
               f" ({100*cur_iter/total_iters}%)], Batch time:{batch_time:.3f}")
 
