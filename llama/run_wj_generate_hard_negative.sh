@@ -1,6 +1,6 @@
-conda activate /discobox/wjpeng/env/openVCLIP
+conda activate /discobox/wjpeng/env/clip
 cd /discobox/wjpeng/code/202306/ngc-workspace/llama
-torchrun --nproc_per_node 1 --master_port 29500 generate_coco_hard_negative.py \
+torchrun --nproc_per_node 1 --master_port 29500 wj_generate_hard_negative.py \
 --gpu 0 \
 --batch_size 32 \
 --max_batch_size 32 \
