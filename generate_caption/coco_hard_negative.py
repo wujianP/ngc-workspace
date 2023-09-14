@@ -75,7 +75,8 @@ def main():
     ret_list = []
     total_iters = len(coco_dataloader)
     for cur_iter, (caption_list, ann_id_list, img_id_list, path_list) in enumerate(coco_dataloader):
-
+        from IPython import embed
+        embed()
         start_time = time.time()
         # >>> Name Entities Recognition >>>
         sen2ne_template = """In this task, I will give you a sentence, and you will recognize all the nouns objects in it.
@@ -202,27 +203,12 @@ def main():
 
         torch.cuda.empty_cache()
 
-        # third
-        ne2sen_output_sequences_3 = model.generate(
-            input_ids=ne2sen_inputs['input_ids'],
-            do_sample=True,
-            temperature=args.temperature,
-            repetition_penalty=args.repetition_penalty,
-            max_new_tokens=args.max_new_tokens,
-        )
-
-        ne2sen_outputs_3 = tokenizer.batch_decode(ne2sen_output_sequences_3,
-                                                  skip_special_tokens=True,
-                                                  spaces_between_special_tokens=False)
-
-        torch.cuda.empty_cache()
-
         # >>> Save Results >>>
         for neg_cap_1, neg_cap_2, neg_cap_3, ann_id, img_id in zip(ne2sen_outputs_1, ne2sen_outputs_2, ne2sen_outputs_3, ann_id_list, img_id_list):
             ret = {
                 'ann_id': ann_id,
                 'image_id': img_id,
-                'neg_caption': [neg_cap_1.strip(), neg_cap_2.strip(), neg_cap_3.strip()]
+                'neg_caption': [neg_cap_1.strip(), neg_cap_2.strip()]
             }
             ret_list.append(ret)
         if cur_iter % args.save_freq == 0 or (cur_iter + 1) == total_iters:
@@ -234,11 +220,10 @@ def main():
         print(f'Input: {caption_list[0]}\n'
               f'Name Entities: {sen2ne_outputs[0]}\n'
               f'Hard Negative 1: {ne2sen_outputs_1[0]}'
-              f'Hard Negative 2: {ne2sen_outputs_2[0]}'
-              f'Hard Negative 3: {ne2sen_outputs_3[0]}')
+              f'Hard Negative 2: {ne2sen_outputs_2[0]}')
 
         print(f"[ Job: {args.job_id}/{args.job_num} Iteration:{cur_iter + 1}/{total_iters}"
-              f" ({100 * cur_iter / total_iters}%)], Batch time:{batch_time:.3f}")
+              f" ({100 * cur_iter / total_iters:2f}%)], Batch time:{batch_time:.3f}")
 
 
 if __name__ == '__main__':
