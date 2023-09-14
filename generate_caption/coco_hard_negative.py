@@ -5,11 +5,12 @@ This is a script that merge several frame-level captions into a video-level capt
 import argparse
 import torch
 import time
-import csv
+import wandb
+wandb.login()
 
 from fastchat.model import load_model
 from dataset import CocoDataset
-from torch.utils.data import DataLoader
+from torch.utils.data import DataLoader, Subset
 
 
 def prepare_prompts(prefix, captions):
@@ -168,6 +169,9 @@ def main():
 
         print(ne2sen_outputs)
 
+        from IPython import embed
+        embed()
+
         end_time = time.time()
         batch_time = end_time - start_time
 
@@ -214,4 +218,6 @@ if __name__ == '__main__':
     if "t5" in args.model_path and args.repetition_penalty == 1.0:
         args.repetition_penalty = 1.2
 
-    main(args)
+    run = wandb.init('COCO-HARD-NEGATIVE')
+    main()
+    wandb.finish()
