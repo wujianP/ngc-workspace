@@ -15,12 +15,15 @@ from torch.utils.data import DataLoader
 def prepare_prompts(prefix, captions):
     prompts = []
     for cap in captions:
-        prompt = prefix + cap
+        cap = cap.strip()
+        prompt = f'{prefix}\nInput: {cap}\nOutput: '
         prompts.append(prompt)
     return prompts
 
+
 @torch.inference_mode()
-def main(args):
+@torch.no_grad()
+def main():
     # load model
     model, tokenizer = load_model(
         args.model_path,
@@ -46,21 +49,110 @@ def main(args):
     # do inference
     total_iters = len(coco_dataloader)
     for cur_iter, (captions) in enumerate(coco_dataloader):
+
+        print(captions)
+
         start_time = time.time()
-        # prepare prompts
+        # >>> Name Entities Recognition >>>
+        sen2ne_template = """In this task, I will give you a sentence, and you will recognize all the nouns objects in it.
+        Input: A white door in a kitchen with teal walls.
+        Output: door,kitchen,wall
+        Input: Cat sitting on the hood of a car on a winter day.
+        Output: cat,car,hood
+        Input: Two dogs are relaxing beside a man on a sidewalk.
+        Output: dog,man,sidewalk
+        Input: A group of young children wearing costumes standing in line.
+        Output: children,costumes,line
+        Input: Two pastries on a plate with chocolate milk.
+        Output: chocolate milk,pastries,plate
+        Input: A toilet stall with exposed brick and free standing tank.
+        Output: toilet stall,brick,tank
+        Input: A dog with a wine glass being held to its face
+        Output: wine glass,dog,face
+        Input: Two men play a game on a Wii console in a living room.
+        Output: living room,game,men,Wii console
+        Input: Two young children in colorful clothes are playing near a door.
+        Output: clothes,door,children
+        Input: A bus turning a corner at an intersection near a motorcycle.
+        Output: bus,intersection,corner,motorcycle
+        Input: A man is standing near the street with a surfboard.
+        Output: street,man,surfboard
+        Input: A grey bird perched on a tree next to a body of water.
+        Output: bord,water,body,tree
+        Input: Two men sitting in a sailboat with two sails.
+        Output: sailboat,sail,men
+        Input: A passenger train that is traveling down the tracks.
+        Output: tracks,passenger train
+        Input: A man on a motorcycle holding one arm in the air.
+        Output: motorcycle,man,arm
+        Input: Several elephants standing in mud while people watched them from a building on a cliff.
+        Output: elephants,mud,cliff,people,building"""
 
-        from IPython import embed
-        embed()
+        sen2ne_prompts = prepare_prompts(sen2ne_template, captions)
 
-        prompts = prepare_prompts(prompt, captions)
-        # tokenize
-        inputs = tokenizer(prompts, padding=True, truncation=True, return_tensors="pt")
-        inputs['input_ids'] = inputs['input_ids'].cuda()
-        inputs['attention_mask'] = inputs['attention_mask'].cuda()
+        sen2ne_inputs = tokenizer(sen2ne_prompts, padding=True, truncation=True, return_tensors="pt")
+        sen2ne_inputs['input_ids'] = sen2ne_inputs['input_ids'].cuda()
+        sen2ne_inputs['attention_mask'] = sen2ne_inputs['attention_mask'].cuda()
 
-        # forward
-        output_sequences = model.generate(
-            input_ids=inputs['input_ids'],
+        sen2ne_output_sequences = model.generate(
+            input_ids=sen2ne_inputs['input_ids'],
+            do_sample=True,
+            temperature=args.temperature,
+            repetition_penalty=args.repetition_penalty,
+            max_new_tokens=args.max_new_tokens,
+        )
+
+        sen2ne_outputs = tokenizer.batch_decode(sen2ne_output_sequences,
+                                                skip_special_tokens=True,
+                                                spaces_between_special_tokens=False)
+
+        torch.cuda.empty_cache()
+
+        print(sen2ne_outputs)
+
+        # >>> Generate sentence with named entities
+        ne2sen_templates = """In this task, I will give you some nouns objects, and you will generate a sentence containing these objects.
+        Input: door,kitchen,wall
+        Output: A white door in a kitchen with teal walls.
+        Input: cat,car,hood
+        Output: Cat sitting on the hood of a car on a winter day.
+        Input: dog,man,sidewalk
+        Output: Two dogs are relaxing beside a man on a sidewalk.
+        Input: children,costumes,line
+        Output: A group of young children wearing costumes standing in line.
+        Input: chocolate milk,pastries,plate
+        Output: Two pastries on a plate with chocolate milk.
+        Input: toilet stall,brick,tank
+        Output: A toilet stall with exposed brick and free standing tank.
+        Input: wine glass,dog,face
+        Output: A dog with a wine glass being held to its face
+        Input: living room,game,men,Wii console
+        Output: Two men play a game on a Wii console in a living room.
+        Input: clothes,door,children
+        Output: Two young children in colorful clothes are playing near a door.
+        Input: bus,intersection,corner,motorcycle
+        Output: A bus turning a corner at an intersection near a motorcycle.
+        Input: street,man,surfboard
+        Output: A man is standing near the street with a surfboard.
+        Input: bord,water,body,tree
+        Output: A grey bird perched on a tree next to a body of water.
+        Input: sailboat,sail,men
+        Output: Two men sitting in a sailboat with two sails.
+        Input: tracks,passenger train
+        Output: A passenger train that is traveling down the tracks.
+        Input: motorcycle,man,arm
+        Output: A man on a motorcycle holding one arm in the air.
+        Input: elephants,mud,cliff,people,building
+        Output: Several elephants standing in mud while people watched them from a building on a cliff."""
+
+        ne2sen_inputs = prepare_prompts(ne2sen_templates, sen2ne_outputs)
+
+        ne2sen_inputs = tokenizer(ne2sen_inputs, padding=True, truncation=True, return_tensors="pt")
+        ne2sen_inputs['input_ids'] = ne2sen_inputs['input_ids'].cuda()
+        ne2sen_inputs['attention_mask'] = ne2sen_inputs['attention_mask'].cuda()
+
+        ne2sen_output_sequences = model.generate(
+            input_ids=ne2sen_inputs['input_ids'],
             do_sample=True,
             temperature=args.temperature,
             repetition_penalty=args.repetition_penalty,
@@ -68,27 +160,16 @@ def main(args):
         )
 
         # decode
-        outputs = tokenizer.batch_decode(output_sequences, skip_special_tokens=True,
-                                         spaces_between_special_tokens=False)
+        ne2sen_outputs = tokenizer.batch_decode(ne2sen_output_sequences,
+                                                skip_special_tokens=True,
+                                                spaces_between_special_tokens=False)
 
-        # post-process
-        if model.config.is_encoder_decoder:
-            pass
-        else:
-            outputs = [output.split('\nOutput: ')[-1] for output in outputs]
+        torch.cuda.empty_cache()
+
+        print(ne2sen_outputs)
 
         end_time = time.time()
         batch_time = end_time - start_time
-
-        # save file
-        with open(args.save_path, "a", newline="") as f:
-            writer = csv.writer(f)
-            for i in range(args.batch_size):
-                output = outputs[i].rstrip("\n")
-
-        for ipt, opt in zip(captions, outputs):
-            print(f'Input: {ipt}')
-            print(f'Output: {opt}')
 
         print(f"Iteration:[ {cur_iter + 1}/{total_iters} ], Batch time:{batch_time:.3f}")
 
@@ -97,8 +178,9 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     # Data and Model
     parser.add_argument("--model-path", type=str, default="lmsys/vicuna-7b-v1.3")
-    parser.add_argument('--images_path', type=str, default='/discobox/wjpeng/dataset/coco2014/images/train2014')
-    parser.add_argument('--annotations_path', type=str, default='/discobox/wjpeng/dataset/coco2014/annotations/captions_train2014.json')
+    parser.add_argument('--images_path', type=str, default='/DDN_ROOT/wjpeng/dataset/coco2014/images/train2014')
+    parser.add_argument('--annotations_path', type=str,
+                        default='/DDN_ROOT/wjpeng/dataset/coco2014/annotations/captions_train2014.json')
     # Hyper-parameters
     parser.add_argument('--batch-size', type=int, default=32)
     # parser.add_argument('--prompt-template', type=str, required=True)

@@ -15,20 +15,12 @@ def process_captions(captions, prompt):
     for caption in captions:
         dialog = [
             {"role": "system", "content": prompt},
-            {"role": "user", "content": 'A brown horse is grazing grass near a red house.'},
-            {"role": "assistant", "content": """Reason: (swap two adjectives): Result: A red horse is grazing grass near a brown house."""},
-            {"role": "user", "content": 'An angled view of a beautifully decorated bathroom.'},
-            {"role": "assistant", "content": """Reason: (alter an adjective): Result: An angled view of a poorly decorated bathroom."""},
-            {"role": "user", "content": 'A bus is parked by a bench at night.'},
-            {"role": "assistant", "content": """Reason: (alter a noun): Result: A bus is parked by a bench at night."""},
-            {"role": "user", "content": 'Two bicycles and a woman walking in front of a shop'},
-            {"role": "assistant", "content": """Reason: (swap two nouns): Result: Two woman and a bicycles walking in front of a shop"""},
-            {"role": "user", "content": 'A sink and a toilet inside a small bathroom.'},
-            {"role": "assistant", "content": """Reason: (alter a preposition): Result: A sink and a toilet outside a small bathroom."""},
-            {"role": "user", "content": 'The two people are sitting down the beach.'},
-            {"role": "assistant", "content": """Reason: (alter a verb): Result: The two people are sitting down the beach."""},
-            {"role": "user", "content": 'Two cats sleep on the bed while a man stands'},
-            {"role": "assistant", "content": """Reason: (swap two verbs): Result: Two cats stand on the bed while a man sleeps"""},
+            {"role": "user", "content": "door,kitchen,wall"},
+            {"role": "assistant", "content": "a white door in a kitchen with teal walls"},
+            {"role": "user", "content": "cat,car,hood,day"},
+            {"role": "assistant", "content": "cat sitting on the hood of a car on a winter day"},
+            {"role": "user", "content": "bathroom,butterfly,wall,tiles"},
+            {"role": "assistant", "content": "a blue and white bathroom with butterfly themed wall tiles"},
             {"role": "user", "content": caption}
         ]
         dialogs.append(dialog)
@@ -74,7 +66,8 @@ def main(args):
         embed()
 
         # prepare input for Llama
-        dialogs = process_captions(captions, args.prompt)
+        # dialogs = process_captions(captions, args.prompt)
+        dialogs = process_captions(['kid,car,bike,hair'], args.prompt)
 
         # llama forward
         results = generator.chat_completion(
