@@ -22,6 +22,16 @@ def prepare_prompts(prefix, captions):
     return prompts
 
 
+def my_collate_fn(batch):
+    caption_list, ann_id_list, img_id_list, path_list = [], [], [], []
+    for item in batch:
+        caption_list.append(item[0])
+        ann_id_list.append(item[1])
+        img_id_list.append(item[2])
+        path_list.append(item[3])
+    return caption_list, ann_id_list, img_id_list, path_list
+
+
 @torch.inference_mode()
 @torch.no_grad()
 def main():
@@ -37,21 +47,21 @@ def main():
 
     # load data
     coco_dataset = CocoDataset(image_root=args.images_path,
-                               json=args.annotations_path,
-                               transforms=None,
-                               caption_only=True)
+                               json=args.annotations_path,)
 
     coco_dataloader = DataLoader(dataset=coco_dataset,
                                  batch_size=args.batch_size,
                                  num_workers=8,
                                  pin_memory=True,
-                                 shuffle=True)
+                                 shuffle=False,
+                                 collate_fn=my_collate_fn)
 
     # do inference
     total_iters = len(coco_dataloader)
-    for cur_iter, (captions) in enumerate(coco_dataloader):
+    for cur_iter, (caption_list, ann_id_list, img_id_list, path_list) in enumerate(coco_dataloader):
 
-        print(captions)
+        from IPython import embed
+        embed()
 
         start_time = time.time()
         # >>> Name Entities Recognition >>>
@@ -89,7 +99,7 @@ def main():
         Input: Several elephants standing in mud while people watched them from a building on a cliff.
         Output: elephants,mud,cliff,people,building"""
 
-        sen2ne_prompts = prepare_prompts(sen2ne_template, captions)
+        sen2ne_prompts = prepare_prompts(sen2ne_template, caption_list)
 
         sen2ne_inputs = tokenizer(sen2ne_prompts, padding=True, truncation=True, return_tensors="pt")
         sen2ne_inputs['input_ids'] = sen2ne_inputs['input_ids'].cuda()
@@ -108,8 +118,6 @@ def main():
                                                 spaces_between_special_tokens=False)
 
         torch.cuda.empty_cache()
-
-        print(sen2ne_outputs)
 
         # >>> Generate sentence with named entities
         ne2sen_templates = """In this task, I will give you some nouns objects, and you will generate a sentence containing these objects.
@@ -146,9 +154,9 @@ def main():
         Input: elephants,mud,cliff,people,building
         Output: Several elephants standing in mud while people watched them from a building on a cliff."""
 
-        ne2sen_inputs = prepare_prompts(ne2sen_templates, sen2ne_outputs)
+        ne2sen_prompts = prepare_prompts(ne2sen_templates, sen2ne_outputs)
 
-        ne2sen_inputs = tokenizer(ne2sen_inputs, padding=True, truncation=True, return_tensors="pt")
+        ne2sen_inputs = tokenizer(ne2sen_prompts, padding=True, truncation=True, return_tensors="pt")
         ne2sen_inputs['input_ids'] = ne2sen_inputs['input_ids'].cuda()
         ne2sen_inputs['attention_mask'] = ne2sen_inputs['attention_mask'].cuda()
 
@@ -166,11 +174,6 @@ def main():
                                                 spaces_between_special_tokens=False)
 
         torch.cuda.empty_cache()
-
-        print(ne2sen_outputs)
-
-        from IPython import embed
-        embed()
 
         end_time = time.time()
         batch_time = end_time - start_time

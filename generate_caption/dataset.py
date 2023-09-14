@@ -53,7 +53,7 @@ class SMiTCaptionDataset(Dataset):
 class CocoDataset(Dataset):
     """COCO Custom Dataset compatible with torch.utils.data.DataLoader."""
 
-    def __init__(self, image_root, json, transforms, tokenizer=None, caption_only=False):
+    def __init__(self, image_root, json):
         """Set the path for images, captions and vocabulary wrapper.
 
         Args:
@@ -64,9 +64,6 @@ class CocoDataset(Dataset):
         self.root = image_root
         self.dataset = COCO(json)
         self.ids = list(self.dataset.anns.keys())
-        self.transforms = transforms
-        self.tokenize = tokenizer
-        self.caption_only = caption_only
 
     def __getitem__(self, index):
         """Returns one data pair (image and caption)."""
@@ -75,17 +72,12 @@ class CocoDataset(Dataset):
         caption = dataset.anns[ann_id]['caption'].strip()
         img_id = dataset.anns[ann_id]['image_id']
         path = dataset.loadImgs(img_id)[0]['file_name']
+        #
+        # image = Image.open(os.path.join(self.root, path)).convert('RGB')
+        # if self.transforms is not None:
+        #     image = self.transforms(image)
 
-        image = Image.open(os.path.join(self.root, path)).convert('RGB')
-        if self.transforms is not None:
-            image = self.transforms(image)
-
-        if self.caption_only:
-            return caption
-        else:
-            return image, caption
+        return caption, ann_id, img_id, path
 
     def __len__(self):
         return len(self.ids)
-
-
