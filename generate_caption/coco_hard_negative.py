@@ -3,10 +3,10 @@ This is a script that merge several frame-level captions into a video-level capt
 """
 
 import argparse
+import os.path
+
 import torch
 import time
-import wandb
-wandb.login()
 
 from fastchat.model import load_model
 from dataset import CocoDataset
@@ -35,6 +35,11 @@ def my_collate_fn(batch):
 @torch.inference_mode()
 @torch.no_grad()
 def main():
+    # make dir
+    output_file = os.path.join(args.outputs, f'negative_captions_train2014_job{args.job_id:02d}_{args.job_num}.pth')
+    os.makedirs(output_file, exist_ok=True)
+    print(f'File outputs to: {output_file}')
+
     # load model
     model, tokenizer = load_model(
         args.model_path,
@@ -49,7 +54,17 @@ def main():
     coco_dataset = CocoDataset(image_root=args.images_path,
                                json=args.annotations_path,)
 
-    coco_dataloader = DataLoader(dataset=coco_dataset,
+    total_len = len(coco_dataset)
+    split_len = total_len // args.job_num
+    start_idx = args.job_id * split_len
+    end_idx = start_idx + split_len
+    if args.job_id == (args.job_num - 1):
+        end_idx = total_len
+    split_dataset = Subset(coco_dataset, range(start_idx, end_idx))
+
+    print(f'job id: {args.job_id} job num: {args.job_num}  start idx: {start_idx} end idx: {end_idx}')
+
+    coco_dataloader = DataLoader(dataset=split_dataset,
                                  batch_size=args.batch_size,
                                  num_workers=8,
                                  pin_memory=True,
@@ -57,11 +72,9 @@ def main():
                                  collate_fn=my_collate_fn)
 
     # do inference
+    ret_list = []
     total_iters = len(coco_dataloader)
     for cur_iter, (caption_list, ann_id_list, img_id_list, path_list) in enumerate(coco_dataloader):
-
-        from IPython import embed
-        embed()
 
         start_time = time.time()
         # >>> Name Entities Recognition >>>
@@ -175,19 +188,38 @@ def main():
 
         torch.cuda.empty_cache()
 
+        # >>> Save Results >>>
+        for neg_cap, ann_id, img_id in zip(ne2sen_outputs, ann_id_list, img_id_list):
+            ret = {
+                'ann_id': ann_id,
+                'image_id': img_id,
+                'neg_caption': neg_cap
+            }
+            ret_list.append(ret)
+        if cur_iter % args.save_freq == 0 or (cur_iter+1) == total_iters:
+            torch.save(ret_list, output_file)
+
         end_time = time.time()
         batch_time = end_time - start_time
 
-        print(f"Iteration:[ {cur_iter + 1}/{total_iters} ], Batch time:{batch_time:.3f}")
+        print(f"[ Job: {args.job_id}/{args.job_num} Iteration:{cur_iter + 1}/{total_iters}"
+              f" ({100*cur_iter/total_iters}%)], Batch time:{batch_time:.3f}")
 
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
+    # Job parallel
+    parser.add_argument('--job_num', type=int, default=1)
+    parser.add_argument('--job_id', type=int, default=0, help='begin from 0')
+
     # Data and Model
+    parser.add_argument('--outputs', type=str, default='outputs')
     parser.add_argument("--model-path", type=str, default="lmsys/vicuna-7b-v1.3")
     parser.add_argument('--images_path', type=str, default='/DDN_ROOT/wjpeng/dataset/coco2014/images/train2014')
     parser.add_argument('--annotations_path', type=str,
                         default='/DDN_ROOT/wjpeng/dataset/coco2014/annotations/captions_train2014.json')
+    parser.add_argument('--save_freq', type=int, default=50)
+
     # Hyper-parameters
     parser.add_argument('--batch-size', type=int, default=32)
     # parser.add_argument('--prompt-template', type=str, required=True)
@@ -221,6 +253,5 @@ if __name__ == '__main__':
     if "t5" in args.model_path and args.repetition_penalty == 1.0:
         args.repetition_penalty = 1.2
 
-    run = wandb.init('COCO-HARD-NEGATIVE')
     main()
-    wandb.finish()
+
