@@ -11,6 +11,6 @@ python coco_hard_negative.py \
 --model-path lmsys/fastchat-t5-3b-v1.0 \
 --images_path /DDN_ROOT/wjpeng/dataset/coco2014/train2014 \
 --annotations_path /DDN_ROOT/wjpeng/dataset/coco2014/annotations/captions_train2014.json \
---batch-size 8 \
+--batch-size 16 \
 --outputs /DDN_ROOT/wjpeng/dataset/coco2014/annotations/ \
 --save_freq 50

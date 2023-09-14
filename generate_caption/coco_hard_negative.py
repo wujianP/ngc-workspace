@@ -36,8 +36,8 @@ def my_collate_fn(batch):
 @torch.no_grad()
 def main():
     # make dir
+    os.makedirs(args.outputs, exist_ok=True)
     output_file = os.path.join(args.outputs, f'negative_captions_train2014_job{args.job_id:02d}_{args.job_num}.pth')
-    os.makedirs(output_file, exist_ok=True)
     print(f'File outputs to: {output_file}')
 
     # load model
@@ -52,7 +52,7 @@ def main():
 
     # load data
     coco_dataset = CocoDataset(image_root=args.images_path,
-                               json=args.annotations_path,)
+                               json=args.annotations_path, )
 
     total_len = len(coco_dataset)
     split_len = total_len // args.job_num
@@ -172,8 +172,8 @@ def main():
         ne2sen_inputs = tokenizer(ne2sen_prompts, padding=True, truncation=True, return_tensors="pt")
         ne2sen_inputs['input_ids'] = ne2sen_inputs['input_ids'].cuda()
         ne2sen_inputs['attention_mask'] = ne2sen_inputs['attention_mask'].cuda()
-
-        ne2sen_output_sequences = model.generate(
+        # > once
+        ne2sen_output_sequences_1 = model.generate(
             input_ids=ne2sen_inputs['input_ids'],
             do_sample=True,
             temperature=args.temperature,
@@ -181,22 +181,51 @@ def main():
             max_new_tokens=args.max_new_tokens,
         )
 
-        # decode
-        ne2sen_outputs = tokenizer.batch_decode(ne2sen_output_sequences,
-                                                skip_special_tokens=True,
-                                                spaces_between_special_tokens=False)
+        ne2sen_outputs_1 = tokenizer.batch_decode(ne2sen_output_sequences_1,
+                                                  skip_special_tokens=True,
+                                                  spaces_between_special_tokens=False)
+
+        torch.cuda.empty_cache()
+
+        # twice
+        ne2sen_output_sequences_2 = model.generate(
+            input_ids=ne2sen_inputs['input_ids'],
+            do_sample=True,
+            temperature=args.temperature,
+            repetition_penalty=args.repetition_penalty,
+            max_new_tokens=args.max_new_tokens,
+        )
+
+        ne2sen_outputs_2 = tokenizer.batch_decode(ne2sen_output_sequences_2,
+                                                  skip_special_tokens=True,
+                                                  spaces_between_special_tokens=False)
+
+        torch.cuda.empty_cache()
+
+        # third
+        ne2sen_output_sequences_3 = model.generate(
+            input_ids=ne2sen_inputs['input_ids'],
+            do_sample=True,
+            temperature=args.temperature,
+            repetition_penalty=args.repetition_penalty,
+            max_new_tokens=args.max_new_tokens,
+        )
+
+        ne2sen_outputs_3 = tokenizer.batch_decode(ne2sen_output_sequences_3,
+                                                  skip_special_tokens=True,
+                                                  spaces_between_special_tokens=False)
 
         torch.cuda.empty_cache()
 
         # >>> Save Results >>>
-        for neg_cap, ann_id, img_id in zip(ne2sen_outputs, ann_id_list, img_id_list):
+        for neg_cap_1, neg_cap_2, neg_cap_3, ann_id, img_id in zip(ne2sen_outputs_1, ne2sen_outputs_2, ne2sen_outputs_3, ann_id_list, img_id_list):
             ret = {
                 'ann_id': ann_id,
                 'image_id': img_id,
-                'neg_caption': neg_cap
+                'neg_caption': [neg_cap_1.strip(), neg_cap_2.strip(), neg_cap_3.strip()]
             }
             ret_list.append(ret)
-        if cur_iter % args.save_freq == 0 or (cur_iter+1) == total_iters:
+        if cur_iter % args.save_freq == 0 or (cur_iter + 1) == total_iters:
             torch.save(ret_list, output_file)
 
         end_time = time.time()
@@ -204,10 +233,12 @@ def main():
 
         print(f'Input: {caption_list[0]}\n'
               f'Name Entities: {sen2ne_outputs[0]}\n'
-              f'Hard Negative: {ne2sen_outputs[0]}')
+              f'Hard Negative 1: {ne2sen_outputs_1[0]}'
+              f'Hard Negative 2: {ne2sen_outputs_2[0]}'
+              f'Hard Negative 3: {ne2sen_outputs_3[0]}')
 
         print(f"[ Job: {args.job_id}/{args.job_num} Iteration:{cur_iter + 1}/{total_iters}"
-              f" ({100*cur_iter/total_iters}%)], Batch time:{batch_time:.3f}")
+              f" ({100 * cur_iter / total_iters}%)], Batch time:{batch_time:.3f}")
 
 
 if __name__ == '__main__':
@@ -258,4 +289,3 @@ if __name__ == '__main__':
         args.repetition_penalty = 1.2
 
     main()
-
