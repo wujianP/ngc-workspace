@@ -10,7 +10,7 @@ from PIL import Image
 
 def main():
     # load dataset
-    dataset = load_dataset("winvoker/lvis", cache_dir=args.data_root)
+    dataset = load_dataset("winvoker/lvis", cache_dir=args.data_root, split='validation')
 
     # load Stable-Diffusion-Inpaint
     inpaint_pipe = StableDiffusionInpaintPipeline.from_pretrained(
