@@ -212,7 +212,7 @@ def main():
                 'image_path': img_path,
                 'neg_image_paths': hard_image_path,
                 'caption': cap,
-                'neg_captions': [neg_cap_1, neg_cap_2]
+                'neg_captions': [neg_cap_1.strip(), neg_cap_2.strip()]
             }
             ret_list.append(ret)
         if cur_iter % args.save_freq == 0 or (cur_iter + 1) == total_iters:
@@ -227,7 +227,7 @@ def main():
               f'Hard Negative 2: {ne2sen_outputs_2[0]}')
 
         print(f"[ Job: {args.job_id}/{args.job_num} Iteration:{cur_iter + 1}/{total_iters}"
-              f" ({100 * cur_iter / total_iters:2f}%)], Batch time:{batch_time:.3f}")
+              f" ({100 * cur_iter / total_iters:.2f}%)], Batch time:{batch_time:.3f}")
 
 
 if __name__ == '__main__':
