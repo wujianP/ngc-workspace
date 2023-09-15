@@ -10,6 +10,8 @@ class LVISDataset(Dataset):
         self.data_root = data_root
         self.lvis = LVIS(ann)
         self.image_ids = self.lvis.get_img_ids()
+        from IPython import embed
+        embed()
 
     def __len__(self):
         return len(self.image_ids)
@@ -24,12 +26,13 @@ class LVISDataset(Dataset):
         # load masks
         ann_ids = self.lvis.get_ann_ids(img_ids=[img_id])
         ann_dicts = self.lvis.load_anns(ann_ids)
-        boxes, masks, areas = [], [], []
+        boxes, masks, areas, cats = [], [], [], []
         for ann_dict in ann_dicts:
             mask = self.lvis.ann_to_mask(ann_dict)
             box = ann_dict['bbox']  # [x,y,w,h]
             area = ann_dict['area']
+            cat_id = ann_dict['']
             boxes.append(box)
             masks.append(mask)
             areas.append(area)
-        return boxes, masks, areas
+        return img, boxes, masks, areas, cats
