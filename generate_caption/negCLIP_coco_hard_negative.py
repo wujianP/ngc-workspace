@@ -54,9 +54,6 @@ def main():
     coco_dataset = NegCLIPCocoDataset(image_root=args.images_path,
                                       ann=args.annotations_path)
 
-    from IPython import embed
-    embed()
-
     total_len = len(coco_dataset)
     split_len = total_len // args.job_num
     start_idx = args.job_id * split_len
