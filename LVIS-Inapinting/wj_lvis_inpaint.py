@@ -9,12 +9,14 @@ from torch.utils.data import DataLoader
 
 
 def my_collate_fn(batch):
-    boxes_list, masks_list, areas_list = [], [], []
+    img_list, boxes_list, masks_list, areas_list, cats_list = [], [], [], [], []
     for sample in batch:
-        boxes_list.append(sample[0])
-        masks_list.append(sample[1])
-        areas_list.append(sample[2])
-    return boxes_list, masks_list, areas_list
+        img_list.append(sample[0])
+        boxes_list.append(sample[1])
+        masks_list.append(sample[2])
+        areas_list.append(sample[3])
+        cats_list.append(sample[4])
+    return img_list, boxes_list, masks_list, areas_list, cats_list
 
 
 def main():
@@ -50,6 +52,6 @@ if __name__ == '__main__':
     parser.add_argument('--num_workers', type=int, default=8)
     args = parser.parse_args()
 
-    run = wandb.init('LVIS-Inpaint')
+    run = wandb.init(project='LVIS-Inpaint')
     main()
     wandb.finish()
