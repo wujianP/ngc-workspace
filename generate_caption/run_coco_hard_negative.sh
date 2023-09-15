@@ -34,6 +34,8 @@ python negCLIP_coco_hard_negative.py \
 --outputs /DDN_ROOT/wjpeng/dataset/coco2014/annotations/100k/negative_caption_fastchat \
 --save_freq 50
 
+
+job00_8.pth
 ## >> on negCLIP 100k captions Not FastChat
 #conda activate /discobox/wjpeng/env/clip/
 #cd /discobox/wjpeng/code/202306/ngc-workspace/generate_caption
