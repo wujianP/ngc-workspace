@@ -80,11 +80,12 @@ def main():
         plt.figure(figsize=(w / 60, h / 60))
         ax2 = plt.gca()
         ax2.axis('off')
-        ax2.imshow(img)
         if len(boxes) > 0:
             for mask in masks:
                 show_mask(mask, ax2)
         fig_mask = plt.gcf()
+
+        run.log({'LVIS': [wandb.Image(img), wandb.Image(fig_img_box_mask), wandb.Image(fig_mask)]})
 
 
 if __name__ == '__main__':
