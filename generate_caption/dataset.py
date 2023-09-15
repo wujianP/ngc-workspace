@@ -1,6 +1,9 @@
 import torch
 import json
 import os
+import ast
+
+import pandas as pd
 
 from PIL import Image
 from pycocotools.coco import COCO
@@ -53,7 +56,7 @@ class SMiTCaptionDataset(Dataset):
 class CocoDataset(Dataset):
     """COCO Custom Dataset compatible with torch.utils.data.DataLoader."""
 
-    def __init__(self, image_root, json):
+    def __init__(self, image_root, ann):
         """Set the path for images, captions and vocabulary wrapper.
 
         Args:
@@ -62,7 +65,7 @@ class CocoDataset(Dataset):
             transforms: image transformer.
         """
         self.root = image_root
-        self.dataset = COCO(json)
+        self.dataset = COCO(ann)
         self.ids = list(self.dataset.anns.keys())
 
     def __getitem__(self, index):
@@ -81,3 +84,34 @@ class CocoDataset(Dataset):
 
     def __len__(self):
         return len(self.ids)
+
+
+class NegCLIPCocoDataset(Dataset):
+    """COCO Custom Dataset compatible with torch.utils.data.DataLoader."""
+
+    def __init__(self, image_root, ann):
+        """Set the path for images, captions and vocabulary wrapper.
+
+        Args:
+            image_root: image directory.
+            ann: coco annotation file path.
+        """
+        self.root = image_root
+        print(f'loading data from {ann}')
+        df = pd.read_csv(ann, sep="\t", converters={"neg_caption": ast.literal_eval, "neg_image": ast.literal_eval})
+        self.image_paths = df["filepath"].tolist()
+        self.captions = df["title"].tolist()
+        self.hard_captions = df["neg_caption"].tolist()
+        self.hard_image_ids = df["neg_image"].tolist()
+        print('Done loading data.')
+
+    def __getitem__(self, index):
+        """Returns one data pair (image and caption)."""
+        caption = self.captions[index]
+        image_path = self.image_paths[index]
+        hard_image_path = [self.image_paths[hard_img_idx] for hard_img_idx in self.hard_image_ids[index]]
+
+        return caption, image_path, hard_image_path
+
+    def __len__(self):
+        return len(self.captions)

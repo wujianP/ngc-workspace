@@ -9,7 +9,7 @@ import torch
 import time
 
 from fastchat.model import load_model
-from dataset import CocoDataset, NegCLIPCocoDataset
+from dataset import NegCLIPCocoDataset
 from torch.utils.data import DataLoader, Subset
 
 
@@ -23,13 +23,12 @@ def prepare_prompts(prefix, captions):
 
 
 def my_collate_fn(batch):
-    caption_list, ann_id_list, img_id_list, path_list = [], [], [], []
+    caption_list, image_path_list, hard_image_path_list = [], [], []
     for item in batch:
         caption_list.append(item[0])
-        ann_id_list.append(item[1])
-        img_id_list.append(item[2])
-        path_list.append(item[3])
-    return caption_list, ann_id_list, img_id_list, path_list
+        image_path_list.append(item[1])
+        hard_image_path_list.append(item[2])
+    return caption_list, image_path_list, hard_image_path_list
 
 
 @torch.inference_mode()
@@ -37,7 +36,7 @@ def my_collate_fn(batch):
 def main():
     # make dir
     os.makedirs(args.outputs, exist_ok=True)
-    output_file = os.path.join(args.outputs, f'negative_captions_train2014_job{args.job_id:02d}_{args.job_num}.pth')
+    output_file = os.path.join(args.outputs, f'job{args.job_id:02d}_{args.job_num}.pth')
     print(f'File outputs to: {output_file}')
 
     # load model
@@ -51,8 +50,11 @@ def main():
         revision=args.revision, )
 
     # load data
-    coco_dataset = CocoDataset(image_root=args.images_path,
-                               ann=args.annotations_path, )
+    coco_dataset = NegCLIPCocoDataset(image_root=args.images_path,
+                                      ann=args.annotations_path)
+
+    from IPython import embed
+    embed()
 
     total_len = len(coco_dataset)
     split_len = total_len // args.job_num
@@ -74,7 +76,7 @@ def main():
     # do inference
     ret_list = []
     total_iters = len(coco_dataloader)
-    for cur_iter, (caption_list, ann_id_list, img_id_list, path_list) in enumerate(coco_dataloader):
+    for cur_iter, (caption_list, image_path_list, hard_image_path_list) in enumerate(coco_dataloader):
         from IPython import embed
         embed()
         start_time = time.time()
@@ -239,6 +241,7 @@ if __name__ == '__main__':
     parser.add_argument('--annotations_path', type=str,
                         default='/DDN_ROOT/wjpeng/dataset/coco2014/annotations/captions_train2014.json')
     parser.add_argument('--save_freq', type=int, default=50)
+    parser.add_argument('--ngc_CLIP_caption_only', type=bool, action='store_true')
 
     # Hyper-parameters
     parser.add_argument('--batch-size', type=int, default=32)
