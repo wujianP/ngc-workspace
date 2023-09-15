@@ -3,14 +3,15 @@ import torch
 import wandb
 wandb.login()
 
-from datasets import load_dataset
+from dataset import LVISDataset
 from diffusers import StableDiffusionInpaintPipeline
 from PIL import Image
 
 
 def main():
     # load dataset
-    dataset = load_dataset("winvoker/lvis", cache_dir=args.data_root, split='validation')
+    dataset = LVISDataset(data_root=args.data_root,
+                          ann=args.ann)
 
     # load Stable-Diffusion-Inpaint
     inpaint_pipe = StableDiffusionInpaintPipeline.from_pretrained(
@@ -26,6 +27,7 @@ def main():
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--data_root', type=str)
+    parser.add_argument('--ann', type=str)
     parser.add_argument('--model_checkpoint', type=str)
     args = parser.parse_args()
 
