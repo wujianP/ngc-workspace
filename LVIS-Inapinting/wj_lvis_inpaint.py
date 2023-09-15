@@ -38,7 +38,7 @@ def main():
     ).to("cuda")
 
     # >>> Inference >>>
-    for cur_idx, (boxes_list, masks_list, areas_list) in enumerate(dataloader):
+    for cur_idx, (img_list, boxes_list, masks_list, areas_list, cats_list) in enumerate(dataloader):
         from IPython import embed
         embed()
 
