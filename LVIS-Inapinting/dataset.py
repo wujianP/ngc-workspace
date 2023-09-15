@@ -8,7 +8,7 @@ from lvis import LVIS
 class LVISDataset(Dataset):
     def __init__(self, data_root, ann):
         self.data_root = data_root
-        with open(ann, 'r') as f:
-            ann = LVIS(json.load(f))
+        ann = LVIS(ann)
+        self.images = ann.imgs
         from IPython import embed
         embed()
