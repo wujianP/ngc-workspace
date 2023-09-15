@@ -241,7 +241,6 @@ if __name__ == '__main__':
     parser.add_argument('--annotations_path', type=str,
                         default='/DDN_ROOT/wjpeng/dataset/coco2014/annotations/captions_train2014.json')
     parser.add_argument('--save_freq', type=int, default=50)
-    parser.add_argument('--ngc_CLIP_caption_only', type=bool, action='store_true')
 
     # Hyper-parameters
     parser.add_argument('--batch-size', type=int, default=32)
