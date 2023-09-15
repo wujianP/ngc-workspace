@@ -31,6 +31,6 @@ python negCLIP_coco_hard_negative.py \
 --model-path 	lmsys/fastchat-t5-3b-v1.0 \
 --images_path /DDN_ROOT/wjpeng/dataset/coco2014/train2014 \
 --annotations_path /discobox/wjpeng/code/202306/fineCLIP/Bow/temp_data/train_neg_clip.tsv \
---batch-size 8 \
+--batch-size 32 \
 --outputs /DDN_ROOT/wjpeng/dataset/coco2014/annotations/100k/negative_caption_fastchat \
 --save_freq 50
