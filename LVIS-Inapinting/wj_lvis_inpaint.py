@@ -60,6 +60,9 @@ def main():
         img, boxes, masks, areas, cats = img_list[i], boxes_list[i],masks_list[i], areas_list[i], cats_list[i]
         cats = [cat.replace('_', ' ') for cat in cats]
 
+        from IPython import embed
+        embed()
+
         w, h = img.size
         # img-boxs-mask
         plt.figure(figsize=(w / 60, h / 60))
@@ -82,9 +85,6 @@ def main():
             for mask in masks:
                 show_mask(mask, ax2)
         fig_mask = plt.gcf()
-
-        from IPython import embed
-        embed()
 
 
 if __name__ == '__main__':
