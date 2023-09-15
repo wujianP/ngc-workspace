@@ -4,6 +4,7 @@ This is a script that merge several frame-level captions into a video-level capt
 
 import argparse
 import os.path
+import random
 
 import torch
 import time
@@ -81,39 +82,39 @@ def main():
         embed()
         start_time = time.time()
         # >>> Name Entities Recognition >>>
-        sen2ne_template = """In this task, I will give you a sentence, and you need recognize all the objects in it.
+        sen2ne_template = """Task: Identify all the nouns and noun phrase in the given sentences. Examples:
         Input: A white door in a kitchen with teal walls.
         Output: door,kitchen,wall
         Input: Cat sitting on the hood of a car on a winter day.
-        Output: cat,car,hood
+        Output: cat,car,hood,day
         Input: Two dogs are relaxing beside a man on a sidewalk.
         Output: dog,man,sidewalk
         Input: A group of young children wearing costumes standing in line.
         Output: children,costumes,line
         Input: Two pastries on a plate with chocolate milk.
-        Output: chocolate milk,pastries,plate
+        Output: pastries,plate,chocolate milk
         Input: A toilet stall with exposed brick and free standing tank.
         Output: toilet stall,brick,tank
         Input: A dog with a wine glass being held to its face
-        Output: wine glass,dog,face
+        Output: dog,wine glass,face
         Input: Two men play a game on a Wii console in a living room.
-        Output: living room,game,men,Wii console
+        Output: men,game,Wii console,living room
         Input: Two young children in colorful clothes are playing near a door.
-        Output: clothes,door,children
+        Output: children,clothes,door
         Input: A bus turning a corner at an intersection near a motorcycle.
-        Output: bus,intersection,corner,motorcycle
+        Output: bus,corner,intersection,motorcycle
         Input: A man is standing near the street with a surfboard.
-        Output: street,man,surfboard
+        Output: man,street,surfboard
         Input: A grey bird perched on a tree next to a body of water.
-        Output: bord,water,body,tree
+        Output: bird,tree,body,water
         Input: Two men sitting in a sailboat with two sails.
-        Output: sailboat,sail,men
+        Output: men,sailboat,sails
         Input: A passenger train that is traveling down the tracks.
-        Output: tracks,passenger train
+        Output: passenger train,tracks
         Input: A man on a motorcycle holding one arm in the air.
-        Output: motorcycle,man,arm
+        Output: man,motorcycle,arm,air
         Input: Several elephants standing in mud while people watched them from a building on a cliff.
-        Output: elephants,mud,cliff,people,building"""
+        Output: elephants,mud,people,building,cliff"""
 
         sen2ne_prompts = prepare_prompts(sen2ne_template, caption_list)
 
@@ -132,11 +133,15 @@ def main():
         sen2ne_outputs = tokenizer.batch_decode(sen2ne_output_sequences,
                                                 skip_special_tokens=True,
                                                 spaces_between_special_tokens=False)
+        for idx, ne in enumerate(sen2ne_outputs):
+            ne = ne.strip().split(',')
+            random.shuffle(ne)
+            sen2ne_outputs[idx] = ','.join(ne)
 
         torch.cuda.empty_cache()
 
         # >>> Generate sentence with named entities
-        ne2sen_templates = """In this task, I will give you some nouns objects, and you will generate a sentence containing these objects.
+        ne2sen_templates = """In this task, I will give you some words, and you will imagine a scene that contains all the words, you can add more details.
         Input: door,kitchen,wall
         Output: A white door in a kitchen with teal walls.
         Input: cat,car,hood
@@ -206,11 +211,12 @@ def main():
         torch.cuda.empty_cache()
 
         # >>> Save Results >>>
-        for neg_cap_1, neg_cap_2, neg_cap_3, ann_id, img_id in zip(ne2sen_outputs_1, ne2sen_outputs_2, ne2sen_outputs_3, ann_id_list, img_id_list):
+        for neg_cap_1, neg_cap_2, cap, img_path, hard_image_path in zip(ne2sen_outputs_1, ne2sen_outputs_2, caption_list, image_path_list, hard_image_path_list):
             ret = {
-                'ann_id': ann_id,
-                'image_id': img_id,
-                'neg_caption': [neg_cap_1.strip(), neg_cap_2.strip()]
+                'image_path': img_path,
+                'neg_image_paths': hard_image_path,
+                'caption': cap,
+                'neg_captions': [neg_cap_1, neg_cap_2]
             }
             ret_list.append(ret)
         if cur_iter % args.save_freq == 0 or (cur_iter + 1) == total_iters:
