@@ -75,8 +75,8 @@ def main():
     ret_list = []
     total_iters = len(coco_dataloader)
     for cur_iter, (caption_list, image_path_list, hard_image_path_list) in enumerate(coco_dataloader):
-        from IPython import embed
-        embed()
+        # from IPython import embed
+        # embed()
         start_time = time.time()
         # >>> Name Entities Recognition >>>
         sen2ne_template = """Task: Identify all the nouns and noun phrase in the given sentences. Examples:

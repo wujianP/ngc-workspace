@@ -22,7 +22,7 @@ conda activate /discobox/wjpeng/env/clip/
 cd /discobox/wjpeng/code/202306/ngc-workspace/generate_caption
 git pull
 
-JOB_ID=7
+JOB_ID=0
 export CUDA_VISIBLE_DEVICES=$((JOB_ID % 8))
 python negCLIP_coco_hard_negative.py \
 --job_id $JOB_ID \
