@@ -469,12 +469,14 @@ def main():
             mask = cv2.erode(mask, kernel, iterations=1)  # erode
             mask = cv2.dilate(mask, edge_kernel, iterations=1)  # dilate edge
             # mask = mask.filter(ImageFilter.MaxFilter(size=args.mask_dilate_edge_size))  # dilate the mask edge
+
             mask = mask * 255
             mask = Image.fromarray(mask).resize((512, 512))
             inpaint_masks.append(mask)
             inpaint_mask_flags.append(no_valid_flag)
             selected_tags_list.append(selected_tags)
-
+        from IPython import embed
+        embed()
         after_inpaint_images = inpaint_pipe(image=inpaint_images, prompt=[''] * args.batch_size,
                                             mask_image=inpaint_masks).images
 
