@@ -36,9 +36,10 @@ python wj_inpaint_ram.py \
 
 
 # >>>>>>>> Tag2Text on Visual Genome >>>>>>>>>>
-JOB_ID=31
+JOB_ID=0
 conda activate /discobox/wjpeng/env/clip
 cd /discobox/wjpeng/code/202306/ngc-workspace/Grounded-Segment-Anything
+git pull
 
 export CUDA_VISIBLE_DEVICES=$((JOB_ID % 8))
 python wj_inpaint_tag2text.py \
