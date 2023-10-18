@@ -36,7 +36,7 @@ def init(args,rank=None):
         model_id= "runwayml/stable-diffusion-v1-5"
         pipe = StableDiffusionPipeline.from_pretrained(model_id,torch_dtype=torch.float16,output_type='latent')   
         pipe.scheduler=DPMSolverMultistepScheduler.from_config(pipe.scheduler.config)
-        pipe.unet.enable_xformers_memory_efficient_attention()
+        # pipe.unet.enable_xformers_memory_efficient_attention()
         pipe.to(device)
 
 
