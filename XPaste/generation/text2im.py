@@ -100,7 +100,8 @@ def save_images(batch,path,cls,offset):
         pil_image.save(os.path.join(path,cls,f"{offset+i:04d}.png"))
 
 def gen_image(cls_info,method='latent',batch_size=10,total=100,output_path='/mnt/home/syn4det/LVIS_gen_FG_2'):
-    text='a photo of a single {}'.format(' '.join(cls_info['name'].split('_')))
+    # text='a photo of a single {}'.format(' '.join(cls_info['name'].split('_')))
+    text='a photo of a single {}'.format(cls_info['name'])
     clips=[]
     offset=0
     while 1:
@@ -147,8 +148,7 @@ if __name__=="__main__":
     target_class=[]
     for i in data['categories']:
         target_class.append(i)
-    from IPython import embed
-    embed()
+
     PATH=args.output_dir
     os.makedirs(PATH,exist_ok=True)
     if args.resume:
@@ -163,11 +163,8 @@ if __name__=="__main__":
         target_class=[i for i in target_class if i['name'] in cls_names]
     mp.set_start_method('spawn',force=True)
     pool = mp.Pool(processes=th.cuda.device_count(),initializer=init,initargs=(args,))
-    results = pool.starmap(gen_image, [(i,args.model,args.batchsize,args.samples,PATH) for i in target_class],1)
+    results = pool.starmap(gen_image, [(i, args.model, args.batchsize, args.samples, PATH) for i in target_class],1)
     for i,j in zip(target_class,results):
         i['clip_scores']=j
     with open(os.path.join(PATH,"results.json"),'w') as f:
         json.dump(target_class,f)
-
-
-
