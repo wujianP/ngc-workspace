@@ -1,0 +1,144 @@
+2023-09-15 09:03:20,350 INFO    StreamThr :101872 [internal.py:wandb_internal():86] W&B internal server running at pid: 101872, started at: 2023-09-15 09:03:20.348953
+2023-09-15 09:03:20,352 DEBUG   HandlerThread:101872 [handler.py:handle_request():144] handle_request: status
+2023-09-15 09:03:20,353 INFO    WriterThread:101872 [datastore.py:open_for_write():85] open: /discobox/wjpeng/code/202306/ngc-workspace/LVIS-Inapinting/wandb/run-20230915_090320-nheb42bo/run-nheb42bo.wandb
+2023-09-15 09:03:20,357 DEBUG   SenderThread:101872 [sender.py:send():369] send: header
+2023-09-15 09:03:20,399 DEBUG   SenderThread:101872 [sender.py:send():369] send: run
+2023-09-15 09:03:21,216 DEBUG   HandlerThread:101872 [handler.py:handle_request():144] handle_request: check_version
+2023-09-15 09:03:21,217 INFO    SenderThread:101872 [dir_watcher.py:__init__():211] watching files in: /discobox/wjpeng/code/202306/ngc-workspace/LVIS-Inapinting/wandb/run-20230915_090320-nheb42bo/files
+2023-09-15 09:03:21,217 INFO    SenderThread:101872 [sender.py:_start_run_threads():1100] run started: nheb42bo with start time 1694768600.34903
+2023-09-15 09:03:21,217 DEBUG   SenderThread:101872 [sender.py:send_request():396] send_request: summary_record
+2023-09-15 09:03:21,219 INFO    SenderThread:101872 [sender.py:_save_file():1354] saving file wandb-summary.json with policy end
+2023-09-15 09:03:21,220 DEBUG   SenderThread:101872 [sender.py:send_request():396] send_request: check_version
+2023-09-15 09:03:21,350 DEBUG   HandlerThread:101872 [handler.py:handle_request():144] handle_request: run_start
+2023-09-15 09:03:21,358 DEBUG   HandlerThread:101872 [system_info.py:__init__():31] System info init
+2023-09-15 09:03:21,358 DEBUG   HandlerThread:101872 [system_info.py:__init__():46] System info init done
+2023-09-15 09:03:21,358 INFO    HandlerThread:101872 [system_monitor.py:start():181] Starting system monitor
+2023-09-15 09:03:21,359 INFO    SystemMonitor:101872 [system_monitor.py:_start():145] Starting system asset monitoring threads
+2023-09-15 09:03:21,359 INFO    HandlerThread:101872 [system_monitor.py:probe():201] Collecting system info
+2023-09-15 09:03:21,360 INFO    SystemMonitor:101872 [interfaces.py:start():190] Started cpu monitoring
+2023-09-15 09:03:21,360 INFO    SystemMonitor:101872 [interfaces.py:start():190] Started disk monitoring
+2023-09-15 09:03:21,361 INFO    SystemMonitor:101872 [interfaces.py:start():190] Started gpu monitoring
+2023-09-15 09:03:21,362 INFO    SystemMonitor:101872 [interfaces.py:start():190] Started memory monitoring
+2023-09-15 09:03:21,362 INFO    SystemMonitor:101872 [interfaces.py:start():190] Started network monitoring
+2023-09-15 09:03:21,412 DEBUG   HandlerThread:101872 [system_info.py:probe():195] Probing system
+2023-09-15 09:03:21,414 DEBUG   HandlerThread:101872 [system_info.py:_probe_git():180] Probing git
+2023-09-15 09:03:21,442 DEBUG   HandlerThread:101872 [system_info.py:_probe_git():188] Probing git done
+2023-09-15 09:03:21,443 DEBUG   HandlerThread:101872 [system_info.py:probe():240] Probing system done
+2023-09-15 09:03:21,443 DEBUG   HandlerThread:101872 [system_monitor.py:probe():210] {'os': 'Linux-5.4.0-107-generic-x86_64-with-glibc2.17', 'python': '3.8.16', 'heartbeatAt': '2023-09-15T09:03:21.412986', 'startedAt': '2023-09-15T09:03:20.329595', 'docker': None, 'cuda': None, 'args': ('--data_root', '/DDN_ROOT/wjpeng/dataset/LVIS', '--ann', '/DDN_ROOT/wjpeng/dataset/LVIS/lvis_v1_val.json', '--model_checkpoint', '/discobox/wjpeng/weights/stable-difusion-2-inpaint'), 'state': 'running', 'program': 'wj_lvis_inpaint.py', 'codePath': 'LVIS-Inapinting/wj_lvis_inpaint.py', 'git': {'remote': 'https://github.com/wujianP/ngc-workspace.git', 'commit': 'ee2b4c03e9a1bba60b04b41f12c975bd90681952'}, 'email': '1051233700@qq.com', 'root': '/discobox/wjpeng/code/202306/ngc-workspace', 'host': '5118067', 'username': 'root', 'executable': '/discobox/wjpeng/env/clip/bin/python', 'cpu_count': 40, 'cpu_count_logical': 80, 'cpu_freq': {'current': 2694.232650000001, 'min': 1200.0, 'max': 3600.0}, 'cpu_freq_per_core': [{'current': 2694.233, 'min': 1200.0, 'max': 3600.0}, {'current': 2694.234, 'min': 1200.0, 'max': 3600.0}, {'current': 2694.234, 'min': 1200.0, 'max': 3600.0}, {'current': 2694.234, 'min': 1200.0, 'max': 3600.0}, {'current': 2694.234, 'min': 1200.0, 'max': 3600.0}, {'current': 2694.234, 'min': 1200.0, 'max': 3600.0}, {'current': 2694.233, 'min': 1200.0, 'max': 3600.0}, {'current': 2694.232, 'min': 1200.0, 'max': 3600.0}, {'current': 2694.234, 'min': 1200.0, 'max': 3600.0}, {'current': 2694.232, 'min': 1200.0, 'max': 3600.0}, {'current': 2694.232, 'min': 1200.0, 'max': 3600.0}, {'current': 2694.233, 'min': 1200.0, 'max': 3600.0}, {'current': 2694.234, 'min': 1200.0, 'max': 3600.0}, {'current': 2694.234, 'min': 1200.0, 'max': 3600.0}, {'current': 2694.234, 'min': 1200.0, 'max': 3600.0}, {'current': 2694.232, 'min': 1200.0, 'max': 3600.0}, {'current': 2694.233, 'min': 1200.0, 'max': 3600.0}, {'current': 2694.234, 'min': 1200.0, 'max': 3600.0}, {'current': 2694.235, 'min': 1200.0, 'max': 3600.0}, {'current': 2694.234, 'min': 1200.0, 'max': 3600.0}, {'current': 2694.232, 'min': 1200.0, 'max': 3600.0}, {'current': 2694.234, 'min': 1200.0, 'max': 3600.0}, {'current': 2694.233, 'min': 1200.0, 'max': 3600.0}, {'current': 2694.233, 'min': 1200.0, 'max': 3600.0}, {'current': 2694.232, 'min': 1200.0, 'max': 3600.0}, {'current': 2694.233, 'min': 1200.0, 'max': 3600.0}, {'current': 2694.234, 'min': 1200.0, 'max': 3600.0}, {'current': 2694.233, 'min': 1200.0, 'max': 3600.0}, {'current': 2694.233, 'min': 1200.0, 'max': 3600.0}, {'current': 2694.232, 'min': 1200.0, 'max': 3600.0}, {'current': 2694.233, 'min': 1200.0, 'max': 3600.0}, {'current': 2694.232, 'min': 1200.0, 'max': 3600.0}, {'current': 2694.232, 'min': 1200.0, 'max': 3600.0}, {'current': 2694.233, 'min': 1200.0, 'max': 3600.0}, {'current': 2694.232, 'min': 1200.0, 'max': 3600.0}, {'current': 2694.233, 'min': 1200.0, 'max': 3600.0}, {'current': 2694.232, 'min': 1200.0, 'max': 3600.0}, {'current': 2694.233, 'min': 1200.0, 'max': 3600.0}, {'current': 2694.233, 'min': 1200.0, 'max': 3600.0}, {'current': 2694.232, 'min': 1200.0, 'max': 3600.0}, {'current': 2694.232, 'min': 1200.0, 'max': 3600.0}, {'current': 2694.233, 'min': 1200.0, 'max': 3600.0}, {'current': 2694.232, 'min': 1200.0, 'max': 3600.0}, {'current': 2694.233, 'min': 1200.0, 'max': 3600.0}, {'current': 2694.233, 'min': 1200.0, 'max': 3600.0}, {'current': 2694.232, 'min': 1200.0, 'max': 3600.0}, {'current': 2694.233, 'min': 1200.0, 'max': 3600.0}, {'current': 2694.236, 'min': 1200.0, 'max': 3600.0}, {'current': 2694.233, 'min': 1200.0, 'max': 3600.0}, {'current': 2694.233, 'min': 1200.0, 'max': 3600.0}, {'current': 2694.233, 'min': 1200.0, 'max': 3600.0}, {'current': 2694.233, 'min': 1200.0, 'max': 3600.0}, {'current': 2694.233, 'min': 1200.0, 'max': 3600.0}, {'current': 2694.232, 'min': 1200.0, 'max': 3600.0}, {'current': 2694.232, 'min': 1200.0, 'max': 3600.0}, {'current': 2694.232, 'min': 1200.0, 'max': 3600.0}, {'current': 2694.232, 'min': 1200.0, 'max': 3600.0}, {'current': 2694.232, 'min': 1200.0, 'max': 3600.0}, {'current': 2694.233, 'min': 1200.0, 'max': 3600.0}, {'current': 2694.232, 'min': 1200.0, 'max': 3600.0}, {'current': 2694.232, 'min': 1200.0, 'max': 3600.0}, {'current': 2694.233, 'min': 1200.0, 'max': 3600.0}, {'current': 2694.232, 'min': 1200.0, 'max': 3600.0}, {'current': 2694.232, 'min': 1200.0, 'max': 3600.0}, {'current': 2694.232, 'min': 1200.0, 'max': 3600.0}, {'current': 2694.233, 'min': 1200.0, 'max': 3600.0}, {'current': 2694.233, 'min': 1200.0, 'max': 3600.0}, {'current': 2694.232, 'min': 1200.0, 'max': 3600.0}, {'current': 2694.233, 'min': 1200.0, 'max': 3600.0}, {'current': 2694.233, 'min': 1200.0, 'max': 3600.0}, {'current': 2694.234, 'min': 1200.0, 'max': 3600.0}, {'current': 2694.232, 'min': 1200.0, 'max': 3600.0}, {'current': 2694.233, 'min': 1200.0, 'max': 3600.0}, {'current': 2694.232, 'min': 1200.0, 'max': 3600.0}, {'current': 2694.233, 'min': 1200.0, 'max': 3600.0}, {'current': 2694.233, 'min': 1200.0, 'max': 3600.0}, {'current': 2694.232, 'min': 1200.0, 'max': 3600.0}, {'current': 2694.233, 'min': 1200.0, 'max': 3600.0}, {'current': 2694.232, 'min': 1200.0, 'max': 3600.0}, {'current': 2694.232, 'min': 1200.0, 'max': 3600.0}], 'disk': {'total': 438.1221580505371, 'used': 163.51500701904297}, 'gpu': 'Tesla V100-SXM2-32GB-LS', 'gpu_count': 8, 'gpu_devices': [{'name': 'Tesla V100-SXM2-32GB-LS', 'memory_total': 34359738368}, {'name': 'Tesla V100-SXM2-32GB-LS', 'memory_total': 34359738368}, {'name': 'Tesla V100-SXM2-32GB-LS', 'memory_total': 34359738368}, {'name': 'Tesla V100-SXM2-32GB-LS', 'memory_total': 34359738368}, {'name': 'Tesla V100-SXM2-32GB-LS', 'memory_total': 34359738368}, {'name': 'Tesla V100-SXM2-32GB-LS', 'memory_total': 34359738368}, {'name': 'Tesla V100-SXM2-32GB-LS', 'memory_total': 34359738368}, {'name': 'Tesla V100-SXM2-32GB-LS', 'memory_total': 34359738368}], 'memory': {'total': 503.7787971496582}}
+2023-09-15 09:03:21,443 INFO    HandlerThread:101872 [system_monitor.py:probe():211] Finished collecting system info
+2023-09-15 09:03:21,443 INFO    HandlerThread:101872 [system_monitor.py:probe():214] Publishing system info
+2023-09-15 09:03:21,443 DEBUG   HandlerThread:101872 [system_info.py:_save_pip():51] Saving list of pip packages installed into the current environment
+2023-09-15 09:03:21,446 DEBUG   HandlerThread:101872 [system_info.py:_save_pip():67] Saving pip packages done
+2023-09-15 09:03:21,446 DEBUG   HandlerThread:101872 [system_info.py:_save_conda():74] Saving list of conda packages installed into the current environment
+2023-09-15 09:03:22,222 INFO    Thread-12 :101872 [dir_watcher.py:_on_file_created():272] file/dir created: /discobox/wjpeng/code/202306/ngc-workspace/LVIS-Inapinting/wandb/run-20230915_090320-nheb42bo/files/conda-environment.yaml
+2023-09-15 09:03:22,223 INFO    Thread-12 :101872 [dir_watcher.py:_on_file_created():272] file/dir created: /discobox/wjpeng/code/202306/ngc-workspace/LVIS-Inapinting/wandb/run-20230915_090320-nheb42bo/files/wandb-summary.json
+2023-09-15 09:03:22,223 INFO    Thread-12 :101872 [dir_watcher.py:_on_file_created():272] file/dir created: /discobox/wjpeng/code/202306/ngc-workspace/LVIS-Inapinting/wandb/run-20230915_090320-nheb42bo/files/requirements.txt
+2023-09-15 09:03:36,844 DEBUG   HandlerThread:101872 [system_info.py:_save_conda():86] Saving conda packages done
+2023-09-15 09:03:36,861 INFO    HandlerThread:101872 [system_monitor.py:probe():216] Finished publishing system info
+2023-09-15 09:03:36,878 DEBUG   HandlerThread:101872 [handler.py:handle_request():144] handle_request: status_report
+2023-09-15 09:03:36,878 DEBUG   HandlerThread:101872 [handler.py:handle_request():144] handle_request: keepalive
+2023-09-15 09:03:36,879 DEBUG   HandlerThread:101872 [handler.py:handle_request():144] handle_request: status_report
+2023-09-15 09:03:36,879 DEBUG   HandlerThread:101872 [handler.py:handle_request():144] handle_request: keepalive
+2023-09-15 09:03:36,879 DEBUG   HandlerThread:101872 [handler.py:handle_request():144] handle_request: status_report
+2023-09-15 09:03:36,879 DEBUG   HandlerThread:101872 [handler.py:handle_request():144] handle_request: keepalive
+2023-09-15 09:03:36,880 DEBUG   SenderThread:101872 [sender.py:send():369] send: files
+2023-09-15 09:03:36,880 INFO    SenderThread:101872 [sender.py:_save_file():1354] saving file wandb-metadata.json with policy now
+2023-09-15 09:03:36,887 DEBUG   HandlerThread:101872 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-15 09:03:36,888 DEBUG   SenderThread:101872 [sender.py:send_request():396] send_request: stop_status
+2023-09-15 09:03:37,138 DEBUG   SenderThread:101872 [sender.py:send():369] send: telemetry
+2023-09-15 09:03:37,236 INFO    Thread-12 :101872 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/LVIS-Inapinting/wandb/run-20230915_090320-nheb42bo/files/conda-environment.yaml
+2023-09-15 09:03:37,237 INFO    Thread-12 :101872 [dir_watcher.py:_on_file_created():272] file/dir created: /discobox/wjpeng/code/202306/ngc-workspace/LVIS-Inapinting/wandb/run-20230915_090320-nheb42bo/files/wandb-metadata.json
+2023-09-15 09:03:37,352 INFO    wandb-upload_0:101872 [upload_job.py:push():133] Uploaded file /tmp/tmptjayha2ewandb/lufczl88-wandb-metadata.json
+2023-09-15 09:03:42,139 DEBUG   HandlerThread:101872 [handler.py:handle_request():144] handle_request: status_report
+2023-09-15 09:03:47,140 DEBUG   HandlerThread:101872 [handler.py:handle_request():144] handle_request: status_report
+2023-09-15 09:03:48,333 DEBUG   HandlerThread:101872 [handler.py:handle_request():144] handle_request: keepalive
+2023-09-15 09:03:49,251 INFO    Thread-12 :101872 [dir_watcher.py:_on_file_created():272] file/dir created: /discobox/wjpeng/code/202306/ngc-workspace/LVIS-Inapinting/wandb/run-20230915_090320-nheb42bo/files/output.log
+2023-09-15 09:03:51,254 INFO    Thread-12 :101872 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/LVIS-Inapinting/wandb/run-20230915_090320-nheb42bo/files/output.log
+2023-09-15 09:03:51,887 DEBUG   HandlerThread:101872 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-15 09:03:51,887 DEBUG   SenderThread:101872 [sender.py:send_request():396] send_request: stop_status
+2023-09-15 09:03:53,077 DEBUG   HandlerThread:101872 [handler.py:handle_request():144] handle_request: status_report
+2023-09-15 09:03:55,260 INFO    Thread-12 :101872 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/LVIS-Inapinting/wandb/run-20230915_090320-nheb42bo/files/config.yaml
+2023-09-15 09:03:59,598 DEBUG   HandlerThread:101872 [handler.py:handle_request():144] handle_request: status_report
+2023-09-15 09:04:04,599 DEBUG   HandlerThread:101872 [handler.py:handle_request():144] handle_request: status_report
+2023-09-15 09:04:06,887 DEBUG   HandlerThread:101872 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-15 09:04:06,887 DEBUG   HandlerThread:101872 [handler.py:handle_request():144] handle_request: keepalive
+2023-09-15 09:04:06,888 DEBUG   SenderThread:101872 [sender.py:send_request():396] send_request: stop_status
+2023-09-15 09:04:10,085 DEBUG   HandlerThread:101872 [handler.py:handle_request():144] handle_request: status_report
+2023-09-15 09:04:15,086 DEBUG   HandlerThread:101872 [handler.py:handle_request():144] handle_request: status_report
+2023-09-15 09:04:20,087 DEBUG   HandlerThread:101872 [handler.py:handle_request():144] handle_request: status_report
+2023-09-15 09:04:21,364 DEBUG   SystemMonitor:101872 [system_monitor.py:_start():159] Starting system metrics aggregation loop
+2023-09-15 09:04:21,369 DEBUG   SenderThread:101872 [sender.py:send():369] send: stats
+2023-09-15 09:04:21,887 DEBUG   HandlerThread:101872 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-15 09:04:21,887 DEBUG   SenderThread:101872 [sender.py:send_request():396] send_request: stop_status
+2023-09-15 09:04:26,048 DEBUG   HandlerThread:101872 [handler.py:handle_request():144] handle_request: status_report
+2023-09-15 09:04:31,049 DEBUG   HandlerThread:101872 [handler.py:handle_request():144] handle_request: status_report
+2023-09-15 09:04:36,050 DEBUG   HandlerThread:101872 [handler.py:handle_request():144] handle_request: status_report
+2023-09-15 09:04:36,887 DEBUG   HandlerThread:101872 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-15 09:04:36,887 DEBUG   SenderThread:101872 [sender.py:send_request():396] send_request: stop_status
+2023-09-15 09:04:41,184 DEBUG   HandlerThread:101872 [handler.py:handle_request():144] handle_request: status_report
+2023-09-15 09:04:46,426 DEBUG   HandlerThread:101872 [handler.py:handle_request():144] handle_request: status_report
+2023-09-15 09:04:51,372 DEBUG   SenderThread:101872 [sender.py:send():369] send: stats
+2023-09-15 09:04:51,887 DEBUG   HandlerThread:101872 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-15 09:04:51,887 DEBUG   HandlerThread:101872 [handler.py:handle_request():144] handle_request: keepalive
+2023-09-15 09:04:51,888 DEBUG   SenderThread:101872 [sender.py:send_request():396] send_request: stop_status
+2023-09-15 09:04:51,973 DEBUG   HandlerThread:101872 [handler.py:handle_request():144] handle_request: status_report
+2023-09-15 09:04:57,326 DEBUG   HandlerThread:101872 [handler.py:handle_request():144] handle_request: status_report
+2023-09-15 09:05:01,339 INFO    Thread-12 :101872 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/LVIS-Inapinting/wandb/run-20230915_090320-nheb42bo/files/output.log
+2023-09-15 09:05:02,779 DEBUG   HandlerThread:101872 [handler.py:handle_request():144] handle_request: status_report
+2023-09-15 09:05:06,887 DEBUG   HandlerThread:101872 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-15 09:05:06,887 DEBUG   SenderThread:101872 [sender.py:send_request():396] send_request: stop_status
+2023-09-15 09:05:08,018 DEBUG   HandlerThread:101872 [handler.py:handle_request():144] handle_request: status_report
+2023-09-15 09:05:13,019 DEBUG   HandlerThread:101872 [handler.py:handle_request():144] handle_request: status_report
+2023-09-15 09:05:17,357 INFO    Thread-12 :101872 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/LVIS-Inapinting/wandb/run-20230915_090320-nheb42bo/files/output.log
+2023-09-15 09:05:18,213 DEBUG   HandlerThread:101872 [handler.py:handle_request():144] handle_request: status_report
+2023-09-15 09:05:21,375 DEBUG   SenderThread:101872 [sender.py:send():369] send: stats
+2023-09-15 09:05:21,887 DEBUG   HandlerThread:101872 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-15 09:05:21,888 DEBUG   SenderThread:101872 [sender.py:send_request():396] send_request: stop_status
+2023-09-15 09:05:24,030 DEBUG   HandlerThread:101872 [handler.py:handle_request():144] handle_request: status_report
+2023-09-15 09:05:29,031 DEBUG   HandlerThread:101872 [handler.py:handle_request():144] handle_request: status_report
+2023-09-15 09:05:34,032 DEBUG   HandlerThread:101872 [handler.py:handle_request():144] handle_request: status_report
+2023-09-15 09:05:36,887 DEBUG   HandlerThread:101872 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-15 09:05:36,888 DEBUG   SenderThread:101872 [sender.py:send_request():396] send_request: stop_status
+2023-09-15 09:05:39,081 DEBUG   HandlerThread:101872 [handler.py:handle_request():144] handle_request: status_report
+2023-09-15 09:05:44,082 DEBUG   HandlerThread:101872 [handler.py:handle_request():144] handle_request: status_report
+2023-09-15 09:05:49,393 INFO    Thread-12 :101872 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/LVIS-Inapinting/wandb/run-20230915_090320-nheb42bo/files/output.log
+2023-09-15 09:05:50,014 DEBUG   HandlerThread:101872 [handler.py:handle_request():144] handle_request: status_report
+2023-09-15 09:05:51,378 DEBUG   SenderThread:101872 [sender.py:send():369] send: stats
+2023-09-15 09:05:51,887 DEBUG   HandlerThread:101872 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-15 09:05:51,888 DEBUG   SenderThread:101872 [sender.py:send_request():396] send_request: stop_status
+2023-09-15 09:05:53,399 INFO    Thread-12 :101872 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/LVIS-Inapinting/wandb/run-20230915_090320-nheb42bo/files/output.log
+2023-09-15 09:05:55,367 DEBUG   HandlerThread:101872 [handler.py:handle_request():144] handle_request: status_report
+2023-09-15 09:06:00,368 DEBUG   HandlerThread:101872 [handler.py:handle_request():144] handle_request: status_report
+2023-09-15 09:06:05,368 DEBUG   HandlerThread:101872 [handler.py:handle_request():144] handle_request: status_report
+2023-09-15 09:06:06,887 DEBUG   HandlerThread:101872 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-15 09:06:06,888 DEBUG   SenderThread:101872 [sender.py:send_request():396] send_request: stop_status
+2023-09-15 09:06:11,021 DEBUG   HandlerThread:101872 [handler.py:handle_request():144] handle_request: status_report
+2023-09-15 09:06:16,022 DEBUG   HandlerThread:101872 [handler.py:handle_request():144] handle_request: status_report
+2023-09-15 09:06:21,022 DEBUG   HandlerThread:101872 [handler.py:handle_request():144] handle_request: status_report
+2023-09-15 09:06:21,381 DEBUG   SenderThread:101872 [sender.py:send():369] send: stats
+2023-09-15 09:06:21,887 DEBUG   HandlerThread:101872 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-15 09:06:21,888 DEBUG   SenderThread:101872 [sender.py:send_request():396] send_request: stop_status
+2023-09-15 09:06:26,048 DEBUG   HandlerThread:101872 [handler.py:handle_request():144] handle_request: status_report
+2023-09-15 09:06:31,049 DEBUG   HandlerThread:101872 [handler.py:handle_request():144] handle_request: status_report
+2023-09-15 09:06:36,050 DEBUG   HandlerThread:101872 [handler.py:handle_request():144] handle_request: status_report
+2023-09-15 09:06:36,888 DEBUG   HandlerThread:101872 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-15 09:06:36,888 DEBUG   SenderThread:101872 [sender.py:send_request():396] send_request: stop_status
+2023-09-15 09:06:41,095 DEBUG   HandlerThread:101872 [handler.py:handle_request():144] handle_request: status_report
+2023-09-15 09:06:46,095 DEBUG   HandlerThread:101872 [handler.py:handle_request():144] handle_request: status_report
+2023-09-15 09:06:51,238 DEBUG   HandlerThread:101872 [handler.py:handle_request():144] handle_request: status_report
+2023-09-15 09:06:51,385 DEBUG   SenderThread:101872 [sender.py:send():369] send: stats
+2023-09-15 09:06:51,888 DEBUG   HandlerThread:101872 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-15 09:06:51,888 DEBUG   SenderThread:101872 [sender.py:send_request():396] send_request: stop_status
+2023-09-15 09:06:55,470 INFO    Thread-12 :101872 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/LVIS-Inapinting/wandb/run-20230915_090320-nheb42bo/files/output.log
+2023-09-15 09:06:56,611 DEBUG   HandlerThread:101872 [handler.py:handle_request():144] handle_request: status_report
+2023-09-15 09:07:01,613 DEBUG   HandlerThread:101872 [handler.py:handle_request():144] handle_request: status_report
+2023-09-15 09:07:06,613 DEBUG   HandlerThread:101872 [handler.py:handle_request():144] handle_request: status_report
+2023-09-15 09:07:06,888 DEBUG   HandlerThread:101872 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-15 09:07:06,888 DEBUG   SenderThread:101872 [sender.py:send_request():396] send_request: stop_status
+2023-09-15 09:07:12,008 DEBUG   HandlerThread:101872 [handler.py:handle_request():144] handle_request: status_report
+2023-09-15 09:07:17,008 DEBUG   HandlerThread:101872 [handler.py:handle_request():144] handle_request: status_report
+2023-09-15 09:07:19,427 INFO    memory    :101872 [interfaces.py:monitor():140] Process proc.memory.rssMB has exited.
+2023-09-15 09:07:19,428 DEBUG   SystemMonitor:101872 [system_monitor.py:_start():166] Finished system metrics aggregation loop
+2023-09-15 09:07:19,429 DEBUG   SystemMonitor:101872 [system_monitor.py:_start():170] Publishing last batch of metrics
+2023-09-15 09:07:19,435 DEBUG   SenderThread:101872 [sender.py:send():369] send: stats
+2023-09-15 09:07:21,392 INFO    MainThread:101872 [internal.py:handle_exit():76] Internal process exited

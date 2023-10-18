@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "wj_lvis_inpaint.py", line 35, in <module>
+    main()
+  File "wj_lvis_inpaint.py", line 13, in main
+    dataset = LVISDataset(data_root=args.data_root,
+  File "/discobox/wjpeng/code/202306/ngc-workspace/LVIS-Inapinting/dataset.py", line 12, in __init__
+    ann = LVIS(json.load(f))
+  File "/discobox/wjpeng/env/clip/lib/python3.8/site-packages/lvis/lvis.py", line 27, in __init__
+    self.dataset = self._load_json(annotation_path)
+  File "/discobox/wjpeng/env/clip/lib/python3.8/site-packages/lvis/lvis.py", line 35, in _load_json
+    with open(path, "r") as f:
+TypeError: expected str, bytes or os.PathLike object, not dict

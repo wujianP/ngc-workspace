@@ -1,0 +1,27 @@
+2023-09-14 12:42:10,210 INFO    MainThread:213046 [wandb_setup.py:_flush():76] Current SDK version is 0.15.4
+2023-09-14 12:42:10,211 INFO    MainThread:213046 [wandb_setup.py:_flush():76] Configure stats pid to 213046
+2023-09-14 12:42:10,211 INFO    MainThread:213046 [wandb_setup.py:_flush():76] Loading settings from /root/.config/wandb/settings
+2023-09-14 12:42:10,211 INFO    MainThread:213046 [wandb_setup.py:_flush():76] Loading settings from /discobox/wjpeng/code/202306/ngc-workspace/generate_caption/wandb/settings
+2023-09-14 12:42:10,211 INFO    MainThread:213046 [wandb_setup.py:_flush():76] Loading settings from environment variables: {}
+2023-09-14 12:42:10,211 INFO    MainThread:213046 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': 'generate_caption/coco_hard_negative.py', 'program': 'coco_hard_negative.py'}
+2023-09-14 12:42:10,211 INFO    MainThread:213046 [wandb_setup.py:_flush():76] Applying login settings: {'api_key': '***REDACTED***'}
+2023-09-14 12:42:10,212 INFO    MainThread:213046 [wandb_init.py:_log_setup():507] Logging user logs to /discobox/wjpeng/code/202306/ngc-workspace/generate_caption/wandb/run-20230914_124210-pnmvimlq/logs/debug.log
+2023-09-14 12:42:10,212 INFO    MainThread:213046 [wandb_init.py:_log_setup():508] Logging internal logs to /discobox/wjpeng/code/202306/ngc-workspace/generate_caption/wandb/run-20230914_124210-pnmvimlq/logs/debug-internal.log
+2023-09-14 12:42:10,212 INFO    MainThread:213046 [wandb_init.py:init():547] calling init triggers
+2023-09-14 12:42:10,212 INFO    MainThread:213046 [wandb_init.py:init():554] wandb.init called with sweep_config: {}
+config: {}
+2023-09-14 12:42:10,213 INFO    MainThread:213046 [wandb_init.py:init():596] starting backend
+2023-09-14 12:42:10,213 INFO    MainThread:213046 [wandb_init.py:init():600] setting up manager
+2023-09-14 12:42:10,219 INFO    MainThread:213046 [backend.py:_multiprocessing_setup():106] multiprocessing start_methods=fork,spawn,forkserver, using: spawn
+2023-09-14 12:42:10,227 INFO    MainThread:213046 [wandb_init.py:init():606] backend started and connected
+2023-09-14 12:42:10,231 INFO    MainThread:213046 [wandb_init.py:init():703] updated telemetry
+2023-09-14 12:42:10,279 INFO    MainThread:213046 [wandb_init.py:init():736] communicating run to backend with 60.0 second timeout
+2023-09-14 12:42:10,688 INFO    MainThread:213046 [wandb_run.py:_on_init():2176] communicating current version
+2023-09-14 12:42:10,816 INFO    MainThread:213046 [wandb_run.py:_on_init():2185] got version response upgrade_message: "wandb version 0.15.10 is available!  To upgrade, please run:\n $ pip install wandb --upgrade"
+
+2023-09-14 12:42:10,817 INFO    MainThread:213046 [wandb_init.py:init():787] starting run threads in backend
+2023-09-14 12:42:27,139 INFO    MainThread:213046 [wandb_run.py:_console_start():2155] atexit reg
+2023-09-14 12:42:27,139 INFO    MainThread:213046 [wandb_run.py:_redirect():2010] redirect: SettingsConsole.WRAP_RAW
+2023-09-14 12:42:27,140 INFO    MainThread:213046 [wandb_run.py:_redirect():2075] Wrapping output streams.
+2023-09-14 12:42:27,140 INFO    MainThread:213046 [wandb_run.py:_redirect():2100] Redirects installed.
+2023-09-14 12:42:27,141 INFO    MainThread:213046 [wandb_init.py:init():828] run started, returning control to user process

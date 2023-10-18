@@ -1,0 +1,524 @@
+2023-09-14 12:42:10,238 INFO    StreamThr :213144 [internal.py:wandb_internal():86] W&B internal server running at pid: 213144, started at: 2023-09-14 12:42:10.233430
+2023-09-14 12:42:10,242 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status
+2023-09-14 12:42:10,244 INFO    WriterThread:213144 [datastore.py:open_for_write():85] open: /discobox/wjpeng/code/202306/ngc-workspace/generate_caption/wandb/run-20230914_124210-pnmvimlq/run-pnmvimlq.wandb
+2023-09-14 12:42:10,252 DEBUG   SenderThread:213144 [sender.py:send():369] send: header
+2023-09-14 12:42:10,281 DEBUG   SenderThread:213144 [sender.py:send():369] send: run
+2023-09-14 12:42:10,689 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: check_version
+2023-09-14 12:42:10,690 INFO    SenderThread:213144 [dir_watcher.py:__init__():211] watching files in: /discobox/wjpeng/code/202306/ngc-workspace/generate_caption/wandb/run-20230914_124210-pnmvimlq/files
+2023-09-14 12:42:10,690 INFO    SenderThread:213144 [sender.py:_start_run_threads():1100] run started: pnmvimlq with start time 1694695330.228026
+2023-09-14 12:42:10,690 DEBUG   SenderThread:213144 [sender.py:send_request():396] send_request: summary_record
+2023-09-14 12:42:10,692 INFO    SenderThread:213144 [sender.py:_save_file():1354] saving file wandb-summary.json with policy end
+2023-09-14 12:42:10,693 DEBUG   SenderThread:213144 [sender.py:send_request():396] send_request: check_version
+2023-09-14 12:42:10,826 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: run_start
+2023-09-14 12:42:10,835 DEBUG   HandlerThread:213144 [system_info.py:__init__():31] System info init
+2023-09-14 12:42:10,836 DEBUG   HandlerThread:213144 [system_info.py:__init__():46] System info init done
+2023-09-14 12:42:10,836 INFO    HandlerThread:213144 [system_monitor.py:start():181] Starting system monitor
+2023-09-14 12:42:10,836 INFO    SystemMonitor:213144 [system_monitor.py:_start():145] Starting system asset monitoring threads
+2023-09-14 12:42:10,836 INFO    HandlerThread:213144 [system_monitor.py:probe():201] Collecting system info
+2023-09-14 12:42:10,837 INFO    SystemMonitor:213144 [interfaces.py:start():190] Started cpu monitoring
+2023-09-14 12:42:10,838 INFO    SystemMonitor:213144 [interfaces.py:start():190] Started disk monitoring
+2023-09-14 12:42:10,839 INFO    SystemMonitor:213144 [interfaces.py:start():190] Started gpu monitoring
+2023-09-14 12:42:10,840 INFO    SystemMonitor:213144 [interfaces.py:start():190] Started memory monitoring
+2023-09-14 12:42:10,840 INFO    SystemMonitor:213144 [interfaces.py:start():190] Started network monitoring
+2023-09-14 12:42:10,886 DEBUG   HandlerThread:213144 [system_info.py:probe():195] Probing system
+2023-09-14 12:42:10,888 DEBUG   HandlerThread:213144 [system_info.py:_probe_git():180] Probing git
+2023-09-14 12:42:10,958 DEBUG   HandlerThread:213144 [system_info.py:_probe_git():188] Probing git done
+2023-09-14 12:42:10,958 DEBUG   HandlerThread:213144 [system_info.py:probe():240] Probing system done
+2023-09-14 12:42:10,958 DEBUG   HandlerThread:213144 [system_monitor.py:probe():210] {'os': 'Linux-5.4.0-81-generic-x86_64-with-glibc2.17', 'python': '3.8.16', 'heartbeatAt': '2023-09-14T12:42:10.886966', 'startedAt': '2023-09-14T12:42:10.197435', 'docker': None, 'cuda': None, 'args': ('--model-path', 'lmsys/fastchat-t5-3b-v1.0', '--images_path', '/DDN_ROOT/wjpeng/dataset/coco2014/train2014', '--annotations_path', '/DDN_ROOT/wjpeng/dataset/coco2014/annotations/captions_train2014.json', '--batch-size', '8', '--gpus', '0', '--num-gpus', '1'), 'state': 'running', 'program': 'coco_hard_negative.py', 'codePath': 'generate_caption/coco_hard_negative.py', 'git': {'remote': 'https://github.com/wujianP/ngc-workspace.git', 'commit': 'fb5f4aa9290dccc7b41e45068acdc6c316851d4f'}, 'email': None, 'root': '/discobox/wjpeng/code/202306/ngc-workspace', 'host': '5109690', 'username': 'root', 'executable': '/discobox/wjpeng/env/clip/bin/python', 'cpu_count': 40, 'cpu_count_logical': 80, 'cpu_freq': {'current': 2692.539887500002, 'min': 1200.0, 'max': 3600.0}, 'cpu_freq_per_core': [{'current': 2693.987, 'min': 1200.0, 'max': 3600.0}, {'current': 2693.987, 'min': 1200.0, 'max': 3600.0}, {'current': 2693.987, 'min': 1200.0, 'max': 3600.0}, {'current': 2693.987, 'min': 1200.0, 'max': 3600.0}, {'current': 2693.987, 'min': 1200.0, 'max': 3600.0}, {'current': 2693.986, 'min': 1200.0, 'max': 3600.0}, {'current': 2693.986, 'min': 1200.0, 'max': 3600.0}, {'current': 2693.985, 'min': 1200.0, 'max': 3600.0}, {'current': 2693.986, 'min': 1200.0, 'max': 3600.0}, {'current': 2693.986, 'min': 1200.0, 'max': 3600.0}, {'current': 2693.986, 'min': 1200.0, 'max': 3600.0}, {'current': 2693.986, 'min': 1200.0, 'max': 3600.0}, {'current': 2693.986, 'min': 1200.0, 'max': 3600.0}, {'current': 2679.437, 'min': 1200.0, 'max': 3600.0}, {'current': 2679.735, 'min': 1200.0, 'max': 3600.0}, {'current': 2693.985, 'min': 1200.0, 'max': 3600.0}, {'current': 2693.986, 'min': 1200.0, 'max': 3600.0}, {'current': 2693.986, 'min': 1200.0, 'max': 3600.0}, {'current': 2783.598, 'min': 1200.0, 'max': 3600.0}, {'current': 2758.928, 'min': 1200.0, 'max': 3600.0}, {'current': 2656.123, 'min': 1200.0, 'max': 3600.0}, {'current': 2716.759, 'min': 1200.0, 'max': 3600.0}, {'current': 2812.155, 'min': 1200.0, 'max': 3600.0}, {'current': 2638.341, 'min': 1200.0, 'max': 3600.0}, {'current': 2705.023, 'min': 1200.0, 'max': 3600.0}, {'current': 2896.898, 'min': 1200.0, 'max': 3600.0}, {'current': 2733.897, 'min': 1200.0, 'max': 3600.0}, {'current': 2712.214, 'min': 1200.0, 'max': 3600.0}, {'current': 2771.313, 'min': 1200.0, 'max': 3600.0}, {'current': 2585.934, 'min': 1200.0, 'max': 3600.0}, {'current': 2761.966, 'min': 1200.0, 'max': 3600.0}, {'current': 2647.697, 'min': 1200.0, 'max': 3600.0}, {'current': 2771.313, 'min': 1200.0, 'max': 3600.0}, {'current': 2809.178, 'min': 1200.0, 'max': 3600.0}, {'current': 2790.985, 'min': 1200.0, 'max': 3600.0}, {'current': 2821.465, 'min': 1200.0, 'max': 3600.0}, {'current': 2683.944, 'min': 1200.0, 'max': 3600.0}, {'current': 2816.721, 'min': 1200.0, 'max': 3600.0}, {'current': 2770.944, 'min': 1200.0, 'max': 3600.0}, {'current': 2656.94, 'min': 1200.0, 'max': 3600.0}, {'current': 2686.918, 'min': 1200.0, 'max': 3600.0}, {'current': 2746.873, 'min': 1200.0, 'max': 3600.0}, {'current': 2632.039, 'min': 1200.0, 'max': 3600.0}, {'current': 2657.412, 'min': 1200.0, 'max': 3600.0}, {'current': 2637.904, 'min': 1200.0, 'max': 3600.0}, {'current': 2778.962, 'min': 1200.0, 'max': 3600.0}, {'current': 2678.39, 'min': 1200.0, 'max': 3600.0}, {'current': 2635.206, 'min': 1200.0, 'max': 3600.0}, {'current': 2655.535, 'min': 1200.0, 'max': 3600.0}, {'current': 2622.064, 'min': 1200.0, 'max': 3600.0}, {'current': 2683.553, 'min': 1200.0, 'max': 3600.0}, {'current': 2723.081, 'min': 1200.0, 'max': 3600.0}, {'current': 2644.022, 'min': 1200.0, 'max': 3600.0}, {'current': 2768.408, 'min': 1200.0, 'max': 3600.0}, {'current': 2672.452, 'min': 1200.0, 'max': 3600.0}, {'current': 2729.241, 'min': 1200.0, 'max': 3600.0}, {'current': 2696.155, 'min': 1200.0, 'max': 3600.0}, {'current': 2665.22, 'min': 1200.0, 'max': 3600.0}, {'current': 2993.84, 'min': 1200.0, 'max': 3600.0}, {'current': 2702.207, 'min': 1200.0, 'max': 3600.0}, {'current': 2624.949, 'min': 1200.0, 'max': 3600.0}, {'current': 2738.598, 'min': 1200.0, 'max': 3600.0}, {'current': 2708.863, 'min': 1200.0, 'max': 3600.0}, {'current': 2710.188, 'min': 1200.0, 'max': 3600.0}, {'current': 2778.788, 'min': 1200.0, 'max': 3600.0}, {'current': 2703.164, 'min': 1200.0, 'max': 3600.0}, {'current': 2705.733, 'min': 1200.0, 'max': 3600.0}, {'current': 2690.433, 'min': 1200.0, 'max': 3600.0}, {'current': 2690.5, 'min': 1200.0, 'max': 3600.0}, {'current': 2683.339, 'min': 1200.0, 'max': 3600.0}, {'current': 2650.791, 'min': 1200.0, 'max': 3600.0}, {'current': 2657.519, 'min': 1200.0, 'max': 3600.0}, {'current': 2758.634, 'min': 1200.0, 'max': 3600.0}, {'current': 2784.029, 'min': 1200.0, 'max': 3600.0}, {'current': 2837.833, 'min': 1200.0, 'max': 3600.0}, {'current': 2776.766, 'min': 1200.0, 'max': 3600.0}, {'current': 2661.815, 'min': 1200.0, 'max': 3600.0}, {'current': 2625.0, 'min': 1200.0, 'max': 3600.0}, {'current': 2697.863, 'min': 1200.0, 'max': 3600.0}, {'current': 2624.689, 'min': 1200.0, 'max': 3600.0}], 'disk': {'total': 438.1221580505371, 'used': 308.0771369934082}, 'gpu': 'Tesla V100-SXM2-32GB-LS', 'gpu_count': 1, 'gpu_devices': [{'name': 'Tesla V100-SXM2-32GB-LS', 'memory_total': 34359738368}], 'memory': {'total': 503.78491592407227}}
+2023-09-14 12:42:10,959 INFO    HandlerThread:213144 [system_monitor.py:probe():211] Finished collecting system info
+2023-09-14 12:42:10,959 INFO    HandlerThread:213144 [system_monitor.py:probe():214] Publishing system info
+2023-09-14 12:42:10,959 DEBUG   HandlerThread:213144 [system_info.py:_save_pip():51] Saving list of pip packages installed into the current environment
+2023-09-14 12:42:10,962 DEBUG   HandlerThread:213144 [system_info.py:_save_pip():67] Saving pip packages done
+2023-09-14 12:42:10,962 DEBUG   HandlerThread:213144 [system_info.py:_save_conda():74] Saving list of conda packages installed into the current environment
+2023-09-14 12:42:11,695 INFO    Thread-12 :213144 [dir_watcher.py:_on_file_created():272] file/dir created: /discobox/wjpeng/code/202306/ngc-workspace/generate_caption/wandb/run-20230914_124210-pnmvimlq/files/wandb-summary.json
+2023-09-14 12:42:11,696 INFO    Thread-12 :213144 [dir_watcher.py:_on_file_created():272] file/dir created: /discobox/wjpeng/code/202306/ngc-workspace/generate_caption/wandb/run-20230914_124210-pnmvimlq/files/requirements.txt
+2023-09-14 12:42:11,696 INFO    Thread-12 :213144 [dir_watcher.py:_on_file_created():272] file/dir created: /discobox/wjpeng/code/202306/ngc-workspace/generate_caption/wandb/run-20230914_124210-pnmvimlq/files/conda-environment.yaml
+2023-09-14 12:42:27,103 DEBUG   HandlerThread:213144 [system_info.py:_save_conda():86] Saving conda packages done
+2023-09-14 12:42:27,107 INFO    HandlerThread:213144 [system_monitor.py:probe():216] Finished publishing system info
+2023-09-14 12:42:27,130 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:42:27,130 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: keepalive
+2023-09-14 12:42:27,131 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:42:27,131 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: keepalive
+2023-09-14 12:42:27,131 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:42:27,131 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: keepalive
+2023-09-14 12:42:27,132 DEBUG   SenderThread:213144 [sender.py:send():369] send: files
+2023-09-14 12:42:27,132 INFO    SenderThread:213144 [sender.py:_save_file():1354] saving file wandb-metadata.json with policy now
+2023-09-14 12:42:27,140 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-14 12:42:27,142 DEBUG   SenderThread:213144 [sender.py:send_request():396] send_request: stop_status
+2023-09-14 12:42:27,368 DEBUG   SenderThread:213144 [sender.py:send():369] send: telemetry
+2023-09-14 12:42:27,713 INFO    Thread-12 :213144 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/generate_caption/wandb/run-20230914_124210-pnmvimlq/files/conda-environment.yaml
+2023-09-14 12:42:27,714 INFO    Thread-12 :213144 [dir_watcher.py:_on_file_created():272] file/dir created: /discobox/wjpeng/code/202306/ngc-workspace/generate_caption/wandb/run-20230914_124210-pnmvimlq/files/output.log
+2023-09-14 12:42:27,714 INFO    Thread-12 :213144 [dir_watcher.py:_on_file_created():272] file/dir created: /discobox/wjpeng/code/202306/ngc-workspace/generate_caption/wandb/run-20230914_124210-pnmvimlq/files/wandb-metadata.json
+2023-09-14 12:42:27,755 INFO    wandb-upload_0:213144 [upload_job.py:push():133] Uploaded file /tmp/tmp1nxbve7ewandb/2r8dniq9-wandb-metadata.json
+2023-09-14 12:42:29,716 INFO    Thread-12 :213144 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/generate_caption/wandb/run-20230914_124210-pnmvimlq/files/output.log
+2023-09-14 12:42:31,371 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:42:36,372 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:42:41,378 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:42:41,732 INFO    Thread-12 :213144 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/generate_caption/wandb/run-20230914_124210-pnmvimlq/files/config.yaml
+2023-09-14 12:42:42,140 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-14 12:42:42,141 DEBUG   SenderThread:213144 [sender.py:send_request():396] send_request: stop_status
+2023-09-14 12:42:46,555 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:42:46,738 INFO    Thread-12 :213144 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/generate_caption/wandb/run-20230914_124210-pnmvimlq/files/output.log
+2023-09-14 12:42:48,741 INFO    Thread-12 :213144 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/generate_caption/wandb/run-20230914_124210-pnmvimlq/files/output.log
+2023-09-14 12:42:52,302 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:42:52,746 INFO    Thread-12 :213144 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/generate_caption/wandb/run-20230914_124210-pnmvimlq/files/output.log
+2023-09-14 12:42:56,751 INFO    Thread-12 :213144 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/generate_caption/wandb/run-20230914_124210-pnmvimlq/files/output.log
+2023-09-14 12:42:57,140 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-14 12:42:57,140 DEBUG   SenderThread:213144 [sender.py:send_request():396] send_request: stop_status
+2023-09-14 12:42:58,276 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:43:03,277 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:43:08,278 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:43:10,841 DEBUG   SystemMonitor:213144 [system_monitor.py:_start():159] Starting system metrics aggregation loop
+2023-09-14 12:43:10,844 DEBUG   SenderThread:213144 [sender.py:send():369] send: stats
+2023-09-14 12:43:12,139 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-14 12:43:12,140 DEBUG   SenderThread:213144 [sender.py:send_request():396] send_request: stop_status
+2023-09-14 12:43:14,260 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:43:19,261 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:43:24,460 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:43:24,786 INFO    Thread-12 :213144 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/generate_caption/wandb/run-20230914_124210-pnmvimlq/files/output.log
+2023-09-14 12:43:27,139 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-14 12:43:27,140 DEBUG   SenderThread:213144 [sender.py:send_request():396] send_request: stop_status
+2023-09-14 12:43:30,337 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:43:32,796 INFO    Thread-12 :213144 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/generate_caption/wandb/run-20230914_124210-pnmvimlq/files/output.log
+2023-09-14 12:43:35,468 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:43:36,802 INFO    Thread-12 :213144 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/generate_caption/wandb/run-20230914_124210-pnmvimlq/files/output.log
+2023-09-14 12:43:40,474 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:43:40,847 DEBUG   SenderThread:213144 [sender.py:send():369] send: stats
+2023-09-14 12:43:42,139 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-14 12:43:42,140 DEBUG   SenderThread:213144 [sender.py:send_request():396] send_request: stop_status
+2023-09-14 12:43:44,812 INFO    Thread-12 :213144 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/generate_caption/wandb/run-20230914_124210-pnmvimlq/files/output.log
+2023-09-14 12:43:45,504 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:43:50,505 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:43:55,506 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:43:57,139 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-14 12:43:57,140 DEBUG   SenderThread:213144 [sender.py:send_request():396] send_request: stop_status
+2023-09-14 12:43:58,830 INFO    Thread-12 :213144 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/generate_caption/wandb/run-20230914_124210-pnmvimlq/files/output.log
+2023-09-14 12:44:01,348 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:44:06,349 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:44:10,849 DEBUG   SenderThread:213144 [sender.py:send():369] send: stats
+2023-09-14 12:44:11,851 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:44:12,139 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-14 12:44:12,140 DEBUG   SenderThread:213144 [sender.py:send_request():396] send_request: stop_status
+2023-09-14 12:44:16,854 INFO    Thread-12 :213144 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/generate_caption/wandb/run-20230914_124210-pnmvimlq/files/output.log
+2023-09-14 12:44:17,349 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:44:22,350 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:44:27,140 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-14 12:44:27,140 DEBUG   SenderThread:213144 [sender.py:send_request():396] send_request: stop_status
+2023-09-14 12:44:28,267 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:44:33,268 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:44:38,269 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:44:40,851 DEBUG   SenderThread:213144 [sender.py:send():369] send: stats
+2023-09-14 12:44:42,140 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-14 12:44:42,141 DEBUG   SenderThread:213144 [sender.py:send_request():396] send_request: stop_status
+2023-09-14 12:44:43,285 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:44:46,891 INFO    Thread-12 :213144 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/generate_caption/wandb/run-20230914_124210-pnmvimlq/files/output.log
+2023-09-14 12:44:49,076 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:44:52,899 INFO    Thread-12 :213144 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/generate_caption/wandb/run-20230914_124210-pnmvimlq/files/output.log
+2023-09-14 12:44:54,555 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:44:57,140 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-14 12:44:57,141 DEBUG   SenderThread:213144 [sender.py:send_request():396] send_request: stop_status
+2023-09-14 12:44:58,906 INFO    Thread-12 :213144 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/generate_caption/wandb/run-20230914_124210-pnmvimlq/files/output.log
+2023-09-14 12:45:00,183 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:45:05,184 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:45:10,185 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:45:10,853 DEBUG   SenderThread:213144 [sender.py:send():369] send: stats
+2023-09-14 12:45:12,140 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-14 12:45:12,141 DEBUG   SenderThread:213144 [sender.py:send_request():396] send_request: stop_status
+2023-09-14 12:45:15,273 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:45:20,274 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:45:25,275 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:45:27,140 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-14 12:45:27,141 DEBUG   SenderThread:213144 [sender.py:send_request():396] send_request: stop_status
+2023-09-14 12:45:31,253 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:45:37,140 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:45:40,856 DEBUG   SenderThread:213144 [sender.py:send():369] send: stats
+2023-09-14 12:45:42,141 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-14 12:45:42,141 DEBUG   SenderThread:213144 [sender.py:send_request():396] send_request: stop_status
+2023-09-14 12:45:42,330 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:45:42,966 INFO    Thread-12 :213144 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/generate_caption/wandb/run-20230914_124210-pnmvimlq/files/output.log
+2023-09-14 12:45:46,971 INFO    Thread-12 :213144 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/generate_caption/wandb/run-20230914_124210-pnmvimlq/files/output.log
+2023-09-14 12:45:47,844 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:45:52,845 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:45:57,140 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-14 12:45:57,141 DEBUG   SenderThread:213144 [sender.py:send_request():396] send_request: stop_status
+2023-09-14 12:45:58,263 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:46:03,264 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:46:08,265 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:46:10,858 DEBUG   SenderThread:213144 [sender.py:send():369] send: stats
+2023-09-14 12:46:12,141 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-14 12:46:12,142 DEBUG   SenderThread:213144 [sender.py:send_request():396] send_request: stop_status
+2023-09-14 12:46:13,305 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:46:18,306 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:46:23,307 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:46:27,141 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-14 12:46:27,142 DEBUG   SenderThread:213144 [sender.py:send_request():396] send_request: stop_status
+2023-09-14 12:46:28,342 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:46:33,343 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:46:38,344 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:46:40,860 DEBUG   SenderThread:213144 [sender.py:send():369] send: stats
+2023-09-14 12:46:42,141 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-14 12:46:42,142 DEBUG   SenderThread:213144 [sender.py:send_request():396] send_request: stop_status
+2023-09-14 12:46:44,261 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:46:49,262 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:46:54,263 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:46:57,141 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-14 12:46:57,142 DEBUG   SenderThread:213144 [sender.py:send_request():396] send_request: stop_status
+2023-09-14 12:46:59,272 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:47:04,273 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:47:09,274 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:47:10,863 DEBUG   SenderThread:213144 [sender.py:send():369] send: stats
+2023-09-14 12:47:12,141 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-14 12:47:12,142 DEBUG   SenderThread:213144 [sender.py:send_request():396] send_request: stop_status
+2023-09-14 12:47:14,349 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:47:19,350 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:47:24,351 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:47:27,141 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-14 12:47:27,142 DEBUG   SenderThread:213144 [sender.py:send_request():396] send_request: stop_status
+2023-09-14 12:47:30,241 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:47:35,242 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:47:40,243 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:47:40,865 DEBUG   SenderThread:213144 [sender.py:send():369] send: stats
+2023-09-14 12:47:42,141 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-14 12:47:42,142 DEBUG   SenderThread:213144 [sender.py:send_request():396] send_request: stop_status
+2023-09-14 12:47:45,258 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:47:50,259 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:47:55,259 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:47:57,141 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-14 12:47:57,142 DEBUG   SenderThread:213144 [sender.py:send_request():396] send_request: stop_status
+2023-09-14 12:48:00,770 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:48:06,373 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:48:07,145 INFO    Thread-12 :213144 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/generate_caption/wandb/run-20230914_124210-pnmvimlq/files/output.log
+2023-09-14 12:48:10,867 DEBUG   SenderThread:213144 [sender.py:send():369] send: stats
+2023-09-14 12:48:11,869 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:48:12,141 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-14 12:48:12,142 DEBUG   SenderThread:213144 [sender.py:send_request():396] send_request: stop_status
+2023-09-14 12:48:17,345 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:48:22,346 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:48:27,141 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-14 12:48:27,142 DEBUG   SenderThread:213144 [sender.py:send_request():396] send_request: stop_status
+2023-09-14 12:48:28,288 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:48:33,289 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:48:38,289 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:48:40,871 DEBUG   SenderThread:213144 [sender.py:send():369] send: stats
+2023-09-14 12:48:42,141 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-14 12:48:42,142 DEBUG   SenderThread:213144 [sender.py:send_request():396] send_request: stop_status
+2023-09-14 12:48:43,305 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:48:48,306 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:48:53,307 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:48:57,141 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-14 12:48:57,142 DEBUG   SenderThread:213144 [sender.py:send_request():396] send_request: stop_status
+2023-09-14 12:48:59,211 INFO    Thread-12 :213144 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/generate_caption/wandb/run-20230914_124210-pnmvimlq/files/output.log
+2023-09-14 12:48:59,248 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:49:03,216 INFO    Thread-12 :213144 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/generate_caption/wandb/run-20230914_124210-pnmvimlq/files/output.log
+2023-09-14 12:49:04,687 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:49:07,221 INFO    Thread-12 :213144 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/generate_caption/wandb/run-20230914_124210-pnmvimlq/files/output.log
+2023-09-14 12:49:09,693 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:49:10,871 DEBUG   SenderThread:213144 [sender.py:send():369] send: stats
+2023-09-14 12:49:12,142 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-14 12:49:12,143 DEBUG   SenderThread:213144 [sender.py:send_request():396] send_request: stop_status
+2023-09-14 12:49:15,296 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:49:20,297 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:49:25,298 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:49:27,142 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-14 12:49:27,143 DEBUG   SenderThread:213144 [sender.py:send_request():396] send_request: stop_status
+2023-09-14 12:49:30,325 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:49:35,326 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:49:40,326 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:49:40,874 DEBUG   SenderThread:213144 [sender.py:send():369] send: stats
+2023-09-14 12:49:42,142 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-14 12:49:42,143 DEBUG   SenderThread:213144 [sender.py:send_request():396] send_request: stop_status
+2023-09-14 12:49:46,318 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:49:51,319 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:49:56,320 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:49:57,142 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-14 12:49:57,143 DEBUG   SenderThread:213144 [sender.py:send_request():396] send_request: stop_status
+2023-09-14 12:50:01,371 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:50:06,372 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:50:10,876 DEBUG   SenderThread:213144 [sender.py:send():369] send: stats
+2023-09-14 12:50:11,878 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:50:12,142 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-14 12:50:12,143 DEBUG   SenderThread:213144 [sender.py:send_request():396] send_request: stop_status
+2023-09-14 12:50:17,258 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:50:22,259 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:50:27,142 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-14 12:50:27,143 DEBUG   SenderThread:213144 [sender.py:send_request():396] send_request: stop_status
+2023-09-14 12:50:28,236 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:50:33,237 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:50:38,239 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:50:40,879 DEBUG   SenderThread:213144 [sender.py:send():369] send: stats
+2023-09-14 12:50:42,142 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-14 12:50:42,144 DEBUG   SenderThread:213144 [sender.py:send_request():396] send_request: stop_status
+2023-09-14 12:50:43,253 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:50:48,254 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:50:53,255 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:50:57,142 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-14 12:50:57,143 DEBUG   SenderThread:213144 [sender.py:send_request():396] send_request: stop_status
+2023-09-14 12:50:58,343 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:51:03,344 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:51:08,345 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:51:10,880 DEBUG   SenderThread:213144 [sender.py:send():369] send: stats
+2023-09-14 12:51:12,143 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-14 12:51:12,144 DEBUG   SenderThread:213144 [sender.py:send_request():396] send_request: stop_status
+2023-09-14 12:51:14,247 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:51:19,248 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:51:24,249 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:51:27,143 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-14 12:51:27,144 DEBUG   SenderThread:213144 [sender.py:send_request():396] send_request: stop_status
+2023-09-14 12:51:29,338 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:51:34,339 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:51:39,340 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:51:40,883 DEBUG   SenderThread:213144 [sender.py:send():369] send: stats
+2023-09-14 12:51:42,143 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-14 12:51:42,144 DEBUG   SenderThread:213144 [sender.py:send_request():396] send_request: stop_status
+2023-09-14 12:51:44,346 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:51:49,453 INFO    Thread-12 :213144 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/generate_caption/wandb/run-20230914_124210-pnmvimlq/files/output.log
+2023-09-14 12:51:49,836 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:51:54,837 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:51:57,143 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-14 12:51:57,144 DEBUG   SenderThread:213144 [sender.py:send_request():396] send_request: stop_status
+2023-09-14 12:51:57,469 INFO    Thread-12 :213144 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/generate_caption/wandb/run-20230914_124210-pnmvimlq/files/output.log
+2023-09-14 12:52:00,317 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:52:05,318 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:52:10,319 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:52:10,885 DEBUG   SenderThread:213144 [sender.py:send():369] send: stats
+2023-09-14 12:52:12,143 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-14 12:52:12,144 DEBUG   SenderThread:213144 [sender.py:send_request():396] send_request: stop_status
+2023-09-14 12:52:16,315 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:52:21,316 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:52:26,317 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:52:27,143 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-14 12:52:27,144 DEBUG   SenderThread:213144 [sender.py:send_request():396] send_request: stop_status
+2023-09-14 12:52:31,338 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:52:36,339 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:52:40,887 DEBUG   SenderThread:213144 [sender.py:send():369] send: stats
+2023-09-14 12:52:41,889 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:52:42,143 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-14 12:52:42,144 DEBUG   SenderThread:213144 [sender.py:send_request():396] send_request: stop_status
+2023-09-14 12:52:47,303 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:52:51,574 INFO    Thread-12 :213144 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/generate_caption/wandb/run-20230914_124210-pnmvimlq/files/output.log
+2023-09-14 12:52:52,469 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:52:57,143 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-14 12:52:57,144 DEBUG   SenderThread:213144 [sender.py:send_request():396] send_request: stop_status
+2023-09-14 12:52:58,323 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:53:04,067 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:53:05,605 INFO    Thread-12 :213144 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/generate_caption/wandb/run-20230914_124210-pnmvimlq/files/output.log
+2023-09-14 12:53:09,068 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:53:10,889 DEBUG   SenderThread:213144 [sender.py:send():369] send: stats
+2023-09-14 12:53:12,143 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-14 12:53:12,144 DEBUG   SenderThread:213144 [sender.py:send_request():396] send_request: stop_status
+2023-09-14 12:53:14,287 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:53:19,287 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:53:24,288 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:53:27,144 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-14 12:53:27,144 DEBUG   SenderThread:213144 [sender.py:send_request():396] send_request: stop_status
+2023-09-14 12:53:30,051 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:53:31,646 INFO    Thread-12 :213144 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/generate_caption/wandb/run-20230914_124210-pnmvimlq/files/output.log
+2023-09-14 12:53:35,052 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:53:40,053 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:53:40,891 DEBUG   SenderThread:213144 [sender.py:send():369] send: stats
+2023-09-14 12:53:42,144 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-14 12:53:42,145 DEBUG   SenderThread:213144 [sender.py:send_request():396] send_request: stop_status
+2023-09-14 12:53:45,316 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:53:50,317 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:53:55,318 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:53:57,144 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-14 12:53:57,145 DEBUG   SenderThread:213144 [sender.py:send_request():396] send_request: stop_status
+2023-09-14 12:54:01,256 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:54:06,257 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:54:10,894 DEBUG   SenderThread:213144 [sender.py:send():369] send: stats
+2023-09-14 12:54:11,895 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:54:12,144 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-14 12:54:12,145 DEBUG   SenderThread:213144 [sender.py:send_request():396] send_request: stop_status
+2023-09-14 12:54:17,310 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:54:22,311 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:54:27,144 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-14 12:54:27,145 DEBUG   SenderThread:213144 [sender.py:send_request():396] send_request: stop_status
+2023-09-14 12:54:27,370 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:54:32,371 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:54:37,372 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:54:40,896 DEBUG   SenderThread:213144 [sender.py:send():369] send: stats
+2023-09-14 12:54:42,144 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-14 12:54:42,145 DEBUG   SenderThread:213144 [sender.py:send_request():396] send_request: stop_status
+2023-09-14 12:54:43,270 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:54:48,271 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:54:53,272 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:54:57,144 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-14 12:54:57,145 DEBUG   SenderThread:213144 [sender.py:send_request():396] send_request: stop_status
+2023-09-14 12:54:58,306 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:55:03,307 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:55:08,308 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:55:10,898 DEBUG   SenderThread:213144 [sender.py:send():369] send: stats
+2023-09-14 12:55:12,144 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-14 12:55:12,145 DEBUG   SenderThread:213144 [sender.py:send_request():396] send_request: stop_status
+2023-09-14 12:55:13,355 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:55:18,356 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:55:23,357 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:55:27,144 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-14 12:55:27,145 DEBUG   SenderThread:213144 [sender.py:send_request():396] send_request: stop_status
+2023-09-14 12:55:28,376 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:55:33,377 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:55:38,378 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:55:40,901 DEBUG   SenderThread:213144 [sender.py:send():369] send: stats
+2023-09-14 12:55:42,145 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-14 12:55:42,145 DEBUG   SenderThread:213144 [sender.py:send_request():396] send_request: stop_status
+2023-09-14 12:55:44,251 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:55:49,252 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:55:54,253 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:55:57,144 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-14 12:55:57,145 DEBUG   SenderThread:213144 [sender.py:send_request():396] send_request: stop_status
+2023-09-14 12:56:00,251 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:56:05,252 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:56:10,253 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:56:10,903 DEBUG   SenderThread:213144 [sender.py:send():369] send: stats
+2023-09-14 12:56:12,145 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-14 12:56:12,146 DEBUG   SenderThread:213144 [sender.py:send_request():396] send_request: stop_status
+2023-09-14 12:56:15,299 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:56:20,300 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:56:25,301 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:56:27,145 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-14 12:56:27,146 DEBUG   SenderThread:213144 [sender.py:send_request():396] send_request: stop_status
+2023-09-14 12:56:31,299 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:56:36,300 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:56:40,905 DEBUG   SenderThread:213144 [sender.py:send():369] send: stats
+2023-09-14 12:56:41,907 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:56:42,145 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-14 12:56:42,146 DEBUG   SenderThread:213144 [sender.py:send_request():396] send_request: stop_status
+2023-09-14 12:56:47,297 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:56:52,298 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:56:57,145 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-14 12:56:57,146 DEBUG   SenderThread:213144 [sender.py:send_request():396] send_request: stop_status
+2023-09-14 12:56:58,269 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:57:03,270 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:57:08,271 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:57:10,907 DEBUG   SenderThread:213144 [sender.py:send():369] send: stats
+2023-09-14 12:57:12,145 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-14 12:57:12,146 DEBUG   SenderThread:213144 [sender.py:send_request():396] send_request: stop_status
+2023-09-14 12:57:13,318 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:57:18,319 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:57:23,320 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:57:27,145 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-14 12:57:27,146 DEBUG   SenderThread:213144 [sender.py:send_request():396] send_request: stop_status
+2023-09-14 12:57:29,320 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:57:34,321 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:57:39,321 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:57:40,909 DEBUG   SenderThread:213144 [sender.py:send():369] send: stats
+2023-09-14 12:57:42,145 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-14 12:57:42,146 DEBUG   SenderThread:213144 [sender.py:send_request():396] send_request: stop_status
+2023-09-14 12:57:45,252 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:57:50,253 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:57:55,254 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:57:57,145 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-14 12:57:57,146 DEBUG   SenderThread:213144 [sender.py:send_request():396] send_request: stop_status
+2023-09-14 12:58:00,348 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:58:05,348 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:58:10,349 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:58:10,911 DEBUG   SenderThread:213144 [sender.py:send():369] send: stats
+2023-09-14 12:58:12,146 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-14 12:58:12,147 DEBUG   SenderThread:213144 [sender.py:send_request():396] send_request: stop_status
+2023-09-14 12:58:16,298 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:58:21,299 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:58:26,299 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:58:27,146 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-14 12:58:27,146 DEBUG   SenderThread:213144 [sender.py:send_request():396] send_request: stop_status
+2023-09-14 12:58:31,347 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:58:36,348 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:58:40,914 DEBUG   SenderThread:213144 [sender.py:send():369] send: stats
+2023-09-14 12:58:41,915 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:58:42,146 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-14 12:58:42,146 DEBUG   SenderThread:213144 [sender.py:send_request():396] send_request: stop_status
+2023-09-14 12:58:47,337 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:58:52,338 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:58:57,146 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-14 12:58:57,147 DEBUG   SenderThread:213144 [sender.py:send_request():396] send_request: stop_status
+2023-09-14 12:58:58,285 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:59:03,285 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:59:08,288 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:59:10,917 DEBUG   SenderThread:213144 [sender.py:send():369] send: stats
+2023-09-14 12:59:12,146 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-14 12:59:12,147 DEBUG   SenderThread:213144 [sender.py:send_request():396] send_request: stop_status
+2023-09-14 12:59:14,252 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:59:19,253 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:59:24,254 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:59:27,146 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-14 12:59:27,147 DEBUG   SenderThread:213144 [sender.py:send_request():396] send_request: stop_status
+2023-09-14 12:59:29,325 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:59:34,326 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:59:39,327 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:59:40,918 DEBUG   SenderThread:213144 [sender.py:send():369] send: stats
+2023-09-14 12:59:42,146 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-14 12:59:42,147 DEBUG   SenderThread:213144 [sender.py:send_request():396] send_request: stop_status
+2023-09-14 12:59:45,269 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:59:50,270 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:59:55,271 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 12:59:57,146 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-14 12:59:57,147 DEBUG   SenderThread:213144 [sender.py:send_request():396] send_request: stop_status
+2023-09-14 13:00:00,350 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 13:00:05,351 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 13:00:10,352 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 13:00:10,920 DEBUG   SenderThread:213144 [sender.py:send():369] send: stats
+2023-09-14 13:00:12,146 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-14 13:00:12,147 DEBUG   SenderThread:213144 [sender.py:send_request():396] send_request: stop_status
+2023-09-14 13:00:16,319 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 13:00:21,320 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 13:00:26,321 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 13:00:27,146 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-14 13:00:27,147 DEBUG   SenderThread:213144 [sender.py:send_request():396] send_request: stop_status
+2023-09-14 13:00:32,280 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 13:00:37,281 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 13:00:40,922 DEBUG   SenderThread:213144 [sender.py:send():369] send: stats
+2023-09-14 13:00:42,146 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-14 13:00:42,147 DEBUG   SenderThread:213144 [sender.py:send_request():396] send_request: stop_status
+2023-09-14 13:00:42,291 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 13:00:47,292 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 13:00:52,293 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 13:00:57,147 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-14 13:00:57,147 DEBUG   SenderThread:213144 [sender.py:send_request():396] send_request: stop_status
+2023-09-14 13:00:57,343 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 13:01:02,344 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 13:01:07,654 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 13:01:10,924 DEBUG   SenderThread:213144 [sender.py:send():369] send: stats
+2023-09-14 13:01:12,147 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-14 13:01:12,147 DEBUG   SenderThread:213144 [sender.py:send_request():396] send_request: stop_status
+2023-09-14 13:01:13,265 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 13:01:18,266 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 13:01:23,267 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 13:01:27,147 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-14 13:01:27,147 DEBUG   SenderThread:213144 [sender.py:send_request():396] send_request: stop_status
+2023-09-14 13:01:28,322 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 13:01:33,756 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 13:01:35,861 INFO    Thread-12 :213144 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/generate_caption/wandb/run-20230914_124210-pnmvimlq/files/output.log
+2023-09-14 13:01:39,012 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 13:01:40,927 DEBUG   SenderThread:213144 [sender.py:send():369] send: stats
+2023-09-14 13:01:42,147 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-14 13:01:42,148 DEBUG   SenderThread:213144 [sender.py:send_request():396] send_request: stop_status
+2023-09-14 13:01:44,376 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 13:01:49,794 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 13:01:52,496 INFO    Thread-12 :213144 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/generate_caption/wandb/run-20230914_124210-pnmvimlq/files/output.log
+2023-09-14 13:01:55,429 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 13:01:57,147 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-14 13:01:57,148 DEBUG   SenderThread:213144 [sender.py:send_request():396] send_request: stop_status
+2023-09-14 13:02:01,327 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 13:02:06,658 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 13:02:07,522 INFO    Thread-12 :213144 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/generate_caption/wandb/run-20230914_124210-pnmvimlq/files/output.log
+2023-09-14 13:02:10,929 DEBUG   SenderThread:213144 [sender.py:send():369] send: stats
+2023-09-14 13:02:11,930 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 13:02:12,150 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-14 13:02:12,151 DEBUG   SenderThread:213144 [sender.py:send_request():396] send_request: stop_status
+2023-09-14 13:02:17,265 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 13:02:22,266 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 13:02:27,149 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-14 13:02:27,150 DEBUG   SenderThread:213144 [sender.py:send_request():396] send_request: stop_status
+2023-09-14 13:02:27,333 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 13:02:27,554 INFO    Thread-12 :213144 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/generate_caption/wandb/run-20230914_124210-pnmvimlq/files/output.log
+2023-09-14 13:02:31,565 INFO    Thread-12 :213144 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/generate_caption/wandb/run-20230914_124210-pnmvimlq/files/output.log
+2023-09-14 13:02:32,364 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 13:02:37,577 INFO    Thread-12 :213144 [dir_watcher.py:_on_file_modified():289] file/dir modified: /discobox/wjpeng/code/202306/ngc-workspace/generate_caption/wandb/run-20230914_124210-pnmvimlq/files/output.log
+2023-09-14 13:02:38,191 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 13:02:40,931 DEBUG   SenderThread:213144 [sender.py:send():369] send: stats
+2023-09-14 13:02:42,149 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-14 13:02:42,150 DEBUG   SenderThread:213144 [sender.py:send_request():396] send_request: stop_status
+2023-09-14 13:02:43,288 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 13:02:48,289 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 13:02:53,290 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: status_report
+2023-09-14 13:02:57,150 DEBUG   HandlerThread:213144 [handler.py:handle_request():144] handle_request: stop_status
+2023-09-14 13:02:57,151 DEBUG   SenderThread:213144 [sender.py:send_request():396] send_request: stop_status

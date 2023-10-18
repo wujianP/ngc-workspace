@@ -1,0 +1,247 @@
+0,tennis,网球
+1,bear cub,小熊
+2,observatory,天文台
+3,bicycle,自行车
+4,hillside,山坡
+5,judge,法官
+6,watercolor illustration,水彩插图
+7,granite,花岗岩
+8,lobster,龙虾
+9,livery,涂装
+10,stone,石头
+11,ceramic,陶瓷制品
+12,ranch,牧场
+13,cloth,布
+14,smile,微笑
+15,building,建筑
+16,tattoo,纹身
+17,cricketer,板球运动员
+18,cheek,脸颊
+19,pear,梨
+20,source,来源
+21,winter,冬天
+22,surface,表面
+23,spray,喷
+24,ceremony,仪式
+25,magic,魔法
+26,curve,曲线
+27,container,容器
+28,fair,公平的
+29,medicine,药品
+30,baby,婴儿
+31,tennis racquet,网球拍
+32,ornament,装饰品
+33,bamboo,竹子
+34,duckling,小鸭
+35,song,歌曲
+36,safari,苹果浏览器
+37,team presentation,团队演示
+38,daffodil,水仙花
+39,cross,叉
+40,toothpaste,牙膏
+41,shield,盾
+42,fashion model,时装模型
+43,capsule,胶囊
+44,map,地图
+45,creek,溪
+46,glass house,玻璃屋
+47,glass plate,玻璃盘
+48,siding,壁板
+49,corner,角落
+50,water buffalo,水牛
+51,bison,野牛
+52,figure skater,花样滑冰运动员
+53,diploma,文凭
+54,tire,胎
+55,race,种族
+56,cable car,缆车
+57,brain,脑
+58,gas stove,煤气灶
+59,soap bubble,肥皂泡泡
+60,palette,调色板
+61,snowboard,滑雪板
+62,school child,小学的孩子
+63,trench coat,风衣
+64,monk,僧
+65,fiber,纤维
+66,kitchen window,厨房窗户
+67,sunglass,太阳镜
+68,coffee,咖啡
+69,security,安全
+70,strawberry,草莓
+71,penguin,企鹅
+72,tree root,树根
+73,loaf,面包
+74,engagement ring,订婚戒指
+75,lamb,羊肉
+76,vector cartoon illustration,矢量卡通插图
+77,sandwich,三明治
+78,mountain village,山村
+79,shape,形状
+80,charm,魅力
+81,fiction,小说
+82,knot,结
+83,greenhouse,温室
+84,sushi,寿司
+85,text,文本
+86,disaster,灾难
+87,trophy,杯
+88,gang,帮派
+89,strap,带子
+90,soccer game,足球游戏
+91,cardinal,红衣主教
+92,tee,球座
+93,turtle,龟
+94,water surface,水面
+95,grassland,草原
+96,dolphin,海豚
+97,store,店铺
+98,dirt,污垢
+99,iceberg,冰山
+100,pergola,凉棚
+101,farmer market,农贸市场
+102,publicity portrait,宣传肖像
+103,tote bag,脚趾
+104,teenage girl,十几岁的女孩
+105,view mirror,查看镜子
+106,session,会议
+107,commuter,通勤者
+108,dressing room,更衣室
+109,tricycle,三轮车
+110,christmas ball,圣诞节球
+111,headlight,大灯
+112,police,警察
+113,armchair,扶手椅
+114,chart,图表
+115,yacht,游艇
+116,saw,锯
+117,printer,打印机
+118,rock band,摇滚乐队
+119,gingerbread house,姜饼屋
+120,tag,标签
+121,table lamp,台灯
+122,hockey game,曲棍球游戏
+123,slope,坡
+124,font,字体
+125,wicker basket,柳条篮
+126,jewelry,珠宝
+127,quarter,四分之一
+128,software,软件
+129,weapon,武器
+130,pin,别针
+131,worship,崇拜
+132,painter,画家
+133,goal,目标
+134,morning light,早晨的光
+135,bike,自行车
+136,baseball bat,棒球棒
+137,elevator,电梯
+138,cuisine,美食
+139,sausage,香肠
+140,stunt,特技
+141,wrestler,摔跤手
+142,statue,雕像
+143,landing,降落
+144,pillar,支柱
+145,willow tree,柳树
+146,sea wave,海浪
+147,chicken,鸡
+148,peanut,花生
+149,muscle,肌肉
+150,bob,鲍勃
+151,tv genre,电视类型
+152,bathroom window,浴室窗户
+153,radish,萝卜
+154,textile,纺织品
+155,pelican,鹈
+156,marketplace,市场
+157,crest,波峰
+158,elevation map,高程图
+159,gift,礼物
+160,parish,教区
+161,traffic light,红绿灯
+162,campfire,营火
+163,fog,多雾路段
+164,award winner,获奖者
+165,beach ball,沙滩球
+166,mat,垫
+167,white house,白色的房子
+168,plaster,石膏
+169,moped,拖把
+170,football team,足球队
+171,solution,解决方案
+172,bicyclist,骑自行车的人
+173,bit,少量
+174,playground,操场
+175,darkness,黑暗
+176,cake,蛋糕
+177,maple leave,枫叶
+178,mold,模具
+179,cracker,饼干
+180,blueberry,蓝莓
+181,rubble,瓦砾
+182,container ship,集装箱船
+183,pedestrian bridge,行人桥
+184,snail,蜗牛
+185,parrot,鹦鹉
+186,form,形式
+187,circuit,电路
+188,highlight,强调
+189,pickup truck,皮卡车
+190,koala,考拉
+191,rain,雨
+192,system,系统
+193,weather,天气
+194,raincoat,雨衣
+195,soccer team,足球队
+196,windshield,挡风玻璃
+197,thunderstorm,雷雨
+198,mike,麦克风
+199,bird house,鸟巢
+200,bridge,桥
+201,grandfather,祖父
+202,restroom,卫生间
+203,animation,动画片
+204,wilderness,荒野
+205,clown,小丑
+206,banana,香蕉
+207,brown,棕色的
+208,braid,编织
+209,dining room,饭厅
+210,kindergarten,幼儿园
+211,launch event,发射事件
+212,purple,紫色的
+213,school,学校
+214,stairwell,楼梯间
+215,brooch,胸针
+216,movie poster image,电影海报图像
+217,mountain river,山河
+218,shelf,架子
+219,wicket,便门
+220,headboard,床头板
+221,buddha,佛
+222,flower field,花田
+223,dugout,独木舟
+224,cd,光盘
+225,bald eagle,白头鹰
+226,lagoon,泻湖
+227,seaweed,海藻
+228,agriculture,农业
+229,emergency service,紧急服务
+230,maple tree,枫树
+231,parachute,降落伞
+232,continent,大陆
+233,amusement park,游乐园
+234,remote,偏僻的
+235,bun,包子
+236,tackle,处理
+237,hospital,医院
+238,garage door,车库门
+239,birthday party,生日聚会
+240,friendship,友谊
+241,go,去
+242,mausoleum,陵
+243,jeep,吉普车
+244,raccoon,狸
+245,step,步
+246,ice hockey team,冰球队

@@ -1,0 +1,69 @@
+Downloading spiece.model: 100%|████████████████████████████████████████████████████| 792k/792k [00:00<00:00, 68.0MB/s]
+Downloading (…)in/added_tokens.json: 100%|███████████████████████████████████████████| 150/150 [00:00<00:00, 27.8kB/s]
+Downloading (…)cial_tokens_map.json: 100%|███████████████████████████████████████| 2.20k/2.20k [00:00<00:00, 1.05MB/s]
+Downloading (…)okenizer_config.json: 100%|███████████████████████████████████████| 2.40k/2.40k [00:00<00:00, 1.17MB/s]
+You are using the default legacy behaviour of the <class 'transformers.models.t5.tokenization_t5.T5Tokenizer'>. If you see this, DO NOT PANIC! This is expected, and simply means that the `legacy` (previous) behavior will be used so nothing changes for you. If you want to use the new behaviour, set `legacy=False`. This should only be set if you understand what it means, and thouroughly read the reason why this was added as explained in https://github.com/huggingface/transformers/pull/24565
+Downloading (…)lve/main/config.json: 100%|████████████████████████████████████████| 1.52k/1.52k [00:00<00:00, 319kB/s]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Downloading pytorch_model.bin: 100%|██████████████████████████████████████████████| 6.71G/6.71G [00:45<00:00, 147MB/s]
+Downloading (…)neration_config.json: 100%|███████████████████████████████████████████| 142/142 [00:00<00:00, 17.7kB/s]
+loading annotations into memory...
+Done (t=1.20s)
+creating index...
+index created!
+Python 3.8.16 (default, Jun 12 2023, 18:09:05)
+Type 'copyright', 'credits' or 'license' for more information
+IPython 8.12.2 -- An enhanced Interactive Python. Type '?' for help.
+['A very clean and well decorated empty bathroom',
+ 'A panoramic view of a kitchen and all of its appliances.',
+ 'A blue and white bathroom with butterfly themed wall tiles.',
+ 'A panoramic photo of a kitchen and dining room',
+ 'A graffiti-ed stop sign across the street from a red car',
+ 'A vandalized stop sign and a red beetle on the road',
+ 'A bathroom with a border of butterflies and blue paint on the walls above it.',
+ 'An angled view of a beautifully decorated bathroom.']
+[48, 67, 126, 148, 173, 188, 219, 255]
+[318556, 116100, 318556, 116100, 379340, 379340, 318556, 318556]
+['COCO_train2014_000000318556.jpg',
+ 'COCO_train2014_000000116100.jpg',
+ 'COCO_train2014_000000318556.jpg',
+ 'COCO_train2014_000000116100.jpg',
+ 'COCO_train2014_000000379340.jpg',
+ 'COCO_train2014_000000379340.jpg',
+ 'COCO_train2014_000000318556.jpg',
+ 'COCO_train2014_000000318556.jpg']
+'captions_train2014_negative_job00_16.json'
+---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+Cell In[8], line 1
+----> 1 coco_tool.getAnnIds(57870)
+NameError: name 'coco_tool' is not defined
+{1: 1}
+1
+'1'
+[48, 67, 126, 148, 173, 188, 219, 255]
+[318556, 116100, 318556, 116100, 379340, 379340, 318556, 318556]
+dict_keys([])
+51765

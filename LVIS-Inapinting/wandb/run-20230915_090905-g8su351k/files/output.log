@@ -1,0 +1,9 @@
+
+
+Loading pipeline components...: 100%|███████████████████████████████████████████████████| 6/6 [00:02<00:00,  2.08it/s]
+Traceback (most recent call last):
+  File "wj_lvis_inpaint.py", line 56, in <module>
+    main()
+  File "wj_lvis_inpaint.py", line 41, in main
+    for cur_idx, (boxes_list, masks_list, areas_list) in enumerate(dataloader):
+ValueError: too many values to unpack (expected 3)

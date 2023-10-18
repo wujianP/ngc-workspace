@@ -1,0 +1,2002 @@
+[
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "a young person kisses an old person",
+        "output": "an old person kisses a young person"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the shorter person hugs the taller person",
+        "output": "the taller person hugs the shorter person"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the unmasked wrestler hits the masked wrestler",
+        "output": "the masked wrestler hits the unmasked wrestler"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "an animal watches a person",
+        "output": "a person watches an animal"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the person with earrings pays the person without earrings",
+        "output": "the person without earrings pays the person with earrings"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "a snake eats a bird",
+        "output": "a bird eats a snake"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "another organism was harmed by a plant, and that plant broke the organism into pieces",
+        "output": "a plant was harmed by another organism, and that organism broke the plant into pieces"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "water is in a bottle",
+        "output": "a bottle is in water"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "a car smashed into a tree",
+        "output": "a tree smashed into a car"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the leaves fall on people",
+        "output": "people fall on the leaves"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the water rests below the sail",
+        "output": "the sail rests below the water"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "there is someone below a table",
+        "output": "there is a table below someone"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the image shows books on top of a computer",
+        "output": "the image shows a computer on top of books"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "a plant with some caterpillars",
+        "output": "a caterpillar with some plants"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "there is some grass in a mug",
+        "output": "there is a mug in some grass"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "there are more snowboarders than skiers",
+        "output": "there are more skiers than snowboarders"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "there are fewer spoons than forks",
+        "output": "there are fewer forks than spoons"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "there are more flowers than ladybugs",
+        "output": "there are more ladybugs than flowers"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "there is less milk than orange juice",
+        "output": "there is less orange juice than milk"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "there is more empty space than dirt in the jar",
+        "output": "there is more dirt than empty space in the jar"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "there is a bit less white chocolate than milk chocolate",
+        "output": "there is a bit less milk chocolate than white chocolate"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "a person stands and a dog sits",
+        "output": "a person sits and a dog stands"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "The person with more facial hair sleeps while the other lies awake",
+        "output": "The person with more facial hair lies awake while the other sleeps"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the person in the middle is standing and some others are floating",
+        "output": "the person in the middle is floating and some others are standing"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the person closer to the camera runs and the person farther from the camera weightlifts",
+        "output": "the person closer to the camera weightlifts and the person farther from the camera runs"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the person with the white collared shirt holds the plant while the other waters it",
+        "output": "the person with the white collared shirt waters the plant while the other holds it"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the taller person eats food and the shorter person chops food",
+        "output": "the taller person chops food and the shorter person eats food"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the person with the ponytail buys stuff and other packs it",
+        "output": "the person with the ponytail packs stuff and other buys it"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "a person walking in a field of red flowers with a yellow dress",
+        "output": "a person walking in a field of yellow flowers with a red dress"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "a white dog is on a brown couch",
+        "output": "a brown dog is on a white couch"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "a red bird is next to a blue berry",
+        "output": "a blue bird is next to a red berry"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "The yellow book is above the blue book and below the red book",
+        "output": "The red book is above the yellow book and below the blue book"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "astronauts in red suits with a blue planet in the background",
+        "output": "astronauts in blue suits with a red planet in the background"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the round table has a square base",
+        "output": "the square table has a round base"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "rectangular bushes are behind pointy bushes",
+        "output": "pointy bushes are behind rectangular bushes"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "a rectangular sign is above a circular sign",
+        "output": "a circular sign is above a rectangular sign"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "a metal chess piece rests on wood objects",
+        "output": "a wood chess piece rests on metal objects"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "smooth shoes are on a soft floor",
+        "output": "soft shoes are on a smooth floor"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the sad person is on the right and the happy person is on the left",
+        "output": "the happy person is on the right and the sad person is on the left"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the helpful person is on the left and the hurt person is on the right",
+        "output": "the hurt person is on the left and the helpful person is on the right"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the less content person has the healthier food and the more content person has the less healthy food",
+        "output": "the more content person has the healthier food and the less content person has the less healthy food"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the orange lollipop is surprised and the red lollipop is sad",
+        "output": "the orange lollipop is sad and the red lollipop is surprised"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the smaller person wears yellow and the larger person does not",
+        "output": "the larger person wears yellow and the smaller person does not"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "a small cat is next to a big dog",
+        "output": "a big cat is next to a small dog"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the light oncoming traffic is contrasted with the heavy outgoing traffic",
+        "output": "the heavy oncoming traffic is contrasted with the light outgoing traffic"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "a hot drink on a cold day",
+        "output": "a cold drink on a hot day"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "a person is drinking later and eating now",
+        "output": "a person is drinking now and eating later"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the sailboat sails far away but the beach is close",
+        "output": "the sailboat sails close but the beach is far away"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the passenger is riding attentive to the road and the driver is driving inattentive to the road",
+        "output": "the passenger is riding inattentive to the road and the driver is driving attentive to the road"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the person wears a hat but it doesn't",
+        "output": "it wears a hat but the person doesn't"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the person with green legs is running faster and the red legged one runs quite slowly",
+        "output": "the person with green legs is running quite slowly and the red legged one runs faster"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "a person is close to the water and in the sand",
+        "output": "a person is in the water and close to the sand"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "a frog is under rocks which are above the water",
+        "output": "a frog is above rocks which are under the water"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "driving on the road and off the unpaved terrain",
+        "output": "driving off the road and on the unpaved terrain"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "someone is with a helicopter in a car",
+        "output": "someone is in a helicopter with a car"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the green one can fit outside the blue one and the blue one can fit inside the green one",
+        "output": "the green one can fit inside the blue one and the blue one can fit outside the green one"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "jumping towards the photographer and away from the others",
+        "output": "jumping away from the photographer and towards the others"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the dough is eaten before someone bakes the dough",
+        "output": "someone bakes the dough before the dough is eaten"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "it was eaten before it hatched",
+        "output": "it hatched before it was eaten"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "there are two bananas and three apples",
+        "output": "there are three bananas and two apples"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "someone has loaded their plate with two of the toast slices and one of the eggs",
+        "output": "someone has loaded their plate with one of the toast slices and two of the eggs"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "there are two people and three windows",
+        "output": "there are three people and two windows"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "there are 5 stars on the right flag and 50 stars on the left flag",
+        "output": "there are 50 stars on the right flag and 5 stars on the left flag"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "six people wear blue shirts and no people wear white shirts",
+        "output": "no people wear blue shirts and six people wear white shirts"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the person's leg is on the dog's torso",
+        "output": "the dog's leg is on the person's torso"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the person's eyes are bigger than the animal's",
+        "output": "the animal's eyes are bigger than the person's"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the shorter person's arm is around the taller person's shoulder",
+        "output": "the taller person's arm is around the shorter person's shoulder"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the person in a black coat looks back and the person in a brown coat looks forward",
+        "output": "the person in a brown coat looks back and the person in a black coat looks forward"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "they ran away while it pursued",
+        "output": "it ran away while they pursued"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "one is in a boat and almost everyone is swimming",
+        "output": "almost everyone is in a boat and one is swimming"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the person with the darker shoes is holding an emoji and the person with the lighter shoes isn't",
+        "output": "the person with the lighter shoes is holding an emoji and the person with the darker shoes isn't"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the person wearing brighter colors poses and the person wearing neutral colors takes a picture",
+        "output": "the person wearing neutral colors poses and the person wearing brighter colors takes a picture"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "it's a truck fire",
+        "output": "it's a fire truck"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "presenting the watch",
+        "output": "watching the present"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "rocking out on a walk",
+        "output": "walking out on a rock"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the kid looks at them with the magnifying glass",
+        "output": "the kid with the magnifying glass looks at them"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the person is sitting with the kids",
+        "output": "the person with the kids is sitting"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the people are touching each other with shoes",
+        "output": "the people with shoes are touching each other"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "someone is hurt by a tree with an apple",
+        "output": "someone with an apple is hurt by a tree"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the person is eating the food that is on the table",
+        "output": "the person that is on the table is eating the food"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the pot is larger than the watering can",
+        "output": "the watering can is larger than the pot"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "they hold a passport with their left hand and they hold a suitcase handle with their right hand",
+        "output": "they hold a suitcase handle with their left hand and they hold a passport with their right hand"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the person with the patterned shirt is straight-haired and the other is curly-haired",
+        "output": "the person with the patterned shirt is curly-haired and the other is straight-haired"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "a diagram showing movement from left to right",
+        "output": "a diagram showing movement from right to left"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the feet are too big for these flip flops",
+        "output": "the flip flops are too big for these feet"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the person is kissing a frog who is wearing a crown",
+        "output": "the person who is wearing a crown is kissing a frog"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "a person lying on a couch with a dog sitting on the floor",
+        "output": "a dog sitting on a couch with a person lying on the floor"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "The caged bird has an unopened cage door",
+        "output": "The uncaged bird has an opened cage door"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "potatoes with meat",
+        "output": "meat with potatoes"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the person in pink was not close to winning",
+        "output": "the person in pink was close to not winning"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "two wheels and one human",
+        "output": "two humans and one wheel"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "lines on clothing",
+        "output": "clothing on lines"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "someone talks on the phone happily while another person sits angrily",
+        "output": "someone talks on the phone angrily while another person sits happily"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "one boat and two directions down the stream",
+        "output": "two boats and one direction down the stream"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "The dog rides with a visible tongue out",
+        "output": "The dog rides without a visible tongue"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "hammering a hand",
+        "output": "handing a hammer"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "shedding its leaves",
+        "output": "leaves its shedding"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "they are using bait but still got no fish",
+        "output": "they are using no bait but still got fish"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "someone is on a vehicle spraying water towards the ground",
+        "output": "someone on the ground is spraying water towards a vehicle"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the dog bites what someone would normally wear as a hat",
+        "output": "the dog wears as a hat what someone would normally bite"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the upset one is on the left and the happy one is on the right",
+        "output": "the happy one is on the left and the upset one is on the right"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "real mustache and fake hair on head",
+        "output": "fake mustache and real hair on head"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "toy cat with real baby",
+        "output": "real cat with toy baby"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the lion is quiet and the lionness is loud",
+        "output": "the lion is loud and the lionness is quiet"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "there is a green couch with pink pillows",
+        "output": "there is a pink couch with green pillows"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "dark colored dog with light colored cat",
+        "output": "light colored dog with dark colored cat"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "someone is wearing a yellow hat and black shirt",
+        "output": "someone is wearing a black hat and yellow shirt"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "orange socks and black shoes",
+        "output": "black socks and orange shoes"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "white building with red shutters",
+        "output": "red building with white shutters"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "green pants and blue top",
+        "output": "blue pants and green top"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "there's one yellow and many blue balls",
+        "output": "there's one blue and many yellow balls"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "there are more gold coins than silver coins",
+        "output": "there are more silver coins than gold coins"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the blue team kicking the ball directly next to the red team",
+        "output": "the red team kicking the ball directly next to the blue team"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "brown dog wearing a black sweater",
+        "output": "black dog wearing a brown sweater"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "one red apple surrounded by a bunch of green apples",
+        "output": "one green apple surrounded by a bunch of red apples"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "person in orange is reading the white book",
+        "output": "person in white is reading the orange book"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the children are being loud while the adult is quiet",
+        "output": "the children are being quiet while the adult is loud"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the rectangular mirror is on the left and the circular mirror is on the right",
+        "output": "the circular mirror is on the left and the rectangular mirror is on the right"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "heart-shaped food on circular wood",
+        "output": "circular food on heart-shaped wood"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the dress on the left is short and the dress on the right is long",
+        "output": "the dress on the left is long and the dress on the right is short"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the balloon in the middle has more air and the other balloons have less air",
+        "output": "the balloon in the middle has less air and the other balloons have more air"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the pool has a lot of people and the area around it has no people",
+        "output": "the pool has no people and the area around it has a lot of people"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "small fish beside a big person",
+        "output": "big fish beside a small person"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the train is still while the person is moving fast",
+        "output": "the train is moving fast while the person is still"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "they're enjoying cold water on a hot day",
+        "output": "they're enjoying hot water on a cold day"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "wood floors with concrete walls",
+        "output": "concrete floors with wood walls"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the person on the left has straight hair and the person on the right has curly hair",
+        "output": "the person on the left has curly hair and the person on the right has straight hair"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "there's a plastic bottle with a metal lid",
+        "output": "there's a metal bottle with a plastic lid"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the fruit is light while the junk food is heavy",
+        "output": "the fruit is heavy while the junk food is light"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the car is sitting rightside up while the person is standing upside down",
+        "output": "the car is sitting upside down while the person is standing rightside up"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the cup on the left is filled second and the cup on the right is filled first",
+        "output": "the cup on the left is filled first and the cup on the right is filled second"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "cow milk",
+        "output": "milk cow"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "there is a wall clock",
+        "output": "there is a clock wall"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "there is a banana split",
+        "output": "there is a split banana"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "there are a bunch of people and two horses",
+        "output": "there are two people and a bunch of horses"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "two white and three brown eggs",
+        "output": "three white and two brown eggs"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the fish is in the plastic",
+        "output": "the plastic is in the fish"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the cat's paw is on the dog's face",
+        "output": "the dog's paw is on the cat's face"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the phone's screen is on and the computer's screen is off",
+        "output": "the computer's screen is on and the phone's screen is off"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the dog is in the passenger's seat and the person is in the driver's seat",
+        "output": "the dog is in the driver's seat and the person is in the passenger's seat"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "there are more people than trees",
+        "output": "there are more trees than people"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "there are more people than computers",
+        "output": "there are more computers than people"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "there is more metal than wood",
+        "output": "there is more wood than metal"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "there are more people than hats",
+        "output": "there are more hats than people"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "there are more stools than people",
+        "output": "there are more people than stools"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "there is more white wine than red wine",
+        "output": "there is more red wine than white wine"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "there's more coffee than milk",
+        "output": "there's more milk than coffee"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "there's more milk in the bowl than cereal",
+        "output": "there's more cereal in the bowl than milk"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "sail boat",
+        "output": "boat sail"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "house boat",
+        "output": "boat house"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "rip a check",
+        "output": "check a rip"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "display the dress",
+        "output": "dress the display"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "honey holding spoon",
+        "output": "spoon holding honey"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "a person holding up books",
+        "output": "books holding up a person"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "a person is using a wheelchair next to a dog",
+        "output": "a dog is using a wheelchair next to a person"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "a lightbulb surrounding some plants",
+        "output": "some plants surrounding a lightbulb"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "a black dog is holding a toy next to a more lightly-colored dog",
+        "output": "a more lightly-colored dog is holding a toy next to a black dog"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the people are taller than the flowers",
+        "output": "the flowers are taller than the people"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "there's a dog in a stroller next to a human",
+        "output": "there's a human in a stroller next to a dog"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "a ball is casting a shadow beside a person",
+        "output": "a person is casting a shadow beside a ball"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "its body is shorter than its tail",
+        "output": "its tail is shorter than its body"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the adult is throwing the child the ball",
+        "output": "the child is throwing the adult the ball"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "lights underneath a person",
+        "output": "a person underneath lights"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the ball on some green",
+        "output": "some green on the ball"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "clouds in the mind",
+        "output": "mind in the clouds"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "there's a map on a phone",
+        "output": "there's a phone on a map"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "a dog on a rock next to a person",
+        "output": "a person on a rock next to a dog"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "a child is flexing beside an adult",
+        "output": "an adult is flexing beside a child"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the dog is looking at the person",
+        "output": "the person is looking at the dog"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "a red blanket is underneath a cat",
+        "output": "a cat is underneath a red blanket"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the house is bigger than the person",
+        "output": "the person is bigger than the house"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the car is underneath the person",
+        "output": "the person is underneath the car"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the plastic is filled with water",
+        "output": "the water is filled with plastic"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "a target is on an apple",
+        "output": "an apple is on a target"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "light bulb made out of a plant",
+        "output": "plant made out of a light bulb"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "child pointing at parent",
+        "output": "parent pointing at child"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the ball reached the base before the person",
+        "output": "the person reached the base before the ball"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "fish being dumped on top of ice",
+        "output": "ice being dumped on top of fish"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "a child kisses an adult",
+        "output": "an adult kisses a child"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "there's a dog and a person in a mask beside it",
+        "output": "there's a dog in a mask and a person beside it"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the baby is next to an adult on the phone",
+        "output": "the baby on the phone is next to an adult"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the person on the right has their arms up and the person on the left has their arms down",
+        "output": "the person on the left has their arms up and the person on the right has their arms down"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the person on the right is holding the phone and the person on the left is staring at it",
+        "output": "the person on the left is holding the phone and the person on the right is staring at it"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the orange on the right is moldy while the orange on the left is fresh",
+        "output": "the orange on the left is moldy while the orange on the right is fresh"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "a pink scoop of ice cream on bottom and a blue scoop on top",
+        "output": "a pink scoop of ice cream on top and a blue scoop on bottom"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the glasses on the left are fuller than the glasses on the right",
+        "output": "the glasses on the right are fuller than the glasses on the left"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the person on the right is blowing bubbles and the person on the left is watching",
+        "output": "the person on the left is blowing bubbles and the person on the right is watching"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "there's more foam on the right than on the left",
+        "output": "there's more foam on the left than on the right"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "a fish is jumping from right to left",
+        "output": "a fish is jumping from left to right"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "they drank water then they worked out",
+        "output": "they worked out then they drank water"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the shrimp are cooked then the shrimp are peeled",
+        "output": "the shrimp are peeled then the shrimp are cooked"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "it is ground before the coffee is poured",
+        "output": "the coffee is poured before it is ground"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the potato is cut and then it is washed",
+        "output": "the potato is washed and then it is cut"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the banana is sliced then it is peeled",
+        "output": "the banana is peeled then it is sliced"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the dog is standing and the person is swimming",
+        "output": "the dog is swimming and the person is standing"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the person is sitting while the cat is jumping",
+        "output": "the person is jumping while the cat is sitting"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "a cat is stretching and a person is lying down",
+        "output": "a cat is lying down and a person is stretching"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "some people are sitting but more are standing",
+        "output": "some people are standing but more are sitting"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "The kids see the pancake and the adult throws it",
+        "output": "The kid throws the pancake and the adult sees it"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "painting white walls gray",
+        "output": "painting gray walls white"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "a taller person wearing blue standing next to a shorter person",
+        "output": "a shorter person wearing blue standing next to a taller person"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "a person wearing a panda mask with glasses in blue on the left hand side of a person wearing a bear mask in pink",
+        "output": "a person wearing a bear mask in blue on the left hand side of a person wearing a panda mask with glasses in pink"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "a box containing many a car",
+        "output": "a car containing many a box"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "left is blue and right is red",
+        "output": "left is red and right is blue"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "just one table tennis racket, many a ball",
+        "output": "many a table tennis racket, just one ball"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "no lions, four tigers",
+        "output": "four lions, no tigers"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "a big spherical object is heavier than a small spherical object",
+        "output": "a small spherical object is heavier than a big spherical object"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "a younger person blocking an older person",
+        "output": "an older person blocking a younger person"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "black land and white water",
+        "output": "white land and black water"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the shape whose lateral faces meet at a vertex is smaller than the cube",
+        "output": "the cube is smaller than the shape whose lateral faces meet at a vertex"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "more cars than bicycles",
+        "output": "more bicycles than cars"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "there are more pears than apples",
+        "output": "there are more apples than pears"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "there is more hate than love",
+        "output": "there is more love than hate"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "more oil than water",
+        "output": "more water than oil"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "a person consoles while another person wearing jewelry above their shoulders cries",
+        "output": "a person cries while another person wearing jewelry above their shoulders consoles"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "a person with short hair eating a meat-based product while a person with long hair snacks on some fries",
+        "output": "a person with long hair eating a meat-based product while a person with short hair snacks on some fries"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "boat below the water",
+        "output": "water below the boat"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the other one is faster than the one in front",
+        "output": "the one in front is faster than the other one"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "You can catch more flies with vinegar than you can with honey",
+        "output": "You can catch more flies with honey than you can with vinegar"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "It starts with \"Z\" and ends with \"A\"",
+        "output": "It starts with \"A\" and ends with \"Z\""
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "a line within the shadow",
+        "output": "a shadow within the line"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "fear in the face of the brave",
+        "output": "the brave in the face of fear"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "I need my back strength",
+        "output": "I need my strength back"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the ones on the side are taller than the one in the middle is",
+        "output": "the one in the middle is taller than the ones on the side are"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "fly fishing",
+        "output": "fish flying"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the blue car is behind the red car",
+        "output": "the red car is behind the blue car"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the driver wearing a sleeveless top is in front of the other person wearing a shirt",
+        "output": "the driver wearing a shirt is in front of the other person wearing a sleeveless top"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "some wood is on an object that rolls",
+        "output": "an object that rolls is on some wood"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "a human viewing a cat on a screen",
+        "output": "a cat viewing a human on a screen"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "a superhero wishing they were a normal person",
+        "output": "a normal person wishing they were a superhero"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "a mike in the left hand while raising the right",
+        "output": "a mike in the right hand while raising the left"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "a person with a beard behind a person with long hair",
+        "output": "a person with long hair behind a person with a beard"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the person with hair to their shoulders has blue eyes and the other person's are brown",
+        "output": "the person with hair to their shoulders has brown eyes and the other person's are blue"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "a device that intercepts the sun's rays on a human being",
+        "output": "a human being on a device that intercepts the sun's rays"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "more phones than humans",
+        "output": "more humans than phones"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "a tube is in the person",
+        "output": "a person is in the tube"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the rest of their body is above the person's head",
+        "output": "the person's head is above the rest of their body"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "person over board",
+        "output": "person overboard"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "more blue buttons than red",
+        "output": "more red buttons than blue"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the object at the bottom right is purple and the one at the top left of the group is red",
+        "output": "the object at the top left is purple and the one at the bottom right of the group is red"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "flat on top and pointy at the bottom",
+        "output": "flat at the bottom and pointy on top"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "seat numbers increasing from right to left",
+        "output": "seat numbers increasing from left to right"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the number on the left is larger than the number on the right",
+        "output": "the number on the right is larger than the number on the left"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "more hair on the person's head than on their face",
+        "output": "more hair on the person's face than on their head"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the knife on the right and the fork on the left",
+        "output": "the knife on the left and the fork on the right"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "eyes on their food",
+        "output": "food on their eyes"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "bits of cars",
+        "output": "cars of bits"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the world on top of a person",
+        "output": "a person on top of the world"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "two people; the one on the left has curly hair and the one on the right doesn't",
+        "output": "two people; the one on the right has curly hair and the one on the left doesn't"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "first the jam, then the cream",
+        "output": "first the cream, then the jam"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "more hugs than kisses",
+        "output": "more kisses than hugs"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "a person on an inflatable flamingo",
+        "output": "an inflatable flamingo on a person"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "a white bird with a pink beak",
+        "output": "a pink bird with a white beak"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "a large white inflatable flamingo along with some other lilos on the water including one that is mostly pink",
+        "output": "a large pink inflatable flamingo along with some other lilos on the water including one that is mostly white"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "there are more eyes on a typical human than there are in the image",
+        "output": "there are more eyes in the image than there are on a typical human"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the confident doctor's stethoscope is around their neck, and their name tag is over their jacket",
+        "output": "the confident doctor's stethoscope is around their neck, and their jacket is over their name tag"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "few clouds and many wind turbines",
+        "output": "few wind turbines and many clouds"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "their young child is reading to an adult",
+        "output": "an adult is reading to their young child"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the shelves on the person's right are full and the shopping basket is empty",
+        "output": "the shopping basket is full and the shelves on the person's right are empty"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "Young person playing baseball with a blue bat and green ball",
+        "output": "Young person playing baseball with a green bat and blue ball"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "painting the red wall white",
+        "output": "painting the white wall red"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "wearing a blue jacket over red",
+        "output": "wearing a red jacket over blue"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "I had my car cleaned",
+        "output": "I had cleaned my car"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "poor unfortunate people",
+        "output": "unfortunate poor people"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "there are less masks than gloves",
+        "output": "there are less gloves than masks"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "there are more boxes than pineapples",
+        "output": "there are more pineapples than boxes"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the outer bristles are white and the inner ones are blue",
+        "output": "the outer bristles are blue and the inner ones are white"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the last vowel is E and the first consonant is N",
+        "output": "the first vowel is E and the last consonant is N"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the cat on the left of the photo has its left paw ahead of its right",
+        "output": "the cat on the left of the photo has its right paw ahead of its left"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the text is white on black",
+        "output": "the text is black on white"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the dog stands and the cat sits",
+        "output": "the dog sits and the cat stands"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the person with facial hair runs and the other person cycles",
+        "output": "the person with facial hair cycles and the other person runs"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "using the guitar while the laptop is close by",
+        "output": "using the laptop while the guitar is close by"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "a person in a brown-ish coat with a blue coffee cup",
+        "output": "a person in a blue coat with a brown-ish coffee cup"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "a star in space",
+        "output": "space in a star"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "death of star",
+        "output": "star of death"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the younger person is silent while the other is making noise",
+        "output": "the younger person is making noise while the other is silent"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the one on the left is sad and the other is happy",
+        "output": "the one on the left is happy and the other is sad"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the person on the left is sitting on the sofa and the person on the very right is dancing",
+        "output": "the person on the left is dancing and the person on the very right is sitting on the sofa"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the person on the left is smiling happily while the one on the right is crying sadly",
+        "output": "the person on the left is crying sadly while the one on the right is smiling happily"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the small person is drinking from the large coffee cup",
+        "output": "the large person is drinking from the small coffee cup"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "cool rubber and hot metal",
+        "output": "hot rubber and cool metal"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the square shape is beneath the triangular one",
+        "output": "the triangular shape is beneath the square one"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "smooth outside but rough inside",
+        "output": "rough outside but smooth inside"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the green one is slow and the one in white is comparatively fast",
+        "output": "the green one is fast and the one in white is comparatively slow"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "there are more balls than humans",
+        "output": "there are more humans than balls"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "there are more wheels than legs",
+        "output": "there are more legs than wheels"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "a group of two people with longer hair and three with short hair in a business context",
+        "output": "a group of three people with longer hair and two with short hair in a business context"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the gesture of the person standing up is supporting the understanding of the person sitting down",
+        "output": "the gesture of the person sitting down is supporting the understanding of the person standing up"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the cross is above the circle",
+        "output": "the circle is above the cross"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "aerial view of a green tree in a green field next to the brown freshly turned soil",
+        "output": "aerial view of a green tree in the brown freshly turned soil next to a green field"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "physical therapist inspecting pink elastic therapeutic kinesio tape over blue",
+        "output": "physical therapist inspecting blue elastic therapeutic kinesio tape over pink"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the skipping rope color is similar to the shoelaces but different to the shoes",
+        "output": "the skipping rope color is different to the shoelaces but similar to the shoes"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the weight is being lifted by the blue balloon",
+        "output": "the blue balloon is being lifted by the weight"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the sea is smooth but the rocks are rough",
+        "output": "the sea is rough but the rocks are smooth"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the melting white food is warm while the brown is cold",
+        "output": "the melting white food is cold while the brown is warm"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the person with long hair is smiling while the person with a beard is not",
+        "output": "the person with a beard is smiling while the person with long hair is not"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the pet on the left is white and the one on the right is not",
+        "output": "the pet on the right is white and the one on the left is not"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the outlet carrying water from the faucet to the shower head is near the cold tap not the hot",
+        "output": "the outlet carrying water from the faucet to the shower head is near the hot tap not the cold"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the larger ball is lighter and the smaller one is heavier",
+        "output": "the larger ball is heavier and the smaller one is lighter"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "The adult looks at the kid with the magnifying glass",
+        "output": "The adult with the magnifying glass looks at the kid"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "a blanket is on a dog with spots",
+        "output": "a dog is on a blanket with spots"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "There is a birthday cake for a mouse",
+        "output": "There is a mouse cake for a birthday"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "The warm-blooded animal isn't happy in cold water",
+        "output": "The cold-blooded animal isn't happy in warm water"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "The black queen is taking the white king",
+        "output": "The white queen is taking the black king"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "animals visiting at home can be fun",
+        "output": "visiting animals at home can be fun"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the cat is not happy with the person",
+        "output": "the person is not happy with the cat"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the door is too small for the big person",
+        "output": "the person is too big for the small door"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "a shorter person is covering the eyes of a taller person",
+        "output": "a taller person is covering the eyes of a shorter person"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the bug is eating the plant",
+        "output": "the plant is eating the bug"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "every leaf has a bug",
+        "output": "every bug has a leaf"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the red leaves will soon be green as the seasons change",
+        "output": "the green leaves will soon be red as the seasons change"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the blue wall will soon be painted white",
+        "output": "the white wall will soon be painted blue"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the earth prevents the sun's rays from falling on the moon",
+        "output": "the moon prevents the sun's rays from falling on the earth"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "all paper airplanes fly on a curved path except for one which takes a straight one",
+        "output": "all paper airplanes fly on a straight path except for one which takes a curved one"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the pants is too big for the person",
+        "output": "the person is too big for the pants"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "a kid threw a basketball then jumped",
+        "output": "a kid jumped then threw a basketball"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "multiple cheerleaders supporting one cheerlearder",
+        "output": "one cheerlearder supporting multiple cheerleaders"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "one person wearing two scarfs",
+        "output": "two persons wearing one scarf"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "pet head on human",
+        "output": "human head on pet"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the moon is over the cow",
+        "output": "the cow is over the moon"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "someone pets a baby",
+        "output": "someone babys a pet"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "house cat",
+        "output": "cat house"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "pan for gold",
+        "output": "gold for pan"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "plants for water",
+        "output": "water for plants"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the businessperson's fall down",
+        "output": "the businessperson's down fall"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the person in the red swimcap swamout",
+        "output": "outswam the person in the red swimcap"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "shiping a mann",
+        "output": "manning a ship"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the person who isn't wearing a sweater stands in front of the person wearing a sweater",
+        "output": "the person wearing a sweater stands in front of the person who isn't wearing a sweater"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "a person with glasses pushes a person without glasses sitting in a box",
+        "output": "a person without glasses pushes a person with glasses sitting in a box"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "what is yellow will soon be green",
+        "output": "what is green will soon be yellow"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "soon this animal with a tail will not have one",
+        "output": "soon this animal not with a tail will have one"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "a dog is touching a mouse",
+        "output": "a mouse is touching a dog"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "compliments for fishing",
+        "output": "fishing for compliments"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "that person hands off their dusting",
+        "output": "that person dusting off their hands"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "a person wearing green shoes cleaning a bookshelf with an orange duster while a person wearing black shoes drinks wine from an orange glass and relaxes",
+        "output": "a person wearing black shoes cleaning a bookshelf with an orange duster while a person wearing green shoes drinks wine from an orange glass and relaxes"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "a person with long hair is happily ironing a light blue shirt while a person with short hair sits on a white couch",
+        "output": "a person with short hair is happily ironing a light blue shirt while a person with long hair sits on a white couch"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "yellow duck on shoes",
+        "output": "yellow duck shoes on"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "front facing child in row of yellow rubber ducks",
+        "output": "child in front facing row of yellow rubber ducks"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "a person cooking a bird",
+        "output": "a bird cooking a person"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "a jumping person wearing yellow and a person wearing stripes",
+        "output": "a person wearing yellow and a person wearing stripes jumping"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "a person wearing stripes with their feet in the air and a person wearing yellow",
+        "output": "a person wearing yellow with their feet in the air and a person wearing stripes"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "light things in stripes become darker",
+        "output": "darker things become light in stripes"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "hammering something together",
+        "output": "together hammering something"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "A baby sits next to a person using an orange screwdriver to assemble a white piece of furniture",
+        "output": "A person sits next to a baby using an orange screwdriver to assemble a white piece of furniture"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the opening in the wall is to the left of where a worker in a yellow hat uses a drill",
+        "output": "a worker in a yellow hat uses a drill to the left of where the opening in the wall is"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "A curled small animal with hair",
+        "output": "A small animal with curled hair"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "A left hand pulls a glove onto a right hand",
+        "output": "A right hand pulls a glove onto a left hand"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "A dog with their feet hanging out of a car window and a person",
+        "output": "A dog and a person with their feet hanging out of a car window"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "A dog whispering into a person's ear",
+        "output": "A person whispering into a dog's ear"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "donkey ear that some one is whispering a secret into",
+        "output": "one ear that some donkey is whispering a secret into"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "someone walking lines cut into green plants",
+        "output": "walking someone cut lines into green plants"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "water above a volcano makes steam",
+        "output": "a volcano above water makes steam"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "A child and an adult riding a bike",
+        "output": "A child riding a bike and an adult"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "a child putting a helmet on an adult",
+        "output": "an adult putting a helmet on a child"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "An adult lying next to a child wearing purple",
+        "output": "An adult wearing purple lying next to a child"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "a fencer having a point scored against them by another fencer who is wearing black pants using a wheelchair",
+        "output": "a fencer who is wearing black pants having a point scored against them by another fencer using a wheelchair"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "a person without braids is exercising in front of a person with long braids",
+        "output": "a person with long braids is exercising in front of a person without braids"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "in the stadium, the person wearing blue outperformed the one wearing gray",
+        "output": "in the stadium, the person wearing gray outperformed the one wearing blue"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "butchering red meat while wearing white but not yellow",
+        "output": "butchering white meat while wearing yellow but not red"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "an adult with a fake beard and a child",
+        "output": "a child with a fake beard and an adult"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "on halloween, a child dressed as a mammal is to the right of a child dressed as an insect",
+        "output": "on halloween, a child dressed as an insect is to the right of a child dressed as a mammal"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "a nicely landscaped lawn above a modern office complex with many windows",
+        "output": "a modern office complex with many windows above a nicely landscaped lawn"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "a parked car is partially inside a tree",
+        "output": "a tree is partially inside a parked car"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "some are training in a park",
+        "output": "some are parking in a train"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "water running on an athlete",
+        "output": "an athlete running on water"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "getting a horse wet",
+        "output": "a horse getting wet"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "the person's head and leg are above the glasses full of water",
+        "output": "the glasses full of water are above the person's head and leg"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "a squirrel is touching the head of a person",
+        "output": "a person is touching the head of a squirrel"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "a child's hand is resting on a deer's nose",
+        "output": "a deer's nose is resting on a child's hand"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "one sparkler for two hands",
+        "output": "two sparklers for one hand"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "a person giving an animal food",
+        "output": "an animal giving a person food"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "a dog towering over a spider",
+        "output": "a spider towering over a dog"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "a hollow tube going into a car",
+        "output": "a car going into a hollow tube"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "two people wearing clothes of different colors are on the same side of the tennis net",
+        "output": "two people wearing clothes of the same colors are on different side of the tennis net"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "drinking living things",
+        "output": "living things drinking"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "near a person using a water lasso",
+        "output": "a person near water using a lasso"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "a person spraying water on a person on a bike and someone else",
+        "output": "a person spraying water on someone else and a person on a bike"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "a brown dog stretching behind a person",
+        "output": "a person stretching behind a brown dog"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "more than one flotation device carrying a person",
+        "output": "a person carrying more than one flotation device"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "one kid on a pool floatie and two kids swimming",
+        "output": "two kids on a pool floatie and one kid swimming"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "moving gears for something",
+        "output": "gears for moving something"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "looking from below at a collection of similar objects above",
+        "output": "looking from above at a collection of similar objects below"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "at least one toy herbivore stands on top of a toy carnivore",
+        "output": "a toy herbivore stands on top of at least one toy carnivore"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "a chair supports a small person",
+        "output": "a person supports a small chair"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "a person wearing a checked shirt smiles at another person who is hitting a ping pong ball",
+        "output": "a person smiles at another person wearing a checked shirt who is hitting a ping pong ball"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "one version of two persons",
+        "output": "two versions of one person"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "There are pink flowers not below the bird with yellow head feathers",
+        "output": "There are not pink flowers below the bird with yellow head feathers"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "In a shopping cart, there are two animals that are the different species but are looking in same directions",
+        "output": "In a shopping cart, there are two animals that are the same species but are looking in different directions"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "a vessel is on and under water",
+        "output": "water is on and under a vessel"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "one bodies share with two head",
+        "output": "two bodies share with one head"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "The worker wears something white over a striped undershirt with a collar",
+        "output": "The worker wears something striped over a white undershirt with a collar"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "A person seen from below has a grid above them",
+        "output": "A person seen from above has a grid below them"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "clouds in the head",
+        "output": "head in the clouds"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "on feet standing",
+        "output": "standing on feet"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "They have hair over their sunglasses",
+        "output": "They have sunglasses over their hair"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "an even number of sweet things on a plate with an odd number of sides",
+        "output": "an odd number of sweet things on a plate with an even number of sides"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "a large non-living thing in front of a large living thing",
+        "output": "a large living thing in front of a large non-living thing"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "racing it over",
+        "output": "racing over it"
+    },
+    {
+        "instruction": "modify the input sentence to change its meaning solely by rearranging the order of the words.",
+        "input": "someone is doing it over",
+        "output": "someone is overdoing it"
+    }
+]

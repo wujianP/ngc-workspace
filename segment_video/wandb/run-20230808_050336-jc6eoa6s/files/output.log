@@ -1,4 +1,0 @@
-Traceback (most recent call last):
-  File "visualize_video.py", line 45, in <module>
-    video = np.array(mask_frames).transpose((0, 3, 1, 2))
-ValueError: axes don't match array
