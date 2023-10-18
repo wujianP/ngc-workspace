@@ -147,6 +147,8 @@ if __name__=="__main__":
     target_class=[]
     for i in data['categories']:
         target_class.append(i)
+    from IPython import embed
+    embed()
     PATH=args.output_dir
     os.makedirs(PATH,exist_ok=True)
     if args.resume:
